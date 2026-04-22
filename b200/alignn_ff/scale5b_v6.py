@@ -13,12 +13,12 @@ The pre-cliff f32 pool-accumulation drift. On v5, `model((g, lg, lattice))["out"
 wandered across a ~4e-3 eV band (0.604 → 0.600 eV) as N grew from ~500 to
 442,368 atoms, because the readout was summing ~N node vectors in float32. v6
 is bit-constant at 0.604013 eV across that range -- matching the float64
-reference (0.604015 eV, from `output/diag_1332079.out`) to <2e-6 eV.
+reference (0.604015 eV, established by `diagnose_drift.py`) to <2e-6 eV.
 
 What this does NOT fix
 ----------------------
 The separate upstream cliff at N ≥ 470,596 (drift reaches +39% at N=780k).
-`probe_pool.py` (→ `output/probe_1332655.out`) showed |mean_f64 − mean_f32|∞
+`probe_pool.py` showed |mean_f64 − mean_f32|∞
 ≤ 6e-6 at every size, so the pool is faithful; meanwhile `|feat|_max` jumps
 from 2.52 at i=20 to 2.64 at i=50 -- the pool *input* is already corrupted by
 the time it reaches the readout. The cliff is almost certainly a CUDA kernel

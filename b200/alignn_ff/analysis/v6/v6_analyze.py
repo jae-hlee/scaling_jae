@@ -25,7 +25,7 @@ V5 = np.load(ROOT / "scaling_alignn_v5.npz")
 V6 = np.load(ROOT / "scaling_alignn_v6.npz")
 
 # Float64 ground truth: flat across every size where f64 fit in HBM.
-# From diagnose_drift.py 2026-04 run (output/diag_1332079.out).
+# Established by the diagnose_drift.py 2026-04 run.
 E_F64_REF = 0.604015
 
 

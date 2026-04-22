@@ -43,7 +43,7 @@ v6's drift is marginally *larger* than v5's at the cliff, but the difference (0.
 
 ## Why the pool is ruled out
 
-`probe_pool.py` (see `output/probe_1332655.out`) instruments the v6 wrapper to print, per pool call, `|mean_f64 − mean_f32|` and statistics of the pool *input* `feat`. Results:
+`probe_pool.py` instruments the v6 wrapper to print, per pool call, `|mean_f64 − mean_f32|` and statistics of the pool *input* `feat`. Results:
 
 | i   | N       | E       | `|mean_f64 − mean_f32|∞` | `|feat|_max` |
 | --- | ------- | ------- | ------------------------ | ------------ |
