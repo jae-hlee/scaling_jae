@@ -1,0 +1,5 @@
+<frozen importlib._bootstrap>:488: Warning: OpenSSL 3's legacy provider failed to load. Legacy algorithms will not be available. If you need those algorithms, check your OpenSSL configuration.
+/home/jlee859/scratchkchoudh2/jlee859/miniconda3/envs/b200/lib/python3.10/site-packages/requests/__init__.py:86: RequestsDependencyWarning: Unable to find acceptable character detection dependency (chardet or charset_normalizer).
+  warnings.warn(
+  0%|          | 0.00/549k [00:00<?, ?iB/s] 13%|█▎        | 69.6k/549k [00:00<00:01, 412kiB/s] 35%|███▍      | 191k/549k [00:00<00:00, 596kiB/s] 100%|██████████| 549k/549k [00:00<00:00, 1.30MiB/s]
+slurmstepd: error: *** JOB 1306345 ON b201 CANCELLED AT 2026-04-19T15:49:41 DUE TO TIME LIMIT ***

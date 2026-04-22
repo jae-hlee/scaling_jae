@@ -1,0 +1,17 @@
+# Si 12x12x12 supercell - 3456 atoms
+SYSTEM = Si_12x12x12
+
+ENCUT  = 400
+EDIFF  = 1E-4
+ISMEAR = 0
+SIGMA  = 0.05
+
+IBRION = -1
+NSW    = 0
+NELM   = 2
+
+LREAL  = Auto
+NCORE  = 1
+ISYM   = 0
+ALGO   = Fast
+

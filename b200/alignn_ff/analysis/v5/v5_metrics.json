@@ -1,0 +1,53 @@
+{
+  "v5_n_points": 58,
+  "v5_n_max": 780448,
+  "v5_terminated_reason": "CUDA OOM at size 59 (N=821,516); allocating 28 GiB on top of 157 GiB on a 178 GiB B200",
+  "v5_sweep_total_wall_seconds": 144.17928424384445,
+  "v4_sweep_total_wall_seconds": 80902.01628918434,
+  "total_sweep_speedup": 561.12094544982,
+  "v5_scaling_fits_N_ge_10000": {
+    "neighbor_list_matscipy": {
+      "prefactor_a": 3.2902093935258454e-05,
+      "exponent_b": 0.8231537207938994,
+      "r2": 0.9777124126463289
+    },
+    "dgl_graph_and_line": {
+      "prefactor_a": 1.0151101234681794e-05,
+      "exponent_b": 0.7885121522627848,
+      "r2": 0.9596945294128882
+    },
+    "alignn_inference": {
+      "prefactor_a": 8.480425428340443e-06,
+      "exponent_b": 0.9025822673188069,
+      "r2": 0.9912971657122122
+    },
+    "total": {
+      "prefactor_a": 4.734086702143077e-05,
+      "exponent_b": 0.8452853371293629,
+      "r2": 0.9830412780531235
+    }
+  },
+  "same_size_speedup_line_graph": {
+    "at_N_max_overlap": {
+      "N": 389344,
+      "v4_seconds": 11430.109913310036,
+      "v5_seconds": 0.26931439293548465,
+      "ratio": 42441.51153127626
+    },
+    "median_ratio_over_overlap": 5048.481079266601,
+    "max_ratio": 42441.51153127626
+  },
+  "energy_stability": {
+    "baseline_mean_eV": 0.6042110081072207,
+    "baseline_std_eV": 0.0005589003050648182,
+    "drift_onset_N": 500000,
+    "max_deviation_eV": 0.23332973762794773,
+    "max_deviation_fraction": 0.38617260277810433,
+    "note": "v5 extends to N=780k and shows a new monotone upward drift that v4 never reached. Small-N verification was bitwise-identical, so the sparse line graph is not the cause."
+  },
+  "new_bottleneck": {
+    "per_iter_at_N_max": 5.167816124856472,
+    "per_iter_at_N_389344": 2.578811510000378,
+    "note": "Runtime is now HBM-memory-bound, not compute-bound. Even at N=780k, a single iteration is ~5 s."
+  }
+}

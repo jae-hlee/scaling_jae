@@ -1,0 +1,27 @@
+# Si 16x16x16 supercell - 8192 atoms, maximum memory test
+SYSTEM = Si_16x16x16
+
+# Electronic relaxation - just try to get 1-2 SCF steps
+ENCUT  = 400
+EDIFF  = 1E-4
+ISMEAR = 0
+SIGMA  = 0.05
+
+# Calculation type
+IBRION = -1
+NSW    = 0
+
+# Very few SCF steps - we just want it to start
+NELM   = 2
+
+# Parallelization
+LREAL  = Auto
+NCORE  = 4
+ISYM   = 0
+
+# Memory-efficient algorithm
+ALGO   = Fast
+
+# Try gamma-point binary (more memory-efficient for gamma-only)
+# vasp_gam uses less memory since wavefunctions are real, not complex
+

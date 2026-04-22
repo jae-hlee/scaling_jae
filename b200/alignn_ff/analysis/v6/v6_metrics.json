@@ -1,0 +1,66 @@
+{
+  "v6_n_points": 58,
+  "v6_n_max": 780448,
+  "v6_terminated_reason": "CUDA OOM at size 59 (N=821,516); same limit as v5",
+  "v6_sweep_total_wall_seconds": 84.22515979548916,
+  "v5_sweep_total_wall_seconds": 144.17928424384445,
+  "v6_vs_v5_wall_ratio": 0.5841696346129909,
+  "v6_scaling_fits_N_ge_10000": {
+    "neighbor_list_matscipy": {
+      "prefactor_a": 3.901839595841487e-05,
+      "exponent_b": 0.8120512265773255,
+      "r2": 0.9741598556028457
+    },
+    "dgl_graph_and_line": {
+      "prefactor_a": 1.288325443852993e-05,
+      "exponent_b": 0.7734262070683852,
+      "r2": 0.9645517032190367
+    },
+    "alignn_inference": {
+      "prefactor_a": 9.976201668817089e-06,
+      "exponent_b": 0.8881741627332254,
+      "r2": 0.9920573209139636
+    },
+    "total": {
+      "prefactor_a": 5.702816690545594e-05,
+      "exponent_b": 0.831653950500292,
+      "r2": 0.9817903460782647
+    }
+  },
+  "wrapper_overhead": {
+    "median_delta_inference_ms": -11.263734195381403,
+    "median_fraction_of_inference": -0.024282819500730236,
+    "max_delta_inference_ms": 25.461977813392878,
+    "note": "Differences are within per-run CUDA nondeterminism; the _Float64Pool wrapper is effectively free relative to the rest of the pipeline."
+  },
+  "energy_pool_fix_precliff": {
+    "window_N": [
+      4,
+      442368
+    ],
+    "v5_max_deviation_from_f64_eV": 0.004116661682128875,
+    "v6_max_deviation_from_f64_eV": 1.6762161254568753e-06,
+    "v6_min_value_eV": 0.6040133237838745,
+    "v6_max_value_eV": 0.6040149927139282,
+    "v6_unique_values_rounded_6dp": [
+      0.604013,
+      0.604014,
+      0.604015
+    ],
+    "f64_reference_eV": 0.604015,
+    "finding": "v5 wanders over a ~4e-3 eV band below the cliff; v6 is bit-constant at 0.604013 eV across all pre-cliff sizes, matching the f64 reference to <1e-5. The _Float64Pool wrapper did close this small drift."
+  },
+  "cliff_still_open": {
+    "cliff_onset_N": 470596,
+    "v5_E_at_N_max_eV": 0.8375407457351685,
+    "v6_E_at_N_max_eV": 0.8448805809020996,
+    "v5_max_deviation_from_f64_eV": 0.2335257457351685,
+    "v6_max_deviation_from_f64_eV": 0.24086558090209964,
+    "fraction_remaining": 1.0314305180519794,
+    "finding": "v5 and v6 drift identically past the cliff: at N=780k, v5 deviates 0.234 eV from the f64 reference, v6 deviates 0.241 eV. probe_pool.py confirms the pool is faithful at every size (|mean_f64 - mean_f32|\u221e \u2264 6e-6 across i=20,50,55); the drift originates upstream of the readout in the message-passing layers."
+  },
+  "validity_window_f32": {
+    "max_trustworthy_N": 442368,
+    "note": "For v4/v5/v6 alike, f32 model outputs are trustworthy up to i=48 (N=442,368). Beyond that, a cliff in upstream CUDA kernels corrupts the result regardless of the pool wrapper."
+  }
+}

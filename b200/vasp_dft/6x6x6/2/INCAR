@@ -1,0 +1,23 @@
+# Si supercell scaling test - 2 GPU
+SYSTEM = Si_scaling
+
+# Electronic relaxation
+ENCUT  = 400
+EDIFF  = 1E-6
+ISMEAR = 0
+SIGMA  = 0.05
+ISYM = 0
+
+# Calculation type
+IBRION = -1
+NSW    = 0
+
+# Force consistent comparison
+NELM   = 20
+NELMIN = 20
+
+LREAL  = Auto
+
+# Parallelization
+NCORE  = 1
+

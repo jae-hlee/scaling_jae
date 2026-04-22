@@ -1,0 +1,24 @@
+# Si 10x10x10 supercell - max system test
+SYSTEM = Si_10x10x10
+
+# Electronic relaxation
+ENCUT  = 400
+EDIFF  = 1E-5
+ISMEAR = 0
+SIGMA  = 0.05
+
+# Calculation type
+IBRION = -1
+NSW    = 0
+
+# Single SCF cycle for timing
+NELM   = 5
+
+# Parallelization
+LREAL  = Auto
+NCORE  = 1
+ISYM   = 0
+
+# Memory optimization for large systems
+ALGO   = Fast
+

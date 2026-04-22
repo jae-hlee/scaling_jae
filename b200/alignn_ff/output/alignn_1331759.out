@@ -1,0 +1,78 @@
+Device: cuda
+dir_path /home/jlee859/.cache/atomgptlab/alignn_ff/v12.2.2024_dft_3d_307k
+max_neighbors: 12  cutoff: 4.0
+  ASE sanity check:
+    size  1x  n_atom=4      ase_expected=48       got=48       OK
+    size  2x  n_atom=32     ase_expected=384      got=384      OK
+    size  3x  n_atom=108    ase_expected=1296     got=1296     OK
+    size  4x  n_atom=256    ase_expected=3072     got=3072     OK
+  Line-graph equivalence check (old DGL vs sparse v5):
+    size  2x  n_atom=32     n_lg_edges=4608      max |Δcos(θ)|=0.00e+00  OK
+    size  3x  n_atom=108    n_lg_edges=15552     max |Δcos(θ)|=0.00e+00  OK
+    size  4x  n_atom=256    n_lg_edges=36864     max |Δcos(θ)|=0.00e+00  OK
+  All verification passed.
+
+size     n_atom        nl      line       graph   inference      E (eV)
+---------------------------------------------------------------------------
+   1          4   0.151s   0.216s     0.368s    64.214s       0.604
+   2         32   0.002s   0.003s     0.004s     0.008s       0.604
+   3        108   0.002s   0.002s     0.004s     0.009s       0.604
+   4        256   0.018s   0.005s     0.023s     0.021s       0.604
+   5        500   0.003s   0.007s     0.010s     0.013s       0.604
+   6        864   0.004s   0.009s     0.013s     0.015s       0.604
+   7       1372   0.006s   0.013s     0.020s     0.015s       0.604
+   8       2048   0.009s   0.008s     0.016s     0.017s       0.604
+   9       2916   0.020s   0.010s     0.030s     0.021s       0.604
+  10       4000   0.023s   0.017s     0.041s     0.023s       0.604
+  11       5324   0.041s   0.021s     0.062s     0.026s       0.604
+  12       6912   0.056s   0.019s     0.075s     0.031s       0.604
+  13       8788   0.058s   0.026s     0.084s     0.040s       0.604
+  14      10976   0.088s   0.022s     0.110s     0.054s       0.604
+  15      13500   0.102s   0.024s     0.126s     0.055s       0.604
+  16      16384   0.121s   0.032s     0.152s     0.067s       0.604
+  17      19652   0.138s   0.036s     0.174s     0.069s       0.604
+  18      23328   0.159s   0.043s     0.202s     0.078s       0.604
+  19      27436   0.183s   0.035s     0.218s     0.089s       0.604
+  20      32000   0.205s   0.042s     0.247s     0.099s       0.604
+  21      37044   0.152s   0.029s     0.180s     0.096s       0.604
+  22      42592   0.160s   0.033s     0.194s     0.109s       0.604
+  23      48668   0.277s   0.038s     0.315s     0.124s       0.604
+  24      55296   0.221s   0.043s     0.263s     0.141s       0.604
+  25      62500   0.248s   0.047s     0.296s     0.159s       0.605
+  26      70304   0.249s   0.053s     0.302s     0.178s       0.605
+  27      78732   0.279s   0.058s     0.338s     0.199s       0.605
+  28      87808   0.326s   0.064s     0.390s     0.221s       0.606
+  29      97556   0.331s   0.071s     0.402s     0.246s       0.606
+  30     108000   0.363s   0.077s     0.440s     0.271s       0.606
+  31     119164   0.439s   0.089s     0.528s     0.298s       0.605
+  32     131072   0.495s   0.093s     0.588s     0.327s       0.604
+  33     143748   0.515s   0.103s     0.618s     0.359s       0.604
+  34     157216   0.553s   0.112s     0.665s     0.392s       0.604
+  35     171500   0.618s   0.122s     0.740s     0.427s       0.603
+  36     186624   0.641s   0.132s     0.773s     0.464s       0.602
+  37     202612   0.695s   0.143s     0.839s     0.504s       0.601
+  38     219488   0.782s   0.155s     0.937s     0.545s       0.601
+  39     237276   0.810s   0.166s     0.976s     0.590s       0.601
+  40     256000   0.865s   0.180s     1.045s     0.636s       0.601
+  41     275684   0.995s   0.193s     1.188s     0.686s       0.601
+  42     296352   1.070s   0.207s     1.278s     0.735s       0.601
+  43     318028   1.144s   0.220s     1.364s     0.789s       0.601
+  44     340736   1.191s   0.241s     1.432s     0.844s       0.601
+  45     364500   1.272s   0.254s     1.526s     0.904s       0.600
+  46     389344   1.346s   0.269s     1.615s     0.964s       0.600
+  47     415292   1.441s   0.289s     1.730s     1.029s       0.600
+  48     442368   1.533s   0.306s     1.839s     1.094s       0.600
+  49     470596   1.603s   0.333s     1.936s     1.166s       0.604
+  50     500000   1.698s   0.353s     2.050s     1.237s       0.636
+  51     530604   1.895s   0.368s     2.264s     1.316s       0.668
+  52     562432   2.006s   0.392s     2.398s     1.392s       0.698
+  53     595508   2.096s   0.413s     2.509s     1.477s       0.726
+  54     629856   2.206s   0.437s     2.643s     1.560s       0.751
+  55     665500   2.309s   0.460s     2.769s     1.651s       0.775
+  56     702464   2.433s   0.489s     2.922s     1.739s       0.797
+  57     740772   2.554s   0.512s     3.066s     1.838s       0.818
+  58     780448   2.676s   0.537s     3.214s     1.954s       0.838
+  ! stopped at size 59 (n=821516): OutOfMemoryError: CUDA out of memory. Tried to allocate 28.21 GiB. GPU 0 has a total capacity of 178.34 GiB of which 20.97 GiB is free. Including non-PyTorch memory, this process has 157.36 GiB memory in use. Of the allocated memory 135.23 GiB is allocated by PyTorch, and 17.29 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+Saved plot: scaling_alignn_v5.png
+Saved data: scaling_alignn_v5.npz

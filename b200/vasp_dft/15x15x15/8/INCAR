@@ -1,0 +1,17 @@
+# Si 15x15x15 supercell - 6750 atoms
+SYSTEM = Si_15x15x15
+
+ENCUT  = 400
+EDIFF  = 1E-4
+ISMEAR = 0
+SIGMA  = 0.05
+
+IBRION = -1
+NSW    = 0
+NELM   = 2
+
+LREAL  = Auto
+NCORE  = 1
+ISYM   = 0
+ALGO   = Fast
+

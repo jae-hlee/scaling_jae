@@ -1,0 +1,512 @@
+{
+  "strong_scaling": {
+    "3x3x3": {
+      "natoms": 54,
+      "nkpts": 3,
+      "points": [
+        {
+          "ngpu": 1,
+          "elapsed_s": 15.281,
+          "scf_done": 20,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "ngpu": 2,
+          "elapsed_s": 17.811,
+          "scf_done": 20,
+          "speedup": 0.8579529504238954,
+          "efficiency": 0.4289764752119477
+        },
+        {
+          "ngpu": 4,
+          "elapsed_s": 18.28,
+          "scf_done": 20,
+          "speedup": 0.8359409190371991,
+          "efficiency": 0.20898522975929978
+        },
+        {
+          "ngpu": 8,
+          "elapsed_s": 27.297,
+          "scf_done": 20,
+          "speedup": 0.5598051067882918,
+          "efficiency": 0.06997563834853647
+        }
+      ]
+    },
+    "4x4x4": {
+      "natoms": 128,
+      "nkpts": 3,
+      "points": [
+        {
+          "ngpu": 1,
+          "elapsed_s": 39.559,
+          "scf_done": 20,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "ngpu": 2,
+          "elapsed_s": 38.339,
+          "scf_done": 20,
+          "speedup": 1.0318213829260021,
+          "efficiency": 0.5159106914630011
+        },
+        {
+          "ngpu": 4,
+          "elapsed_s": 36.457,
+          "scf_done": 20,
+          "speedup": 1.0850865403077596,
+          "efficiency": 0.2712716350769399
+        },
+        {
+          "ngpu": 8,
+          "elapsed_s": 42.527,
+          "scf_done": 20,
+          "speedup": 0.9302090436663766,
+          "efficiency": 0.11627613045829707
+        }
+      ]
+    },
+    "5x5x5": {
+      "natoms": 250,
+      "nkpts": 1,
+      "points": [
+        {
+          "ngpu": 1,
+          "elapsed_s": 57.643,
+          "scf_done": 20,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "ngpu": 2,
+          "elapsed_s": 62.435,
+          "scf_done": 20,
+          "speedup": 0.9232481781052294,
+          "efficiency": 0.4616240890526147
+        },
+        {
+          "ngpu": 4,
+          "elapsed_s": 75.254,
+          "scf_done": 20,
+          "speedup": 0.7659792170515852,
+          "efficiency": 0.1914948042628963
+        },
+        {
+          "ngpu": 8,
+          "elapsed_s": 108.101,
+          "scf_done": 20,
+          "speedup": 0.5332328100572613,
+          "efficiency": 0.06665410125715766
+        }
+      ]
+    },
+    "6x6x6": {
+      "natoms": 432,
+      "nkpts": 1,
+      "points": [
+        {
+          "ngpu": 1,
+          "elapsed_s": 113.693,
+          "scf_done": 20,
+          "speedup": 1.0,
+          "efficiency": 1.0
+        },
+        {
+          "ngpu": 2,
+          "elapsed_s": 96.242,
+          "scf_done": 20,
+          "speedup": 1.1813241620082708,
+          "efficiency": 0.5906620810041354
+        },
+        {
+          "ngpu": 4,
+          "elapsed_s": 89.3,
+          "scf_done": 20,
+          "speedup": 1.273157894736842,
+          "efficiency": 0.3182894736842105
+        },
+        {
+          "ngpu": 8,
+          "elapsed_s": 123.649,
+          "scf_done": 20,
+          "speedup": 0.919481758849647,
+          "efficiency": 0.11493521985620588
+        }
+      ]
+    }
+  },
+  "large_size_exponent": {
+    "pair": "12x12x12 -> 14x14x14 @ 8 GPU",
+    "atoms": [
+      3456,
+      5488
+    ],
+    "s_per_scf": [
+      339.292,
+      780.6855
+    ],
+    "exponent_p": 1.8019409910150292,
+    "caveat": "NELM=2; includes init. First-vs-second SCF costs differ; treat as rough."
+  },
+  "failed_runs": [
+    "15x15x15/8",
+    "16x16x16/8"
+  ],
+  "all_runs": [
+    {
+      "path": "10x10x10/4",
+      "nions": 2000,
+      "nkpts": 1,
+      "nbands": 5004,
+      "nelm_requested": 5,
+      "scf_done": 5,
+      "elapsed_s": 518.441,
+      "cpu_s": 504.034,
+      "loop_real_s": [
+        240.3327
+      ],
+      "first_scf_s": 240.3327,
+      "completed": true,
+      "n": 10,
+      "ngpu": 4
+    },
+    {
+      "path": "12x12x12/8",
+      "nions": 3456,
+      "nkpts": 1,
+      "nbands": 8648,
+      "nelm_requested": 2,
+      "scf_done": 2,
+      "elapsed_s": 678.584,
+      "cpu_s": 649.039,
+      "loop_real_s": [
+        248.5576
+      ],
+      "first_scf_s": 248.5576,
+      "completed": true,
+      "n": 12,
+      "ngpu": 8
+    },
+    {
+      "path": "14x14x14/8",
+      "nions": 5488,
+      "nkpts": 1,
+      "nbands": 13728,
+      "nelm_requested": 2,
+      "scf_done": 2,
+      "elapsed_s": 1561.371,
+      "cpu_s": 1512.985,
+      "loop_real_s": [
+        600.1582
+      ],
+      "first_scf_s": 600.1582,
+      "completed": true,
+      "n": 14,
+      "ngpu": 8
+    },
+    {
+      "path": "15x15x15/8",
+      "nions": 6750,
+      "nkpts": 1,
+      "nbands": 16880,
+      "nelm_requested": 2,
+      "scf_done": 0,
+      "elapsed_s": null,
+      "cpu_s": null,
+      "loop_real_s": [],
+      "first_scf_s": null,
+      "completed": false,
+      "n": 15,
+      "ngpu": 8
+    },
+    {
+      "path": "16x16x16/8",
+      "nions": 8192,
+      "nkpts": 1,
+      "nbands": 20488,
+      "nelm_requested": 2,
+      "scf_done": 0,
+      "elapsed_s": null,
+      "cpu_s": null,
+      "loop_real_s": [],
+      "first_scf_s": null,
+      "completed": false,
+      "n": 16,
+      "ngpu": 8
+    },
+    {
+      "path": "3x3x3/1",
+      "nions": 54,
+      "nkpts": 3,
+      "nbands": 136,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 15.281,
+      "cpu_s": 14.714,
+      "loop_real_s": [
+        10.4912
+      ],
+      "first_scf_s": 10.4912,
+      "completed": true,
+      "n": 3,
+      "ngpu": 1
+    },
+    {
+      "path": "3x3x3/2",
+      "nions": 54,
+      "nkpts": 3,
+      "nbands": 136,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 17.811,
+      "cpu_s": 15.751,
+      "loop_real_s": [
+        7.9336
+      ],
+      "first_scf_s": 7.9336,
+      "completed": true,
+      "n": 3,
+      "ngpu": 2
+    },
+    {
+      "path": "3x3x3/4",
+      "nions": 54,
+      "nkpts": 3,
+      "nbands": 136,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 18.28,
+      "cpu_s": 14.511,
+      "loop_real_s": [
+        5.7634
+      ],
+      "first_scf_s": 5.7634,
+      "completed": true,
+      "n": 3,
+      "ngpu": 4
+    },
+    {
+      "path": "3x3x3/8",
+      "nions": 54,
+      "nkpts": 3,
+      "nbands": 136,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 27.297,
+      "cpu_s": 16.052,
+      "loop_real_s": [
+        5.7546
+      ],
+      "first_scf_s": 5.7546,
+      "completed": true,
+      "n": 3,
+      "ngpu": 8
+    },
+    {
+      "path": "4x4x4/1",
+      "nions": 128,
+      "nkpts": 3,
+      "nbands": 321,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 39.559,
+      "cpu_s": 38.829,
+      "loop_real_s": [
+        28.6602
+      ],
+      "first_scf_s": 28.6602,
+      "completed": true,
+      "n": 4,
+      "ngpu": 1
+    },
+    {
+      "path": "4x4x4/2",
+      "nions": 128,
+      "nkpts": 3,
+      "nbands": 321,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 38.339,
+      "cpu_s": 36.22,
+      "loop_real_s": [
+        21.6969
+      ],
+      "first_scf_s": 21.6969,
+      "completed": true,
+      "n": 4,
+      "ngpu": 2
+    },
+    {
+      "path": "4x4x4/4",
+      "nions": 128,
+      "nkpts": 3,
+      "nbands": 321,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 36.457,
+      "cpu_s": 33.481,
+      "loop_real_s": [
+        17.2292
+      ],
+      "first_scf_s": 17.2292,
+      "completed": true,
+      "n": 4,
+      "ngpu": 4
+    },
+    {
+      "path": "4x4x4/8",
+      "nions": 128,
+      "nkpts": 3,
+      "nbands": 321,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 42.527,
+      "cpu_s": 31.75,
+      "loop_real_s": [
+        17.8576
+      ],
+      "first_scf_s": 17.8576,
+      "completed": true,
+      "n": 4,
+      "ngpu": 8
+    },
+    {
+      "path": "5x5x5/1",
+      "nions": 250,
+      "nkpts": 1,
+      "nbands": 626,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 57.643,
+      "cpu_s": 56.818,
+      "loop_real_s": [
+        35.3153
+      ],
+      "first_scf_s": 35.3153,
+      "completed": true,
+      "n": 5,
+      "ngpu": 1
+    },
+    {
+      "path": "5x5x5/2",
+      "nions": 250,
+      "nkpts": 1,
+      "nbands": 626,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 62.435,
+      "cpu_s": 58.286,
+      "loop_real_s": [
+        35.0974
+      ],
+      "first_scf_s": 35.0974,
+      "completed": true,
+      "n": 5,
+      "ngpu": 2
+    },
+    {
+      "path": "5x5x5/4",
+      "nions": 250,
+      "nkpts": 1,
+      "nbands": 628,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 75.254,
+      "cpu_s": 64.669,
+      "loop_real_s": [
+        39.3478
+      ],
+      "first_scf_s": 39.3478,
+      "completed": true,
+      "n": 5,
+      "ngpu": 4
+    },
+    {
+      "path": "5x5x5/8",
+      "nions": 250,
+      "nkpts": 1,
+      "nbands": 632,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 108.101,
+      "cpu_s": 92.513,
+      "loop_real_s": [
+        54.5351
+      ],
+      "first_scf_s": 54.5351,
+      "completed": true,
+      "n": 5,
+      "ngpu": 8
+    },
+    {
+      "path": "6x6x6/1",
+      "nions": 432,
+      "nkpts": 1,
+      "nbands": 1081,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 113.693,
+      "cpu_s": 112.626,
+      "loop_real_s": [
+        69.1884
+      ],
+      "first_scf_s": 69.1884,
+      "completed": true,
+      "n": 6,
+      "ngpu": 1
+    },
+    {
+      "path": "6x6x6/2",
+      "nions": 432,
+      "nkpts": 1,
+      "nbands": 1082,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 96.242,
+      "cpu_s": 93.265,
+      "loop_real_s": [
+        58.0273
+      ],
+      "first_scf_s": 58.0273,
+      "completed": true,
+      "n": 6,
+      "ngpu": 2
+    },
+    {
+      "path": "6x6x6/4",
+      "nions": 432,
+      "nkpts": 1,
+      "nbands": 1084,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 89.3,
+      "cpu_s": 83.935,
+      "loop_real_s": [
+        49.117
+      ],
+      "first_scf_s": 49.117,
+      "completed": true,
+      "n": 6,
+      "ngpu": 4
+    },
+    {
+      "path": "6x6x6/8",
+      "nions": 432,
+      "nkpts": 1,
+      "nbands": 1088,
+      "nelm_requested": 20,
+      "scf_done": 20,
+      "elapsed_s": 123.649,
+      "cpu_s": 107.148,
+      "loop_real_s": [
+        63.426
+      ],
+      "first_scf_s": 63.426,
+      "completed": true,
+      "n": 6,
+      "ngpu": 8
+    }
+  ]
+}

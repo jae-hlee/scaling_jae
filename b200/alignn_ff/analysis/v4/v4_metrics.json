@@ -1,0 +1,51 @@
+{
+  "n_points": 46,
+  "n_min": 4,
+  "n_max": 389344,
+  "run_terminated_reason": "SLURM 24h time limit (see alignn_1306345.err)",
+  "fits_excluding_n_lt_1000": {
+    "neighbor_list_matscipy": {
+      "prefactor_a": 5.536356548857919e-06,
+      "exponent_b": 0.9648432313934615,
+      "r2": 0.9988417019090549
+    },
+    "dgl_graph_and_line": {
+      "prefactor_a": 8.005964876528496e-08,
+      "exponent_b": 1.99472270465234,
+      "r2": 0.9999840964782113
+    },
+    "alignn_inference": {
+      "prefactor_a": 1.0381900698565395e-05,
+      "exponent_b": 0.878944793100059,
+      "r2": 0.9889015294529453
+    },
+    "total": {
+      "prefactor_a": 8.902714879067083e-08,
+      "exponent_b": 1.985699245536188,
+      "r2": 0.9999336416296398
+    }
+  },
+  "line_graph_dominance_crossover_n": 500,
+  "line_graph_share_at_n_max": 0.999796362766538,
+  "inference_share_at_n_max": 8.438433491712859e-05,
+  "neighbor_list_share_at_n_max": 0.00011925289854478776,
+  "per_atom_inference_us_median": 2.56036897823193,
+  "per_atom_line_us_at_n_max": 29357.35471282474,
+  "per_atom_line_us_at_n_1e4": 830.6050880248021,
+  "energy_mean_ev": 0.6033863173590766,
+  "energy_std_ev": 0.0015716548530105485,
+  "energy_drift_start_to_end_ev": -0.003933906555175781,
+  "projection_to_size_99": {
+    "n_atoms": 3881196,
+    "total_seconds": 1079509.4192973545,
+    "total_hours": 299.8637275825985,
+    "line_graph_seconds": 1113199.2711599988,
+    "inference_seconds": 6.421165368972468
+  },
+  "warmup_outlier_size_1": {
+    "n_atoms": 4,
+    "inference_s": 37.737762313801795,
+    "line_graph_s": 1.0004638778045774,
+    "note": "First-iteration JIT + CUDA kernel cache miss; excluded from fits."
+  }
+}
