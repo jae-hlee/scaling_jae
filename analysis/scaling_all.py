@@ -1,11 +1,11 @@
-"""Time vs system size for ALIGNN-FF (energy only) and VASP (Si).
+"""All seven scaling runs on one plot: VASP (1 GPU and 4-8 GPUs), ALIGNN-FF
+energy only (B200, GB10, H200; B200 settings) and ALIGNN-FF energy+forces+stress
+(GB10, H200).
 
-Run from this directory: `python scaling_overview.py`. Writes `scaling_overview.png`
-from ../b200/alignn_ff/scaling_alignn_v6.npz, ../b200/vasp_dft/analysis/metrics.json
-and ../{gb10,h200}/alignn_ff_b200settings/*.npz. Every ALIGNN-FF curve here is
-energy only with the B200 run's settings (Cu, 12 neighbours,
-v12.2.2024_dft_3d_307k); the GB10 and H200 curves are reruns of those settings on
-the pure-PyTorch model. The energy+forces+stress sweeps are in scaling_forces.py.
+Run from this directory: `python scaling_all.py`. Writes `scaling_all.png` from
+the same data as scaling_overview.py and scaling_forces.py, with the same colours
+and markers (energy only: filled markers, dashed for the GB10/H200 reruns;
+energy+forces+stress: hollow markers, solid lines).
 """
 
 import json
@@ -55,26 +55,30 @@ def load_b200set(gpu_dir):
 eg = load_b200set("gb10")
 eh = load_b200set("h200")
 
-fig, ax = plt.subplots(figsize=(6.4, 5.2), dpi=200)
-ax.loglog(an, at, "-o", ms=3.5, lw=1.8, color="#2a78d6", label="ALIGNN-FF, 1 B200, energy only")
+
+def load_ff(path):
+    r = json.load(open(path))["results"]
+    return (np.array([x["natoms"] for x in r], float),
+            np.array([x["t_median_s"] for x in r]))
+gn, gt = load_ff(ROOT / "gb10" / "alignn_ff" / "bench_GB10_13474.json")
+hn, ht = load_ff(ROOT / "h200" / "alignn_ff" / "bench_NVIDIA_H200_NVL_913733.json")
+
+fig, ax = plt.subplots(figsize=(6.4, 5.4), dpi=200)
 ax.loglog(v1n, v1t, "-s", ms=4.5, lw=1.8, color="#eb6834", label="VASP, 1 GPU, time per SCF cycle")
 ax.loglog(vbn[1:], vbt[1:], "s", ms=4.5, mfc="white", mew=1.5, color="#eb6834")
 ax.loglog(vbn, vbt, "--", lw=1.8, color="#eb6834", label="VASP, 4–8 GPUs (larger cells)")
+ax.loglog(gn, gt, "-D", ms=3.5, lw=1.8, color="#2ca02c", mfc="white",
+          label="ALIGNN-FF, 1 GB10, energy+forces+stress")
+ax.loglog(hn, ht, "-P", ms=4, lw=1.8, color="#7b3294", mfc="white",
+          label="ALIGNN-FF, 1 H200, energy+forces+stress")
+ax.loglog(an, at, "-o", ms=3.5, lw=1.8, color="#2a78d6", label="ALIGNN-FF, 1 B200, energy only")
 if eg is not None:
-    ax.loglog(*eg, "--D", ms=3.5, lw=1.5, color="#2ca02c",
-              label="ALIGNN-FF, 1 GB10, energy only")
+    ax.loglog(*eg, "--D", ms=3.5, lw=1.5, color="#2ca02c", label="ALIGNN-FF, 1 GB10, energy only")
 if eh is not None:
-    ax.loglog(*eh, "--P", ms=4, lw=1.5, color="#7b3294",
-              label="ALIGNN-FF, 1 H200, energy only")
+    ax.loglog(*eh, "--P", ms=4, lw=1.5, color="#7b3294", label="ALIGNN-FF, 1 H200, energy only")
 ax.set_xlabel("Number of atoms")
 ax.set_ylabel("Wall time (s)")
 ax.grid(True, which="major", color="#e4e3df")
-order = ["VASP, 1 GPU, time per SCF cycle", "VASP, 4–8 GPUs (larger cells)",
-         "ALIGNN-FF, 1 B200, energy only",
-         "ALIGNN-FF, 1 GB10, energy only", "ALIGNN-FF, 1 H200, energy only"]
-handles = dict(zip(*ax.get_legend_handles_labels()[::-1]))
-order = [k for k in order if k in handles]
-ax.legend([handles[k] for k in order], order, loc="upper left",
-          bbox_to_anchor=(0.0, -0.14), frameon=False, fontsize=8.5, ncol=1)
+ax.legend(loc="upper left", bbox_to_anchor=(0.0, -0.14), frameon=False, fontsize=8.5, ncol=1)
 fig.tight_layout()
-fig.savefig(HERE / "scaling_overview.png", facecolor="white", bbox_inches="tight")
+fig.savefig(HERE / "scaling_all.png", facecolor="white", bbox_inches="tight")
