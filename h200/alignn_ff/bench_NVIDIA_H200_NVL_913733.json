@@ -1,0 +1,241 @@
+{
+ "model": "matpes_r2scan",
+ "model_dir": "/home/jhu/jlee859/.cache/atomgptlab/alignn_ff/matpes_r2scan",
+ "checkpoint_md5": "92cfe2955622c198c03085fc5320296b",
+ "gpu": "NVIDIA H200 NVL",
+ "gpu_memory_gb": 150.10988032,
+ "structure": "Si diamond conventional cell (8 atoms), i^3",
+ "quantity": "energy + forces + stress single point",
+ "repeats": 3,
+ "results": [
+  {
+   "i": 2,
+   "natoms": 64,
+   "t_median_s": 0.019582541193813086,
+   "t_all_s": [
+    0.02563606109470129,
+    0.019582541193813086,
+    0.019439154304564
+   ],
+   "mem_alloc_gb": 0.195226624,
+   "mem_reserved_gb": 0.213909504,
+   "mb_per_atom": 3.050416,
+   "e_per_atom_eV": -8.74756145477295,
+   "max_abs_force": 2.1603424102067947e-05,
+   "max_abs_stress": 0.02866298146545887
+  },
+  {
+   "i": 4,
+   "natoms": 512,
+   "t_median_s": 0.03243092680349946,
+   "t_all_s": [
+    0.041570454370230436,
+    0.03243092680349946,
+    0.03241727827116847
+   ],
+   "mem_alloc_gb": 1.069279232,
+   "mem_reserved_gb": 1.1010048,
+   "mb_per_atom": 2.0884359999999997,
+   "e_per_atom_eV": -8.747562408447266,
+   "max_abs_force": 3.5665929317474365e-05,
+   "max_abs_stress": 0.028662696480751038
+  },
+  {
+   "i": 6,
+   "natoms": 1728,
+   "t_median_s": 0.07472990918904543,
+   "t_all_s": [
+    0.08276435313746333,
+    0.07282263692468405,
+    0.07472990918904543
+   ],
+   "mem_alloc_gb": 3.441723904,
+   "mem_reserved_gb": 3.495952384,
+   "mb_per_atom": 1.9917383703703704,
+   "e_per_atom_eV": -8.74755573272705,
+   "max_abs_force": 3.726058639585972e-05,
+   "max_abs_stress": 0.028663160279393196
+  },
+  {
+   "i": 8,
+   "natoms": 4096,
+   "t_median_s": 0.15890479506924748,
+   "t_all_s": [
+    0.16328704683110118,
+    0.15890479506924748,
+    0.1486499197781086
+   ],
+   "mem_alloc_gb": 8.061734912,
+   "mem_reserved_gb": 8.122269696,
+   "mb_per_atom": 1.9681970000000002,
+   "e_per_atom_eV": -8.747547149658203,
+   "max_abs_force": 3.8713449612259865e-05,
+   "max_abs_stress": 0.028663497418165207
+  },
+  {
+   "i": 10,
+   "natoms": 8000,
+   "t_median_s": 0.2779837138950825,
+   "t_all_s": [
+    0.2878001080825925,
+    0.2779837138950825,
+    0.2751324390992522
+   ],
+   "mem_alloc_gb": 15.678521344,
+   "mem_reserved_gb": 15.762194432,
+   "mb_per_atom": 1.959815168,
+   "e_per_atom_eV": -8.747892379760742,
+   "max_abs_force": 3.8407742977142334e-05,
+   "max_abs_stress": 0.028663700446486473
+  },
+  {
+   "i": 12,
+   "natoms": 13824,
+   "t_median_s": 0.470147930085659,
+   "t_all_s": [
+    0.470147930085659,
+    0.4594635171815753,
+    0.47128547774627805
+   ],
+   "mem_alloc_gb": 27.041257472,
+   "mem_reserved_gb": 27.166507008,
+   "mb_per_atom": 1.9561094814814817,
+   "e_per_atom_eV": -8.747920989990234,
+   "max_abs_force": 3.9526959881186485e-05,
+   "max_abs_stress": 0.02866387739777565
+  },
+  {
+   "i": 14,
+   "natoms": 21952,
+   "t_median_s": 0.7235891199670732,
+   "t_all_s": [
+    0.7235891199670732,
+    0.8496990497224033,
+    0.708203409332782
+   ],
+   "mem_alloc_gb": 42.899152384,
+   "mem_reserved_gb": 43.08598784,
+   "mb_per_atom": 1.9542252361516033,
+   "e_per_atom_eV": -8.747566223144531,
+   "max_abs_force": 5.6228600442409515e-05,
+   "max_abs_stress": 0.02866382524371147
+  },
+  {
+   "i": 15,
+   "natoms": 27000,
+   "t_median_s": 0.9054133659228683,
+   "t_all_s": [
+    0.9054133659228683,
+    0.9960774979554117,
+    0.8717327667400241
+   ],
+   "mem_alloc_gb": 52.747921408,
+   "mem_reserved_gb": 52.965670912,
+   "mb_per_atom": 1.9536267188148149,
+   "e_per_atom_eV": -8.746970176696777,
+   "max_abs_force": 5.777878686785698e-05,
+   "max_abs_stress": 0.02866380289196968
+  },
+  {
+   "i": 16,
+   "natoms": 32768,
+   "t_median_s": 1.1748312870040536,
+   "t_all_s": [
+    1.0727218487299979,
+    1.1755595346912742,
+    1.1748312870040536
+   ],
+   "mem_alloc_gb": 64.001380352,
+   "mem_reserved_gb": 64.271417344,
+   "mb_per_atom": 1.953167125,
+   "e_per_atom_eV": -8.746383666992188,
+   "max_abs_force": 5.630240775644779e-05,
+   "max_abs_stress": 0.02866377681493759
+  },
+  {
+   "i": 17,
+   "natoms": 39304,
+   "t_median_s": 1.3385631032288074,
+   "t_all_s": [
+    1.4163976637646556,
+    1.2147719687782228,
+    1.3385631032288074
+   ],
+   "mem_alloc_gb": 76.75326464,
+   "mem_reserved_gb": 77.05985024,
+   "mb_per_atom": 1.9528105190311418,
+   "e_per_atom_eV": -8.746723175048828,
+   "max_abs_force": 5.6753866374492645e-05,
+   "max_abs_stress": 0.028663750737905502
+  },
+  {
+   "i": 18,
+   "natoms": 46656,
+   "t_median_s": 1.5780551489442587,
+   "t_all_s": [
+    1.6394979497417808,
+    1.5780551489442587,
+    1.5757506219670177
+   ],
+   "mem_alloc_gb": 91.097150464,
+   "mem_reserved_gb": 91.469381632,
+   "mb_per_atom": 1.952528087791495,
+   "e_per_atom_eV": -8.7470064163208,
+   "max_abs_force": 5.711894482374191e-05,
+   "max_abs_stress": 0.028663737699389458
+  },
+  {
+   "i": 19,
+   "natoms": 54872,
+   "t_median_s": 1.8866331269964576,
+   "t_all_s": [
+    1.8866331269964576,
+    1.7954128901474178,
+    1.9657356329262257
+   ],
+   "mem_alloc_gb": 107.126752768,
+   "mem_reserved_gb": 107.556634624,
+   "mb_per_atom": 1.9523026820236187,
+   "e_per_atom_eV": -8.747493743896484,
+   "max_abs_force": 5.647516809403896e-05,
+   "max_abs_stress": 0.028663741424679756
+  },
+  {
+   "i": 20,
+   "natoms": 64000,
+   "t_median_s": 2.1839465922676027,
+   "t_all_s": [
+    2.1839465922676027,
+    2.243212401866913,
+    2.095644313842058
+   ],
+   "mem_alloc_gb": 124.935636992,
+   "mem_reserved_gb": 125.424369664,
+   "mb_per_atom": 1.952119328,
+   "e_per_atom_eV": -8.748236656188965,
+   "max_abs_force": 5.7668425142765045e-05,
+   "max_abs_stress": 0.028663737699389458
+  },
+  {
+   "i": 21,
+   "natoms": 74088,
+   "t_median_s": 2.534220323897898,
+   "t_all_s": [
+    2.505011069122702,
+    2.534220323897898,
+    2.536150297150016
+   ],
+   "mem_alloc_gb": 144.61753856,
+   "mem_reserved_gb": 145.177444352,
+   "mb_per_atom": 1.9519698002375556,
+   "e_per_atom_eV": -8.748202323913574,
+   "max_abs_force": 5.7591358199715614e-05,
+   "max_abs_stress": 0.028663700446486473
+  }
+ ],
+ "oom": {
+  "i": 22,
+  "natoms": 85184,
+  "error": "CUDA out of memory. Tried to allocate 1.14 GiB. GPU 0 has a total capacity of 139.80 GiB of which 855.06 MiB is free. Including non-PyTorch memory, this process has 138.96 GiB memory in use. Of the allocated memory 138.09 GiB is allocated by PyTorch, and 147.66 MiB is reserved by PyTorch but unalloc"
+ }
+}

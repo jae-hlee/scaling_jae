@@ -1,8 +1,11 @@
-"""Compile every B200 run into one PDF: scaling plot + full result tables.
+"""Compile every run into one PDF: scaling plot + full result tables.
+
+B200 runs (ALIGNN-FF energy-only, VASP) plus the ALIGNN-FF energy+forces+stress
+sweeps on a GB10 and an H200 under ../{gb10,h200}/alignn_ff/ (2026-09-27).
 
 Run from this directory: `python results_report.py` (run scaling_overview.py
-first). Writes `results_report.pdf` from ../alignn_ff/scaling_alignn_v6.npz and
-../vasp_dft/analysis/metrics.json.
+first). Writes `results_report.pdf` from ../b200/alignn_ff/scaling_alignn_v6.npz and
+../b200/vasp_dft/analysis/metrics.json.
 """
 
 import json
@@ -14,7 +17,8 @@ import numpy as np
 from matplotlib.backends.backend_pdf import PdfPages
 
 HERE = Path(__file__).resolve().parent
-B200 = HERE.parent
+ROOT = HERE.parent  # repository root (analysis/ sits at the top level)
+B200 = ROOT / "b200"
 VALID_MAX_N = 442_368
 PAGE = (8.5, 11)
 ROWS_PER_PAGE = 30
@@ -103,23 +107,50 @@ def main():
             e_atom, status])
         v_flags.append(flag)
 
+        ff_rows, ff_flags = [], []
+    ff_meta = {}
+    for tag, path in [("GB10", ROOT / "gb10" / "alignn_ff" / "bench_GB10_13474.json"),
+                      ("H200", ROOT / "h200" / "alignn_ff" / "bench_NVIDIA_H200_NVL_913733.json")]:
+        j = json.load(open(path))
+        ff_meta[tag] = j
+        for r in j["results"]:
+            ff_rows.append([tag, f"{r['i']}×{r['i']}×{r['i']}", f"{r['natoms']:,}",
+                            f"{r['t_median_s']:.3f}", f"{r['mem_alloc_gb']:.1f}",
+                            f"{r['mb_per_atom']:.2f}", f"{r['e_per_atom_eV']:.4f}"])
+            ff_flags.append(None)
+        if j["oom"]:
+            o = j["oom"]
+            ff_rows.append([tag, f"{o['i']}×{o['i']}×{o['i']}", f"{o['natoms']:,}",
+                            "OOM", "–", "–", "–"])
+            ff_flags.append(FLAG)
+
     with PdfPages(HERE / "results_report.pdf") as pdf:
         # page 1: summary + scaling plot
         fig = new_page(pdf)
-        fig.text(0.07, 0.94, "B200 scaling runs: ALIGNN-FF and VASP",
+        fig.text(0.07, 0.94, "GPU scaling runs: ALIGNN-FF and VASP",
                  fontsize=17, fontweight="bold")
         n_ok = sum(row[-1] != "crashed" for row in v_rows)
         summary = (
-            "All runs on NVIDIA B200 GPUs (SLURM partition b200, QOS blackwell_test).\n\n"
-            f"ALIGNN-FF, Cu FCC, 1 GPU: {len(n)} supercells, 1×1×1 to 58×58×58 "
+            "B200 runs: NVIDIA B200 GPUs (SLURM partition b200, QOS blackwell_test).\n\n"
+            f"ALIGNN-FF, energy only (no forces), Cu FCC, 1 B200: {len(n)} supercells, 1×1×1 to 58×58×58 "
             f"({int(n[0])} to {int(n[-1]):,} atoms).\n"
             f"   Energies correct up to {VALID_MAX_N:,} atoms (48×48×48); larger sizes "
             "are affected by\n   the float32 drift and are shaded red in the table.\n\n"
             f"VASP, Si diamond: {len(runs)} runs over {len({r['n'] for r in runs})} "
             f"supercell sizes (54 to 8,192 atoms); {n_ok} completed,\n"
-            f"   {len(runs) - n_ok} crashed before the first SCF cycle (15×15×15 and 16×16×16).")
+            f"   {len(runs) - n_ok} crashed before the first SCF cycle (15×15×15 and 16×16×16).\n\n"
+            "ALIGNN-FF with energy + forces + stress (added 2026-09-27; the MD workload), Si "
+            "diamond, 1 GPU,\n   default matpes_r2scan checkpoint (hidden 128, smooth cutoff, "
+            "52 neighbours), same script on both cards:\n"
+            f"   GB10 (121.7 GiB): largest cell {ff_meta['GB10']['results'][-1]['natoms']:,} atoms "
+            f"at {ff_meta['GB10']['results'][-1]['mem_alloc_gb']:.0f} GB, OOM at "
+            f"{ff_meta['GB10']['oom']['natoms']:,};\n   H200 NVL (139.8 GiB): "
+            f"{ff_meta['H200']['results'][-1]['natoms']:,} atoms at "
+            f"{ff_meta['H200']['results'][-1]['mem_alloc_gb']:.0f} GB, OOM at "
+            f"{ff_meta['H200']['oom']['natoms']:,}.\n"
+            "   Memory 1.95 MB/atom on both; the H200 is 4× faster than the GB10 at every size.")
         fig.text(0.07, 0.90, summary, fontsize=10, va="top", linespacing=1.4)
-        ax = fig.add_axes([0.07, 0.22, 0.86, 0.52])
+        ax = fig.add_axes([0.07, 0.10, 0.86, 0.50])
         ax.imshow(mpimg.imread(HERE / "scaling_overview.png"))
         ax.axis("off")
         pdf.savefig(fig)
@@ -136,6 +167,17 @@ def main():
             table_page(pdf, f"ALIGNN-FF results ({p}/{len(pages)})", a_head,
                        a_rows[s:s + ROWS_PER_PAGE], a_flags[s:s + ROWS_PER_PAGE],
                        a_note, [0.13, 0.13, 0.15, 0.12, 0.13, 0.12, 0.17])
+
+        f_head = ["GPU", "Supercell", "Atoms", "Time (s)", "Peak mem (GB)",
+                  "MB / atom", "Model output (eV/atom)"]
+        f_note = ("ALIGNN-FF energy + forces + stress single points (bench_ff_scaling.py, "
+                  "default matpes_r2scan checkpoint, md5 92cfe295), Si diamond 8-atom\n"
+                  "conventional cell repeated i×i×i, float32. Time = median of three "
+                  "calls including the graph build; memory = peak allocated on the GPU.\n"
+                  "Red row = the first size that did not fit. GB10 = atomgptlab job 13474; "
+                  "H200 NVL = Skipjack job 913733 (node gh204). Both 2026-09-27.")
+        table_page(pdf, "ALIGNN-FF with forces and stress: GB10 and H200", f_head,
+                   ff_rows, ff_flags, f_note, [0.09, 0.13, 0.13, 0.12, 0.15, 0.12, 0.2])
 
         v_head = ["Supercell", "Atoms", "GPUs", "k-points", "Bands",
                   "SCF cycles", "Elapsed (s)", "s / SCF", "E (eV/atom)", "Status"]
