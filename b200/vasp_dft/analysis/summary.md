@@ -11,8 +11,8 @@ Two experiments are mixed in the tree and are **not apples-to-apples**:
 | strong scaling    | 3³, 4³                          | 1,2,4,8 | 20   | default | 1e-6  | `KPAR=<ngpu>`, NKPTS=3     |
 | strong scaling    | 5³, 6³                          | 1,2,4,8 | 20   | default | 1e-6  | `NCORE=1` only, NKPTS=1 (Γ)|
 | convergent timing | 10³                             | 4       | 5    | Fast    | 1e-5  | `NCORE=1`, NKPTS=1         |
-| truncated timing  | 12³, 14³                        | 8       | 2    | Fast    | 1e-5  | `NCORE=1`, NKPTS=1         |
-| failed            | 15³, 16³                        | 8       | 2    | Fast    | 1e-5  | 15³: `NCORE=1`; 16³: `NCORE=4` |
+| truncated timing  | 12³, 14³                        | 8       | 2    | Fast    | 1e-4  | `NCORE=1`, NKPTS=1         |
+| failed            | 15³, 16³                        | 8       | 2    | Fast    | 1e-4  | 15³: `NCORE=1`; 16³: `NCORE=4` |
 
 Important consequence: the 3³/4³ strong-scaling rows mostly measure **k-point parallelism saturation** (only 3 k-points — KPAR=8 over-partitions), while 5³/6³ measure **band/pw parallelism** on a pure Γ calculation. Don't read them as a single curve.
 

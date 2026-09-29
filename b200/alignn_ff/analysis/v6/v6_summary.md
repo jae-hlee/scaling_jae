@@ -6,7 +6,7 @@ Data source: same 58 supercell sizes as v5 (Cu FCC, **N = 4 to 780,448 atoms**).
 
 | aspect                         | v5                | v6                 | note |
 | ------------------------------ | ----------------- | ------------------ | ---- |
-| Timings (per-iter, all N)      | see `breakdown.png` | essentially identical | wrapper overhead is at the noise floor |
+| Timings (per-iter, all N)      | see `v6_breakdown.png` | essentially identical | wrapper overhead is at the noise floor |
 | Pre-cliff energy (N ≤ 442,368) | wanders over 4.1e-3 eV band | **bit-constant at 0.604013 eV** | matches f64 reference to <2e-6 eV |
 | Post-cliff energy (N ≥ 470,596) | drifts +39% at N=780k | drifts +40% at N=780k | pool fix does not close the cliff |
 | Total sweep wall               | 144 s             | 84 s               | CUDA nondeterminism / system load, not the wrapper |
@@ -68,7 +68,7 @@ Pinning the exact op would take layer-by-layer instrumentation — a task left f
 
 ## Wrapper overhead
 
-The wrapper adds one f64 allocation + one f64 reduction per readout call. Median per-iter delta (v6 − v5) over N ≥ 10⁴ is within ±15 ms, with no monotone growth in N — the CUDA nondeterminism floor is larger than the actual wrapper cost even at N=780k. See `overhead.png`. The 84 s vs 144 s total-wall difference between the two runs is explained by non-overlapping system load during each SLURM job, not by the wrapper.
+The wrapper adds one f64 allocation + one f64 reduction per readout call. Median per-iter delta (v6 − v5) over N ≥ 10⁴ is within ±15 ms, with no monotone growth in N — the CUDA nondeterminism floor is larger than the actual wrapper cost even at N=780k. See `v6_overhead.png`. The 84 s vs 144 s total-wall difference between the two runs is explained by non-overlapping system load during each SLURM job, not by the wrapper.
 
 ## Validity window
 
@@ -85,9 +85,9 @@ For f32 model outputs in this benchmark on Blackwell B200:
 
 ## Artifacts in `analysis/v6/`
 
-- `analyze.py` — regenerable analysis script.
-- `metrics.json` — machine-readable summary including the pool-fix and cliff data.
-- `breakdown.png` — v6 per-stage timing with fitted exponents.
-- `comparison.png` — v5 vs v6 per-iter total time.
-- `energy.png` — v5 vs v6 energy-vs-N, with f64 reference line and cliff marker.
-- `overhead.png` — per-iter time delta (v6 − v5), showing the wrapper is effectively free.
+- `v6_analyze.py` — regenerable analysis script.
+- `v6_metrics.json` — machine-readable summary including the pool-fix and cliff data.
+- `v6_breakdown.png` — v6 per-stage timing with fitted exponents.
+- `v6_comparison.png` — v5 vs v6 per-iter total time.
+- `v6_energy.png` — v5 vs v6 energy-vs-N, with f64 reference line and cliff marker.
+- `v6_overhead.png` — per-iter time delta (v6 − v5), showing the wrapper is effectively free.

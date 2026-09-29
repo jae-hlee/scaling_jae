@@ -58,9 +58,9 @@ Size 1 (N=4) shows **37.7 s of "inference" time** — JIT compilation and first-
 
 ## Artifacts
 
-- `analyze.py` — the analysis script; re-run after updating `../scaling_alignn_v4.npz`.
-- `metrics.json` — machine-readable summary (fits, shares, projections).
-- `breakdown.png` — log-log timing per stage with fitted exponents.
-- `share.png` — fractional time share by stage vs N.
-- `per_atom.png` — μs/atom for each stage (flat = linear scaling).
-- `energy.png` — energy output vs N with mean ± 1σ band.
+- `v4_analyze.py` — the analysis script; re-run after updating `../../scaling_alignn_v4.npz`.
+- `v4_metrics.json` — machine-readable summary (fits, shares, projections).
+- `v4_breakdown.png` — log-log timing per stage with fitted exponents.
+- `v4_share.png` — fractional time share by stage vs N.
+- `v4_per_atom.png` — μs/atom for each stage (flat = linear scaling).
+- `v4_energy.png` — energy output vs N with mean ± 1σ band.

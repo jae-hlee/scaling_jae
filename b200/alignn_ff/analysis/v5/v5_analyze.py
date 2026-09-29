@@ -1,12 +1,12 @@
 """
-analyze.py — v5 scaling analysis + v4 vs v5 comparison.
+v5_analyze.py — v5 scaling analysis + v4 vs v5 comparison.
 
 Reads ../../scaling_alignn_v5.npz (and v4 for comparison) and produces:
-  - breakdown.png     v5 per-stage timing, log-log, with fitted exponents
-  - comparison.png    v4 vs v5 line-graph time on matched sizes
-  - speedup.png       per-size line-graph speedup ratio v4 / v5
-  - energy.png        v5 energy vs N, with baseline band + divergence onset
-  - metrics.json      machine-readable summary
+  - v5_breakdown.png     v5 per-stage timing, log-log, with fitted exponents
+  - v5_comparison.png    v4 vs v5 line-graph time on matched sizes
+  - v5_speedup.png       per-size line-graph speedup ratio v4 / v5
+  - v5_energy.png        v5 energy vs N, with baseline band + divergence onset
+  - v5_metrics.json      machine-readable summary
 """
 
 from __future__ import annotations
@@ -123,7 +123,7 @@ ax.annotate("warmup", xy=(n5[0], t_inf5[0]), xytext=(30, 2.0),
             fontsize=8, color="grey",
             arrowprops=dict(arrowstyle="->", color="grey", lw=0.5))
 fig.tight_layout()
-fig.savefig(HERE / "breakdown.png", dpi=150)
+fig.savefig(HERE / "v5_breakdown.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -150,7 +150,7 @@ ax.annotate(
     bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="grey", alpha=0.9),
 )
 fig.tight_layout()
-fig.savefig(HERE / "comparison.png", dpi=150)
+fig.savefig(HERE / "v5_comparison.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -167,7 +167,7 @@ ax.set_yscale("log")
 ax.grid(True, which="both", alpha=0.3)
 ax.legend(loc="upper left", fontsize=9)
 fig.tight_layout()
-fig.savefig(HERE / "speedup.png", dpi=150)
+fig.savefig(HERE / "v5_speedup.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -176,23 +176,23 @@ plt.close(fig)
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.plot(n5, E5, "-o", ms=4, color="#1f77b4")
 ax.axhline(E_baseline, color="grey", ls="--", lw=0.8,
-           label=f"baseline (100 ≤ N ≤ 10⁵) = {E_baseline:.4f} eV")
+           label=f"baseline (100 ≤ N ≤ 10⁵) = {E_baseline:.4f} eV/atom")
 ax.fill_between(n5, E_baseline - onset_threshold_abs, E_baseline + onset_threshold_abs,
                 color="grey", alpha=0.15, label="±2% of baseline band")
 if onset_n is not None:
     ax.axvline(onset_n, color="red", ls="--", lw=0.8,
                label=f"drift onset: N≈{onset_n:,}")
-ax.set(xlabel="N atoms", ylabel="Model output (eV)",
+ax.set(xlabel="N atoms", ylabel="Model output (eV/atom)",
        title="v5 energy stability — monotone drift onset past ~N=500k")
 ax.set_xscale("log")
 ax.grid(True, which="both", alpha=0.3)
 ax.legend(loc="upper left", fontsize=9)
 fig.tight_layout()
-fig.savefig(HERE / "energy.png", dpi=150)
+fig.savefig(HERE / "v5_energy.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
-# metrics.json
+# v5_metrics.json
 # -----------------------------------------------------------------------------
 metrics = {
     "v5_n_points": int(len(n5)),
@@ -233,11 +233,11 @@ metrics = {
     },
 }
 
-with open(HERE / "metrics.json", "w") as f:
+with open(HERE / "v5_metrics.json", "w") as f:
     json.dump(metrics, f, indent=2)
 
 print("Wrote:")
-for p in ("metrics.json", "breakdown.png", "comparison.png", "speedup.png", "energy.png"):
+for p in ("v5_metrics.json", "v5_breakdown.png", "v5_comparison.png", "v5_speedup.png", "v5_energy.png"):
     print(f"  {HERE / p}")
 print()
 print("Headline numbers:")

@@ -1,12 +1,13 @@
 """
-analyze.py — scaling analysis of scale5b_v4 benchmark results.
+v4_analyze.py — scaling analysis of scale5b_v4 benchmark results.
 
-Reads ../scaling_alignn_v4.npz and produces:
-  - breakdown.png     stacked timing breakdown vs system size
-  - scaling.png       log-log scaling with fitted power laws
-  - energy.png        per-atom energy stability vs size
-  - metrics.json      machine-readable summary
-  - summary.md        written findings
+Reads ../../scaling_alignn_v4.npz and produces:
+  - v4_breakdown.png     stacked timing breakdown vs system size
+  - v4_share.png         fractional time share by stage vs size
+  - v4_per_atom.png      time per atom by stage vs size
+  - v4_energy.png        energy (eV/atom) stability vs size
+  - v4_metrics.json      machine-readable summary
+  - v4_summary.md        written findings
 """
 
 from __future__ import annotations
@@ -18,7 +19,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 HERE = Path(__file__).parent
-DATA = np.load(HERE.parent / "scaling_alignn_v4.npz")
+DATA = np.load(HERE.parent.parent / "scaling_alignn_v4.npz")
 
 n = DATA["natoms"]
 t_nl = DATA["times_nl"]
@@ -87,7 +88,7 @@ ax.annotate("warmup\n(JIT + 1st CUDA launch)", xy=(n[0], t_inf[0]),
             xytext=(20, 1.0), fontsize=8, color="grey",
             arrowprops=dict(arrowstyle="->", color="grey", lw=0.5))
 fig.tight_layout()
-fig.savefig(HERE / "breakdown.png", dpi=150)
+fig.savefig(HERE / "v4_breakdown.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -106,7 +107,7 @@ ax.set(xlabel="N atoms", ylabel="Fraction of total time",
 ax.grid(True, axis="y", alpha=0.3)
 ax.legend(loc="center right", fontsize=9)
 fig.tight_layout()
-fig.savefig(HERE / "share.png", dpi=150)
+fig.savefig(HERE / "v4_share.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -124,7 +125,7 @@ ax.set_yscale("log")
 ax.grid(True, which="both", alpha=0.3)
 ax.legend(loc="upper left", fontsize=9)
 fig.tight_layout()
-fig.savefig(HERE / "per_atom.png", dpi=150)
+fig.savefig(HERE / "v4_per_atom.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -132,16 +133,16 @@ plt.close(fig)
 # -----------------------------------------------------------------------------
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.plot(n, E, "-o", ms=4)
-ax.axhline(E_mean, color="grey", ls="--", lw=0.8, label=f"mean = {E_mean:.5f} eV")
+ax.axhline(E_mean, color="grey", ls="--", lw=0.8, label=f"mean = {E_mean:.5f} eV/atom")
 ax.fill_between(n, E_mean - E_std, E_mean + E_std, color="grey", alpha=0.15,
-                label=f"±1σ = ±{E_std:.5f} eV")
-ax.set(xlabel="N atoms", ylabel="Model output (eV)",
+                label=f"±1σ = ±{E_std:.5f} eV/atom")
+ax.set(xlabel="N atoms", ylabel="Model output (eV/atom)",
        title="Energy output stability across supercell size (Cu FCC, same density)")
 ax.set_xscale("log")
 ax.grid(True, which="both", alpha=0.3)
 ax.legend(loc="lower left", fontsize=9)
 fig.tight_layout()
-fig.savefig(HERE / "energy.png", dpi=150)
+fig.savefig(HERE / "v4_energy.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -156,7 +157,7 @@ proj_line_s = a_line * n_target**b_line
 proj_inf_s = a_inf * n_target**b_inf
 
 # -----------------------------------------------------------------------------
-# Save metrics.json
+# Save v4_metrics.json
 # -----------------------------------------------------------------------------
 metrics = {
     "n_points": int(len(n)),
@@ -194,14 +195,14 @@ metrics = {
     },
 }
 
-with open(HERE / "metrics.json", "w") as f:
+with open(HERE / "v4_metrics.json", "w") as f:
     json.dump(metrics, f, indent=2)
 
-print(f"Wrote {HERE / 'metrics.json'}")
-print(f"Wrote {HERE / 'breakdown.png'}")
-print(f"Wrote {HERE / 'share.png'}")
-print(f"Wrote {HERE / 'per_atom.png'}")
-print(f"Wrote {HERE / 'energy.png'}")
+print(f"Wrote {HERE / 'v4_metrics.json'}")
+print(f"Wrote {HERE / 'v4_breakdown.png'}")
+print(f"Wrote {HERE / 'v4_share.png'}")
+print(f"Wrote {HERE / 'v4_per_atom.png'}")
+print(f"Wrote {HERE / 'v4_energy.png'}")
 print()
 print("Headline numbers:")
 print(f"  total scaling exponent:        {fits['total'][1]:.3f}")

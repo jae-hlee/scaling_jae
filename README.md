@@ -5,7 +5,7 @@ HPC GPU scaling benchmarks, organised by GPU. The main study is on the **NVIDIA 
 - **`b200/alignn_ff/`** — ALIGNN-FF (graph neural network force field) inference scaling on Cu FCC supercells, via PyTorch + DGL + matscipy on a single B200. System sizes from N = 4 to ~780k atoms.
 - **`b200/vasp_dft/`** — VASP plane-wave DFT single-point SCF scaling on Si diamond supercells (2·n³ atoms), across 1/2/4/8 B200 GPUs.
 
-Each track has its own regenerable analysis under `analysis/` with `analyze.py`, `metrics.json`, plots, and a `summary.md`. For detailed findings, read the summary files — this README is a map.
+Each track has its own regenerable analysis under `analysis/` with an analyze script, a metrics JSON, plots, and a summary (`v*_`-prefixed under `b200/alignn_ff/analysis/v*/`). For detailed findings, read the summary files — this README is a map.
 
 ALIGNN-FF was also run on an **NVIDIA GB10** (Grace-Blackwell, 121.7 GiB unified memory; `gb10/`) and an **NVIDIA H200 NVL** (139.8 GiB; `h200/`), and the top-level `analysis/` compares all GPUs in one plot and report.
 
@@ -39,8 +39,7 @@ b200/
 │   ├── probe_pool.py           instrumented pool to isolate drift source
 │   ├── job*.sh                 SLURM wrappers (b200 partition)
 │   ├── scaling_alignn_v*.npz   per-size checkpoint data
-│   ├── output/                 SLURM stdout/stderr from the runs
-│   └── analysis/v{4,5,6}/      per-version study: analyze.py + summary.md + plots
+│   └── analysis/v{4,5,6}/      per-version study: v*_analyze.py + v*_summary.md + plots
 └── vasp_dft/                 VASP DFT SCF scaling on Si diamond supercells
     ├── {3,4,5,6}x*/{1,2,4,8}/    strong-scaling sweep (all INCAR/OSZICAR/OUTCAR)
     ├── {10,12,14,15,16}x*/{4,8}/ single-shot timing at larger sizes

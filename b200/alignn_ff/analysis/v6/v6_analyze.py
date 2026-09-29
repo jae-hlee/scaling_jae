@@ -1,13 +1,13 @@
 """
-analyze.py — v6 scaling analysis + v5 vs v6 comparison.
+v6_analyze.py — v6 scaling analysis + v5 vs v6 comparison.
 
 Reads ../../scaling_alignn_v{5,6}.npz and produces:
-  - breakdown.png     v6 per-stage timing, log-log, with fitted exponents
-  - comparison.png    v5 vs v6 per-iter total time (should be ~identical)
-  - energy.png        v5 vs v6 energy-vs-N, showing the pool fix works
+  - v6_breakdown.png     v6 per-stage timing, log-log, with fitted exponents
+  - v6_comparison.png    v5 vs v6 per-iter total time (should be ~identical)
+  - v6_energy.png        v5 vs v6 energy-vs-N, showing the pool fix works
                       below the cliff but does not close the cliff itself
-  - overhead.png      per-iter v6-v5 time delta — the cost of _Float64Pool
-  - metrics.json      machine-readable summary
+  - v6_overhead.png      per-iter v6-v5 time delta — the cost of _Float64Pool
+  - v6_metrics.json      machine-readable summary
 """
 
 from __future__ import annotations
@@ -119,7 +119,7 @@ ax.set_yscale("log")
 ax.grid(True, which="both", alpha=0.3)
 ax.legend(loc="lower right", fontsize=9)
 fig.tight_layout()
-fig.savefig(HERE / "breakdown.png", dpi=150)
+fig.savefig(HERE / "v6_breakdown.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -136,7 +136,7 @@ ax.set_yscale("log")
 ax.grid(True, which="both", alpha=0.3)
 ax.legend(loc="upper left", fontsize=9)
 fig.tight_layout()
-fig.savefig(HERE / "comparison.png", dpi=150)
+fig.savefig(HERE / "v6_comparison.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -146,19 +146,19 @@ fig, ax = plt.subplots(figsize=(9, 5.5))
 ax.plot(n, E5, "-o", ms=4, color="#2ca02c", label="v5 (no pool fix)")
 ax.plot(n, E6, "-s", ms=4, color="#1f77b4", label="v6 (_Float64Pool)")
 ax.axhline(E_F64_REF, color="k", ls="--", lw=0.9,
-           label=f"f64 reference = {E_F64_REF:.6f} eV")
+           label=f"f64 reference = {E_F64_REF:.6f} eV/atom")
 ax.axvline(470_596, color="red", ls="--", lw=0.8, alpha=0.7,
            label="cliff onset: N=470,596 (i=49)")
 # Shade the pre-cliff region where v6 is flat on the reference.
 ax.axvspan(n[0], 442_368, color="#1f77b4", alpha=0.07)
-ax.set(xlabel="N atoms", ylabel="Model output (eV)",
+ax.set(xlabel="N atoms", ylabel="Model output (eV/atom)",
        title="Energy stability: v6 eliminates the pre-cliff pool drift, but not the cliff itself")
 ax.set_xscale("log")
 ax.grid(True, which="both", alpha=0.3)
 ax.legend(loc="upper left", fontsize=9)
 # Annotate the bit-constant pre-cliff region.
 ax.annotate(
-    f"v6 pre-cliff: flat at\n{E6_precliff_min:.6f} eV\n(matches f64 ref to <1e-5)",
+    f"v6 pre-cliff: flat at\n{E6_precliff_min:.6f} eV/atom\n(matches f64 ref to <1e-5)",
     xy=(10_000, E6_precliff_min),
     xytext=(10, 0.74),
     fontsize=9,
@@ -166,7 +166,7 @@ ax.annotate(
     bbox=dict(boxstyle="round,pad=0.3", fc="white", ec="#1f77b4", alpha=0.9),
 )
 fig.tight_layout()
-fig.savefig(HERE / "energy.png", dpi=150)
+fig.savefig(HERE / "v6_energy.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
@@ -184,11 +184,11 @@ ax.set_xscale("log")
 ax.grid(True, which="both", alpha=0.3)
 ax.legend(loc="upper left", fontsize=9)
 fig.tight_layout()
-fig.savefig(HERE / "overhead.png", dpi=150)
+fig.savefig(HERE / "v6_overhead.png", dpi=150)
 plt.close(fig)
 
 # -----------------------------------------------------------------------------
-# metrics.json
+# v6_metrics.json
 # -----------------------------------------------------------------------------
 metrics = {
     "v6_n_points": int(len(n)),
@@ -244,12 +244,12 @@ metrics = {
     },
 }
 
-with open(HERE / "metrics.json", "w") as f:
+with open(HERE / "v6_metrics.json", "w") as f:
     json.dump(metrics, f, indent=2)
 
 print("Wrote:")
-for p in ("metrics.json", "breakdown.png", "comparison.png", "energy.png",
-          "overhead.png"):
+for p in ("v6_metrics.json", "v6_breakdown.png", "v6_comparison.png", "v6_energy.png",
+          "v6_overhead.png"):
     print(f"  {HERE / p}")
 print()
 print("Headline numbers:")

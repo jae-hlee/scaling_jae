@@ -70,9 +70,9 @@ Cheapest diagnostic: **one forward pass in float64** at N=780k. If the drift dis
 
 ## Artifacts in `analysis/v5/`
 
-- `analyze.py` — regenerable analysis script.
-- `metrics.json` — machine-readable summary.
-- `breakdown.png` — v5 per-stage timing with fitted exponents.
-- `comparison.png` — v4 vs v5 line-graph time on matched sizes.
-- `speedup.png` — per-size v4/v5 ratio for line-graph and total.
-- `energy.png` — v5 energy stability with drift-onset marker.
+- `v5_analyze.py` — regenerable analysis script.
+- `v5_metrics.json` — machine-readable summary.
+- `v5_breakdown.png` — v5 per-stage timing with fitted exponents.
+- `v5_comparison.png` — v4 vs v5 line-graph time on matched sizes.
+- `v5_speedup.png` — per-size v4/v5 ratio for line-graph and total.
+- `v5_energy.png` — v5 energy stability with drift-onset marker.

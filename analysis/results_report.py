@@ -109,22 +109,24 @@ def main():
             e_atom, status])
         v_flags.append(flag)
 
-        ff_rows, ff_flags = [], []
-    ff_meta = {}
+    ff_meta, ff_tables = {}, {}
     for tag, path in [("GB10", ROOT / "gb10" / "alignn_ff" / "bench_GB10_13474.json"),
                       ("H200", ROOT / "h200" / "alignn_ff" / "bench_NVIDIA_H200_NVL_913733.json")]:
         j = json.load(open(path))
         ff_meta[tag] = j
+        ff_rows, ff_flags = [], []
         for r in j["results"]:
-            ff_rows.append([tag, f"{r['i']}×{r['i']}×{r['i']}", f"{r['natoms']:,}",
+            ff_rows.append([f"{r['i']}×{r['i']}×{r['i']}", f"{r['natoms']:,}",
                             f"{r['t_median_s']:.3f}", f"{r['mem_alloc_gb']:.1f}",
-                            f"{r['mb_per_atom']:.2f}", f"{r['e_per_atom_eV']:.4f}"])
+                            f"{r['mb_per_atom']:.2f}", f"{r['e_per_atom_eV']:.4f}",
+                            f"{r['max_abs_force']:.1e}"])
             ff_flags.append(None)
         if j["oom"]:
             o = j["oom"]
-            ff_rows.append([tag, f"{o['i']}×{o['i']}×{o['i']}", f"{o['natoms']:,}",
-                            "OOM", "–", "–", "–"])
+            ff_rows.append([f"{o['i']}×{o['i']}×{o['i']}", f"{o['natoms']:,}",
+                            "OOM", "–", "–", "–", "–"])
             ff_flags.append(FLAG)
+        ff_tables[tag] = (ff_rows, ff_flags)
 
     with PdfPages(HERE / "results_report.pdf") as pdf:
         def at_size(z, n):
@@ -349,7 +351,7 @@ def main():
                   "because of the\nfloat32 drift; the float64 reference is 0.604015 eV/atom.")
         pages = range(0, len(a_rows), ROWS_PER_PAGE)
         for p, s in enumerate(pages, 1):
-            table_page(pdf, f"ALIGNN-FF results, B200 ({p}/{len(pages)})", a_head,
+            table_page(pdf, f"ALIGNN-FF results, energy only, B200 ({p}/{len(pages)})", a_head,
                        a_rows[s:s + ROWS_PER_PAGE], a_flags[s:s + ROWS_PER_PAGE],
                        a_note, [0.13, 0.13, 0.15, 0.12, 0.13, 0.12, 0.17])
 
@@ -357,6 +359,9 @@ def main():
         # B200 table's format so the three GPUs can be read row against row
         c_head = ["Supercell", "Atoms", "Graph (s)", "Inference (s)", "Total (s)",
                   "Peak mem\n(GB)", "Model output\n(eV/atom)"]
+        f_head = ["Supercell", "Atoms", "Time (s)", "Peak mem\n(GB)", "MB/atom",
+                  "Energy\n(eV/atom)", "Max |F|\n(eV/A)"]
+        ff_jobs = {"GB10": "atomgptlab job 13474", "H200": "Skipjack job 913733"}
         c_jobs = {"GB10": ("NVIDIA GB10", "atomgptlab job 13484"),
                   "H200": ("NVIDIA H200 NVL", "Skipjack job 920089")}
         for tag, (gpu_name, job) in c_jobs.items():
@@ -386,9 +391,23 @@ def main():
             pages_c = range(0, len(rows), ROWS_PER_PAGE)
             for pno, st in enumerate(pages_c, 1):
                 suffix = f" ({pno}/{len(pages_c)})" if len(pages_c) > 1 else ""
-                table_page(pdf, f"ALIGNN-FF results, {tag}{suffix}", c_head,
+                table_page(pdf, f"ALIGNN-FF results, energy only, {tag}{suffix}", c_head,
                            rows[st:st + ROWS_PER_PAGE], flags[st:st + ROWS_PER_PAGE],
                            c_note, [0.13, 0.13, 0.12, 0.13, 0.12, 0.13, 0.17])
+
+            # same GPU, energy + forces + stress (Si, matpes_r2scan)
+            f_rows, f_flags = ff_tables[tag]
+            j = ff_meta[tag]
+            f_note = (f"Energy + forces + stress single point on one {gpu_name}: Si diamond "
+                      "(8-atom conventional cell, i×i×i), default matpes_r2scan\n"
+                      "checkpoint (hidden 128, 2+2 layers, smooth 5 A cutoff, 52 neighbours), "
+                      f"ASE calculator, float32. Time = median of {j['repeats']} calls.\n"
+                      "Peak mem = peak allocated GPU memory. Max |F| should be ~0 for the "
+                      "perfect crystal (checks the forces).\n"
+                      "Red row: the first size that ran out of GPU memory. "
+                      f"{ff_jobs[tag]}, 2026-09-27.")
+            table_page(pdf, f"ALIGNN-FF results with forces, {tag}", f_head, f_rows,
+                       f_flags, f_note, [0.13, 0.13, 0.12, 0.14, 0.12, 0.17, 0.17])
 
         v_head = ["Supercell", "Atoms", "GPUs", "k-points", "Bands",
                   "SCF cycles", "Elapsed (s)", "s / SCF", "E (eV/atom)", "Status"]
