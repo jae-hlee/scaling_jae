@@ -26,7 +26,7 @@ ALIGNN-FF was also run on an **NVIDIA GB10** (Grace-Blackwell, 121.7 GiB unified
 
 ### Cross-GPU comparison (GB10, H200 vs B200)
 
-- **Same settings as the B200** (`*/alignn_ff_b200settings/`): Cu FCC, 5 Å cutoff, 12 neighbours, energy only, float32, checkpoint `v12.2.2024_dft_3d_307k`. DGL does not run on these machines, so the checkpoint is loaded into the pure-PyTorch ALIGNN model, which reproduces the B200 DGL energies to 4·10⁻⁶ eV/atom. Largest cell: **442,368 atoms** on the GB10 (112 GB; the next size is killed by the host) and **562,432 atoms** on the H200 (142.5 GB), against the B200's 780k. Model inference on the H200 is within ~15% of the B200 (0.70 vs 0.62 s at 256k atoms) and ~9× faster than the GB10; graph construction is CPU-bound and depends on the host (1.1 s on the B200 and GB10 hosts, 1.5 s on the H200 host at 256k). Energies from these reruns show the pre-v6 float32 readout drift (0.604 → 0.600 eV/atom), and past ~470k atoms the H200 run reproduces the B200's float32 cliff (up to 0.658 eV/atom); timings are unaffected.
+- **Same settings as the B200** (`*/alignn_ff_b200settings/`): Cu FCC, 5 Å cutoff, 12 neighbours, energy only, float32, checkpoint `v12.2.2024_dft_3d_307k`. DGL does not run on these machines, so the checkpoint is loaded into the pure-PyTorch ALIGNN model, which reproduces the B200 DGL energies to 4·10⁻⁶ eV/atom. Largest cell: **442,368 atoms** on the GB10 (112 GB; the next size is killed by the host) and **562,432 atoms** on the H200 (142.5 GB), against the B200's 780k. Model inference on the H200 is within ~15% of the B200 (0.70 vs 0.62 s at 256k atoms) and ~8× faster than the GB10; graph construction is CPU-bound and depends on the host (1.1 s on the B200 and GB10 hosts, 1.5 s on the H200 host at 256k). Energies from these reruns show the pre-v6 float32 readout drift (0.604 → 0.600 eV/atom), and past ~470k atoms the H200 run reproduces the B200's float32 cliff (up to 0.658 eV/atom); timings are unaffected.
 - **Molecular-dynamics workload** (`*/alignn_ff/`): energy + forces + stress single points on Si diamond supercells with the smooth 52-neighbour `matpes_r2scan` force field. Largest cell: **54,872 atoms** on the GB10 (107 GB) and **74,088 atoms** on the H200 (145 GB). Memory is **1.95 MB/atom** on both, so any GPU's ceiling is its memory divided by that; the H200 is **4× faster** than the GB10 at every size. With forces, memory per atom is ~8× that of the energy-only runs (0.25 MB/atom on the GB10).
 
 ## Repo layout
@@ -51,6 +51,7 @@ analysis/                     cross-GPU comparison
 ├── scaling_overview.py         -> scaling_overview.png (VASP + energy-only ALIGNN-FF on B200/GB10/H200)
 ├── scaling_forces.py           -> scaling_forces.png (energy+forces+stress ALIGNN-FF on GB10/H200)
 ├── scaling_all.py              -> scaling_all.png (all seven runs on one plot)
+├── cross_gpu_figure.py         -> cross_gpu.png (two panels: energy-only B200/GB10/H200; with forces GB10/H200)
 └── results_report.py           -> results_report.pdf (summary, plot, full result tables)
 ```
 
@@ -66,7 +67,7 @@ cd b200/alignn_ff/analysis/v6 && python v6_analyze.py
 cd b200/vasp_dft/analysis && python analyze.py
 
 # cross-GPU plots and report (plots first)
-cd analysis && python scaling_overview.py && python scaling_forces.py && python scaling_all.py && python results_report.py
+cd analysis && python scaling_overview.py && python scaling_forces.py && python scaling_all.py && python cross_gpu_figure.py && python results_report.py
 ```
 
 Requires `numpy` and `matplotlib` only. The actual ALIGNN-FF sweeps (scripts in `b200/alignn_ff/`) additionally need `torch`, `dgl`, `ase`, `matscipy`, `alignn`, and `jarvis-tools`, and were run on a Blackwell B200 via SLURM. The GB10 and H200 sweeps use the pure-PyTorch ALIGNN 2.0 (`torch`, `ase`, `matscipy`, `jarvis-tools`; no DGL) and were run via SLURM on atomgptlab (GB10) and Skipjack (H200). The VASP data was produced by the GPU build of VASP on the B200 partition; `INCAR` files are committed per run, but VASP binaries, `POSCAR`, and `POTCAR` are not.
