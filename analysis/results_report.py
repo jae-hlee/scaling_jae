@@ -418,7 +418,7 @@ def main():
                   "change below the run's EDIFF.\n"
                   "Amber rows were stopped early for timing; their E is an unconverged "
                   "intermediate value, not a result.\n"
-                  "Red rows crashed before the first SCF cycle (likely out of memory).")
+                  "Red rows crashed before the first SCF cycle (MPI segfault, not out of memory).")
         table_page(pdf, "VASP results", v_head, v_rows, v_flags, v_note,
                    [0.11, 0.08, 0.06, 0.08, 0.08, 0.10, 0.10, 0.09, 0.11, 0.14])
 

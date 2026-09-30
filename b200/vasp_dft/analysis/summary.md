@@ -66,23 +66,20 @@ See `time_vs_size.png` (log-log, all ngpu overlaid) and `large_systems.png`.
 
 ## Failures: 15³ and 16³
 
-Both crashed before completing any SCF step. `OSZICAR` is **empty** in both cases; `OUTCAR` shows:
+Both crashed before completing any SCF step (`OSZICAR` empty). The SLURM stderr for both runs shows the same failure: every rank segfaulted (signal 11) inside `MPI_Alltoall`, called from `redis_pw` ← `choleski_orthch`, i.e. during the first orthonormalization of the initial wavefunctions. This happened with `NCORE=1` (15³) and `NCORE=4` (16³) alike.
 
-- **15³ (6750 atoms, 8 GPU, NBANDS=16880):** stops at `Broyden mixing: mesh for mixing (old mesh)` — killed during charge-mixer setup, almost certainly OOM in mixer arrays.
-- **16³ (8192 atoms, 8 GPU, NBANDS=20488):** truncated mid-coordinate write during POSCAR parsing — killed extremely early, before any electronic setup. This is the one run with `NCORE=4` instead of `NCORE=1`; unclear if intentional.
+- **15³ (6750 atoms, 8 GPU, NBANDS=16880):** `OUTCAR` ends at `Broyden mixing: mesh for mixing (old mesh)`; VASP's own memory estimate is ~46 GB per rank.
+- **16³ (8192 atoms, 8 GPU, NBANDS=20488):** `OUTCAR` is cut off mid-coordinate list.
 
-No in-tree stderr to distinguish OOM from wall-time kill, but the 15³ stopping point and the monotone growth of `NBANDS` make OOM the strong prior.
-
-Per-GPU wavefunction memory at Γ (rough):  
-N_pw ≈ (grid/2)³ ≈ 5–6e5 plane waves at 16³. `complex f64 × NBANDS × N_pw / ngpu` ≈ 16 B × 20488 × 6e5 / 8 ≈ **24 GiB per GPU just for ψ**, before mixers, projectors, and FFT buffers. That's within a 180 GiB B200 in isolation but evidently over the headroom with the current band/pw partitioning.
+The `OUTCAR` end points are where buffered output stopped, not where the runs died. There is no CUDA or allocation error, and the estimated memory is well under a 180 GiB B200, so these are not out-of-memory failures. The likely cause is the MPI all-to-all itself at this size (MPI ran over UCX TCP, `UCX_TLS=tcp,self`; a message count exceeding 32-bit limits is one candidate). Not confirmed.
 
 ## Recommendations for a follow-up sweep
 
 1. **Fill in strong scaling where the GPU is actually working.** Re-run 10³ / 12³ / 14³ at ngpu = 1, 2, 4, 8 with a consistent NELM ≥ 4 and ALGO=Fast. This is the regime where efficiency should rise — the current tree has exactly one data point per large size.
 2. **Decouple k-point from band parallelism.** For 3³/4³, re-run with `KPAR=min(ngpu, 3)` and let the remaining ranks do band/pw, so the small sizes are directly comparable with 5³/6³ instead of measuring KPAR saturation.
-3. **Recover 15³ and 16³.** Try higher `NCORE` (4 or 8) and/or `NSIM=1` to shrink per-rank wavefunction footprint; or bump to 16 GPUs if the partition permits. 15³'s crash at the Broyden step is a clear memory-pressure signal, not a logic bug.
+3. **Recover 15³ and 16³.** The crash is in MPI communication, not memory: first try a GPU-aware transport instead of `UCX_TLS=tcp,self` (NCCL / UCX over NVLink), then more ranks or a different band distribution to shrink each all-to-all message.
 4. **Use NELM ≥ 4 everywhere.** NELM=2 conflates init with steady-state cost; the 12³/14³ second-cycle-longer-than-first pattern shows the 2-cycle average is not representative.
-5. **Commit the job script, POSCAR, POTCAR, and stderr** alongside the INCAR/OSZICAR/OUTCAR. Right now the VASP build version, MPI/GPU binding setup, and crash reasons for 15³/16³ are not recoverable from the tree.
+5. **Commit the job script, POSCAR, POTCAR, and stderr** alongside the INCAR/OSZICAR/OUTCAR. Right now the VASP build version and MPI/GPU binding setup are not recoverable from the tree.
 
 ## Artifacts in `analysis/`
 

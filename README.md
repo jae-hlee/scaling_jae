@@ -22,7 +22,7 @@ ALIGNN-FF was also run on an **NVIDIA GB10** (Grace-Blackwell, 121.7 GiB unified
 - Strong scaling of SCF runs across 3³–6³ supercells × 1/2/4/8 GPUs, plus single-shot timing at 10³–16³.
 - Best strong-scaling result: **1.27× on 4 GPUs at 6³ (432 atoms)** — 32% parallel efficiency. 8 GPUs is always slower than 4 GPUs for every size tested; the problems are simply too small to keep multiple B200s busy.
 - Size-scaling fit on the 12³→14³ pair (3456 → 5488 atoms, 8 GPU, ALGO=Fast): **T ∝ N^1.80**.
-- Two largest runs (15³ = 6750 atoms, 16³ = 8192 atoms) crashed before any SCF step completed — almost certainly OOM at the charge-mixer allocation on 8 GPUs. See `b200/vasp_dft/analysis/summary.md`.
+- Two largest runs (15³ = 6750 atoms, 16³ = 8192 atoms) crashed before any SCF step completed with a segfault in MPI all-to-all communication on 8 GPUs, not an out-of-memory error. See `b200/vasp_dft/analysis/summary.md`.
 
 ### Cross-GPU comparison (GB10, H200 vs B200)
 
