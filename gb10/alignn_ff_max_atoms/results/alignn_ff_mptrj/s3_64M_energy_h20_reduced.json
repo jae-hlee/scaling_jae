@@ -1,0 +1,15 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/alignn_ff_mptrj",
+ "natoms": 64000000,
+ "box_A": 1086.0,
+ "k": 11,
+ "core_A": 98.72727272727273,
+ "halo_A": 20.0,
+ "halo_exact": false,
+ "forces": false,
+ "gpu": "NVIDIA GB10",
+ "e_per_atom": -5.3509498610839845,
+ "wall_s_slowest_rank": 1473.3046579819638,
+ "piece_atoms_max": 128175,
+ "mem_alloc_gb_max": 47.634868224
+}

@@ -1,0 +1,123 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/alignn_ff_mptrj",
+ "checkpoint_md5": "3e70af9b8a532af47e100439afc5f705",
+ "layers": [
+  4,
+  4
+ ],
+ "hidden": 256,
+ "element_embedding": true,
+ "cutoff": 5.0,
+ "max_neighbors": 52,
+ "three_body_cutoff": 3.5,
+ "reach_A": 40.0,
+ "gpu": "NVIDIA GB10",
+ "gpu_memory_gb": 130.661203968,
+ "neighbor_list": "matscipy",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn",
+ "slurm_job": "19127",
+ "host": "atomgptlab07",
+ "path": "ase",
+ "results": [
+  {
+   "i": 2,
+   "natoms": 64,
+   "t_total_s": 0.05888327630236745,
+   "fmax": 1.173350028693676e-05,
+   "t_all_s": [
+    0.10366610484197736,
+    0.05759907467290759,
+    0.05888327630236745
+   ],
+   "e_per_atom": -5.392549991607666,
+   "mem_alloc_gb": 0.548427264,
+   "mem_reserved_gb": 0.559939584,
+   "host_peak_gb": 1.910096,
+   "mb_per_atom": 8.569175999999999
+  },
+  {
+   "i": 4,
+   "natoms": 512,
+   "t_total_s": 0.2791643547825515,
+   "fmax": 2.037431113421917e-05,
+   "t_all_s": [
+    0.43830516189336777,
+    0.2751644258387387,
+    0.2791643547825515
+   ],
+   "e_per_atom": -5.3925461769104,
+   "mem_alloc_gb": 3.689644544,
+   "mem_reserved_gb": 3.75390208,
+   "host_peak_gb": 1.915652,
+   "mb_per_atom": 7.206337
+  },
+  {
+   "i": 6,
+   "natoms": 1728,
+   "t_total_s": 0.8837093720212579,
+   "fmax": 2.2251158952713013e-05,
+   "t_all_s": [
+    1.319755139760673,
+    0.867600329220295,
+    0.8837093720212579
+   ],
+   "e_per_atom": -5.392594337463379,
+   "mem_alloc_gb": 12.215829504,
+   "mem_reserved_gb": 12.266242048,
+   "host_peak_gb": 1.927836,
+   "mb_per_atom": 7.0693457777777775
+  },
+  {
+   "i": 8,
+   "natoms": 4096,
+   "t_total_s": 1.963737209327519,
+   "fmax": 2.3654894903302193e-05,
+   "t_all_s": [
+    2.904618859756738,
+    1.9539780500344932,
+    1.963737209327519
+   ],
+   "e_per_atom": -5.39257287979126,
+   "mem_alloc_gb": 28.819433984,
+   "mem_reserved_gb": 28.900851712,
+   "host_peak_gb": 1.942592,
+   "mb_per_atom": 7.035994625
+  },
+  {
+   "i": 10,
+   "natoms": 8000,
+   "t_total_s": 3.7960397992283106,
+   "fmax": 2.3636268451809883e-05,
+   "t_all_s": [
+    5.558531339745969,
+    3.7960397992283106,
+    3.7034515808336437
+   ],
+   "e_per_atom": -5.3923563957214355,
+   "mem_alloc_gb": 56.192961024,
+   "mem_reserved_gb": 56.344182784,
+   "host_peak_gb": 1.97372,
+   "mb_per_atom": 7.024120128
+  },
+  {
+   "i": 12,
+   "natoms": 13824,
+   "t_total_s": 6.453573332168162,
+   "fmax": 2.469145692884922e-05,
+   "t_all_s": [
+    9.316263460088521,
+    6.396727649029344,
+    6.453573332168162
+   ],
+   "e_per_atom": -5.392542839050293,
+   "mem_alloc_gb": 97.028862464,
+   "mem_reserved_gb": 97.14008064,
+   "host_peak_gb": 2.023988,
+   "mb_per_atom": 7.01887025925926
+  }
+ ],
+ "oom": null,
+ "error": null,
+ "structure": "Si diamond conventional cell (8 atoms), i^3"
+}

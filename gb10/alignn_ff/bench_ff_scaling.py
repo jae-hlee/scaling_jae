@@ -35,6 +35,7 @@ def single_point(base, i, calc, device):
     """Build the i x i x i supercell and time one E+F+S evaluation."""
     atoms = base.repeat((i, i, i))
     atoms.calc = calc
+    calc.reset()  # time a real evaluation, not cached results
     if device.type == "cuda":
         torch.cuda.synchronize()
     t0 = time.perf_counter()

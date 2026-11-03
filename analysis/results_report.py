@@ -1,7 +1,8 @@
 """Compile every run into one PDF: scaling plot + full result tables.
 
 B200 runs (ALIGNN-FF energy-only, VASP) plus the ALIGNN-FF energy+forces+stress
-sweeps on a GB10 and an H200 under ../{gb10,h200}/alignn_ff/ (2026-09-27).
+sweeps on a GB10 and an H200 under ../{gb10,h200}/alignn_ff/ (2026-09-27), and the
+GB10 maximum-atoms runs under ../gb10/alignn_ff_max_atoms/ (2026-11-01).
 
 Run from this directory: `python results_report.py` (run scaling_overview.py and scaling_all.py
 first). Writes `results_report.pdf` from ../b200/alignn_ff/scaling_alignn_v6.npz and
@@ -160,20 +161,22 @@ def main():
             f"supercell sizes (54 to 8,192 atoms); {n_ok} completed,\n"
             f"   {len(runs) - n_ok} crashed before the first SCF cycle (15×15×15 and 16×16×16).\n\n"
             "ALIGNN-FF, energy only, B200 settings rerun on a GB10 and an H200 (Cu FCC,\n"
-            "   same checkpoint, pure-PyTorch model; energies match the B200 to 4e-6 eV/atom):\n"
+            "   same checkpoint, pure-PyTorch model; energies match the B200 within 1e-5 eV/atom up to 500 atoms):\n"
             f"   largest cell {e_max('GB10'):,} atoms (GB10) and {e_max('H200'):,} (H200). "
             f"At 256,000 atoms, inference takes\n"
             f"   {g256[1]:.2f} s (GB10), {h256[1]:.2f} s (H200) and {b256[1]:.2f} s (B200).\n\n"
             "ALIGNN-FF with energy + forces + stress (added 2026-09-27; the MD workload), Si "
-            "diamond, 1 GPU,\n   default matpes_r2scan checkpoint (hidden 128, smooth cutoff, "
-            "52 neighbours), same script on both cards:\n"
+            "diamond, 1 GPU,\n   then-default matpes_r2scan checkpoint (hidden 128, "
+            "52 neighbors), same script on both cards:\n"
             f"   GB10 (121.7 GiB): largest cell {ff_meta['GB10']['results'][-1]['natoms']:,} atoms "
             f"at {ff_meta['GB10']['results'][-1]['mem_alloc_gb']:.0f} GB, OOM at "
             f"{ff_meta['GB10']['oom']['natoms']:,};\n   H200 NVL (139.8 GiB): "
             f"{ff_meta['H200']['results'][-1]['natoms']:,} atoms at "
             f"{ff_meta['H200']['results'][-1]['mem_alloc_gb']:.0f} GB, OOM at "
             f"{ff_meta['H200']['oom']['natoms']:,}.\n"
-            "   Memory 1.95 MB/atom on both; the H200 is 4× faster than the GB10 at every size.")
+            "   Memory 1.95 MB/atom on both; the H200 is about 4× faster than the GB10 from ~4,000 atoms up.\n\n"
+            "Added 2026-11-02, GB10 only, same model (pages 13-14): 551,368 atoms energy only, 195,112 with forces\n"
+            "   and layer checkpointing, and forces on 64M atoms chunked across 5-6 GPUs.")
         fig.text(0.07, 0.90, summary, fontsize=10, va="top", linespacing=1.4)
         ax = fig.add_axes([0.07, 0.06, 0.86, 0.47])
         ax.imshow(mpimg.imread(HERE / "scaling_overview.png"))
@@ -187,8 +190,8 @@ def main():
         ax.imshow(mpimg.imread(HERE / "scaling_all.png"))
         ax.axis("off")
         fig.text(0.07, 0.18, "Energy only: filled markers (B200 run and its GB10/H200 reruns, "
-                 "Cu, 12 neighbours). Energy + forces + stress:\nhollow markers, solid lines "
-                 "(Si, smooth 52-neighbour matpes_r2scan, the MD workload). VASP: time per SCF "
+                 "Cu, 12 neighbors). Energy + forces + stress:\nhollow markers, solid lines "
+                 "(Si, 52-neighbor matpes_r2scan, the MD workload). VASP: time per SCF "
                  "cycle, Si.", fontsize=9, color="#52514e", va="top")
         pdf.savefig(fig)
         plt.close(fig)
@@ -199,11 +202,11 @@ def main():
              f"{g256[1]:.2f}", f"{h256[1]:.2f}", f"{b256[1]:.2f}"],
             ["Energy only, 256,000 atoms: graph build (s, CPU)",
              f"{g256[0]:.2f}", f"{h256[0]:.2f}", f"{b256[0]:.2f}"],
-            ["Energy only: largest cell (atoms)",
+            ["Energy only, older FF on Cu: largest cell (atoms)",
              f"{e_max('GB10'):,}", f"{e_max('H200'):,}", f"{int(d['natoms'][-1]):,}"],
             ["Energy + forces + stress, 21,952 atoms (s)",
              f"{ff_t('GB10', 21952):.2f}", f"{ff_t('H200', 21952):.2f}", "not run"],
-            ["Energy + forces + stress: largest cell (atoms)",
+            ["E + F + S through ASE: largest cell (atoms)",
              f"{ff_max('GB10'):,}", f"{ff_max('H200'):,}", "not run"],
             ["GPU memory", "121.7 GiB (unified)", "139.8 GiB", "178.3 GiB"],
         ]
@@ -234,22 +237,24 @@ def main():
             "    (energy only, identical settings and checkpoint). With forces and stress the "
             f"H200 is {ff_t('GB10', 21952) / ff_t('H200', 21952):.1f}x the GB10.\n"
             "  - Graph construction runs on the host CPU, so it follows the machine, not the GPU.\n"
-            "  - The largest cell is set by memory alone: 1.95 MB per atom with forces, "
-            "0.25 MB/atom energy only,\n"
-            "    the same on the GB10 and H200.\n\n"
+            "  - For one evaluation, the largest cell is set by memory: 1.95 MB per atom with forces "
+            "through ASE, 0.25 MB/atom\n"
+            "    energy only, the same on the GB10 and H200. Other paths and chunking go further "
+            "(pages 13-14).\n\n"
             "Recommendation\n"
             "  - Long training runs: GB10. Slowest per GPU, but locally available at no cost; "
-            "multi-node training, which\n"
-            "    would recover much of the per-GPU gap, is still being made to work.\n"
-            "  - Large-cell MD and fast turnaround: H200. Largest cell with forces we can "
-            "reach (74k atoms) and ~4x\n"
-            "    the GB10, but it is a shared, allocation-billed resource.\n"
+            "multi-node training works\n"
+            "    (MPtrj trained on 8 GB10s).\n"
+            "  - Fast turnaround: H200, ~4x the GB10 through ASE, but it is a shared, "
+            "allocation-billed resource. Its 74k atoms\n"
+            "    is the largest ASE cell. The GB10 reaches 195k with checkpointing and 64M "
+            "chunked on 5-6 GPUs.\n"
             f"  - B200: fastest and largest on paper, but not available to this project; the "
             f"H200 comes within {100 * (h256[1] / b256[1] - 1):.0f}%\n"
             "    of it on model evaluation, so it is not worth pursuing.\n\n"
             "Caveats: single-point evaluations, not full MD or training steps, so the ratios "
             "will shift somewhat for\n"
-            "real workloads; multi-node GB10 training throughput is not yet measured.")
+            "real workloads. Times with forces through ASE are three model passes.")
         fig.text(0.07, 0.70, text, fontsize=9, va="top", linespacing=1.45)
         pdf.savefig(fig)
         plt.close(fig)
@@ -278,7 +283,7 @@ def main():
             extra = f"  (= {n_halo / 8:,.0f} nodes)" if "GCD" in name else ""
             rows.append([name, f"{n:,.0f} ({how})", f"{n_naive:,.0f}", f"{f:.1f}x",
                          f"{n_halo:,.0f}{extra}"])
-        fig = new_page(pdf, "Scaling to one billion atoms (with forces)")
+        fig = new_page(pdf, "Scaling to one billion atoms (with forces, through ASE)")
         ax = fig.add_axes([0.07, 0.76, 0.86, 0.14])
         ax.axis("off")
         t = ax.table(cellText=rows,
@@ -303,11 +308,12 @@ def main():
         t_step = ff_meta["H200"]["results"][-1]["t_median_s"]
         text = (
             "The governing number\n"
-            f"  - With forces the force field needs {mb:.2f} MB of GPU memory per atom on every "
-            "card measured, so 10^9 atoms\n"
+            f"  - With forces the force field needs {mb:.2f} MB of GPU memory per atom through ASE on "
+            "both cards measured, so 10^9 atoms\n"
             f"    is ~{mb:.1f} PB before overheads. 'Memory rule' rows apply that figure, and the "
             f"{100 * usable:.0f}% of memory the H200\n"
             "    could use, to the card's memory; they are estimates, not measurements.\n"
+            "    A LAMMPS run would use forward_tensors (0.75 MB/atom measured), so these GPU counts overstate it.\n"
             "  - ALIGNN is a message-passing network, so when the crystal is split across GPUs each "
             "GPU also holds a\n"
             f"    ghost shell as thick as the receptive field (~{halo:.0f} A here: 2+2 layers x 5 A). "
@@ -316,14 +322,17 @@ def main():
             "the GCD count exceeds\n"
             "    Frontier (9,408 nodes).\n\n"
             "Levers, largest first\n"
-            "  - Memory per atom: the energy-only model uses 0.25 MB/atom (hidden 64, 12 "
-            "neighbours); the 52-neighbour\n"
-            "    line graph dominates. A leaner force field, half precision and dropping stress "
-            "could cut 1.95 MB several-fold\n"
-            "    (unmeasured, and accuracy must be re-checked).\n"
+            "  - Evaluation path (measured 2026-11-01, same model): 0.195 MB/atom energy only, 0.75 with "
+            "forces without the\n"
+            "    second-order graph, 0.53 with layer checkpointing. The second-order graph dominates "
+            "the 1.95 MB, not the line graph.\n"
+            "  - A leaner force field and half precision could cut memory further (unmeasured, and "
+            "accuracy must be re-checked).\n"
             "  - Fewer message-passing layers shrink the halo: 20 A -> 10 A takes the factor from "
             "~2.5x to ~1.6x.\n"
-            "  - Memory per GPU matters more than speed: the job is memory-bound.\n\n"
+            "  - Memory per GPU matters more than speed when the whole cell is held at once. Chunking "
+            "trades memory for time\n"
+            "    (measured to 64M atoms, pages 13-14).\n\n"
             "Software\n"
             "  - A run this size needs LAMMPS domain decomposition with ghost-atom exchange. "
             "ALIGNN has a LAMMPS\n"
@@ -332,12 +341,12 @@ def main():
             "  - The path is a ladder: 1 GPU -> 1 node -> 64 nodes -> thousands, fixing scaling "
             "at each step.\n\n"
             "Time, if it fits\n"
-            f"  - At ~{t_step:.1f} s per step per GPU (H200 at its largest cell), 1 ps at 1 fs "
+            f"  - At ~{t_step:.1f} s per step per GPU (H200 at its largest cell, three model passes through ASE),\n    1 ps at 1 fs "
             f"steps is ~{1000 * t_step / 60:.0f} min of wall time\n"
             "    plus communication; at thousands of nodes, every hour costs thousands of "
             "node-hours.\n\n"
             "First steps (cheap, one GB10): memory per atom with forces for a leaner model "
-            "(fewer neighbours, fewer\n"
+            "(fewer neighbors, fewer\n"
             "layers, half precision), and pair_alignn on 2 GPUs with a real ghost region.")
         fig.text(0.07, 0.71, text, fontsize=8.8, va="top", linespacing=1.42)
         pdf.savefig(fig)
@@ -378,10 +387,10 @@ def main():
                 flags.append(FLAG if n > VALID_MAX_N else None)
             last = int(z["natoms"][-1])
             k_next = round((last / 4) ** (1 / 3)) + 1
-            c_note = (f"B200 settings rerun on one {gpu_name}: Cu FCC, 5 A cutoff, 12 neighbours, "
+            c_note = (f"B200 settings rerun on one {gpu_name}: Cu FCC, 5 A cutoff, 12 neighbors, "
                       "energy only, float32, checkpoint v12.2.2024_dft_3d_307k,\n"
-                      "loaded into the pure-PyTorch ALIGNN (reproduces the B200 DGL energies to "
-                      "4e-6 eV/atom). One call per size; the first row includes\n"
+                      "loaded into the pure-PyTorch ALIGNN (matches the B200 DGL energies within "
+                      "1e-5 eV/atom up to 500 atoms). One call per size; the first row includes\n"
                       "GPU warm-up. Largest size shown is the largest that completed; the next "
                       f"({k_next}×{k_next}×{k_next} = {4 * k_next ** 3:,} atoms) did not fit. "
                       f"Red rows (N > {VALID_MAX_N:,}):\n"
@@ -399,15 +408,73 @@ def main():
             f_rows, f_flags = ff_tables[tag]
             j = ff_meta[tag]
             f_note = (f"Energy + forces + stress single point on one {gpu_name}: Si diamond "
-                      "(8-atom conventional cell, i×i×i), default matpes_r2scan\n"
-                      "checkpoint (hidden 128, 2+2 layers, smooth 5 A cutoff, 52 neighbours), "
-                      f"ASE calculator, float32. Time = median of {j['repeats']} calls.\n"
+                      "(8-atom conventional cell, i×i×i), then-default matpes_r2scan\n"
+                      "checkpoint (hidden 128, 2+2 layers, 5 A cutoff, 52 neighbors), "
+                      f"ASE calculator, float32. Time = median of {j['repeats']} calls, each three model passes.\n"
                       "Peak mem = peak allocated GPU memory. Max |F| should be ~0 for the "
                       "perfect crystal (checks the forces).\n"
                       "Red row: the first size that ran out of GPU memory. "
                       f"{ff_jobs[tag]}, 2026-09-27.")
             table_page(pdf, f"ALIGNN-FF results with forces, {tag}", f_head, f_rows,
                        f_flags, f_note, [0.13, 0.13, 0.12, 0.14, 0.12, 0.17, 0.17])
+
+        # GB10 maximum atoms: every evaluation path, then chunked runs
+        ma = ROOT / "gb10" / "alignn_ff_max_atoms" / "results"
+        ma_name = {"matpes_r2scan_paper": "AFF-r2SCAN"}
+        ma_models = ["matpes_r2scan_paper", "alignn_ff_mptrj", "alignn_ff_matpes_pbe",
+                     "alignn_ff_matpes_r2scan"]
+        ma_paths = [("e", "energy only"), ("ase", "E+F+S, ASE"), ("ef", "E+F+S, tensors"),
+                    ("ckpt", "E+F+S, tensors + ckpt")]
+        s_rows = []
+        for m in ma_models:
+            for key, label in ma_paths:
+                res = json.loads(next(ma.glob(f"{m}/sweep_{key}_*.json")).read_text())["results"]
+                ref = res[1]["e_per_atom"]
+                dev = max(abs(r["e_per_atom"] - ref) for r in res)
+                last = res[-1]
+                s_rows.append([ma_name.get(m, m), label, f"{last['natoms']:,}", f"{last['mem_alloc_gb']:.1f}",
+                               f"{last['mb_per_atom']:.3f}", f"{last['t_total_s']:.1f}", f"{dev:.1e}"])
+        s_note = ("Largest pristine Si cell (8 i^3 atoms) evaluated on one GB10, one process per path (2026-11-01,\n"
+                  "jobs 19126-19129). The next size was killed by the host (exit 137). Time = median of 3 calls\n"
+                  "(through ASE, each call is three model passes). "
+                  "Tensors = forward_tensors (the LAMMPS path, no second-order graph).\nCkpt = layer checkpointing. "
+                  "Max dE = largest change in energy per atom from the small-cell value over the sweep.\n"
+                  "Not comparable to the Cu energy-only runs (older model, 12 neighbors).")
+        table_page(pdf, "ALIGNN-FF largest single evaluation, GB10",
+                   ["Model", "Path", "Atoms", "Peak mem\n(GB)", "MB/atom", "Time (s)", "Max dE\n(eV/atom)"],
+                   s_rows, [None] * len(s_rows), s_note, [0.27, 0.22, 0.11, 0.10, 0.10, 0.10, 0.10])
+        m_rows = []
+        for m, tag, atoms, gpus, what in [
+                ("matpes_r2scan_paper", "s2_8M_energy", "8M", 1, "energy"),
+                ("matpes_r2scan_paper", "s2_8M_forces", "8M", 1, "forces"),
+                ("matpes_r2scan_paper", "s3_64M_energy_reduced", "64M", 4, "energy"),
+                ("matpes_r2scan_paper", "s2_64M_forces_reduced", "64M", 5, "forces"),
+                ("alignn_ff_mptrj", "s2_8M_energy_h20", "8M", 1, "energy"),
+                ("alignn_ff_mptrj", "s2_8M_forces_h20", "8M", 1, "forces"),
+                ("alignn_ff_mptrj", "s3_64M_energy_h20_reduced", "64M", 4, "energy"),
+                ("alignn_ff_mptrj", "s2_64M_forces_h20_reduced", "64M", 6, "forces"),
+                ("alignn_ff_matpes_pbe", "s2_8M_energy_h20", "8M", 1, "energy"),
+                ("alignn_ff_matpes_pbe", "s2_8M_forces_h20", "8M", 1, "forces"),
+                ("alignn_ff_matpes_r2scan", "s2_8M_energy_h20", "8M", 1, "energy"),
+                ("alignn_ff_matpes_r2scan", "s2_8M_forces_h20", "8M", 1, "forces")]:
+            j = json.loads((ma / m / f"{tag}.json").read_text())
+            pieces = j.get("pieces") or []
+            piece = j.get("piece_atoms_max") or max(p["atoms"] for p in pieces)
+            mem = j.get("mem_alloc_gb_max") or max(p.get("mem_alloc_gb") or 0 for p in pieces)
+            wall = j.get("wall_s_slowest_rank") or j["wall_s"]
+            m_rows.append([ma_name.get(m, m), atoms, str(gpus), what, f"{j['k'] ** 3:,}", f"{piece:,}",
+                           f"{mem:.1f}", f"{wall:,.0f}", f"{j['e_per_atom']:.5f}"])
+        m_note = ("Rattled Si (0.05 A), energy and forces, no stress (2026-11-01/02, jobs 19140-19200). Each cube is\n"
+                  "evaluated with a halo on one GPU. Force runs use layer checkpointing. Time = slowest task. The AFF-r2SCAN\n"
+                  "64M force run was 6 tasks on 5 nodes (one node ran two in turn, 2,689 s), and the 64M energy runs 6 tasks on 4.\n"
+                  "These are the largest sizes tried: none\n"
+                  "reached a memory limit. AFF-r2SCAN: exact 20.01 A halo. alignn_ff_* models: 20 A halo instead of the\n"
+                  "exact 40 A, maximum force error 2e-9 to 2e-8 eV/A in a float64 check on 8,000 atoms. Tasks started\n"
+                  "as nodes freed up, so the 64M force runs took 45 min (AFF-r2SCAN) and 1 h 59 min (alignn_ff_mptrj) from first start to\n"
+                  "last finish.")
+        table_page(pdf, "ALIGNN-FF chunked runs, GB10",
+                   ["Model", "Atoms", "GB10s", "Computes", "Cubes", "Largest\npiece", "Peak mem\n(GB)", "Time (s)", "E (eV/atom)"],
+                   m_rows, [None] * len(m_rows), m_note, [0.27, 0.07, 0.07, 0.10, 0.08, 0.10, 0.10, 0.09, 0.12])
 
         v_head = ["Supercell", "Atoms", "GPUs", "k-points", "Bands",
                   "SCF cycles", "Elapsed (s)", "s / SCF", "E (eV/atom)", "Status"]
