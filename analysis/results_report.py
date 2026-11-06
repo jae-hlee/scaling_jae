@@ -176,7 +176,7 @@ def main():
             f"{ff_meta['H200']['oom']['natoms']:,}.\n"
             "   Memory 1.95 MB/atom on both; the H200 is about 4× faster than the GB10 from ~4,000 atoms up.\n\n"
             "Added 2026-11-02, GB10 only, same model (pages 13-14): 551,368 atoms energy only, 195,112 with forces\n"
-            "   and layer checkpointing, and forces on 64M atoms chunked across 5-6 GPUs.")
+            "   and layer checkpointing, and forces on 1B atoms chunked across 4 GPUs (1B added 2026-11-06).")
         fig.text(0.07, 0.90, summary, fontsize=10, va="top", linespacing=1.4)
         ax = fig.add_axes([0.07, 0.06, 0.86, 0.47])
         ax.imshow(mpimg.imread(HERE / "scaling_overview.png"))
@@ -247,8 +247,8 @@ def main():
             "    (MPtrj trained on 8 GB10s).\n"
             "  - Fast turnaround: H200, ~4x the GB10 through ASE, but it is a shared, "
             "allocation-billed resource. Its 74k atoms\n"
-            "    is the largest ASE cell. The GB10 reaches 195k with checkpointing and 64M "
-            "chunked on 5-6 GPUs.\n"
+            "    is the largest ASE cell. The GB10 reaches 195k with checkpointing and 1B "
+            "chunked on 4 GPUs.\n"
             f"  - B200: fastest and largest on paper, but not available to this project; the "
             f"H200 comes within {100 * (h256[1] / b256[1] - 1):.0f}%\n"
             "    of it on model evaluation, so it is not worth pursuing.\n\n"
@@ -332,7 +332,7 @@ def main():
             "~2.5x to ~1.6x.\n"
             "  - Memory per GPU matters more than speed when the whole cell is held at once. Chunking "
             "trades memory for time\n"
-            "    (measured to 64M atoms, pages 13-14).\n\n"
+            "    (measured to 1B atoms, pages 13-14).\n\n"
             "Software\n"
             "  - A run this size needs LAMMPS domain decomposition with ghost-atom exchange. "
             "ALIGNN has a LAMMPS\n"
@@ -449,6 +449,8 @@ def main():
                 ("matpes_r2scan_paper", "s2_8M_forces", "8M", 1, "forces"),
                 ("matpes_r2scan_paper", "s3_64M_energy_reduced", "64M", 4, "energy"),
                 ("matpes_r2scan_paper", "s2_64M_forces_reduced", "64M", 5, "forces"),
+                ("matpes_r2scan_paper", "s4_1B_energy_reduced", "1B", 3, "energy"),
+                ("matpes_r2scan_paper", "s4_1B_forces_reduced", "1B", 4, "forces"),
                 ("alignn_ff_mptrj", "s2_8M_energy_h20", "8M", 1, "energy"),
                 ("alignn_ff_mptrj", "s2_8M_forces_h20", "8M", 1, "forces"),
                 ("alignn_ff_mptrj", "s3_64M_energy_h20_reduced", "64M", 4, "energy"),
@@ -464,14 +466,17 @@ def main():
             wall = j.get("wall_s_slowest_rank") or j["wall_s"]
             m_rows.append([ma_name.get(m, m), atoms, str(gpus), what, f"{j['k'] ** 3:,}", f"{piece:,}",
                            f"{mem:.1f}", f"{wall:,.0f}", f"{j['e_per_atom']:.5f}"])
-        m_note = ("Rattled Si (0.05 A), energy and forces, no stress (2026-11-01/02, jobs 19140-19200). Each cube is\n"
-                  "evaluated with a halo on one GPU. Force runs use layer checkpointing. Time = slowest task. The AFF-r2SCAN\n"
-                  "64M force run was 6 tasks on 5 nodes (one node ran two in turn, 2,689 s), and the 64M energy runs 6 tasks on 4.\n"
-                  "These are the largest sizes tried: none\n"
-                  "reached a memory limit. AFF-r2SCAN: exact 20.01 A halo. alignn_ff_* models: 20 A halo instead of the\n"
-                  "exact 40 A, maximum force error 2e-9 to 2e-8 eV/A in a float64 check on 8,000 atoms. Tasks started\n"
-                  "as nodes freed up, so the 64M force runs took 45 min (AFF-r2SCAN) and 1 h 59 min (alignn_ff_mptrj) from first start to\n"
-                  "last finish.")
+        m_note = ('Rattled Si (0.05 A), energy and forces, no stress (2026-11-01 to 03, jobs 19140-19222). Each cube is\n'
+                  'evaluated with a halo on one GPU. Force runs use layer checkpointing. Time = slowest task. The AFF-r2SCAN\n'
+                  '64M force run was 6 tasks on 5 nodes (one node ran two in turn, 2,689 s), and the 64M energy runs 6 tasks on\n'
+                  '4. The 1B runs were 10 tasks, on 4 nodes with forces (13 h from first start to last finish) and 3 without.\n'
+                  'Peak mem = GPU memory of the largest piece. Every task also holds the whole cell on the host, up to 73.9 GB\n'
+                  'per task at 1B. These are the largest sizes tried: none reached a memory limit. AFF-r2SCAN: exact 20.01 A\n'
+                  'halo. alignn_ff_* models: 20 A halo instead of the exact 40 A, which changed forces by 2e-9 to 2e-8 eV/A on\n'
+                  '8,000 atoms of Si and 1.2e-8 to 1.3e-7 on SiGe in float64. In float32, chunked forces differ from the full\n'
+                  'cell by 1.4e-4 to 9.9e-4 eV/A even at the exact halo, which is roundoff (2e-12 eV/A in float64). Tasks\n'
+                  'started as nodes freed up, so the 64M force runs took 45 min (AFF-r2SCAN) and 1 h 59 min (alignn_ff_mptrj)\n'
+                  'from first start to last finish.')
         table_page(pdf, "ALIGNN-FF chunked runs, GB10",
                    ["Model", "Atoms", "GB10s", "Computes", "Cubes", "Largest\npiece", "Peak mem\n(GB)", "Time (s)", "E (eV/atom)"],
                    m_rows, [None] * len(m_rows), m_note, [0.27, 0.07, 0.07, 0.10, 0.08, 0.10, 0.10, 0.09, 0.12])

@@ -29,7 +29,7 @@ ALIGNN-FF was also run on an **NVIDIA GB10** (Grace-Blackwell, 121.7 GiB unified
 - **Same settings as the B200** (`*/alignn_ff_b200settings/`): Cu FCC, 5 Å cutoff, 12 neighbors, energy only, float32, checkpoint `v12.2.2024_dft_3d_307k`. DGL does not run on these machines, so the checkpoint is loaded into the pure-PyTorch ALIGNN model, which matches the B200 DGL energies within 1·10⁻⁵ eV/atom up to 500 atoms. Largest cell: **442,368 atoms** on the GB10 (112 GB; the next size is killed by the host) and **562,432 atoms** on the H200 (142.5 GB), against the B200's 780k. Model inference on the H200 is within 13% of the B200 (0.70 vs 0.62 s at 256k atoms) and ~8× faster than the GB10; graph construction is CPU-bound and depends on the host (1.1 s on the B200 and GB10 hosts, 1.5 s on the H200 host at 256k). Energies from these reruns show the pre-v6 float32 readout drift (0.604 → 0.600 eV/atom), and past ~470k atoms the H200 run reproduces the B200's float32 cliff (up to 0.658 eV/atom); timings are unaffected.
 - **Molecular-dynamics workload** (`*/alignn_ff/`): energy + forces + stress single points on Si diamond supercells with the 52-neighbor AFF-r2SCAN force field (figshare file 67360764, then the default `matpes_r2scan`). Largest cell: **54,872 atoms** on the GB10 (107 GB) and **74,088 atoms** on the H200 (145 GB). Memory is **1.95 MB/atom** on both through the ASE calculator, and the H200 is about **4× faster** than the GB10 from about 4,000 atoms up (2-5× below that). Through ASE, the same model uses 10× the memory per atom of energy only (0.195 MB/atom, `gb10/alignn_ff_max_atoms/`). Times through ASE are three model passes, because the calculator reruns the model for energy, forces and stress.
 
-- **Maximum atoms on the GB10** (`gb10/alignn_ff_max_atoms/`, added 2026-11-02): four force fields on Si, with and without forces. Largest single evaluation with AFF-r2SCAN: **551,368 atoms** energy only and **195,112 atoms** with forces and layer checkpointing (54,872 through ASE, reproduced). For the `alignn_ff_*` models: 238,328 (262,144 for `alignn_ff_matpes_r2scan`) and 97,336. Chunked with halos, forces reached **8M atoms on one GB10 and 64M on five or six** without reaching a memory limit (slowest task 1,379 s for AFF-r2SCAN on five, 6,231 s for `alignn_ff_mptrj` on six). Without forces, 64M atoms on four took 351 s and 1,473 s per task.
+- **Maximum atoms on the GB10** (`gb10/alignn_ff_max_atoms/`, added 2026-11-02, 1B atoms 2026-11-06): four force fields on Si, with and without forces. Largest single evaluation with AFF-r2SCAN: **551,368 atoms** energy only and **195,112 atoms** with forces and layer checkpointing (54,872 through ASE, reproduced). For the `alignn_ff_*` models: 238,328 (262,144 for `alignn_ff_matpes_r2scan`) and 97,336. Chunked with halos, forces reached **8M atoms on one GB10, 64M on five or six and 1B on four** without reaching a memory limit (slowest task 1,379 s for AFF-r2SCAN on five, 6,231 s for `alignn_ff_mptrj` on six, 14,522 s for AFF-r2SCAN at 1B). Without forces, 64M atoms on four took 351 s and 1,473 s per task, and 1B atoms on three took 3,235 s per task with AFF-r2SCAN. At 1B each task also held the whole cell, up to 73.9 GB of host memory in the GB10's shared CPU and GPU memory.
 
 ## Maximum atoms by GPU
 
@@ -39,7 +39,8 @@ Every maximum-atom run with data, largest first within each group.
 |---|---|---:|---|---|---|
 | **B200** | no | 780,448† | 1 GPU | `v12.2.2024_dft_3d_307k` | Cu |
 |  | yes | not run | | | |
-| **GB10** | no | 64,000,000‡ | 4 GPUs, chunked | AFF-r2SCAN | Si |
+| **GB10** | no | 1,000,000,000‡ | 3 GPUs, chunked | AFF-r2SCAN | Si |
+| | no | 64,000,000‡ | 4 GPUs, chunked | AFF-r2SCAN | Si |
 | | no | 64,000,000‡ | 4 GPUs, chunked | `alignn_ff_mptrj` | Si |
 | | no | 8,000,000‡ | 1 GPU, chunked | AFF-r2SCAN | Si |
 |  | no | 8,000,000‡ | 1 GPU, chunked | `alignn_ff_mptrj` | Si |
@@ -52,6 +53,7 @@ Every maximum-atom run with data, largest first within each group.
 |  | no | 238,328 | 1 GPU | `alignn_ff_mptrj` | Si |
 |  | no | 238,328 | 1 GPU | `alignn_ff_matpes_pbe` | Si |
 |  | no | 101,306 | 1 GPU | Untrained kNN model | Si |
+|  | yes | 1,000,000,000‡ | 4 GPUs, chunked | AFF-r2SCAN | Si |
 |  | yes | 64,000,000‡ | 6 GPUs, chunked | `alignn_ff_mptrj` | Si |
 |  | yes | 64,000,000‡ | 5 GPUs, chunked | AFF-r2SCAN | Si |
 |  | yes | 8,000,000‡ | 1 GPU, chunked | AFF-r2SCAN | Si |
@@ -84,7 +86,7 @@ Every maximum-atom run with data, largest first within each group.
 
 § From the ALIGNN 2.0 paper's scaling table (energy + force).
 
-Forces include stress, except in chunked runs, which use layer checkpointing and rattled Si. Chunked `alignn_ff_*` models use a 20 Å halo (maximum force error 2e-8 eV/Å). Differences among the `alignn_ff_*` models are where the host killed each run, as memory per atom is identical. 13,824 is the last size tried below the kill (17,576 was skipped). AFF-r2SCAN is the paper's force field (2+2 layers). The `alignn_ff_*` models have 4+4 layers. The untrained-architecture, UMA-S and paper-table rows come from the ALIGNN 2.0 project, and their raw data is not in this repo. VASP DFT, for reference: the largest converged run is 432 Si atoms, 5,488 on 8 B200s was a 2-step timing run, and 6,750 crashed.
+Forces include stress, except in chunked runs, which use layer checkpointing and rattled Si. Chunked `alignn_ff_*` models use a 20 Å halo, which changes forces by at most 2e-8 eV/Å on Si and 1.3e-7 eV/Å on SiGe in double precision. In single precision, roundoff alone makes chunked and full-cell forces differ by up to 1e-3 eV/Å (`gb10/alignn_ff_max_atoms/`). Differences among the `alignn_ff_*` models are where the host killed each run, as memory per atom is identical. 13,824 is the last size tried below the kill (17,576 was skipped). AFF-r2SCAN is the paper's force field (2+2 layers). The `alignn_ff_*` models have 4+4 layers. The untrained-architecture, UMA-S and paper-table rows come from the ALIGNN 2.0 project, and their raw data is not in this repo. VASP DFT, for reference: the largest converged run is 432 Si atoms, 5,488 on 8 B200s was a 2-step timing run, and 6,750 crashed.
 
 ## Repo layout
 
@@ -104,7 +106,7 @@ b200/
 gb10/, h200/                  ALIGNN-FF on one NVIDIA GB10 / H200 NVL
 ├── alignn_ff/                  energy+forces+stress sweep: bench_ff_scaling.py, job.sh, result JSON, README
 ├── alignn_ff_b200settings/     B200 settings on pure-PyTorch ALIGNN: scale_pure_b200settings.py, job.sh, result .npz
-└── alignn_ff_max_atoms/        GB10 only: four force fields, all evaluation paths, chunked to 64M atoms, README
+└── alignn_ff_max_atoms/        GB10 only: four force fields, all evaluation paths, chunked to 1B atoms, README
 analysis/                     cross-GPU comparison
 ├── scaling_overview.py         -> scaling_overview.png (VASP + energy-only ALIGNN-FF on B200/GB10/H200)
 ├── scaling_forces.py           -> scaling_forces.png (energy+forces+stress ALIGNN-FF on GB10/H200)

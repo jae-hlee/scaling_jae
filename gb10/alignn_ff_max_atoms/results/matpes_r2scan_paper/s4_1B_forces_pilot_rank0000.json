@@ -1,0 +1,82 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/matpes_r2scan_paper",
+ "checkpoint_md5": "92cfe2955622c198c03085fc5320296b",
+ "layers": [
+  2,
+  2
+ ],
+ "hidden": 128,
+ "element_embedding": false,
+ "cutoff": 5.0,
+ "max_neighbors": 52,
+ "three_body_cutoff": 3.5,
+ "reach_A": 20.0,
+ "gpu": "NVIDIA GB10",
+ "gpu_memory_gb": 130.661203968,
+ "neighbor_list": "matscipy",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn",
+ "slurm_job": "19218",
+ "host": "atomgptlab06",
+ "natoms": 1000000000,
+ "rep": 500,
+ "box_A": 2715.0,
+ "k": 36,
+ "core_A": 75.41666666666667,
+ "halo_A": 20.01,
+ "halo_exact": true,
+ "forces": true,
+ "ckpt": true,
+ "rattle": 0.05,
+ "species": "Si",
+ "rank": 0,
+ "world": 10,
+ "n_cubes": 46656,
+ "cubes_done": 3,
+ "owned_done": 64119,
+ "energy": -557824.1875,
+ "pieces": [
+  {
+   "cube": [
+    0,
+    0,
+    0
+   ],
+   "atoms": 71508,
+   "owned": 21377,
+   "t_graph_s": 0.12578614987432957,
+   "t_eval_s": 7.0011884099803865,
+   "mem_alloc_gb": 30.1731328,
+   "mem_reserved_gb": 30.836523008
+  },
+  {
+   "cube": [
+    0,
+    0,
+    10
+   ],
+   "atoms": 71373,
+   "owned": 21581,
+   "t_graph_s": 0.12227168679237366,
+   "t_eval_s": 2.9730840669944882,
+   "mem_alloc_gb": 30.120937472,
+   "mem_reserved_gb": 30.878466048
+  },
+  {
+   "cube": [
+    0,
+    0,
+    20
+   ],
+   "atoms": 71407,
+   "owned": 21161,
+   "t_graph_s": 0.11844560783356428,
+   "t_eval_s": 2.9727340289391577,
+   "mem_alloc_gb": 30.13601792,
+   "mem_reserved_gb": 30.878466048
+  }
+ ],
+ "wall_s": 13.359636740759015,
+ "host_peak_gb": 72.195988,
+ "owned_atoms_per_s": 4799.4568448391165
+}

@@ -1,8 +1,8 @@
 # ALIGNN-FF maximum atoms on NVIDIA GB10
 
 How many atoms ALIGNN-FF can evaluate on GB10 nodes (121.7 GiB unified memory), with and
-without forces, for four models: directly on one GB10, chunked on one GB10, and chunked across four to six.
-Single points only, not MD. Measured 2026-11-01/02 on atomgptlab with alignn at commit `6a20fb5`.
+without forces, for four models: directly on one GB10, chunked on one GB10, and chunked across three to six.
+Single points only, not MD. Measured 2026-11-01 to 03 on atomgptlab with alignn at commit `6a20fb5`.
 
 Models:
 
@@ -41,9 +41,12 @@ wanders more, up to 1.2e-3 eV/atom (AFF-r2SCAN, 32,768 atoms).
 ## Chunked runs
 
 The cell is cut into cubes. Each cube is evaluated with a surrounding halo on one GPU, and only
-the atoms it owns count. Rattled Si (0.05 A), energy and forces, no stress. These runs are limited
-by time, not memory, and none reached a memory limit, so these are the largest sizes tried rather
-than maxima. Force runs use layer checkpointing. Time is for the slowest task.
+the atoms it owns count. Rattled Si (0.05 A), energy and forces, no stress. None of these runs
+reached a memory limit, so these are the largest sizes tried rather than maxima. Force runs use layer
+checkpointing. Time is for the slowest task. Peak is the GPU memory of the largest piece. Every task
+also holds the whole cell on the host, peaking at 5.6 to 6.0 GB per task at 64M and 73.9 GB at 1B, in the
+memory the GB10 shares between its CPU and GPU (`host_peak_gb` in the JSONs divides kB by 1e6, so it
+reads 72.2 at 1B).
 
 | Model | Atoms | GB10s | Computes | Cubes | Largest piece | Peak (GB) | Time (s) | E (eV/atom) |
 |---|---|---|---|---|---|---|---|---|
@@ -51,6 +54,8 @@ than maxima. Force runs use layer checkpointing. Time is for the slowest task.
 | AFF-r2SCAN | 8M | 1 | forces | 216 | 106,067 | 45.0 | 979 | -8.69961 |
 | AFF-r2SCAN | 64M | 4 | energy | 512 | 261,206 | 49.3 | 351 | -8.69959 |
 | AFF-r2SCAN | 64M | 5 | forces | 1,728 | 106,054 | 45.0 | 1,379 | -8.69959 |
+| AFF-r2SCAN | 1B | 3 | energy | 8,000 | 261,222 | 49.3 | 3,235 | -8.69960 |
+| AFF-r2SCAN | 1B | 4 | forces | 46,656 | 71,579 | 30.2 | 14,522 | -8.69960 |
 | `alignn_ff_mptrj` | 8M | 1 | energy | 216 | 106,002 | 39.3 | 1,178 | -5.35097 |
 | `alignn_ff_mptrj` | 8M | 1 | forces | 512 | 57,375 | 49.9 | 4,620 | -5.35097 |
 | `alignn_ff_mptrj` | 64M | 4 | energy | 1,331 | 128,175 | 47.6 | 1,473 | -5.35095 |
@@ -61,16 +66,19 @@ than maxima. Force runs use layer checkpointing. Time is for the slowest task.
 | `alignn_ff_matpes_r2scan` | 8M | 1 | forces | 512 | 57,375 | 49.9 | 4,608 | -8.72789 |
 
 AFF-r2SCAN uses its exact 20.01 A halo. The `alignn_ff_*` models use a 20 A halo instead of their exact
-40 A. Its maximum force error was 2e-9 to 2e-8 eV/A in a float64 check on 8,000 atoms of rattled
+40 A. Cutting the halo to 20 A changed forces by 2e-9 to 2e-8 eV/A in a float64 check on 8,000 atoms of rattled
 Si (`results/*/halo_*.json`). At the exact halo in float32, chunked results on 8,000 atoms of SiGe
-differ from the full cell by at most 6e-7 eV/atom and 1e-3 eV/A (`results/*/check_*.json`), consistent
-with roundoff, since the float64 halo scan falls below 1e-12 eV/A by 30 A. A 64M cell cannot be checked against a full
+differ from the full cell by at most 6e-7 eV/atom and 1e-3 eV/A (`results/*/check_*.json`), which is
+roundoff: the same SiGe cells in float64 agree to 2e-12 eV/A and 2e-15 eV/atom (`results/*/f64_sige_exact_19291.json`).
+On that SiGe cell in float64, the 20 A halo changes forces by 1.2e-8 to 1.3e-7 eV/A (`results/*/f64_sige_h20_19291.json`),
+up to 8x the Si figure but far below float32 roundoff. A 64M cell cannot be checked against a full
 evaluation on a GB10.
 
 Each 64M force task did 1.33x the 8M workload and took 1.32-1.41x as long. AFF-r2SCAN's six tasks ran
 on five nodes, with atomgptlab05 running two in turn (2,689 s in total). `alignn_ff_mptrj` ran on six nodes. Tasks
 started as nodes freed up, so the 64M force runs took 45 min (AFF-r2SCAN) and 1 h 59 min (`alignn_ff_mptrj`) from first start to last
-finish.
+finish. The 1B runs were 10 tasks each. With forces, atomgptlab06, 07 and 08 ran three tasks each in turn and
+atomgptlab04 ran one, 13 h from first start to last finish. Without forces, the 10 tasks ran on 06, 07 and 08.
 
 ## Files
 
@@ -80,5 +88,7 @@ The scripts expect alignn at commit `6a20fb5` and the four checkpoints under `/d
 - `stage1.sbatch`: sweeps, chunk check, 8M timing samples and halo scan for one model (jobs 19126-19129)
 - `stage2_submit.sh`, `chunk.sbatch`, `reduce.sbatch`: chunked runs (jobs 19140-19151)
 - `stage3_submit.sh`: 64M without forces on 4 nodes, 6 tasks each (jobs 19182-19184, 19200). Tasks 4 and 5 of `alignn_ff_mptrj` were rerun after failing on a node without `/data`, and energy per atom agrees with the force runs to 8e-9 eV
-- `results/<model>/`: result JSONs. The per-task force arrays of the 64M runs (768 MB each) are
+- `stage4_submit.sh`: 1B atoms with AFF-r2SCAN, 10 tasks with and without forces, after a 3-cube pilot (jobs 19218-19222)
+- `stage5.sbatch`: the 8,000-atom SiGe chunk check in float64, exact halo for all four models and 20 A for the `alignn_ff_*` models (job 19291)
+- `results/<model>/`: result JSONs. The per-task force arrays of the 64M and 1B runs (768 MB and 12 GB each) are
   not kept, and the `*_reduced.json` files hold their force statistics.
