@@ -90,5 +90,7 @@ The scripts expect alignn at commit `6a20fb5` and the four checkpoints under `/d
 - `stage3_submit.sh`: 64M without forces on 4 nodes, 6 tasks each (jobs 19182-19184, 19200). Tasks 4 and 5 of `alignn_ff_mptrj` were rerun after failing on a node without `/data`, and energy per atom agrees with the force runs to 8e-9 eV
 - `stage4_submit.sh`: 1B atoms with AFF-r2SCAN, 10 tasks with and without forces, after a 3-cube pilot (jobs 19218-19222)
 - `stage5.sbatch`: the 8,000-atom SiGe chunk check in float64, exact halo for all four models and 20 A for the `alignn_ff_*` models (job 19291)
+- `logs/`: Slurm output of every job above (stage1_, chunk_<job>_<task>, reduce_, stage5_), with start and end times,
+  one line per cube, and exit status. atomgptlab04 prints times in UTC, the other nodes in US Eastern time.
 - `results/<model>/`: result JSONs. The per-task force arrays of the 64M and 1B runs (768 MB and 12 GB each) are
   not kept, and the `*_reduced.json` files hold their force statistics.

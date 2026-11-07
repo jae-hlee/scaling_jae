@@ -1,0 +1,227 @@
+start Sun Nov  1 03:33:42 PM EST 2026 | atomgptlab08 | model alignn_ff_matpes_pbe
+neighbor list: matscipy
+NVIDIA GB10, [N/A]
+               total        used        free      shared  buff/cache   available
+Mem:             121           4          56           0          62         117
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+i=  2 N=       64  t=   0.007 s  alloc    0.1 GB  (1.165 MB/atom)  E/atom -5.42694
+i=  4 N=      512  t=   0.029 s  alloc    0.2 GB  (0.483 MB/atom)  E/atom -5.42694
+i=  6 N=     1728  t=   0.102 s  alloc    0.7 GB  (0.415 MB/atom)  E/atom -5.42694
+i=  8 N=     4096  t=   0.230 s  alloc    1.6 GB  (0.398 MB/atom)  E/atom -5.42694
+i= 10 N=     8000  t=   0.437 s  alloc    3.1 GB  (0.392 MB/atom)  E/atom -5.42694
+i= 12 N=    13824  t=   0.775 s  alloc    5.4 GB  (0.390 MB/atom)  E/atom -5.42694
+i= 14 N=    21952  t=   1.207 s  alloc    8.5 GB  (0.388 MB/atom)  E/atom -5.42694
+i= 15 N=    27000  t=   1.477 s  alloc   10.5 GB  (0.388 MB/atom)  E/atom -5.42694
+i= 16 N=    32768  t=   1.794 s  alloc   12.7 GB  (0.388 MB/atom)  E/atom -5.42694
+i= 17 N=    39304  t=   2.139 s  alloc   15.2 GB  (0.387 MB/atom)  E/atom -5.42694
+i= 18 N=    46656  t=   2.533 s  alloc   18.1 GB  (0.387 MB/atom)  E/atom -5.42694
+i= 19 N=    54872  t=   2.970 s  alloc   21.2 GB  (0.387 MB/atom)  E/atom -5.42694
+i= 20 N=    64000  t=   3.461 s  alloc   24.8 GB  (0.387 MB/atom)  E/atom -5.42694
+i= 21 N=    74088  t=   4.008 s  alloc   28.6 GB  (0.387 MB/atom)  E/atom -5.42694
+i= 22 N=    85184  t=   4.605 s  alloc   32.9 GB  (0.387 MB/atom)  E/atom -5.42694
+i= 23 N=    97336  t=   5.253 s  alloc   37.6 GB  (0.386 MB/atom)  E/atom -5.42694
+i= 24 N=   110592  t=   5.976 s  alloc   42.7 GB  (0.386 MB/atom)  E/atom -5.42694
+i= 25 N=   125000  t=   6.733 s  alloc   48.3 GB  (0.386 MB/atom)  E/atom -5.42694
+i= 26 N=   140608  t=   7.708 s  alloc   54.3 GB  (0.386 MB/atom)  E/atom -5.42694
+i= 27 N=   157464  t=   8.477 s  alloc   60.8 GB  (0.386 MB/atom)  E/atom -5.42694
+i= 28 N=   175616  t=   9.662 s  alloc   67.8 GB  (0.386 MB/atom)  E/atom -5.42694
+i= 29 N=   195112  t=  10.713 s  alloc   75.4 GB  (0.386 MB/atom)  E/atom -5.42694
+i= 30 N=   216000  t=  12.076 s  alloc   83.4 GB  (0.386 MB/atom)  E/atom -5.42694
+i= 31 N=   238328  t=  13.118 s  alloc   92.0 GB  (0.386 MB/atom)  E/atom -5.42694
+/var/spool/slurmd/job19128/slurm_script: line 25: 2420019 Killed                  $PY $B/ff_max_atoms.py "$@"
+sweep e exit 137 Sun Nov  1 03:40:38 PM EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+/data/jlee859/ffmax/ff_max_atoms.py:287: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e = float(res["energy"])
+i=  2 N=       64  t=   0.037 s  alloc    0.2 GB  (2.441 MB/atom)  E/atom -5.42694
+i=  4 N=      512  t=   0.089 s  alloc    0.7 GB  (1.301 MB/atom)  E/atom -5.42694
+i=  6 N=     1728  t=   0.305 s  alloc    2.0 GB  (1.186 MB/atom)  E/atom -5.42694
+i=  8 N=     4096  t=   0.698 s  alloc    4.7 GB  (1.158 MB/atom)  E/atom -5.42694
+i= 10 N=     8000  t=   1.347 s  alloc    9.2 GB  (1.148 MB/atom)  E/atom -5.42694
+i= 12 N=    13824  t=   2.323 s  alloc   15.8 GB  (1.144 MB/atom)  E/atom -5.42694
+i= 14 N=    21952  t=   3.634 s  alloc   25.1 GB  (1.142 MB/atom)  E/atom -5.42694
+i= 15 N=    27000  t=   4.465 s  alloc   30.8 GB  (1.141 MB/atom)  E/atom -5.42694
+i= 16 N=    32768  t=   5.417 s  alloc   37.4 GB  (1.141 MB/atom)  E/atom -5.42694
+i= 17 N=    39304  t=   6.480 s  alloc   44.8 GB  (1.140 MB/atom)  E/atom -5.42694
+i= 18 N=    46656  t=   7.681 s  alloc   53.2 GB  (1.140 MB/atom)  E/atom -5.42694
+i= 19 N=    54872  t=   9.053 s  alloc   62.5 GB  (1.140 MB/atom)  E/atom -5.42694
+i= 20 N=    64000  t=  10.554 s  alloc   72.9 GB  (1.139 MB/atom)  E/atom -5.42694
+i= 21 N=    74088  t=  12.161 s  alloc   84.4 GB  (1.139 MB/atom)  E/atom -5.42694
+i= 22 N=    85184  t=  14.007 s  alloc   97.0 GB  (1.139 MB/atom)  E/atom -5.42694
+i= 23 N=    97336  t=  15.982 s  alloc  110.9 GB  (1.139 MB/atom)  E/atom -5.42694
+/var/spool/slurmd/job19128/slurm_script: line 25: 2421041 Killed                  $PY $B/ff_max_atoms.py "$@"
+sweep ckpt exit 137 Sun Nov  1 03:46:35 PM EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+/data/jlee859/ffmax/ff_max_atoms.py:287: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e = float(res["energy"])
+i=  2 N=       64  t=   0.012 s  alloc    0.2 GB  (3.782 MB/atom)  E/atom -5.42694
+i=  4 N=      512  t=   0.066 s  alloc    1.4 GB  (2.642 MB/atom)  E/atom -5.42694
+i=  6 N=     1728  t=   0.222 s  alloc    4.4 GB  (2.527 MB/atom)  E/atom -5.42694
+i=  8 N=     4096  t=   0.507 s  alloc   10.2 GB  (2.499 MB/atom)  E/atom -5.42694
+i= 10 N=     8000  t=   0.975 s  alloc   19.9 GB  (2.489 MB/atom)  E/atom -5.42694
+i= 12 N=    13824  t=   1.692 s  alloc   34.3 GB  (2.485 MB/atom)  E/atom -5.42694
+i= 14 N=    21952  t=   2.670 s  alloc   54.5 GB  (2.483 MB/atom)  E/atom -5.42694
+i= 15 N=    27000  t=   3.278 s  alloc   67.0 GB  (2.482 MB/atom)  E/atom -5.42694
+i= 16 N=    32768  t=   3.951 s  alloc   81.3 GB  (2.481 MB/atom)  E/atom -5.42694
+i= 17 N=    39304  t=   4.751 s  alloc   97.5 GB  (2.481 MB/atom)  E/atom -5.42694
+/var/spool/slurmd/job19128/slurm_script: line 25: 2432391 Killed                  $PY $B/ff_max_atoms.py "$@"
+sweep ef exit 137 Sun Nov  1 03:49:21 PM EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+i=  2 N=       64  t=   0.071 s  alloc    0.5 GB  (8.569 MB/atom)  E/atom -5.42694
+i=  4 N=      512  t=   0.276 s  alloc    3.7 GB  (7.206 MB/atom)  E/atom -5.42694
+i=  6 N=     1728  t=   0.889 s  alloc   12.2 GB  (7.069 MB/atom)  E/atom -5.42693
+i=  8 N=     4096  t=   1.957 s  alloc   28.8 GB  (7.036 MB/atom)  E/atom -5.42690
+i= 10 N=     8000  t=   3.795 s  alloc   56.2 GB  (7.024 MB/atom)  E/atom -5.42688
+i= 12 N=    13824  t=   6.502 s  alloc   97.0 GB  (7.019 MB/atom)  E/atom -5.42674
+[W1101 15:50:58.212849755 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 10799116288, total: 130661203968).
+/var/spool/slurmd/job19128/slurm_script: line 25: 2433747 Killed                  $PY $B/ff_max_atoms.py "$@"
+sweep ase exit 137 Sun Nov  1 03:51:05 PM EST 2026
+piece size: forces 58401, energy only 142996
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000 box 54.3 A, 2^3 cubes of 27.15 A, halo 40.01 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_max_atoms.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube 0,0,0: 43661 atoms (1001 own)  graph 0.11 s  eval 10.62 s  peak 38.0 GB
+cube 0,0,1: 43659 atoms (1000 own)  graph 0.10 s  eval 6.79 s  peak 38.0 GB
+cube 0,1,0: 43655 atoms (994 own)  graph 0.08 s  eval 6.78 s  peak 38.0 GB
+cube 0,1,1: 43659 atoms (1002 own)  graph 0.07 s  eval 6.80 s  peak 38.0 GB
+cube 1,0,0: 43655 atoms (990 own)  graph 0.07 s  eval 6.79 s  peak 38.0 GB
+cube 1,0,1: 43659 atoms (1002 own)  graph 0.07 s  eval 6.78 s  peak 38.0 GB
+cube 1,1,0: 43647 atoms (1011 own)  graph 0.07 s  eval 6.79 s  peak 38.0 GB
+cube 1,1,1: 43659 atoms (1000 own)  graph 0.07 s  eval 6.79 s  peak 38.0 GB
+validation: {"e_full_per_atom": -4.83899755859375, "e_atom_sum_per_atom": -4.8389970703125, "e_pieces_per_atom": -4.838997253417968, "max_abs_de_per_atom": 3.051757815342171e-07, "max_abs_f_full": 4.361545562744141, "max_abs_df": 0.0009667065070677605}
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000, "rep": 10, "box_A": 54.3, "k": 2, "core_A": 27.15, "halo_A": 40.01, "halo_exact": true, "forces": true, "ckpt": true, "rattle": 0.05, "species": "SiGe", "rank": 0, "world": 1, "n_cubes": 8, "cubes_done": 8, "owned_done": 8000, "energy": -38711.97802734375, "wall_s": 58.84130454994738, "host_peak_gb": 2.101324, "owned_atoms_per_s": 135.9589162950867, "e_per_atom": -4.838997253417968, "max_abs_f": 4.361627219468858, "net_force": [7.956451495316763e-06, 7.690667156501352e-06, 5.92343285255037e-07], "validation": {"e_full_per_atom": -4.83899755859375, "e_atom_sum_per_atom": -4.8389970703125, "e_pieces_per_atom": -4.838997253417968, "max_abs_de_per_atom": 3.051757815342171e-07, "max_abs_f_full": 4.361545562744141, "max_abs_df": 0.0009667065070677605}}
+check forces exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000 box 54.3 A, 2^3 cubes of 27.15 A, halo 40.01 A, 8 cubes on rank 0/1
+cube 0,0,0: 43661 atoms (1001 own)  graph 0.08 s  eval 2.94 s  peak 16.1 GB
+cube 0,0,1: 43659 atoms (1000 own)  graph 0.08 s  eval 2.16 s  peak 16.1 GB
+cube 0,1,0: 43655 atoms (994 own)  graph 0.07 s  eval 2.17 s  peak 16.1 GB
+cube 0,1,1: 43659 atoms (1002 own)  graph 0.07 s  eval 2.16 s  peak 16.1 GB
+cube 1,0,0: 43655 atoms (990 own)  graph 0.07 s  eval 2.16 s  peak 16.1 GB
+cube 1,0,1: 43659 atoms (1002 own)  graph 0.07 s  eval 2.16 s  peak 16.1 GB
+cube 1,1,0: 43647 atoms (1011 own)  graph 0.07 s  eval 2.16 s  peak 16.1 GB
+cube 1,1,1: 43659 atoms (1000 own)  graph 0.07 s  eval 2.16 s  peak 16.1 GB
+/data/jlee859/ffmax/ff_max_atoms.py:514: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  out = {"e_full_per_atom": float(res["energy"]) / n,
+validation: {"e_full_per_atom": -4.83899755859375, "e_atom_sum_per_atom": -4.8389970703125, "e_pieces_per_atom": -4.838997253417968, "max_abs_de_per_atom": 3.051757815342171e-07}
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000, "rep": 10, "box_A": 54.3, "k": 2, "core_A": 27.15, "halo_A": 40.01, "halo_exact": true, "forces": false, "ckpt": false, "rattle": 0.05, "species": "SiGe", "rank": 0, "world": 1, "n_cubes": 8, "cubes_done": 8, "owned_done": 8000, "energy": -38711.97802734375, "wall_s": 18.694930315949023, "host_peak_gb": 1.718164, "owned_atoms_per_s": 427.92349930157474, "e_per_atom": -4.838997253417968, "validation": {"e_full_per_atom": -4.83899755859375, "e_atom_sum_per_atom": -4.8389970703125, "e_pieces_per_atom": -4.838997253417968, "max_abs_de_per_atom": 3.051757815342171e-07}}
+check energy exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000000 box 543.0 A, 16^3 cubes of 33.94 A, halo 40.01 A, 3 cubes on rank 0/1
+/data/jlee859/ffmax/ff_max_atoms.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube 0,0,0: 54792 atoms (1963 own)  graph 0.10 s  eval 11.15 s  peak 47.8 GB
+cube 0,0,1: 54804 atoms (1950 own)  graph 0.10 s  eval 8.52 s  peak 47.8 GB
+cube 0,0,2: 54816 atoms (1962 own)  graph 0.09 s  eval 8.52 s  peak 47.8 GB
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000000, "rep": 100, "box_A": 543.0, "k": 16, "core_A": 33.9375, "halo_A": 40.01, "halo_exact": true, "forces": true, "ckpt": true, "rattle": 0.0, "species": "Si", "rank": 0, "world": 1, "n_cubes": 4096, "cubes_done": 3, "owned_done": 5875, "energy": -31883.2802734375, "wall_s": 28.49393270444125, "host_peak_gb": 2.59838, "owned_atoms_per_s": 206.18424493872286}
+sample forces exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000000 box 543.0 A, 8^3 cubes of 67.88 A, halo 40.01 A, 3 cubes on rank 0/1
+cube 0,0,0: 135375 atoms (15626 own)  graph 0.21 s  eval 8.92 s  peak 50.5 GB
+cube 0,0,1: 135388 atoms (15624 own)  graph 0.20 s  eval 6.79 s  peak 50.5 GB
+cube 0,0,2: 135375 atoms (15626 own)  graph 0.20 s  eval 6.91 s  peak 50.5 GB
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000000, "rep": 100, "box_A": 543.0, "k": 8, "core_A": 67.875, "halo_A": 40.01, "halo_exact": true, "forces": false, "ckpt": false, "rattle": 0.0, "species": "Si", "rank": 0, "world": 1, "n_cubes": 512, "cubes_done": 3, "owned_done": 46876, "energy": -254393.2734375, "wall_s": 23.28140856605023, "host_peak_gb": 2.245996, "owned_atoms_per_s": 2013.452058410084}
+sample energy exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000 box 54.3 A, 2^3 cubes of 27.15 A, halo 8.00 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_max_atoms.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube 0,0,0: 3607 atoms (1001 own)  graph 0.01 s  eval 5.10 s  peak 5.9 GB
+cube 0,0,1: 3602 atoms (1000 own)  graph 0.01 s  eval 3.65 s  peak 5.8 GB
+cube 0,1,0: 3606 atoms (994 own)  graph 0.01 s  eval 3.65 s  peak 5.9 GB
+cube 0,1,1: 3606 atoms (1002 own)  graph 0.01 s  eval 3.65 s  peak 5.9 GB
+cube 1,0,0: 3605 atoms (990 own)  graph 0.01 s  eval 3.65 s  peak 5.9 GB
+cube 1,0,1: 3607 atoms (1002 own)  graph 0.01 s  eval 3.66 s  peak 5.9 GB
+cube 1,1,0: 3600 atoms (1011 own)  graph 0.01 s  eval 3.65 s  peak 5.8 GB
+cube 1,1,1: 3605 atoms (1000 own)  graph 0.01 s  eval 3.65 s  peak 5.9 GB
+validation: {"e_full_per_atom": -5.3817816098321085, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381786162458038, "max_abs_de_per_atom": 4.552625929576948e-06, "max_abs_f_full": 3.795735245828879, "max_abs_df": 0.004609115449857204}
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000, "rep": 10, "box_A": 54.3, "k": 2, "core_A": 27.15, "halo_A": 8.0, "halo_exact": false, "forces": true, "ckpt": true, "rattle": 0.05, "species": "Si", "rank": 0, "world": 1, "n_cubes": 8, "cubes_done": 8, "owned_done": 8000, "energy": -43054.289299664306, "wall_s": 30.759392637759447, "host_peak_gb": 2.04702, "owned_atoms_per_s": 260.08315880006694, "e_per_atom": -5.381786162458038, "max_abs_f": 3.7961099730665513, "net_force": [7.771561172376096e-15, 3.402139681085714e-14, 4.2521541843143495e-14], "validation": {"e_full_per_atom": -5.3817816098321085, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381786162458038, "max_abs_de_per_atom": 4.552625929576948e-06, "max_abs_f_full": 3.795735245828879, "max_abs_df": 0.004609115449857204}}
+halo 8 exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000 box 54.3 A, 2^3 cubes of 27.15 A, halo 12.00 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_max_atoms.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube 0,0,0: 5724 atoms (1001 own)  graph 0.01 s  eval 7.49 s  peak 9.5 GB
+cube 0,0,1: 5723 atoms (1000 own)  graph 0.01 s  eval 5.92 s  peak 9.5 GB
+cube 0,1,0: 5722 atoms (994 own)  graph 0.01 s  eval 5.92 s  peak 9.5 GB
+cube 0,1,1: 5722 atoms (1002 own)  graph 0.01 s  eval 5.91 s  peak 9.5 GB
+cube 1,0,0: 5723 atoms (990 own)  graph 0.01 s  eval 5.92 s  peak 9.5 GB
+cube 1,0,1: 5723 atoms (1002 own)  graph 0.01 s  eval 5.92 s  peak 9.5 GB
+cube 1,1,0: 5724 atoms (1011 own)  graph 0.01 s  eval 5.92 s  peak 9.5 GB
+cube 1,1,1: 5722 atoms (1000 own)  graph 0.01 s  eval 5.92 s  peak 9.5 GB
+validation: {"e_full_per_atom": -5.3817816098321085, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781098073111, "max_abs_de_per_atom": 5.117589978453907e-07, "max_abs_f_full": 3.7957352458288804, "max_abs_df": 3.03872897422508e-05}
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000, "rep": 10, "box_A": 54.3, "k": 2, "core_A": 27.15, "halo_A": 12.0, "halo_exact": false, "forces": true, "ckpt": true, "rattle": 0.05, "species": "Si", "rank": 0, "world": 1, "n_cubes": 8, "cubes_done": 8, "owned_done": 8000, "energy": -43054.24878458489, "wall_s": 49.01006842404604, "host_peak_gb": 2.049756, "owned_atoms_per_s": 163.23176557890545, "e_per_atom": -5.381781098073111, "max_abs_f": 3.795719073253346, "net_force": [6.8833827526759706e-15, 2.1697921237517903e-14, 5.415112802609201e-14], "validation": {"e_full_per_atom": -5.3817816098321085, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781098073111, "max_abs_de_per_atom": 5.117589978453907e-07, "max_abs_f_full": 3.7957352458288804, "max_abs_df": 3.03872897422508e-05}}
+halo 12 exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000 box 54.3 A, 2^3 cubes of 27.15 A, halo 16.00 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_max_atoms.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube 0,0,0: 8630 atoms (1001 own)  graph 0.02 s  eval 10.41 s  peak 14.5 GB
+cube 0,0,1: 8635 atoms (1000 own)  graph 0.02 s  eval 9.07 s  peak 14.5 GB
+cube 0,1,0: 8629 atoms (994 own)  graph 0.01 s  eval 9.05 s  peak 14.5 GB
+cube 0,1,1: 8632 atoms (1002 own)  graph 0.02 s  eval 9.06 s  peak 14.5 GB
+cube 1,0,0: 8634 atoms (990 own)  graph 0.02 s  eval 9.06 s  peak 14.5 GB
+cube 1,0,1: 8627 atoms (1002 own)  graph 0.02 s  eval 9.06 s  peak 14.5 GB
+cube 1,1,0: 8634 atoms (1011 own)  graph 0.02 s  eval 9.06 s  peak 14.5 GB
+cube 1,1,1: 8634 atoms (1000 own)  graph 0.02 s  eval 9.06 s  peak 14.5 GB
+validation: {"e_full_per_atom": -5.3817816098321085, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781614903091, "max_abs_de_per_atom": 5.070982744825869e-09, "max_abs_f_full": 3.7957352458288796, "max_abs_df": 5.550563735301495e-07}
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000, "rep": 10, "box_A": 54.3, "k": 2, "core_A": 27.15, "halo_A": 16.0, "halo_exact": false, "forces": true, "ckpt": true, "rattle": 0.05, "species": "Si", "rank": 0, "world": 1, "n_cubes": 8, "cubes_done": 8, "owned_done": 8000, "energy": -43054.25291922473, "wall_s": 73.96015694271773, "host_peak_gb": 2.056028, "owned_atoms_per_s": 108.16634699945288, "e_per_atom": -5.381781614903091, "max_abs_f": 3.7957353043462585, "net_force": [1.1102230246251565e-14, 1.895011925157064e-14, 1.0150214002635494e-13], "validation": {"e_full_per_atom": -5.3817816098321085, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781614903091, "max_abs_de_per_atom": 5.070982744825869e-09, "max_abs_f_full": 3.7957352458288796, "max_abs_df": 5.550563735301495e-07}}
+halo 16 exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000 box 54.3 A, 2^3 cubes of 27.15 A, halo 20.00 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_max_atoms.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube 0,0,0: 12175 atoms (1001 own)  graph 0.03 s  eval 14.50 s  peak 20.6 GB
+cube 0,0,1: 12184 atoms (1000 own)  graph 0.02 s  eval 12.92 s  peak 20.6 GB
+cube 0,1,0: 12183 atoms (994 own)  graph 0.02 s  eval 12.92 s  peak 20.6 GB
+cube 0,1,1: 12184 atoms (1002 own)  graph 0.02 s  eval 12.92 s  peak 20.6 GB
+cube 1,0,0: 12193 atoms (990 own)  graph 0.02 s  eval 12.93 s  peak 20.6 GB
+cube 1,0,1: 12182 atoms (1002 own)  graph 0.02 s  eval 12.92 s  peak 20.6 GB
+cube 1,1,0: 12176 atoms (1011 own)  graph 0.02 s  eval 12.91 s  peak 20.6 GB
+cube 1,1,1: 12180 atoms (1000 own)  graph 0.02 s  eval 12.92 s  peak 20.6 GB
+validation: {"e_full_per_atom": -5.381781609832108, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781609670074, "max_abs_de_per_atom": 1.6203394181957265e-10, "max_abs_f_full": 3.7957352458288818, "max_abs_df": 8.153108965736067e-09}
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000, "rep": 10, "box_A": 54.3, "k": 2, "core_A": 27.15, "halo_A": 20.0, "halo_exact": false, "forces": true, "ckpt": true, "rattle": 0.05, "species": "Si", "rank": 0, "world": 1, "n_cubes": 8, "cubes_done": 8, "owned_done": 8000, "energy": -43054.25287736059, "wall_s": 105.13954784628004, "host_peak_gb": 2.063776, "owned_atoms_per_s": 76.08935137990561, "e_per_atom": -5.381781609670074, "max_abs_f": 3.7957352478251063, "net_force": [1.6764367671839864e-14, 1.143390937485833e-13, 1.1193823645783141e-13], "validation": {"e_full_per_atom": -5.381781609832108, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781609670074, "max_abs_de_per_atom": 1.6203394181957265e-10, "max_abs_f_full": 3.7957352458288818, "max_abs_df": 8.153108965736067e-09}}
+halo 20 exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000 box 54.3 A, 2^3 cubes of 27.15 A, halo 25.00 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_max_atoms.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube 0,0,0: 17763 atoms (1001 own)  graph 0.03 s  eval 20.79 s  peak 30.3 GB
+cube 0,0,1: 17745 atoms (1000 own)  graph 0.03 s  eval 18.99 s  peak 30.3 GB
+cube 0,1,0: 17743 atoms (994 own)  graph 0.03 s  eval 18.96 s  peak 30.3 GB
+cube 0,1,1: 17739 atoms (1002 own)  graph 0.03 s  eval 18.97 s  peak 30.3 GB
+cube 1,0,0: 17750 atoms (990 own)  graph 0.03 s  eval 19.00 s  peak 30.3 GB
+cube 1,0,1: 17752 atoms (1002 own)  graph 0.03 s  eval 19.01 s  peak 30.3 GB
+cube 1,1,0: 17749 atoms (1011 own)  graph 0.03 s  eval 19.00 s  peak 30.3 GB
+cube 1,1,1: 17749 atoms (1000 own)  graph 0.03 s  eval 19.00 s  peak 30.3 GB
+validation: {"e_full_per_atom": -5.3817816098321085, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781609832518, "max_abs_de_per_atom": 4.0945025148175773e-13, "max_abs_f_full": 3.7957352458288813, "max_abs_df": 7.522416023419964e-11}
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000, "rep": 10, "box_A": 54.3, "k": 2, "core_A": 27.15, "halo_A": 25.0, "halo_exact": false, "forces": true, "ckpt": true, "rattle": 0.05, "species": "Si", "rank": 0, "world": 1, "n_cubes": 8, "cubes_done": 8, "owned_done": 8000, "energy": -43054.25287866015, "wall_s": 153.96514106169343, "host_peak_gb": 2.069256, "owned_atoms_per_s": 51.9598134021416, "e_per_atom": -5.381781609832518, "max_abs_f": 3.7957352458531646, "net_force": [9.880984919163893e-15, 1.6209256159527285e-14, 6.855627177060342e-14], "validation": {"e_full_per_atom": -5.3817816098321085, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781609832518, "max_abs_de_per_atom": 4.0945025148175773e-13, "max_abs_f_full": 3.7957352458288813, "max_abs_df": 7.522416023419964e-11}}
+halo 25 exit 0
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=8000 box 54.3 A, 2^3 cubes of 27.15 A, halo 30.00 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_max_atoms.py:468: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube 0,0,0: 24925 atoms (1001 own)  graph 0.05 s  eval 28.63 s  peak 42.9 GB
+cube 0,0,1: 24915 atoms (1000 own)  graph 0.04 s  eval 26.88 s  peak 42.9 GB
+cube 0,1,0: 24926 atoms (994 own)  graph 0.04 s  eval 26.89 s  peak 42.9 GB
+cube 0,1,1: 24919 atoms (1002 own)  graph 0.04 s  eval 26.89 s  peak 42.9 GB
+cube 1,0,0: 24898 atoms (990 own)  graph 0.04 s  eval 26.86 s  peak 42.8 GB
+cube 1,0,1: 24919 atoms (1002 own)  graph 0.04 s  eval 26.89 s  peak 42.9 GB
+cube 1,1,0: 24922 atoms (1011 own)  graph 0.04 s  eval 26.89 s  peak 42.9 GB
+cube 1,1,1: 24904 atoms (1000 own)  graph 0.04 s  eval 26.86 s  peak 42.8 GB
+validation: {"e_full_per_atom": -5.381781609832108, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781609832107, "max_abs_de_per_atom": 8.881784197001252e-16, "max_abs_f_full": 3.7957352458288773, "max_abs_df": 3.526068326209497e-13}
+{"model_dir": "/data/jlee859/ffmax/models/alignn_ff_matpes_pbe", "checkpoint_md5": "270101246e55aae9d75554ad1dbbe973", "layers": [4, 4], "hidden": 256, "element_embedding": true, "cutoff": 5.0, "max_neighbors": 52, "three_body_cutoff": 3.5, "reach_A": 40.0, "gpu": "NVIDIA GB10", "gpu_memory_gb": 130.661203968, "neighbor_list": "matscipy", "torch": "2.13.0+cu130", "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn", "slurm_job": "19128", "host": "atomgptlab08", "natoms": 8000, "rep": 10, "box_A": 54.3, "k": 2, "core_A": 27.15, "halo_A": 30.0, "halo_exact": false, "forces": true, "ckpt": true, "rattle": 0.05, "species": "Si", "rank": 0, "world": 1, "n_cubes": 8, "cubes_done": 8, "owned_done": 8000, "energy": -43054.25287865685, "wall_s": 217.13572003040463, "host_peak_gb": 2.12346, "owned_atoms_per_s": 36.843316239630184, "e_per_atom": -5.381781609832107, "max_abs_f": 3.7957352458289226, "net_force": [4.1300296516055823e-14, 3.497202527569243e-14, 3.877453913503359e-14], "validation": {"e_full_per_atom": -5.381781609832108, "e_atom_sum_per_atom": -5.381781609832108, "e_pieces_per_atom": -5.381781609832107, "max_abs_de_per_atom": 8.881784197001252e-16, "max_abs_f_full": 3.7957352458288773, "max_abs_df": 3.526068326209497e-13}}
+halo 30 exit 0
+end Sun Nov  1 04:05:45 PM EST 2026
