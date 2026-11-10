@@ -1,0 +1,584 @@
+start Sat Nov  7 00:26:18 EST 2026 | atomgptlab03.wse.jhu.edu
+NVIDIA GB10, [N/A]
+               total        used        free      shared  buff/cache   available
+Mem:             121           4          87           0          31         117
+[PASS] Si crystal matches ff_max_atoms 
+[PASS] SiGe species match 
+[PASS] pieces exact, k=[2, 3, 2] h=7.5 
+[PASS] each atom owned once, k=[2, 3, 2] 
+[PASS] pieces exact, k=[1, 1, 1] h=9.0 
+[PASS] each atom owned once, k=[1, 1, 1] 
+[PASS] pieces exact, k=[4, 2, 3] h=12.0 
+[PASS] each atom owned once, k=[4, 2, 3] 
+[PASS] toy model, halo = reach: per-atom energies exact (max diff 4.0e-15)
+[PASS] toy model, halo < reach: differs (control) 
+[PASS] water O-H 0.9572 A 
+[PASS] water density 
+[PASS] polycrystal Si: 7685 atoms, 6 grains (filled 0.995 of bulk before thinning, 0.961 after, 278 removed, 0 close pairs)
+[PASS] polycrystal Al: 6358 atoms, 5 grains (filled 0.998 of bulk before thinning, 0.920 after, 539 removed, 0 close pairs)
+[PASS] polycrystal Cu: 6362 atoms, 5 grains (filled 0.997 of bulk before thinning, 0.919 after, 542 removed, 0 close pairs)
+ALL PASS
+{"kind": "Al", "seed": 0, "rep": 8, "rattle": 0.0, "natoms": 2048, "box_A": [32.4, 32.4, 32.4], "elements": {"13": 2048}} built in 0 s
+structure al_2k: 2048 atoms, box [32.4, 32.4, 32.4]
+{"kind": "water", "seed": 0, "molecules_per_side": 8, "natoms": 1536, "box_A": [24.833877134963807, 24.833877134963807, 24.833877134963807], "elements": {"1": 1024, "8": 512}} built in 0 s
+structure water_1k: 1536 atoms, box [24.833877134963807, 24.833877134963807, 24.833877134963807]
+  grain 1/4  889 atoms  0 s
+  grain 2/4  1,860 atoms  0 s
+  grain 3/4  2,925 atoms  0 s
+  grain 4/4  4,116 atoms  0 s
+{"kind": "poly", "seed": 2, "element": "Si", "grains": 4, "removed_close_pairs": 159, "d_min_A": 1.7634442284560627, "natoms": 3957, "box_A": [43.44, 43.44, 43.44], "elements": {"14": 3957}} built in 0 s
+structure poly_si_4k: 3957 atoms, box [43.44, 43.44, 43.44]
+{"kind": "Si", "seed": 0, "rep": 50, "rattle": 0.0, "natoms": 1000000, "box_A": [271.5, 271.5, 271.5], "elements": {"14": 1000000}} built in 0 s
+structure si_1m: 1000000 atoms, box [271.5, 271.5, 271.5]
+{"kind": "Al", "seed": 0, "rep": 63, "rattle": 0.0, "natoms": 1000188, "box_A": [255.14999999999998, 255.14999999999998, 255.14999999999998], "elements": {"13": 1000188}} built in 0 s
+structure al_1m: 1000188 atoms, box [255.14999999999998, 255.14999999999998, 255.14999999999998]
+{"kind": "Cu", "seed": 0, "rep": 63, "rattle": 0.0, "natoms": 1000188, "box_A": [227.745, 227.745, 227.745], "elements": {"29": 1000188}} built in 0 s
+structure cu_1m: 1000188 atoms, box [227.745, 227.745, 227.745]
+{"kind": "water", "seed": 0, "molecules_per_side": 70, "natoms": 1029000, "box_A": [217.2964249309333, 217.2964249309333, 217.2964249309333], "elements": {"1": 686000, "8": 343000}} built in 0 s
+structure water_1m: 1029000 atoms, box [217.2964249309333, 217.2964249309333, 217.2964249309333]
+  grain 4/40  70,363 atoms  0 s
+  grain 8/40  175,783 atoms  0 s
+  grain 12/40  240,413 atoms  0 s
+  grain 16/40  395,428 atoms  0 s
+  grain 20/40  502,364 atoms  0 s
+  grain 24/40  627,968 atoms  0 s
+  grain 28/40  741,226 atoms  0 s
+  grain 32/40  812,528 atoms  0 s
+  grain 36/40  935,099 atoms  0 s
+  grain 40/40  999,907 atoms  1 s
+{"kind": "poly", "seed": 0, "element": "Si", "grains": 40, "removed_close_pairs": 12614, "d_min_A": 1.7634442284560627, "natoms": 987293, "box_A": [271.5, 271.5, 271.5], "elements": {"14": 987293}} built in 1 s
+structure poly_si_1m: 987293 atoms, box [271.5, 271.5, 271.5]
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=2048 box [32.4, 32.4, 32.4] A, [2, 2, 2] cubes of [16.2, 16.2, 16.2] A, halo 20.01 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 7677 atoms (256 own)  978732 angles  graph 0.02 s  eval 5.45 s  peak 18.5 GB
+cube (0, 0, 1): 7677 atoms (256 own)  978732 angles  graph 0.02 s  eval 3.69 s  peak 18.5 GB
+cube (0, 1, 0): 7677 atoms (256 own)  978732 angles  graph 0.02 s  eval 3.69 s  peak 18.5 GB
+cube (0, 1, 1): 7677 atoms (256 own)  978732 angles  graph 0.02 s  eval 3.69 s  peak 18.5 GB
+cube (1, 0, 0): 7677 atoms (256 own)  978732 angles  graph 0.02 s  eval 3.69 s  peak 18.5 GB
+cube (1, 0, 1): 7677 atoms (256 own)  978732 angles  graph 0.02 s  eval 3.69 s  peak 18.5 GB
+cube (1, 1, 0): 7677 atoms (256 own)  978732 angles  graph 0.02 s  eval 3.70 s  peak 18.5 GB
+cube (1, 1, 1): 7677 atoms (256 own)  978732 angles  graph 0.02 s  eval 3.70 s  peak 18.5 GB
+/data/jlee859/ffmax/ff_max_atoms.py:175: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  "Z": torch.from_numpy(np.asarray(numbers)).long().to(device),
+validation: {"e_full_per_atom": -6.703243165618115, "e_atom_sum_per_atom": -6.703243165618115, "e_pieces_per_atom": -6.703243165618117, "max_abs_de_per_atom": 1.7763568394002505e-15, "max_abs_f_full": 8.743006318923108e-15, "max_abs_df": 1.228379102096919e-14}
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 2048, 'structure': '/data/jlee859/ffmax/structures/al_2k', 'box_A': [32.4, 32.4, 32.4], 'k': [2, 2, 2], 'core_A': [16.2, 16.2, 16.2], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 8, 'cubes_done': 8, 'owned_done': 2048, 'energy': -13728.242003185904, 'wall_s': 31.71439380402444, 'host_peak_gb': 2.032664, 'owned_atoms_per_s': 64.57635648517793, 'neighbor_cap_binds': False, 'e_per_atom': -6.703243165618117, 'max_abs_f': 9.461181837977506e-15, 'net_force': [7.691854916411583e-16, 9.482947631677461e-17, 6.24337803619442e-17], 'validation': {'e_full_per_atom': -6.703243165618115, 'e_atom_sum_per_atom': -6.703243165618115, 'e_pieces_per_atom': -6.703243165618117, 'max_abs_de_per_atom': 1.7763568394002505e-15, 'max_abs_f_full': 8.743006318923108e-15, 'max_abs_df': 1.228379102096919e-14}}
+exact al_2k exit 0 Sat Nov  7 00:27:01 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=3957 box [43.44, 43.44, 43.44] A, [2, 3, 1] cubes of [21.72, 14.48, 43.44] A, halo 20.01 A, 6 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 10797 atoms (666 own)  207278 angles  graph 0.02 s  eval 3.44 s  peak 9.0 GB
+cube (0, 1, 0): 10788 atoms (656 own)  205428 angles  graph 0.02 s  eval 2.13 s  peak 9.0 GB
+cube (0, 2, 0): 10770 atoms (666 own)  206614 angles  graph 0.02 s  eval 2.13 s  peak 9.0 GB
+cube (1, 0, 0): 10792 atoms (647 own)  206498 angles  graph 0.02 s  eval 2.14 s  peak 9.0 GB
+cube (1, 1, 0): 10767 atoms (670 own)  208546 angles  graph 0.02 s  eval 2.13 s  peak 9.0 GB
+cube (1, 2, 0): 10765 atoms (652 own)  206256 angles  graph 0.02 s  eval 2.13 s  peak 9.0 GB
+/data/jlee859/ffmax/ff_max_atoms.py:175: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  "Z": torch.from_numpy(np.asarray(numbers)).long().to(device),
+validation: {"e_full_per_atom": -8.437891707142448, "e_atom_sum_per_atom": -8.437891707142452, "e_pieces_per_atom": -8.43789170714245, "max_abs_de_per_atom": 1.7763568394002505e-15, "max_abs_f_full": 57.84998477159681, "max_abs_df": 4.571620859650238e-13}
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 3957, 'structure': '/data/jlee859/ffmax/structures/poly_si_4k', 'box_A': [43.44, 43.44, 43.44], 'k': [2, 3, 1], 'core_A': [21.72, 14.479999999999999, 43.44], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 6, 'cubes_done': 6, 'owned_done': 3957, 'energy': -33388.737485162674, 'wall_s': 14.274317500996403, 'host_peak_gb': 2.031644, 'owned_atoms_per_s': 277.2111521075376, 'neighbor_cap_binds': False, 'e_per_atom': -8.43789170714245, 'max_abs_f': 57.849984771597164, 'net_force': [1.45328193923433e-13, 9.098277686803158e-14, 1.917910275039958e-14], 'validation': {'e_full_per_atom': -8.437891707142448, 'e_atom_sum_per_atom': -8.437891707142452, 'e_pieces_per_atom': -8.43789170714245, 'max_abs_de_per_atom': 1.7763568394002505e-15, 'max_abs_f_full': 57.84998477159681, 'max_abs_df': 4.571620859650238e-13}}
+exact poly_si_4k exit 0 Sat Nov  7 00:27:19 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1536 box [24.83, 24.83, 24.83] A, [2, 2, 2] cubes of [12.42, 12.42, 12.42] A, halo 20.01 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 10287 atoms (205 own)  2365810 angles  graph 0.21 s  eval 9.06 s  peak 39.4 GB
+cube (0, 0, 1): 10274 atoms (189 own)  2371298 angles  graph 0.09 s  eval 7.57 s  peak 39.5 GB
+cube (0, 1, 0): 10239 atoms (195 own)  2344614 angles  graph 0.09 s  eval 7.51 s  peak 39.1 GB
+cube (0, 1, 1): 10272 atoms (184 own)  2369734 angles  graph 0.09 s  eval 7.57 s  peak 39.5 GB
+cube (1, 0, 0): 10245 atoms (188 own)  2350332 angles  graph 0.10 s  eval 7.53 s  peak 39.2 GB
+cube (1, 0, 1): 10265 atoms (185 own)  2358998 angles  graph 0.09 s  eval 7.55 s  peak 39.3 GB
+cube (1, 1, 0): 10240 atoms (188 own)  2343634 angles  graph 0.09 s  eval 7.51 s  peak 39.1 GB
+cube (1, 1, 1): 10262 atoms (202 own)  2358614 angles  graph 0.09 s  eval 7.54 s  peak 39.3 GB
+/data/jlee859/ffmax/ff_max_atoms.py:158: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  p = torch.from_numpy(pos)
+validation: {"e_full_per_atom": -5.369879032974327, "e_atom_sum_per_atom": -5.369879032974328, "e_pieces_per_atom": -5.369879032992652, "max_abs_de_per_atom": 1.8324897155252984e-11, "max_abs_f_full": 15.42463911677719, "max_abs_df": 8.241557480914707e-08}
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1536, 'structure': '/data/jlee859/ffmax/structures/water_1k', 'box_A': [24.833877134963807, 24.833877134963807, 24.833877134963807], 'k': [2, 2, 2], 'core_A': [12.416938567481903, 12.416938567481903, 12.416938567481903], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 8, 'cubes_done': 8, 'owned_done': 1536, 'energy': -8248.134194676713, 'wall_s': 62.73868417798076, 'host_peak_gb': 2.134156, 'owned_atoms_per_s': 24.482502623781297, 'neighbor_cap_binds': True, 'e_per_atom': -5.369879032992652, 'max_abs_f': 15.424639118459366, 'net_force': [2.4868995751603507e-14, 1.3322676295501878e-14, 2.042810365310288e-14], 'validation': {'e_full_per_atom': -5.369879032974327, 'e_atom_sum_per_atom': -5.369879032974328, 'e_pieces_per_atom': -5.369879032992652, 'max_abs_de_per_atom': 1.8324897155252984e-11, 'max_abs_f_full': 15.42463911677719, 'max_abs_df': 8.241557480914707e-08}}
+exact water_1k_h20 exit 0 Sat Nov  7 00:28:27 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1536 box [24.83, 24.83, 24.83] A, [2, 2, 2] cubes of [12.42, 12.42, 12.42] A, halo 25.00 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 16282 atoms (205 own)  3800820 angles  graph 0.13 s  eval 14.08 s  peak 63.3 GB
+cube (0, 0, 1): 16257 atoms (189 own)  3794284 angles  graph 0.12 s  eval 12.14 s  peak 63.1 GB
+cube (0, 1, 0): 16319 atoms (195 own)  3814578 angles  graph 0.13 s  eval 12.21 s  peak 63.5 GB
+cube (0, 1, 1): 16280 atoms (184 own)  3794572 angles  graph 0.13 s  eval 12.16 s  peak 63.2 GB
+cube (1, 0, 0): 16300 atoms (188 own)  3800644 angles  graph 0.14 s  eval 12.16 s  peak 63.3 GB
+cube (1, 0, 1): 16289 atoms (185 own)  3802558 angles  graph 0.13 s  eval 12.20 s  peak 63.3 GB
+cube (1, 1, 0): 16320 atoms (188 own)  3809090 angles  graph 0.14 s  eval 12.25 s  peak 63.4 GB
+cube (1, 1, 1): 16284 atoms (202 own)  3804320 angles  graph 0.13 s  eval 12.29 s  peak 63.3 GB
+/data/jlee859/ffmax/ff_max_atoms.py:158: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  p = torch.from_numpy(pos)
+validation: {"e_full_per_atom": -5.369879032974327, "e_atom_sum_per_atom": -5.369879032974328, "e_pieces_per_atom": -5.369879032974327, "max_abs_de_per_atom": 0.0, "max_abs_f_full": 15.424639116777197, "max_abs_df": 4.787281682183675e-13}
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1536, 'structure': '/data/jlee859/ffmax/structures/water_1k', 'box_A': [24.833877134963807, 24.833877134963807, 24.833877134963807], 'k': [2, 2, 2], 'core_A': [12.416938567481903, 12.416938567481903, 12.416938567481903], 'halo_A': 25.0, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 8, 'cubes_done': 8, 'owned_done': 1536, 'energy': -8248.134194648566, 'wall_s': 100.6521849349956, 'host_peak_gb': 2.206336, 'owned_atoms_per_s': 15.260473490883461, 'neighbor_cap_binds': True, 'e_per_atom': -5.369879032974327, 'max_abs_f': 15.424639116777074, 'net_force': [5.329070518200751e-15, 3.863576125695545e-14, 3.197442310920451e-14], 'validation': {'e_full_per_atom': -5.369879032974327, 'e_atom_sum_per_atom': -5.369879032974328, 'e_pieces_per_atom': -5.369879032974327, 'max_abs_de_per_atom': 0.0, 'max_abs_f_full': 15.424639116777197, 'max_abs_df': 4.787281682183675e-13}}
+exact water_1k_h25 exit 0 Sat Nov  7 00:30:15 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1536 box [24.83, 24.83, 24.83] A, [2, 2, 2] cubes of [12.42, 12.42, 12.42] A, halo 20.01 A, 8 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 10287 atoms (205 own)  2365810 angles  graph 0.04 s  eval 9.84 s  peak 39.8 GB
+cube (0, 0, 1): 10274 atoms (189 own)  2371298 angles  graph 0.04 s  eval 7.75 s  peak 39.9 GB
+cube (0, 1, 0): 10239 atoms (195 own)  2344614 angles  graph 0.04 s  eval 7.70 s  peak 39.5 GB
+cube (0, 1, 1): 10272 atoms (184 own)  2369734 angles  graph 0.04 s  eval 7.74 s  peak 39.9 GB
+cube (1, 0, 0): 10245 atoms (188 own)  2350332 angles  graph 0.04 s  eval 7.71 s  peak 39.6 GB
+cube (1, 0, 1): 10265 atoms (185 own)  2358998 angles  graph 0.04 s  eval 7.72 s  peak 39.7 GB
+cube (1, 1, 0): 10240 atoms (188 own)  2343634 angles  graph 0.04 s  eval 7.66 s  peak 39.5 GB
+cube (1, 1, 1): 10262 atoms (202 own)  2358614 angles  graph 0.04 s  eval 7.69 s  peak 39.7 GB
+/data/jlee859/ffmax/ff_max_atoms.py:175: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  "Z": torch.from_numpy(np.asarray(numbers)).long().to(device),
+validation: {"e_full_per_atom": -5.3694368864497335, "e_atom_sum_per_atom": -5.369436886449736, "e_pieces_per_atom": -5.369436886449736, "max_abs_de_per_atom": 2.6645352591003757e-15, "max_abs_f_full": 15.423588441120376, "max_abs_df": 4.121147867408581e-13}
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 10000, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1536, 'structure': '/data/jlee859/ffmax/structures/water_1k', 'box_A': [24.833877134963807, 24.833877134963807, 24.833877134963807], 'k': [2, 2, 2], 'core_A': [12.416938567481903, 12.416938567481903, 12.416938567481903], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 8, 'cubes_done': 8, 'owned_done': 1536, 'energy': -8247.455057586794, 'wall_s': 64.17665381397819, 'host_peak_gb': 2.062756, 'owned_atoms_per_s': 23.933937167435285, 'neighbor_cap_binds': False, 'e_per_atom': -5.369436886449736, 'max_abs_f': 15.423588441120208, 'net_force': [1.0658141036401503e-13, 5.417888360170764e-14, 7.283063041541027e-14], 'validation': {'e_full_per_atom': -5.3694368864497335, 'e_atom_sum_per_atom': -5.369436886449736, 'e_pieces_per_atom': -5.369436886449736, 'max_abs_de_per_atom': 2.6645352591003757e-15, 'max_abs_f_full': 15.423588441120376, 'max_abs_df': 4.121147867408581e-13}}
+exact water_1k_nocap exit 0 Sat Nov  7 00:31:26 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+i=  2 N=       32  t=   0.003 s  alloc    0.1 GB  (1.766 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i=  4 N=      256  t=   0.012 s  alloc    0.2 GB  (0.788 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i=  6 N=      864  t=   0.047 s  alloc    0.6 GB  (0.690 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i=  8 N=     2048  t=   0.091 s  alloc    1.4 GB  (0.666 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 10 N=     4000  t=   0.169 s  alloc    2.6 GB  (0.658 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 12 N=     6912  t=   0.289 s  alloc    4.5 GB  (0.654 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 14 N=    10976  t=   0.443 s  alloc    7.2 GB  (0.652 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 15 N=    13500  t=   0.558 s  alloc    8.8 GB  (0.652 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 16 N=    16384  t=   0.676 s  alloc   10.7 GB  (0.651 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 17 N=    19652  t=   0.802 s  alloc   12.8 GB  (0.651 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 18 N=    23328  t=   0.962 s  alloc   15.2 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 19 N=    27436  t=   1.125 s  alloc   17.8 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 20 N=    32000  t=   1.307 s  alloc   20.8 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 21 N=    37044  t=   1.521 s  alloc   24.1 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 22 N=    42592  t=   1.755 s  alloc   27.7 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 23 N=    48668  t=   2.002 s  alloc   31.6 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 24 N=    55296  t=   2.248 s  alloc   35.9 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 25 N=    62500  t=   2.539 s  alloc   40.6 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 26 N=    70304  t=   2.846 s  alloc   45.7 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 27 N=    78732  t=   3.233 s  alloc   51.1 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 28 N=    87808  t=   3.561 s  alloc   57.0 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 29 N=    97556  t=   3.979 s  alloc   63.3 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 30 N=   108000  t=   4.405 s  alloc   70.1 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 31 N=   119164  t=   4.857 s  alloc   77.4 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 32 N=   131072  t=   5.381 s  alloc   85.1 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 33 N=   143748  t=   6.026 s  alloc   93.3 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 34 N=   157216  t=   6.462 s  alloc  102.0 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+[W1107 00:35:39.877569130 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 605356032, total: 130663165952).
+[W1107 00:36:18.642775761 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 621580288, total: 130663165952).
+i= 35 N=   171500  t=  75.034 s  alloc  111.3 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+[W1107 00:36:58.809501202 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 609628160, total: 130663165952).
+[W1107 00:37:03.708382870 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 625471488, total: 130663165952).
+[W1107 00:37:17.854910737 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 601538560, total: 130663165952).
+[W1107 00:37:59.648383334 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 604876800, total: 130663165952).
+i= 36 N=   186624  t=  97.510 s  alloc  121.1 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+[W1107 00:38:33.636416244 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 616488960, total: 130663165952).
+[W1107 00:39:08.287166251 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 595705856, total: 130663165952).
+[W1107 00:39:44.481716207 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 605384704, total: 130663165952).
+[OOM] i=37 N=202612: CUDA out of memory. Tried to allocate 13.91 GiB. GPU 0 has a total capacity of 121.69 GiB of which 8.10 GiB is free. Including non-PyTorch memory, thi
+done -> /data/jlee859/ffmax/results/matpes_r2scan_paper/stage6/sweep_Al_e_19326.json
+sweep Al e exit 0 Sat Nov  7 00:39:56 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+/data/jlee859/ffmax/ff_any.py:86: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e = float(res["energy"])
+i=  2 N=       32  t=   0.012 s  alloc    0.1 GB  (3.709 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i=  4 N=      256  t=   0.030 s  alloc    0.5 GB  (1.814 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i=  6 N=      864  t=   0.106 s  alloc    1.4 GB  (1.623 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i=  8 N=     2048  t=   0.235 s  alloc    3.2 GB  (1.577 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 10 N=     4000  t=   0.452 s  alloc    6.2 GB  (1.560 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 12 N=     6912  t=   0.787 s  alloc   10.7 GB  (1.553 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 14 N=    10976  t=   1.230 s  alloc   17.0 GB  (1.549 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 15 N=    13500  t=   1.531 s  alloc   20.9 GB  (1.548 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 16 N=    16384  t=   1.854 s  alloc   25.4 GB  (1.547 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 17 N=    19652  t=   2.225 s  alloc   30.4 GB  (1.547 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 18 N=    23328  t=   2.648 s  alloc   36.1 GB  (1.546 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 19 N=    27436  t=   3.117 s  alloc   42.4 GB  (1.546 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 20 N=    32000  t=   3.644 s  alloc   49.4 GB  (1.545 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 21 N=    37044  t=   4.213 s  alloc   57.2 GB  (1.545 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 22 N=    42592  t=   4.859 s  alloc   65.8 GB  (1.545 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 23 N=    48668  t=   5.557 s  alloc   75.2 GB  (1.545 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 24 N=    55296  t=   6.259 s  alloc   85.4 GB  (1.544 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+i= 25 N=    62500  t=   7.067 s  alloc   96.5 GB  (1.544 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70325
+i= 26 N=    70304  t=   7.951 s  alloc  108.6 GB  (1.544 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -6.70324
+/var/spool/slurmd/job19326/slurm_script: line 64: 678438 Killed                  $PY $B/ff_any.py "$@" --model_dir $B/models/$M
+sweep Al ckpt exit 137 Sat Nov  7 00:43:52 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+i=  2 N=       32  t=   0.003 s  alloc    0.1 GB  (1.766 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i=  4 N=      256  t=   0.012 s  alloc    0.2 GB  (0.788 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i=  6 N=      864  t=   0.045 s  alloc    0.6 GB  (0.690 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i=  8 N=     2048  t=   0.092 s  alloc    1.4 GB  (0.666 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 10 N=     4000  t=   0.170 s  alloc    2.6 GB  (0.658 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 12 N=     6912  t=   0.295 s  alloc    4.5 GB  (0.654 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 14 N=    10976  t=   0.452 s  alloc    7.2 GB  (0.652 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 15 N=    13500  t=   0.573 s  alloc    8.8 GB  (0.652 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 16 N=    16384  t=   0.686 s  alloc   10.7 GB  (0.651 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 17 N=    19652  t=   0.808 s  alloc   12.8 GB  (0.651 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 18 N=    23328  t=   0.978 s  alloc   15.2 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 19 N=    27436  t=   1.152 s  alloc   17.8 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 20 N=    32000  t=   1.344 s  alloc   20.8 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 21 N=    37044  t=   1.551 s  alloc   24.1 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 22 N=    42592  t=   1.789 s  alloc   27.7 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 23 N=    48668  t=   2.043 s  alloc   31.6 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 24 N=    55296  t=   2.285 s  alloc   35.9 GB  (0.650 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 25 N=    62500  t=   2.577 s  alloc   40.6 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 26 N=    70304  t=   2.900 s  alloc   45.7 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 27 N=    78732  t=   3.273 s  alloc   51.1 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 28 N=    87808  t=   3.595 s  alloc   57.0 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 29 N=    97556  t=   4.035 s  alloc   63.3 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 30 N=   108000  t=   4.466 s  alloc   70.1 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 31 N=   119164  t=   4.910 s  alloc   77.4 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 32 N=   131072  t=   5.420 s  alloc   85.1 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 33 N=   143748  t=   5.940 s  alloc   93.3 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 34 N=   157216  t=   6.494 s  alloc  102.0 GB  (0.649 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+/var/spool/slurmd/job19326/slurm_script: line 64: 678557 Killed                  $PY $B/ff_any.py "$@" --model_dir $B/models/$M
+sweep Cu e exit 137 Sat Nov  7 00:47:49 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+/data/jlee859/ffmax/ff_any.py:86: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e = float(res["energy"])
+i=  2 N=       32  t=   0.012 s  alloc    0.1 GB  (3.709 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i=  4 N=      256  t=   0.031 s  alloc    0.5 GB  (1.814 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i=  6 N=      864  t=   0.105 s  alloc    1.4 GB  (1.623 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i=  8 N=     2048  t=   0.245 s  alloc    3.2 GB  (1.577 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 10 N=     4000  t=   0.455 s  alloc    6.2 GB  (1.560 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 12 N=     6912  t=   0.799 s  alloc   10.7 GB  (1.553 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 14 N=    10976  t=   1.248 s  alloc   17.0 GB  (1.549 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 15 N=    13500  t=   1.546 s  alloc   20.9 GB  (1.548 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 16 N=    16384  t=   1.867 s  alloc   25.4 GB  (1.547 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 17 N=    19652  t=   2.242 s  alloc   30.4 GB  (1.547 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 18 N=    23328  t=   2.676 s  alloc   36.1 GB  (1.546 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 19 N=    27436  t=   3.148 s  alloc   42.4 GB  (1.546 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 20 N=    32000  t=   3.662 s  alloc   49.4 GB  (1.545 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 21 N=    37044  t=   4.235 s  alloc   57.2 GB  (1.545 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 22 N=    42592  t=   4.905 s  alloc   65.8 GB  (1.545 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 23 N=    48668  t=   5.601 s  alloc   75.2 GB  (1.545 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 24 N=    55296  t=   6.307 s  alloc   85.4 GB  (1.544 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+i= 25 N=    62500  t=   7.107 s  alloc   96.5 GB  (1.544 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83130
+i= 26 N=    70304  t=   8.014 s  alloc  108.6 GB  (1.544 MB/atom)  bonds/atom 42.0  angles/atom 144.0  E/atom -10.83131
+/var/spool/slurmd/job19326/slurm_script: line 64: 678641 Killed                  $PY $B/ff_any.py "$@" --model_dir $B/models/$M
+sweep Cu ckpt exit 137 Sat Nov  7 00:51:42 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+i=  2 N=       24  t=   0.006 s  alloc    0.1 GB  (2.553 MB/atom)  bonds/atom 51.7  angles/atom 261.7  E/atom -5.37455
+i=  4 N=      192  t=   0.021 s  alloc    0.2 GB  (1.243 MB/atom)  bonds/atom 51.7  angles/atom 259.8  E/atom -5.36723
+i=  6 N=      648  t=   0.062 s  alloc    0.7 GB  (1.104 MB/atom)  bonds/atom 51.8  angles/atom 257.0  E/atom -5.37131
+i=  8 N=     1536  t=   0.127 s  alloc    1.7 GB  (1.079 MB/atom)  bonds/atom 51.8  angles/atom 259.3  E/atom -5.36988
+i= 10 N=     3000  t=   0.224 s  alloc    3.2 GB  (1.075 MB/atom)  bonds/atom 51.7  angles/atom 261.6  E/atom -5.37129
+i= 12 N=     5184  t=   0.367 s  alloc    5.5 GB  (1.062 MB/atom)  bonds/atom 51.7  angles/atom 259.1  E/atom -5.37070
+i= 14 N=     8232  t=   0.578 s  alloc    8.7 GB  (1.062 MB/atom)  bonds/atom 51.7  angles/atom 260.1  E/atom -5.37142
+i= 15 N=    10125  t=   0.696 s  alloc   10.7 GB  (1.059 MB/atom)  bonds/atom 51.7  angles/atom 259.1  E/atom -5.37141
+i= 16 N=    12288  t=   0.853 s  alloc   13.0 GB  (1.057 MB/atom)  bonds/atom 51.7  angles/atom 258.7  E/atom -5.37083
+i= 17 N=    14739  t=   1.009 s  alloc   15.6 GB  (1.057 MB/atom)  bonds/atom 51.7  angles/atom 258.8  E/atom -5.37152
+i= 18 N=    17496  t=   1.215 s  alloc   18.5 GB  (1.055 MB/atom)  bonds/atom 51.7  angles/atom 258.5  E/atom -5.37024
+i= 19 N=    20577  t=   1.431 s  alloc   21.7 GB  (1.056 MB/atom)  bonds/atom 51.7  angles/atom 258.8  E/atom -5.37123
+i= 20 N=    24000  t=   1.661 s  alloc   25.3 GB  (1.056 MB/atom)  bonds/atom 51.7  angles/atom 259.0  E/atom -5.37136
+i= 21 N=    27783  t=   1.904 s  alloc   29.3 GB  (1.054 MB/atom)  bonds/atom 51.7  angles/atom 258.5  E/atom -5.37132
+i= 22 N=    31944  t=   2.202 s  alloc   33.7 GB  (1.055 MB/atom)  bonds/atom 51.7  angles/atom 258.9  E/atom -5.37106
+i= 23 N=    36501  t=   2.504 s  alloc   38.6 GB  (1.056 MB/atom)  bonds/atom 51.7  angles/atom 259.2  E/atom -5.37184
+i= 24 N=    41472  t=   2.846 s  alloc   43.7 GB  (1.054 MB/atom)  bonds/atom 51.7  angles/atom 258.4  E/atom -5.37138
+i= 25 N=    46875  t=   3.238 s  alloc   49.5 GB  (1.056 MB/atom)  bonds/atom 51.7  angles/atom 259.1  E/atom -5.37210
+i= 26 N=    52728  t=   3.593 s  alloc   55.6 GB  (1.055 MB/atom)  bonds/atom 51.7  angles/atom 259.0  E/atom -5.37116
+i= 27 N=    59049  t=   4.031 s  alloc   62.3 GB  (1.055 MB/atom)  bonds/atom 51.7  angles/atom 258.9  E/atom -5.37136
+i= 28 N=    65856  t=   4.486 s  alloc   69.5 GB  (1.056 MB/atom)  bonds/atom 51.7  angles/atom 259.2  E/atom -5.37106
+i= 29 N=    73167  t=   4.974 s  alloc   77.2 GB  (1.055 MB/atom)  bonds/atom 51.7  angles/atom 258.8  E/atom -5.37120
+i= 30 N=    81000  t=   5.508 s  alloc   85.4 GB  (1.054 MB/atom)  bonds/atom 51.7  angles/atom 258.6  E/atom -5.37101
+i= 31 N=    89373  t=   6.076 s  alloc   94.3 GB  (1.055 MB/atom)  bonds/atom 51.7  angles/atom 259.0  E/atom -5.37141
+i= 32 N=    98304  t=   6.689 s  alloc  103.7 GB  (1.055 MB/atom)  bonds/atom 51.7  angles/atom 258.9  E/atom -5.37085
+/var/spool/slurmd/job19326/slurm_script: line 64: 678749 Killed                  $PY $B/ff_any.py "$@" --model_dir $B/models/$M
+sweep water e exit 137 Sat Nov  7 00:55:36 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+/data/jlee859/ffmax/ff_any.py:86: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e = float(res["energy"])
+i=  2 N=       24  t=   0.013 s  alloc    0.1 GB  (5.321 MB/atom)  bonds/atom 51.7  angles/atom 261.7  E/atom -5.37455
+i=  4 N=      192  t=   0.045 s  alloc    0.5 GB  (2.781 MB/atom)  bonds/atom 51.7  angles/atom 259.8  E/atom -5.36723
+i=  6 N=      648  t=   0.131 s  alloc    1.6 GB  (2.510 MB/atom)  bonds/atom 51.8  angles/atom 257.0  E/atom -5.37131
+i=  8 N=     1536  t=   0.290 s  alloc    3.8 GB  (2.462 MB/atom)  bonds/atom 51.8  angles/atom 259.3  E/atom -5.36988
+i= 10 N=     3000  t=   0.555 s  alloc    7.4 GB  (2.455 MB/atom)  bonds/atom 51.7  angles/atom 261.6  E/atom -5.37129
+i= 12 N=     5184  t=   0.941 s  alloc   12.6 GB  (2.429 MB/atom)  bonds/atom 51.7  angles/atom 259.1  E/atom -5.37070
+i= 14 N=     8232  t=   1.489 s  alloc   20.0 GB  (2.430 MB/atom)  bonds/atom 51.7  angles/atom 260.1  E/atom -5.37142
+i= 15 N=    10125  t=   1.794 s  alloc   24.5 GB  (2.423 MB/atom)  bonds/atom 51.7  angles/atom 259.1  E/atom -5.37141
+i= 16 N=    12288  t=   2.182 s  alloc   29.7 GB  (2.419 MB/atom)  bonds/atom 51.7  angles/atom 258.7  E/atom -5.37083
+i= 17 N=    14739  t=   2.618 s  alloc   35.6 GB  (2.419 MB/atom)  bonds/atom 51.7  angles/atom 258.8  E/atom -5.37152
+i= 18 N=    17496  t=   3.126 s  alloc   42.3 GB  (2.416 MB/atom)  bonds/atom 51.7  angles/atom 258.5  E/atom -5.37024
+i= 19 N=    20577  t=   3.675 s  alloc   49.7 GB  (2.417 MB/atom)  bonds/atom 51.7  angles/atom 258.8  E/atom -5.37123
+i= 20 N=    24000  t=   4.309 s  alloc   58.0 GB  (2.418 MB/atom)  bonds/atom 51.7  angles/atom 259.0  E/atom -5.37136
+i= 21 N=    27783  t=   4.950 s  alloc   67.1 GB  (2.414 MB/atom)  bonds/atom 51.7  angles/atom 258.5  E/atom -5.37132
+i= 22 N=    31944  t=   5.719 s  alloc   77.2 GB  (2.417 MB/atom)  bonds/atom 51.7  angles/atom 258.9  E/atom -5.37106
+i= 23 N=    36501  t=   6.542 s  alloc   88.3 GB  (2.419 MB/atom)  bonds/atom 51.7  angles/atom 259.2  E/atom -5.37184
+i= 24 N=    41472  t=   7.428 s  alloc  100.1 GB  (2.413 MB/atom)  bonds/atom 51.7  angles/atom 258.4  E/atom -5.37138
+[W1107 00:58:55.843043742 CUDACachingAllocator.cpp:508] expandable_segments: memory mapping failed with OOM on device 0 while trying to map 20971520 bytes (free: 614838272, total: 130663165952).
+/var/spool/slurmd/job19326/slurm_script: line 64: 678843 Killed                  $PY $B/ff_any.py "$@" --model_dir $B/models/$M
+sweep water ckpt exit 137 Sat Nov  7 00:59:16 EST 2026
+piece atoms with forces: si 117067 al 42182 cu 42182 water 24883
+piece atoms energy only: si 330820 al 111974 cu 94329 water 58982
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1000000 box [271.5, 271.5, 271.5] A, [3, 3, 3] cubes of [90.5, 90.5, 90.5] A, halo 20.01 A, 20 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 104712 atoms (37621 own)  1605078 angles  graph 0.21 s  eval 8.21 s  peak 44.4 GB
+cube (0, 0, 1): 105304 atoms (37587 own)  1614194 angles  graph 0.19 s  eval 4.21 s  peak 44.6 GB
+cube (0, 0, 2): 104709 atoms (37042 own)  1605208 angles  graph 0.18 s  eval 4.18 s  peak 44.4 GB
+cube (0, 1, 0): 105304 atoms (37587 own)  1614194 angles  graph 0.19 s  eval 4.21 s  peak 44.6 GB
+cube (0, 1, 1): 105746 atoms (37587 own)  1621400 angles  graph 0.19 s  eval 4.23 s  peak 44.8 GB
+cube (0, 1, 2): 105304 atoms (37026 own)  1614194 angles  graph 0.19 s  eval 4.21 s  peak 44.6 GB
+cube (0, 2, 0): 104709 atoms (37042 own)  1605208 angles  graph 0.18 s  eval 4.19 s  peak 44.4 GB
+cube (0, 2, 1): 105304 atoms (37026 own)  1614194 angles  graph 0.19 s  eval 4.21 s  peak 44.6 GB
+cube (0, 2, 2): 104712 atoms (36482 own)  1605078 angles  graph 0.18 s  eval 4.19 s  peak 44.4 GB
+cube (1, 0, 0): 105304 atoms (37587 own)  1614194 angles  graph 0.18 s  eval 4.21 s  peak 44.6 GB
+cube (1, 0, 1): 105746 atoms (37587 own)  1621400 angles  graph 0.19 s  eval 4.24 s  peak 44.8 GB
+cube (1, 0, 2): 105304 atoms (37026 own)  1614194 angles  graph 0.18 s  eval 4.21 s  peak 44.6 GB
+cube (1, 1, 0): 105746 atoms (37587 own)  1621400 angles  graph 0.19 s  eval 4.23 s  peak 44.8 GB
+cube (1, 1, 1): 106101 atoms (37621 own)  1627584 angles  graph 0.19 s  eval 4.25 s  peak 45.0 GB
+cube (1, 1, 2): 105746 atoms (37042 own)  1621400 angles  graph 0.19 s  eval 4.23 s  peak 44.8 GB
+cube (1, 2, 0): 105304 atoms (37026 own)  1614194 angles  graph 0.19 s  eval 4.22 s  peak 44.6 GB
+cube (1, 2, 1): 105746 atoms (37042 own)  1621400 angles  graph 0.19 s  eval 4.23 s  peak 44.8 GB
+cube (1, 2, 2): 105304 atoms (36482 own)  1614194 angles  graph 0.19 s  eval 4.21 s  peak 44.6 GB
+cube (2, 0, 0): 104709 atoms (37042 own)  1605208 angles  graph 0.19 s  eval 4.18 s  peak 44.4 GB
+cube (2, 0, 1): 105304 atoms (37026 own)  1614194 angles  graph 0.19 s  eval 4.21 s  peak 44.6 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1000000, 'structure': '/data/jlee859/ffmax/structures/si_1m', 'box_A': [271.5, 271.5, 271.5], 'k': [3, 3, 3], 'core_A': [90.5, 90.5, 90.5], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 27, 'cubes_done': 20, 'owned_done': 744068, 'energy': -6508779.8125, 'wall_s': 92.68062082101824, 'host_peak_gb': 2.410264, 'owned_atoms_per_s': 8028.301854353345, 'neighbor_cap_binds': False}
+sample forces si exit 0 Sat Nov  7 01:00:59 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1000000 box [271.5, 271.5, 271.5] A, [2, 2, 2] cubes of [135.75, 135.75, 135.75] A, halo 20.01 A, 8 cubes on rank 0/1
+cube (0, 0, 0): 261032 atoms (125000 own)  4042672 angles  graph 0.45 s  eval 5.40 s  peak 49.2 GB
+cube (0, 0, 1): 261032 atoms (125000 own)  4042672 angles  graph 0.43 s  eval 3.48 s  peak 49.2 GB
+cube (0, 1, 0): 261032 atoms (125000 own)  4042672 angles  graph 0.43 s  eval 3.48 s  peak 49.2 GB
+cube (0, 1, 1): 261032 atoms (125000 own)  4042672 angles  graph 0.43 s  eval 3.48 s  peak 49.2 GB
+cube (1, 0, 0): 261032 atoms (125000 own)  4042672 angles  graph 0.44 s  eval 3.48 s  peak 49.2 GB
+cube (1, 0, 1): 261032 atoms (125000 own)  4042672 angles  graph 0.43 s  eval 3.48 s  peak 49.2 GB
+cube (1, 1, 0): 261032 atoms (125000 own)  4042672 angles  graph 0.43 s  eval 3.48 s  peak 49.2 GB
+cube (1, 1, 1): 261032 atoms (125000 own)  4042672 angles  graph 0.43 s  eval 3.49 s  peak 49.2 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1000000, 'structure': '/data/jlee859/ffmax/structures/si_1m', 'box_A': [271.5, 271.5, 271.5], 'k': [2, 2, 2], 'core_A': [135.75, 135.75, 135.75], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 8, 'cubes_done': 8, 'owned_done': 1000000, 'energy': -8747558.0, 'wall_s': 34.02611675200751, 'host_peak_gb': 2.351144, 'owned_atoms_per_s': 29389.189700614334, 'neighbor_cap_binds': False, 'e_per_atom': -8.747558}
+sample energy si exit 0 Sat Nov  7 01:01:38 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1000188 box [255.15, 255.15, 255.15] A, [5, 5, 5] cubes of [51.03, 51.03, 51.03] A, halo 20.01 A, 20 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 40503 atoms (8788 own)  5430936 angles  graph 0.10 s  eval 7.22 s  peak 51.3 GB
+cube (0, 0, 1): 40450 atoms (8450 own)  5424262 angles  graph 0.11 s  eval 4.20 s  peak 51.2 GB
+cube (0, 0, 2): 40522 atoms (8450 own)  5434694 angles  graph 0.11 s  eval 4.21 s  peak 51.3 GB
+cube (0, 0, 3): 40450 atoms (8450 own)  5424262 angles  graph 0.11 s  eval 4.21 s  peak 51.2 GB
+cube (0, 0, 4): 40503 atoms (8450 own)  5430936 angles  graph 0.11 s  eval 4.22 s  peak 51.3 GB
+cube (0, 1, 0): 40450 atoms (8450 own)  5424262 angles  graph 0.11 s  eval 4.21 s  peak 51.2 GB
+cube (0, 1, 1): 40468 atoms (8125 own)  5427036 angles  graph 0.11 s  eval 4.21 s  peak 51.2 GB
+cube (0, 1, 2): 40504 atoms (8125 own)  5431904 angles  graph 0.10 s  eval 4.21 s  peak 51.3 GB
+cube (0, 1, 3): 40468 atoms (8125 own)  5427036 angles  graph 0.11 s  eval 4.21 s  peak 51.2 GB
+cube (0, 1, 4): 40450 atoms (8125 own)  5424262 angles  graph 0.11 s  eval 4.20 s  peak 51.2 GB
+cube (0, 2, 0): 40522 atoms (8450 own)  5434694 angles  graph 0.11 s  eval 4.22 s  peak 51.3 GB
+cube (0, 2, 1): 40504 atoms (8125 own)  5431904 angles  graph 0.11 s  eval 4.22 s  peak 51.3 GB
+cube (0, 2, 2): 40534 atoms (8125 own)  5435648 angles  graph 0.11 s  eval 4.22 s  peak 51.3 GB
+cube (0, 2, 3): 40504 atoms (8125 own)  5431904 angles  graph 0.11 s  eval 4.21 s  peak 51.3 GB
+cube (0, 2, 4): 40522 atoms (8125 own)  5434694 angles  graph 0.11 s  eval 4.22 s  peak 51.3 GB
+cube (0, 3, 0): 40450 atoms (8450 own)  5424262 angles  graph 0.11 s  eval 4.20 s  peak 51.2 GB
+cube (0, 3, 1): 40468 atoms (8125 own)  5427036 angles  graph 0.11 s  eval 4.21 s  peak 51.2 GB
+cube (0, 3, 2): 40504 atoms (8125 own)  5431904 angles  graph 0.11 s  eval 4.22 s  peak 51.3 GB
+cube (0, 3, 3): 40468 atoms (8125 own)  5427036 angles  graph 0.11 s  eval 4.20 s  peak 51.2 GB
+cube (0, 3, 4): 40450 atoms (8125 own)  5424262 angles  graph 0.10 s  eval 4.21 s  peak 51.2 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1000188, 'structure': '/data/jlee859/ffmax/structures/al_1m', 'box_A': [255.14999999999998, 255.14999999999998, 255.14999999999998], 'k': [5, 5, 5], 'core_A': [51.029999999999994, 51.029999999999994, 51.029999999999994], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 125, 'cubes_done': 20, 'owned_done': 165438, 'energy': -1108971.3203125, 'wall_s': 89.56488938897382, 'host_peak_gb': 2.279884, 'owned_atoms_per_s': 1847.1300654603028, 'neighbor_cap_binds': False}
+sample forces al exit 0 Sat Nov  7 01:03:12 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1000188 box [255.15, 255.15, 255.15] A, [3, 3, 3] cubes of [85.05, 85.05, 85.05] A, halo 20.01 A, 20 cubes on rank 0/1
+cube (0, 0, 0): 108266 atoms (37044 own)  14796264 angles  graph 0.26 s  eval 6.37 s  peak 66.8 GB
+cube (0, 0, 1): 108266 atoms (37044 own)  14796264 angles  graph 0.25 s  eval 3.95 s  peak 66.8 GB
+cube (0, 0, 2): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.96 s  peak 66.8 GB
+cube (0, 1, 0): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.95 s  peak 66.8 GB
+cube (0, 1, 1): 108266 atoms (37044 own)  14796264 angles  graph 0.25 s  eval 3.96 s  peak 66.8 GB
+cube (0, 1, 2): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.96 s  peak 66.8 GB
+cube (0, 2, 0): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.95 s  peak 66.8 GB
+cube (0, 2, 1): 108266 atoms (37044 own)  14796264 angles  graph 0.25 s  eval 3.96 s  peak 66.8 GB
+cube (0, 2, 2): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.95 s  peak 66.8 GB
+cube (1, 0, 0): 108266 atoms (37044 own)  14796264 angles  graph 0.25 s  eval 3.96 s  peak 66.8 GB
+cube (1, 0, 1): 108266 atoms (37044 own)  14796264 angles  graph 0.25 s  eval 3.96 s  peak 66.8 GB
+cube (1, 0, 2): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.96 s  peak 66.8 GB
+cube (1, 1, 0): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.97 s  peak 66.8 GB
+cube (1, 1, 1): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.96 s  peak 66.8 GB
+cube (1, 1, 2): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.96 s  peak 66.8 GB
+cube (1, 2, 0): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.96 s  peak 66.8 GB
+cube (1, 2, 1): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.96 s  peak 66.8 GB
+cube (1, 2, 2): 108266 atoms (37044 own)  14796264 angles  graph 0.24 s  eval 3.96 s  peak 66.8 GB
+cube (2, 0, 0): 108266 atoms (37044 own)  14796264 angles  graph 0.25 s  eval 3.96 s  peak 66.8 GB
+cube (2, 0, 1): 108266 atoms (37044 own)  14796264 angles  graph 0.25 s  eval 3.96 s  peak 66.8 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1000188, 'structure': '/data/jlee859/ffmax/structures/al_1m', 'box_A': [255.14999999999998, 255.14999999999998, 255.14999999999998], 'k': [3, 3, 3], 'core_A': [85.05, 85.05, 85.05], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 27, 'cubes_done': 20, 'owned_done': 740880, 'energy': -4966300.625, 'wall_s': 87.08459902496543, 'host_peak_gb': 2.090232, 'owned_atoms_per_s': 8507.589267163123, 'neighbor_cap_binds': False}
+sample energy al exit 0 Sat Nov  7 01:04:45 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1000188 box [227.74, 227.74, 227.74] A, [6, 6, 6] cubes of [37.96, 37.96, 37.96] A, halo 20.01 A, 20 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 34820 atoms (4631 own)  4656648 angles  graph 0.10 s  eval 6.62 s  peak 44.0 GB
+cube (0, 0, 1): 34820 atoms (4630 own)  4656648 angles  graph 0.10 s  eval 3.60 s  peak 44.0 GB
+cube (0, 0, 2): 34820 atoms (4851 own)  4656648 angles  graph 0.09 s  eval 3.61 s  peak 44.0 GB
+cube (0, 0, 3): 34820 atoms (4410 own)  4656648 angles  graph 0.09 s  eval 3.60 s  peak 44.0 GB
+cube (0, 0, 4): 34820 atoms (4631 own)  4656648 angles  graph 0.09 s  eval 3.61 s  peak 44.0 GB
+cube (0, 0, 5): 34820 atoms (4630 own)  4656648 angles  graph 0.09 s  eval 3.60 s  peak 44.0 GB
+cube (0, 1, 0): 34820 atoms (4630 own)  4656648 angles  graph 0.09 s  eval 3.62 s  peak 44.0 GB
+cube (0, 1, 1): 34820 atoms (4631 own)  4656648 angles  graph 0.09 s  eval 3.61 s  peak 44.0 GB
+cube (0, 1, 2): 34820 atoms (4851 own)  4656648 angles  graph 0.08 s  eval 3.61 s  peak 44.0 GB
+cube (0, 1, 3): 34820 atoms (4410 own)  4656648 angles  graph 0.09 s  eval 3.63 s  peak 44.0 GB
+cube (0, 1, 4): 34820 atoms (4630 own)  4656648 angles  graph 0.09 s  eval 3.61 s  peak 44.0 GB
+cube (0, 1, 5): 34820 atoms (4631 own)  4656648 angles  graph 0.09 s  eval 3.60 s  peak 44.0 GB
+cube (0, 2, 0): 34820 atoms (4851 own)  4656648 angles  graph 0.09 s  eval 3.62 s  peak 44.0 GB
+cube (0, 2, 1): 34820 atoms (4851 own)  4656648 angles  graph 0.09 s  eval 3.62 s  peak 44.0 GB
+cube (0, 2, 2): 34820 atoms (5082 own)  4656648 angles  graph 0.08 s  eval 3.62 s  peak 44.0 GB
+cube (0, 2, 3): 34820 atoms (4620 own)  4656648 angles  graph 0.08 s  eval 3.62 s  peak 44.0 GB
+cube (0, 2, 4): 34820 atoms (4851 own)  4656648 angles  graph 0.09 s  eval 3.60 s  peak 44.0 GB
+cube (0, 2, 5): 34820 atoms (4851 own)  4656648 angles  graph 0.08 s  eval 3.62 s  peak 44.0 GB
+cube (0, 3, 0): 34820 atoms (4410 own)  4656648 angles  graph 0.09 s  eval 3.61 s  peak 44.0 GB
+cube (0, 3, 1): 34820 atoms (4410 own)  4656648 angles  graph 0.09 s  eval 3.62 s  peak 44.0 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1000188, 'structure': '/data/jlee859/ffmax/structures/cu_1m', 'box_A': [227.745, 227.745, 227.745], 'k': [6, 6, 6], 'core_A': [37.9575, 37.9575, 37.9575], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 216, 'cubes_done': 20, 'owned_done': 93492, 'energy': -1012640.44140625, 'wall_s': 77.11319716501748, 'host_peak_gb': 2.246384, 'owned_atoms_per_s': 1212.3994781325548, 'neighbor_cap_binds': False}
+sample forces cu exit 0 Sat Nov  7 01:06:07 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1000188 box [227.74, 227.74, 227.74] A, [4, 4, 4] cubes of [56.94, 56.94, 56.94] A, halo 20.01 A, 20 cubes on rank 0/1
+cube (0, 0, 0): 70276 atoms (16384 own)  9536628 angles  graph 0.18 s  eval 4.20 s  peak 43.1 GB
+cube (0, 0, 1): 70246 atoms (15872 own)  9533268 angles  graph 0.18 s  eval 2.55 s  peak 43.1 GB
+cube (0, 0, 2): 70246 atoms (16384 own)  9533268 angles  graph 0.19 s  eval 2.55 s  peak 43.1 GB
+cube (0, 0, 3): 70276 atoms (15872 own)  9536628 angles  graph 0.20 s  eval 2.55 s  peak 43.1 GB
+cube (0, 1, 0): 70246 atoms (15872 own)  9533268 angles  graph 0.20 s  eval 2.55 s  peak 43.1 GB
+cube (0, 1, 1): 70276 atoms (15376 own)  9536628 angles  graph 0.21 s  eval 2.55 s  peak 43.1 GB
+cube (0, 1, 2): 70276 atoms (15872 own)  9536628 angles  graph 0.21 s  eval 2.55 s  peak 43.1 GB
+cube (0, 1, 3): 70246 atoms (15376 own)  9533268 angles  graph 0.21 s  eval 2.55 s  peak 43.1 GB
+cube (0, 2, 0): 70246 atoms (16384 own)  9533268 angles  graph 0.20 s  eval 2.56 s  peak 43.1 GB
+cube (0, 2, 1): 70276 atoms (15872 own)  9536628 angles  graph 0.20 s  eval 2.55 s  peak 43.1 GB
+cube (0, 2, 2): 70276 atoms (16384 own)  9536628 angles  graph 0.20 s  eval 2.56 s  peak 43.1 GB
+cube (0, 2, 3): 70246 atoms (15872 own)  9533268 angles  graph 0.21 s  eval 2.56 s  peak 43.1 GB
+cube (0, 3, 0): 70276 atoms (15872 own)  9536628 angles  graph 0.20 s  eval 2.55 s  peak 43.1 GB
+cube (0, 3, 1): 70246 atoms (15376 own)  9533268 angles  graph 0.21 s  eval 2.55 s  peak 43.1 GB
+cube (0, 3, 2): 70246 atoms (15872 own)  9533268 angles  graph 0.20 s  eval 2.55 s  peak 43.1 GB
+cube (0, 3, 3): 70276 atoms (15376 own)  9536628 angles  graph 0.20 s  eval 2.55 s  peak 43.1 GB
+cube (1, 0, 0): 70246 atoms (15872 own)  9533268 angles  graph 0.21 s  eval 2.55 s  peak 43.1 GB
+cube (1, 0, 1): 70276 atoms (15376 own)  9536628 angles  graph 0.21 s  eval 2.56 s  peak 43.1 GB
+cube (1, 0, 2): 70276 atoms (15872 own)  9536628 angles  graph 0.20 s  eval 2.56 s  peak 43.1 GB
+cube (1, 0, 3): 70246 atoms (15376 own)  9533268 angles  graph 0.21 s  eval 2.56 s  peak 43.1 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1000188, 'structure': '/data/jlee859/ffmax/structures/cu_1m', 'box_A': [227.745, 227.745, 227.745], 'k': [4, 4, 4], 'core_A': [56.93625, 56.93625, 56.93625], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 64, 'cubes_done': 20, 'owned_done': 316512, 'energy': -3428238.421875, 'wall_s': 57.07986496499507, 'host_peak_gb': 1.964796, 'owned_atoms_per_s': 5545.072683582992, 'neighbor_cap_binds': False}
+sample energy cu exit 0 Sat Nov  7 01:07:09 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1029000 box [217.3, 217.3, 217.3] A, [8, 8, 8] cubes of [27.16, 27.16, 27.16] A, halo 20.01 A, 20 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 24812 atoms (1982 own)  5885078 angles  graph 0.22 s  eval 7.14 s  peak 48.9 GB
+cube (0, 0, 1): 24596 atoms (2050 own)  5836118 angles  graph 0.20 s  eval 3.84 s  peak 48.5 GB
+cube (0, 0, 2): 24586 atoms (2042 own)  5824052 angles  graph 0.19 s  eval 3.85 s  peak 48.5 GB
+cube (0, 0, 3): 24820 atoms (1926 own)  5877202 angles  graph 0.21 s  eval 3.90 s  peak 48.9 GB
+cube (0, 0, 4): 24794 atoms (2001 own)  5879888 angles  graph 0.21 s  eval 3.88 s  peak 48.9 GB
+cube (0, 0, 5): 24606 atoms (2043 own)  5827270 angles  graph 0.20 s  eval 3.85 s  peak 48.5 GB
+cube (0, 0, 6): 24608 atoms (2044 own)  5833952 angles  graph 0.20 s  eval 3.85 s  peak 48.5 GB
+cube (0, 0, 7): 24808 atoms (1915 own)  5873610 angles  graph 0.21 s  eval 3.88 s  peak 48.9 GB
+cube (0, 1, 0): 24589 atoms (2056 own)  5817882 angles  graph 0.21 s  eval 3.83 s  peak 48.4 GB
+cube (0, 1, 1): 24330 atoms (2088 own)  5762788 angles  graph 0.20 s  eval 3.80 s  peak 47.9 GB
+cube (0, 1, 2): 24346 atoms (2087 own)  5750462 angles  graph 0.21 s  eval 3.80 s  peak 47.9 GB
+cube (0, 1, 3): 24603 atoms (1952 own)  5821848 angles  graph 0.21 s  eval 3.84 s  peak 48.5 GB
+cube (0, 1, 4): 24597 atoms (2042 own)  5825596 angles  graph 0.21 s  eval 3.85 s  peak 48.5 GB
+cube (0, 1, 5): 24369 atoms (2104 own)  5767626 angles  graph 0.21 s  eval 3.81 s  peak 48.0 GB
+cube (0, 1, 6): 24378 atoms (2086 own)  5782664 angles  graph 0.20 s  eval 3.81 s  peak 48.1 GB
+cube (0, 1, 7): 24596 atoms (1957 own)  5819646 angles  graph 0.20 s  eval 3.84 s  peak 48.4 GB
+cube (0, 2, 0): 24613 atoms (2047 own)  5829232 angles  graph 0.22 s  eval 3.85 s  peak 48.5 GB
+cube (0, 2, 1): 24383 atoms (2088 own)  5772808 angles  graph 0.20 s  eval 3.81 s  peak 48.0 GB
+cube (0, 2, 2): 24352 atoms (2096 own)  5750010 angles  graph 0.20 s  eval 3.80 s  peak 47.9 GB
+cube (0, 2, 3): 24597 atoms (1958 own)  5818716 angles  graph 0.21 s  eval 3.84 s  peak 48.4 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1029000, 'structure': '/data/jlee859/ffmax/structures/water_1m', 'box_A': [217.2964249309333, 217.2964249309333, 217.2964249309333], 'k': [8, 8, 8], 'core_A': [27.162053116366664, 27.162053116366664, 27.162053116366664], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 512, 'cubes_done': 20, 'owned_done': 40564, 'energy': -219412.998046875, 'wall_s': 84.29259693896165, 'host_peak_gb': 2.30498, 'owned_atoms_per_s': 481.22850016560045, 'neighbor_cap_binds': True}
+sample forces water exit 0 Sat Nov  7 01:08:38 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=1029000 box [217.3, 217.3, 217.3] A, [5, 5, 5] cubes of [43.46, 43.46, 43.46] A, halo 20.01 A, 20 cubes on rank 0/1
+cube (0, 0, 0): 51363 atoms (8237 own)  12454422 angles  graph 0.40 s  eval 4.93 s  peak 50.9 GB
+cube (0, 0, 1): 51349 atoms (8190 own)  12439110 angles  graph 0.40 s  eval 2.91 s  peak 50.8 GB
+cube (0, 0, 2): 51374 atoms (8251 own)  12438520 angles  graph 0.41 s  eval 2.89 s  peak 50.9 GB
+cube (0, 0, 3): 51372 atoms (8212 own)  12439660 angles  graph 0.40 s  eval 2.88 s  peak 50.9 GB
+cube (0, 0, 4): 51383 atoms (8224 own)  12460590 angles  graph 0.40 s  eval 2.88 s  peak 50.9 GB
+cube (0, 1, 0): 51359 atoms (8202 own)  12442068 angles  graph 0.40 s  eval 2.91 s  peak 50.9 GB
+cube (0, 1, 1): 51383 atoms (8252 own)  12437378 angles  graph 0.40 s  eval 2.91 s  peak 50.9 GB
+cube (0, 1, 2): 51391 atoms (8205 own)  12420824 angles  graph 0.40 s  eval 2.88 s  peak 50.8 GB
+cube (0, 1, 3): 51382 atoms (8240 own)  12426204 angles  graph 0.39 s  eval 2.88 s  peak 50.8 GB
+cube (0, 1, 4): 51325 atoms (8269 own)  12420706 angles  graph 0.39 s  eval 2.88 s  peak 50.8 GB
+cube (0, 2, 0): 51344 atoms (8248 own)  12417922 angles  graph 0.40 s  eval 2.85 s  peak 50.8 GB
+cube (0, 2, 1): 51381 atoms (8212 own)  12429814 angles  graph 0.40 s  eval 2.88 s  peak 50.8 GB
+cube (0, 2, 2): 51351 atoms (8228 own)  12435624 angles  graph 0.40 s  eval 2.91 s  peak 50.8 GB
+cube (0, 2, 3): 51338 atoms (8270 own)  12411746 angles  graph 0.40 s  eval 2.87 s  peak 50.8 GB
+cube (0, 2, 4): 51351 atoms (8181 own)  12429954 angles  graph 0.40 s  eval 2.88 s  peak 50.8 GB
+cube (0, 3, 0): 51362 atoms (8229 own)  12427598 angles  graph 0.41 s  eval 2.91 s  peak 50.8 GB
+cube (0, 3, 1): 51344 atoms (8237 own)  12430272 angles  graph 0.40 s  eval 2.91 s  peak 50.8 GB
+cube (0, 3, 2): 51380 atoms (8191 own)  12426964 angles  graph 0.39 s  eval 2.92 s  peak 50.8 GB
+cube (0, 3, 3): 51364 atoms (8236 own)  12410386 angles  graph 0.40 s  eval 2.91 s  peak 50.8 GB
+cube (0, 3, 4): 51377 atoms (8252 own)  12427666 angles  graph 0.39 s  eval 2.85 s  peak 50.8 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 1029000, 'structure': '/data/jlee859/ffmax/structures/water_1m', 'box_A': [217.2964249309333, 217.2964249309333, 217.2964249309333], 'k': [5, 5, 5], 'core_A': [43.45928498618666, 43.45928498618666, 43.45928498618666], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 125, 'cubes_done': 20, 'owned_done': 164566, 'energy': -883947.578125, 'wall_s': 68.02836414298508, 'host_peak_gb': 2.15368, 'owned_atoms_per_s': 2419.0791895878574, 'neighbor_cap_binds': True}
+sample energy water exit 0 Sat Nov  7 01:09:52 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=987293 box [271.5, 271.5, 271.5] A, [3, 3, 3] cubes of [90.5, 90.5, 90.5] A, halo 20.01 A, 20 cubes on rank 0/1
+/data/jlee859/ffmax/ff_any.py:215: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 103569 atoms (36460 own)  1743036 angles  graph 0.20 s  eval 7.08 s  peak 44.2 GB
+cube (0, 0, 1): 103661 atoms (36726 own)  1748042 angles  graph 0.21 s  eval 4.14 s  peak 44.2 GB
+cube (0, 0, 2): 103492 atoms (36526 own)  1758062 angles  graph 0.20 s  eval 4.14 s  peak 44.2 GB
+cube (0, 1, 0): 103729 atoms (36633 own)  1733350 angles  graph 0.21 s  eval 4.22 s  peak 44.2 GB
+cube (0, 1, 1): 103652 atoms (36496 own)  1737542 angles  graph 0.21 s  eval 4.14 s  peak 44.2 GB
+cube (0, 1, 2): 103611 atoms (36621 own)  1748556 angles  graph 0.21 s  eval 4.15 s  peak 44.2 GB
+cube (0, 2, 0): 103483 atoms (36584 own)  1754966 angles  graph 0.21 s  eval 4.14 s  peak 44.1 GB
+cube (0, 2, 1): 103528 atoms (36564 own)  1762256 angles  graph 0.20 s  eval 4.15 s  peak 44.2 GB
+cube (0, 2, 2): 103320 atoms (36359 own)  1769656 angles  graph 0.20 s  eval 4.13 s  peak 44.1 GB
+cube (1, 0, 0): 103541 atoms (36588 own)  1743880 angles  graph 0.19 s  eval 4.14 s  peak 44.1 GB
+cube (1, 0, 1): 103796 atoms (36689 own)  1721796 angles  graph 0.21 s  eval 4.16 s  peak 44.2 GB
+cube (1, 0, 2): 103616 atoms (36547 own)  1751584 angles  graph 0.20 s  eval 4.23 s  peak 44.2 GB
+cube (1, 1, 0): 103730 atoms (36517 own)  1744552 angles  graph 0.18 s  eval 4.16 s  peak 44.3 GB
+cube (1, 1, 1): 103826 atoms (36577 own)  1721524 angles  graph 0.21 s  eval 4.16 s  peak 44.2 GB
+cube (1, 1, 2): 103536 atoms (36579 own)  1753722 angles  graph 0.20 s  eval 4.14 s  peak 44.2 GB
+cube (1, 2, 0): 103628 atoms (36507 own)  1740210 angles  graph 0.21 s  eval 4.15 s  peak 44.2 GB
+cube (1, 2, 1): 103795 atoms (36707 own)  1731688 angles  graph 0.21 s  eval 4.16 s  peak 44.3 GB
+cube (1, 2, 2): 103572 atoms (36685 own)  1735596 angles  graph 0.20 s  eval 4.14 s  peak 44.1 GB
+cube (2, 0, 0): 103546 atoms (36558 own)  1736140 angles  graph 0.18 s  eval 4.14 s  peak 44.1 GB
+cube (2, 0, 1): 103661 atoms (36585 own)  1727912 angles  graph 0.21 s  eval 4.15 s  peak 44.2 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 987293, 'structure': '/data/jlee859/ffmax/structures/poly_si_1m', 'box_A': [271.5, 271.5, 271.5], 'k': [3, 3, 3], 'core_A': [90.5, 90.5, 90.5], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 27, 'cubes_done': 20, 'owned_done': 731508, 'energy': -6325031.96875, 'wall_s': 90.6856840759865, 'host_peak_gb': 2.390432, 'owned_atoms_per_s': 8066.411004707884, 'neighbor_cap_binds': False}
+sample forces poly_si exit 0 Sat Nov  7 01:11:27 EST 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=987293 box [271.5, 271.5, 271.5] A, [2, 2, 2] cubes of [135.75, 135.75, 135.75] A, halo 20.01 A, 8 cubes on rank 0/1
+cube (0, 0, 0): 259575 atoms (123464 own)  4412534 angles  graph 0.49 s  eval 5.26 s  peak 49.0 GB
+cube (0, 0, 1): 259565 atoms (123399 own)  4422352 angles  graph 0.47 s  eval 3.46 s  peak 49.1 GB
+cube (0, 1, 0): 259516 atoms (123544 own)  4429722 angles  graph 0.48 s  eval 3.46 s  peak 49.1 GB
+cube (0, 1, 1): 259437 atoms (123332 own)  4431760 angles  graph 0.48 s  eval 3.46 s  peak 49.0 GB
+cube (1, 0, 0): 259320 atoms (123404 own)  4422672 angles  graph 0.48 s  eval 3.46 s  peak 49.0 GB
+cube (1, 0, 1): 259411 atoms (123359 own)  4418998 angles  graph 0.48 s  eval 3.46 s  peak 49.0 GB
+cube (1, 1, 0): 259587 atoms (123426 own)  4422584 angles  graph 0.49 s  eval 3.47 s  peak 49.1 GB
+cube (1, 1, 1): 259336 atoms (123365 own)  4429098 angles  graph 0.49 s  eval 3.46 s  peak 49.0 GB
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663165952, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '19326', 'host': 'atomgptlab03.wse.jhu.edu', 'natoms': 987293, 'structure': '/data/jlee859/ffmax/structures/poly_si_1m', 'box_A': [271.5, 271.5, 271.5], 'k': [2, 2, 2], 'core_A': [135.75, 135.75, 135.75], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 8, 'cubes_done': 8, 'owned_done': 987293, 'energy': -8535040.25, 'wall_s': 34.099054767983034, 'host_peak_gb': 2.344364, 'owned_atoms_per_s': 28953.676479238038, 'neighbor_cap_binds': False, 'e_per_atom': -8.644890878391724}
+sample energy poly_si exit 0 Sat Nov  7 01:12:05 EST 2026
+
+## Chunked against full cell, float64
+
+| run | atoms | halo (A) | cap binds | max dE (eV/atom) | max dF (eV/A) | max F (eV/A) |
+|---|---:|---:|---|---:|---:|---:|
+| al_2k | 2,048 | 20.01 | False | 1.8e-15 | 1.2e-14 | 8.7e-15 |
+| poly_si_4k | 3,957 | 20.01 | False | 1.8e-15 | 4.6e-13 | 5.8e+01 |
+| water_1k_h20 | 1,536 | 20.01 | True | 1.8e-11 | 8.2e-08 | 1.5e+01 |
+| water_1k_h25 | 1,536 | 25.00 | True | 0.0e+00 | 4.8e-13 | 1.5e+01 |
+| water_1k_nocap | 1,536 | 20.01 | False | 2.7e-15 | 4.1e-13 | 1.5e+01 |
+
+## Largest single graph on one GB10
+
+| structure | path | largest cell (atoms) | MB/atom | s per call | atoms/s | bonds/atom | angles/atom | how it stopped |
+|---|---|---:|---:|---:|---:|---:|---:|---|
+| Al | ckpt | 70,304 | 1.544 | 7.95 | 8,843 | 42.0 | 144.0 | host killed it, or max size |
+| Al | e | 186,624 | 0.649 | 97.51 | 1,914 | 42.0 | 144.0 | out of memory |
+| Cu | ckpt | 70,304 | 1.544 | 8.01 | 8,773 | 42.0 | 144.0 | host killed it, or max size |
+| Cu | e | 157,216 | 0.649 | 6.49 | 24,210 | 42.0 | 144.0 | host killed it, or max size |
+| water | ckpt | 41,472 | 2.413 | 7.43 | 5,583 | 51.7 | 258.4 | host killed it, or max size |
+| water | e | 98,304 | 1.055 | 6.69 | 14,696 | 51.7 | 258.9 | host killed it, or max size |
+
+## Chunked throughput on one GB10, sampled pieces
+
+| run | pieces | atoms per piece | evaluated per owned atom | angles per piece atom | peak GPU (GB) | owned atoms/s | GB10-hours per 10^9 atoms | cap binds |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| energy_al_1m | 20 of 27 | 108,266 | 2.92 | 136.7 | 66.8 | 8,508 | 33 | False |
+| energy_cu_1m | 20 of 64 | 70,261 | 4.44 | 135.7 | 43.1 | 5,545 | 50 | False |
+| energy_poly_si_1m | 8 of 8 | 259,468 | 2.10 | 17.0 | 49.1 | 28,954 | 10 | False |
+| energy_si_1m | 8 of 8 | 261,032 | 2.09 | 15.5 | 49.2 | 29,389 | 9 | False |
+| energy_water_1m | 20 of 125 | 51,364 | 6.24 | 242.0 | 50.9 | 2,419 | 115 | True |
+| forces_al_1m | 20 of 125 | 40,485 | 4.89 | 134.1 | 51.3 | 1,847 | 150 | False |
+| forces_cu_1m | 20 of 216 | 34,820 | 7.45 | 133.7 | 44.0 | 1,212 | 229 | False |
+| forces_poly_si_1m | 20 of 27 | 103,615 | 2.83 | 16.8 | 44.3 | 8,066 | 34 | False |
+| forces_si_1m | 20 of 27 | 105,306 | 2.83 | 15.3 | 45.0 | 8,028 | 35 | False |
+| forces_water_1m | 20 of 512 | 24,569 | 12.11 | 236.8 | 48.9 | 481 | 577 | True |
+
+GB10-hours per 10^9 atoms assumes the sampled pieces are typical and cost grows linearly with atoms (measured for Si from 8M to 1B).
+end Sat Nov  7 01:12:05 EST 2026

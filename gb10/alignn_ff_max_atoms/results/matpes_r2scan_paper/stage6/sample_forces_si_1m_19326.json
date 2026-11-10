@@ -1,0 +1,390 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/matpes_r2scan_paper",
+ "checkpoint_md5": "92cfe2955622c198c03085fc5320296b",
+ "layers": [
+  2,
+  2
+ ],
+ "hidden": 128,
+ "element_embedding": false,
+ "cutoff": 5.0,
+ "max_neighbors": 52,
+ "three_body_cutoff": 3.5,
+ "reach_A": 20.0,
+ "gpu": "NVIDIA GB10",
+ "gpu_memory_gb": 130.663165952,
+ "neighbor_list": "matscipy",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn",
+ "slurm_job": "19326",
+ "host": "atomgptlab03.wse.jhu.edu",
+ "natoms": 1000000,
+ "structure": "/data/jlee859/ffmax/structures/si_1m",
+ "structure_meta": {
+  "kind": "Si",
+  "seed": 0,
+  "rep": 50,
+  "rattle": 0.0,
+  "natoms": 1000000,
+  "box_A": [
+   271.5,
+   271.5,
+   271.5
+  ],
+  "elements": {
+   "14": 1000000
+  }
+ },
+ "box_A": [
+  271.5,
+  271.5,
+  271.5
+ ],
+ "k": [
+  3,
+  3,
+  3
+ ],
+ "core_A": [
+  90.5,
+  90.5,
+  90.5
+ ],
+ "halo_A": 20.01,
+ "halo_exact": true,
+ "forces": true,
+ "ckpt": true,
+ "rattle": 0.0,
+ "rank": 0,
+ "world": 1,
+ "n_cubes": 27,
+ "cubes_done": 20,
+ "owned_done": 744068,
+ "energy": -6508779.8125,
+ "pieces": [
+  {
+   "cube": [
+    0,
+    0,
+    0
+   ],
+   "atoms": 104712,
+   "owned": 37621,
+   "t_graph_s": 0.2137975919758901,
+   "t_eval_s": 8.210536603000946,
+   "edges": 2811342,
+   "lg_edges": 1605078,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.385830912,
+   "mem_reserved_gb": 45.369786368
+  },
+  {
+   "cube": [
+    0,
+    0,
+    1
+   ],
+   "atoms": 105304,
+   "owned": 37587,
+   "t_graph_s": 0.18627310101874173,
+   "t_eval_s": 4.213075314997695,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 45.684359168
+  },
+  {
+   "cube": [
+    0,
+    0,
+    2
+   ],
+   "atoms": 104709,
+   "owned": 37042,
+   "t_graph_s": 0.18311920698033646,
+   "t_eval_s": 4.183877231029328,
+   "edges": 2811304,
+   "lg_edges": 1605208,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.386102784,
+   "mem_reserved_gb": 45.684359168
+  },
+  {
+   "cube": [
+    0,
+    1,
+    0
+   ],
+   "atoms": 105304,
+   "owned": 37587,
+   "t_graph_s": 0.18683013098780066,
+   "t_eval_s": 4.208678459981456,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 45.684359168
+  },
+  {
+   "cube": [
+    0,
+    1,
+    1
+   ],
+   "atoms": 105746,
+   "owned": 37587,
+   "t_graph_s": 0.18654558499110863,
+   "t_eval_s": 4.225958104012534,
+   "edges": 2840180,
+   "lg_edges": 1621400,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.839372288,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    0,
+    1,
+    2
+   ],
+   "atoms": 105304,
+   "owned": 37026,
+   "t_graph_s": 0.18798142502782866,
+   "t_eval_s": 4.212842212989926,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    0,
+    2,
+    0
+   ],
+   "atoms": 104709,
+   "owned": 37042,
+   "t_graph_s": 0.1842277180403471,
+   "t_eval_s": 4.191475928004365,
+   "edges": 2811304,
+   "lg_edges": 1605208,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.386102784,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    0,
+    2,
+    1
+   ],
+   "atoms": 105304,
+   "owned": 37026,
+   "t_graph_s": 0.1856520229484886,
+   "t_eval_s": 4.20990941504715,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    0,
+    2,
+    2
+   ],
+   "atoms": 104712,
+   "owned": 36482,
+   "t_graph_s": 0.1843282000045292,
+   "t_eval_s": 4.190814415982459,
+   "edges": 2811342,
+   "lg_edges": 1605078,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.385830912,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    1,
+    0,
+    0
+   ],
+   "atoms": 105304,
+   "owned": 37587,
+   "t_graph_s": 0.1847201749915257,
+   "t_eval_s": 4.212604986038059,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    1,
+    0,
+    1
+   ],
+   "atoms": 105746,
+   "owned": 37587,
+   "t_graph_s": 0.18883206200553104,
+   "t_eval_s": 4.238908553030342,
+   "edges": 2840180,
+   "lg_edges": 1621400,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.839372288,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    1,
+    0,
+    2
+   ],
+   "atoms": 105304,
+   "owned": 37026,
+   "t_graph_s": 0.18263711297186092,
+   "t_eval_s": 4.206664514029399,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    1,
+    1,
+    0
+   ],
+   "atoms": 105746,
+   "owned": 37587,
+   "t_graph_s": 0.18837930698646232,
+   "t_eval_s": 4.233282388013322,
+   "edges": 2840180,
+   "lg_edges": 1621400,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.839372288,
+   "mem_reserved_gb": 45.956988928
+  },
+  {
+   "cube": [
+    1,
+    1,
+    1
+   ],
+   "atoms": 106101,
+   "owned": 37621,
+   "t_graph_s": 0.1867476259940304,
+   "t_eval_s": 4.254308582982048,
+   "edges": 2850648,
+   "lg_edges": 1627584,
+   "max_degree": 28,
+   "mem_alloc_gb": 45.005389312,
+   "mem_reserved_gb": 46.061846528
+  },
+  {
+   "cube": [
+    1,
+    1,
+    2
+   ],
+   "atoms": 105746,
+   "owned": 37042,
+   "t_graph_s": 0.18564812501426786,
+   "t_eval_s": 4.229171083017718,
+   "edges": 2840180,
+   "lg_edges": 1621400,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.839372288,
+   "mem_reserved_gb": 46.061846528
+  },
+  {
+   "cube": [
+    1,
+    2,
+    0
+   ],
+   "atoms": 105304,
+   "owned": 37026,
+   "t_graph_s": 0.19171782897319645,
+   "t_eval_s": 4.216598712024279,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 46.061846528
+  },
+  {
+   "cube": [
+    1,
+    2,
+    1
+   ],
+   "atoms": 105746,
+   "owned": 37042,
+   "t_graph_s": 0.18820953503018245,
+   "t_eval_s": 4.233278508996591,
+   "edges": 2840180,
+   "lg_edges": 1621400,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.839372288,
+   "mem_reserved_gb": 46.061846528
+  },
+  {
+   "cube": [
+    1,
+    2,
+    2
+   ],
+   "atoms": 105304,
+   "owned": 36482,
+   "t_graph_s": 0.19168395799351856,
+   "t_eval_s": 4.214341034996323,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 46.061846528
+  },
+  {
+   "cube": [
+    2,
+    0,
+    0
+   ],
+   "atoms": 104709,
+   "owned": 37042,
+   "t_graph_s": 0.19429530203342438,
+   "t_eval_s": 4.181065245997161,
+   "edges": 2811304,
+   "lg_edges": 1605208,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.386102784,
+   "mem_reserved_gb": 46.061846528
+  },
+  {
+   "cube": [
+    2,
+    0,
+    1
+   ],
+   "atoms": 105304,
+   "owned": 37026,
+   "t_graph_s": 0.18956744199385867,
+   "t_eval_s": 4.2107049559708685,
+   "edges": 2827580,
+   "lg_edges": 1614194,
+   "max_degree": 28,
+   "mem_alloc_gb": 44.640828928,
+   "mem_reserved_gb": 46.061846528
+  }
+ ],
+ "wall_s": 92.68062082101824,
+ "host_peak_gb": 2.410264,
+ "owned_atoms_per_s": 8028.301854353345,
+ "neighbor_cap_binds": false
+}
