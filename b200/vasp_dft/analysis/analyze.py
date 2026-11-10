@@ -6,7 +6,13 @@ Run from this directory: `python analyze.py`. Writes:
 - time_vs_size.png     — elapsed/SCF vs N_atoms, all ngpu overlaid
 - per_scf_bar.png      — per-SCF cost bar chart, small systems only
 - large_systems.png    — per-SCF cost for the 10/12/14/15/16 runs
+- strong_scaling_steady.png — speedup of the steady-state SCF cycle (median of
+                         cycles 2 onward) vs ngpu, next to the elapsed-time speedup
 - metrics.json         — machine-readable dump of every run
+
+Timing lines in OUTCAR: `LOOP:` is one electronic (SCF) step, `LOOP+:` is one
+ionic step (all its SCF steps plus forces and stress). Elapsed time minus the
+ionic steps is setup and teardown, which dominates the 10³–14³ runs.
 
 Assumes the standard layout `b200/vasp_dft/<n>x<n>x<n>/<ngpu>/{INCAR,OSZICAR,OUTCAR}`.
 """
@@ -24,7 +30,8 @@ OUT = Path(__file__).resolve().parent
 
 RE_ELAPSED = re.compile(r"Elapsed time \(sec\):\s+([0-9.]+)")
 RE_CPU = re.compile(r"Total CPU time used \(sec\):\s+([0-9.]+)")
-RE_LOOP = re.compile(r"LOOP\+:\s+cpu time\s+([0-9.]+):\s+real time\s+([0-9.]+)")
+RE_SCF = re.compile(r"^\s+LOOP:\s+cpu time\s+([0-9.]+):\s+real time\s+([0-9.]+)", re.M)
+RE_IONIC = re.compile(r"LOOP\+:\s+cpu time\s+([0-9.]+):\s+real time\s+([0-9.]+)")
 RE_NIONS = re.compile(r"NIONS\s*=\s*(\d+)")
 RE_NKPTS = re.compile(r"NKPTS\s*=\s*(\d+)")
 RE_NBANDS = re.compile(r"NBANDS\s*=\s*(\d+)")
@@ -46,7 +53,8 @@ def parse_run(run_dir: Path) -> dict | None:
 
     elapsed = float(m.group(1)) if (m := RE_ELAPSED.search(text)) else None
     cpu = float(m.group(1)) if (m := RE_CPU.search(text)) else None
-    loops = [(float(a), float(b)) for a, b in RE_LOOP.findall(text)]
+    scf = [float(b) for _, b in RE_SCF.findall(text)]
+    ionic = [float(b) for _, b in RE_IONIC.findall(text)]
 
     dav_steps = 0
     if oszicar.exists():
@@ -63,8 +71,11 @@ def parse_run(run_dir: Path) -> dict | None:
         "scf_done": dav_steps,
         "elapsed_s": elapsed,
         "cpu_s": cpu,
-        "loop_real_s": [b for _, b in loops],
-        "first_scf_s": loops[0][1] if loops else None,
+        "scf_real_s": scf,
+        "first_scf_s": scf[0] if scf else None,
+        "steady_scf_s": float(np.median(scf[1:])) if len(scf) > 1 else None,
+        "ionic_step_real_s": ionic,
+        "outside_ionic_s": (elapsed - sum(ionic)) if elapsed and ionic else None,
         "completed": elapsed is not None,
     }
 
@@ -198,6 +209,36 @@ def plot_large_systems(rows: list[dict]) -> None:
     plt.close(fig)
 
 
+def plot_strong_scaling_steady(rows: list[dict]) -> None:
+    small = [r for r in rows if r["n"] in (3, 4, 5, 6) and r["completed"]]
+    fig, (ax_e, ax_s) = plt.subplots(1, 2, figsize=(11, 4.2), sharey=True)
+    colors = {3: "#1f77b4", 4: "#ff7f0e", 5: "#2ca02c", 6: "#d62728"}
+    for n in (3, 4, 5, 6):
+        pts = sorted([r for r in small if r["n"] == n], key=lambda r: r["ngpu"])
+        one = next((r for r in pts if r["ngpu"] == 1), None)
+        if one is None or not one["steady_scf_s"]:
+            continue
+        xs = [r["ngpu"] for r in pts]
+        label = f"{n}³ ({2 * n**3} atoms, NKPTS={pts[0]['nkpts']})"
+        ax_e.plot(xs, [one["elapsed_s"] / r["elapsed_s"] for r in pts], "o-",
+                  color=colors[n], label=label)
+        ax_s.plot(xs, [one["steady_scf_s"] / r["steady_scf_s"] for r in pts],
+                  "o-", color=colors[n], label=label)
+    for ax in (ax_e, ax_s):
+        ax.plot([1, 8], [1, 8], "k--", alpha=0.4, label="ideal")
+        ax.set_xlabel("GPUs")
+        ax.set_xticks([1, 2, 4, 8])
+        ax.set_ylim(0, 3.5)
+        ax.grid(True, alpha=0.3)
+    ax_e.set_ylabel("speedup vs 1 GPU")
+    ax_e.set_title("Elapsed time (20 SCF cycles + setup)")
+    ax_s.set_title("Steady-state SCF cycle (median of cycles 2-20)")
+    ax_s.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(OUT / "strong_scaling_steady.png", dpi=150)
+    plt.close(fig)
+
+
 def compute_metrics(rows: list[dict]) -> dict:
     small = [r for r in rows if r["n"] in (3, 4, 5, 6) and r["completed"]]
     strong = {}
@@ -232,11 +273,38 @@ def compute_metrics(rows: list[dict]) -> dict:
             "atoms": [r12["nions"], r14["nions"]],
             "s_per_scf": [t12, t14],
             "exponent_p": float(np.log(t14 / t12) / np.log(r14["nions"] / r12["nions"])),
-            "caveat": "NELM=2; includes init. First-vs-second SCF costs differ; treat as rough.",
+            "caveat": ("elapsed/scf_done includes setup, teardown, forces and "
+                       "stress, 86-87% of elapsed time in these NELM=2 runs; "
+                       "see second_scf_exponent_p for the SCF cycle alone."),
         }
+        if r12["steady_scf_s"] and r14["steady_scf_s"]:
+            large_exponent["second_scf_s"] = [r12["steady_scf_s"], r14["steady_scf_s"]]
+            large_exponent["second_scf_exponent_p"] = float(
+                np.log(r14["steady_scf_s"] / r12["steady_scf_s"])
+                / np.log(r14["nions"] / r12["nions"]))
+            large_exponent["scf_fraction_of_elapsed"] = [
+                sum(r["scf_real_s"]) / r["elapsed_s"] for r in (r12, r14)]
+    # the same sweep on the steady-state SCF cycle instead of elapsed time
+    steady = {}
+    for n in (3, 4, 5, 6):
+        pts = sorted([r for r in small if r["n"] == n], key=lambda r: r["ngpu"])
+        s1 = next((r["steady_scf_s"] for r in pts if r["ngpu"] == 1), None)
+        if not s1:
+            continue
+        steady[f"{n}x{n}x{n}"] = [
+            {
+                "ngpu": r["ngpu"],
+                "steady_scf_s": r["steady_scf_s"],
+                "first_scf_s": r["first_scf_s"],
+                "outside_ionic_s": r["outside_ionic_s"],
+                "steady_speedup": s1 / r["steady_scf_s"],
+            }
+            for r in pts
+        ]
     failed = [r["path"] for r in rows if r["scf_done"] == 0]
     return {
         "strong_scaling": strong,
+        "strong_scaling_steady_scf": steady,
         "large_size_exponent": large_exponent,
         "failed_runs": failed,
         "all_runs": rows,
@@ -251,7 +319,8 @@ def main() -> None:
     plot_time_vs_size(rows)
     plot_per_scf_bar(rows)
     plot_large_systems(rows)
-    print(f"wrote {OUT/'metrics.json'} and 4 PNGs")
+    plot_strong_scaling_steady(rows)
+    print(f"wrote {OUT/'metrics.json'} and 5 PNGs")
 
 
 if __name__ == "__main__":

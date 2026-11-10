@@ -191,8 +191,8 @@ def main():
         ax.axis("off")
         fig.text(0.07, 0.18, "Energy only: filled markers (B200 run and its GB10/H200 reruns, "
                  "Cu, 12 neighbors). Energy + forces + stress:\nhollow markers, solid lines "
-                 "(Si, 52-neighbor matpes_r2scan, the MD workload). VASP: time per SCF "
-                 "cycle, Si.", fontsize=9, color="#52514e", va="top")
+                 "(Si, 52-neighbor matpes_r2scan, the MD workload). VASP: elapsed time "
+                 "per SCF cycle, setup included, Si.", fontsize=9, color="#52514e", va="top")
         pdf.savefig(fig)
         plt.close(fig)
 
@@ -485,7 +485,8 @@ def main():
                   "SCF cycles", "Elapsed (s)", "s / SCF", "E (eV/atom)", "Status"]
         v_note = ("VASP GPU build, single-point SCF. 3×3×3 to 6×6×6: NELM=20, EDIFF=1E-6. "
                   "10×10×10: NELM=5, ALGO=Fast.\n12×12×12 and larger: NELM=2, ALGO=Fast. "
-                  "SCF cycles = completed / maximum allowed (NELM).\n"
+                  "SCF cycles = completed / maximum allowed (NELM). s / SCF = elapsed / SCF cycles, "
+                  "setup included (the cycles alone: b200/vasp_dft/analysis/summary.md).\n"
                   "E = energy of the last SCF cycle / atom count. Converged = last energy "
                   "change below the run's EDIFF.\n"
                   "Amber rows were stopped early for timing; their E is an unconverged "
