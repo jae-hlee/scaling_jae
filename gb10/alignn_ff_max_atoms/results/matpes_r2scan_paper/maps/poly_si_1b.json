@@ -1,0 +1,36 @@
+{
+ "structure": "/data/jlee859/ffmax/structures/poly_si_1b",
+ "mode": "chunked",
+ "natoms": 1021299267,
+ "axis": 2,
+ "plane_axes": [
+  0,
+  1
+ ],
+ "center_A": 1370.0,
+ "width_A": 5.0,
+ "box_A": [
+  2740.0,
+  2740.0,
+  2740.0
+ ],
+ "slab_atoms": 1863768,
+ "missing_energies": 0,
+ "median_by_group_eV": {
+  "0": -8.74756145477295
+ },
+ "de_percentiles_eV": {
+  "1": -0.014433860778808594,
+  "50": 0.0,
+  "90": 0.11034708023071294,
+  "99": 0.9530534553527836,
+  "99.9": 1.493423178195986
+ },
+ "layers": null,
+ "kind": "grid",
+ "pixel_A": 2.0,
+ "shape": [
+  1370,
+  1370
+ ]
+}

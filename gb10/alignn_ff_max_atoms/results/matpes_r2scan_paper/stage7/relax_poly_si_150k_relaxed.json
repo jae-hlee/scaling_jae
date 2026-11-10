@@ -1,0 +1,21 @@
+{
+ "kind": "poly",
+ "seed": 1,
+ "element": "Si",
+ "grains": 8,
+ "removed_close_pairs": 2234,
+ "d_min_A": 1.7634442284560627,
+ "natoms": 155281,
+ "box_A": [
+  146.61,
+  146.61,
+  146.61
+ ],
+ "elements": {
+  "14": 155281
+ },
+ "relaxed_from": "/data/jlee859/ffmax/structures/poly_si_150k",
+ "relax_steps": 2000,
+ "relax_fmax": 0.4854506660994278,
+ "relax_converged": false
+}

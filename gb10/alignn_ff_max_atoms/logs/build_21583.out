@@ -1,0 +1,38 @@
+start Sun Nov  8 04:14:11 PM EST 2026 | atomgptlab07 | poly_si_1b --kind poly --element Si --box 2740 --grains 4800 --seed 1
+               total        used        free      shared  buff/cache   available
+Mem:             121           4          99           0          19         117
+  grain 480/4800  104,256,211 atoms  44 s
+  grain 960/4800  208,557,208 atoms  89 s
+  grain 1440/4800  310,591,867 atoms  133 s
+  grain 1920/4800  409,577,168 atoms  178 s
+  grain 2400/4800  512,921,398 atoms  223 s
+  grain 2880/4800  615,065,598 atoms  268 s
+  grain 3360/4800  718,453,026 atoms  312 s
+  grain 3840/4800  819,944,297 atoms  354 s
+  grain 4320/4800  923,536,731 atoms  398 s
+  grain 4800/4800  1,027,880,492 atoms  460 s
+{"kind": "poly", "seed": 1, "element": "Si", "grains": 4800, "removed_close_pairs": 6581225, "d_min_A": 1.7634442284560627, "natoms": 1021299267, "box_A": [2740.0, 2740.0, 2740.0], "elements": {"14": 1021299267}} built in 599 s
+	Command being timed: "/data/jlee859/miniforge3-aarch64/envs/alignn/bin/python /data/jlee859/ffmax/cells.py build --kind poly --element Si --box 2740 --grains 4800 --seed 1 --out structures/poly_si_1b"
+	User time (seconds): 9118.52
+	System time (seconds): 117.97
+	Percent of CPU this job got: 1537%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 10:00.81
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 95955476
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 31074748
+	Voluntary context switches: 9109
+	Involuntary context switches: 319892
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 57847160
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+exit 0 end Sun Nov  8 04:24:11 PM EST 2026

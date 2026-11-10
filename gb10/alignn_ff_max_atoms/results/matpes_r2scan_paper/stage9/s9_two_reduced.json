@@ -1,0 +1,35 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/matpes_r2scan_paper",
+ "natoms": 8000,
+ "kind": "Si",
+ "rep": 10,
+ "a_A": 5.43,
+ "rattle": 0.05,
+ "box_A": [
+  54.3,
+  54.3,
+  54.3
+ ],
+ "k": [
+  4,
+  4,
+  4
+ ],
+ "halo_A": 20.01,
+ "halo_exact": true,
+ "forces": true,
+ "gpu": "NVIDIA GB10",
+ "e_per_atom": -8.699400581433569,
+ "wall_s_slowest_rank": 36.187744833063334,
+ "gb10_hours": 0.020027716842273044,
+ "piece_atoms_max": 5492,
+ "mem_alloc_gb_max": 4.434315264,
+ "host_peak_gb_max": 1.97382,
+ "max_abs_f": 3.668946978325886,
+ "net_force": [
+  2.1926904736346842e-14,
+  8.770761894538737e-14,
+  2.3869795029440866e-14
+ ],
+ "rms_f": 0.7923917807368509
+}

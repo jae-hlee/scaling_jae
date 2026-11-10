@@ -1,0 +1,12 @@
+start Sun Nov  8 10:33:17 PM EST 2026 | atomgptlab05 | matpes_r2scan_paper stage9/s9_2B_energy --kind Si --rep 630 --rattle 0.05 --cluster_atoms 330820 | task 9 of 10
+device cuda | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=2000376000 box 3420.9 A, [23, 23, 23] cubes, halo 20.01 A, rank 9/10: x cubes 20-22, 1587 pieces, x cells 543..634
+200/1587 pieces, 32,722,529 atoms, 1011 s
+400/1587 pieces, 65,427,717 atoms, 2021 s
+600/1587 pieces, 98,238,875 atoms, 3032 s
+800/1587 pieces, 131,251,173 atoms, 4042 s
+1000/1587 pieces, 164,266,437 atoms, 5053 s
+1200/1587 pieces, 197,175,777 atoms, 6063 s
+1400/1587 pieces, 230,036,065 atoms, 7073 s
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661208064, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '21590', 'host': 'atomgptlab05', 'natoms': 2000376000, 'kind': 'Si', 'rep': 630, 'a_A': 5.43, 'nb': 8, 'rattle': 0.05, 'seed': 0, 'box_A': [3420.8999999999996, 3420.8999999999996, 3420.8999999999996], 'k': [23, 23, 23], 'core_A': [148.73478260869564, 148.73478260869564, 148.73478260869564], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rank': 9, 'world': 10, 'slab_cubes_x': [20, 23], 'ixa': 543, 'ixb': 635, 'local_force_rows': 0, 'n_cubes': 12167, 'cubes_done': 1587, 'owned_done': 260763282, 'energy': -2268536277.875, 'wall_s': 8017.267086578999, 'host_peak_gb': 2.45348, 'owned_atoms_per_s': 32525.208301532184}
+exit 0 end Mon Nov  9 12:46:58 AM EST 2026

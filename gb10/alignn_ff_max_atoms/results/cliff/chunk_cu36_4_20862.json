@@ -1,0 +1,88 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/v12_dft_3d_307k_pure",
+ "checkpoint_md5": "610982d1f40319ec5027ca0450c38e97",
+ "layers": [
+  2,
+  2
+ ],
+ "hidden": 64,
+ "element_embedding": false,
+ "cutoff": 5.0,
+ "max_neighbors": 12,
+ "three_body_cutoff": null,
+ "reach_A": 20.0,
+ "gpu": "NVIDIA GB10",
+ "gpu_memory_gb": 130.661203968,
+ "neighbor_list": "matscipy",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_6a20fb5/alignn",
+ "slurm_job": "20862",
+ "host": "atomgptlab07",
+ "natoms": 256,
+ "structure": "/data/jlee859/ffmax/structures/cu36_4",
+ "structure_meta": {
+  "kind": "Cu",
+  "seed": 0,
+  "rep": 4,
+  "rattle": 0.0,
+  "a_A": 3.6,
+  "natoms": 256,
+  "box_A": [
+   14.4,
+   14.4,
+   14.4
+  ],
+  "elements": {
+   "29": 256
+  }
+ },
+ "box_A": [
+  14.4,
+  14.4,
+  14.4
+ ],
+ "k": [
+  1,
+  1,
+  1
+ ],
+ "core_A": [
+  14.4,
+  14.4,
+  14.4
+ ],
+ "halo_A": 20.01,
+ "halo_exact": true,
+ "forces": false,
+ "ckpt": false,
+ "rattle": 0.0,
+ "rank": 0,
+ "world": 1,
+ "n_cubes": 1,
+ "cubes_done": 1,
+ "owned_done": 256,
+ "energy": 154.62753295898438,
+ "pieces": [
+  {
+   "cube": [
+    0,
+    0,
+    0
+   ],
+   "atoms": 9983,
+   "owned": 256,
+   "t_graph_s": 0.39221863774582744,
+   "t_eval_s": 1.2740209940820932,
+   "edges": 119796,
+   "lg_edges": 1285980,
+   "max_degree": 12,
+   "mem_alloc_gb": 2.381526016,
+   "mem_reserved_gb": 2.636120064
+  }
+ ],
+ "wall_s": 1.6997697190381587,
+ "host_peak_gb": 1.64572,
+ "owned_atoms_per_s": 150.60863664806408,
+ "neighbor_cap_binds": true,
+ "e_per_atom": 0.6040138006210327
+}

@@ -1,0 +1,215 @@
+start Sun Nov  8 10:58:46 AM EST 2026 | atomgptlab07
+[PASS] Si crystal matches ff_max_atoms 
+[PASS] SiGe species match 
+[PASS] pieces exact, k=[2, 3, 2] h=7.5 
+[PASS] each atom owned once, k=[2, 3, 2] 
+[PASS] pieces exact, k=[1, 1, 1] h=9.0 
+[PASS] each atom owned once, k=[1, 1, 1] 
+[PASS] pieces exact, k=[4, 2, 3] h=12.0 
+[PASS] each atom owned once, k=[4, 2, 3] 
+[PASS] toy model, halo = reach: per-atom energies exact (max diff 4.0e-15)
+[PASS] toy model, halo < reach: differs (control) 
+[PASS] water O-H 0.9572 A 
+[PASS] water density 
+[PASS] polycrystal Si: 7685 atoms, 6 grains (filled 0.995 of bulk before thinning, 0.961 after, 278 removed, 0 close pairs)
+[PASS] polycrystal Al: 6358 atoms, 5 grains (filled 0.998 of bulk before thinning, 0.920 after, 539 removed, 0 close pairs)
+[PASS] polycrystal Cu: 6362 atoms, 5 grains (filled 0.997 of bulk before thinning, 0.919 after, 542 removed, 0 close pairs)
+[PASS] SiO2: Si-O 1.55 A, 4 O per Si, 2 Si per O (Si-O 1.550 A, 64 Si, 128 O)
+[PASS] stack Si/SiO2/Al: 772 atoms, box [21.72, 21.72, 39.89] (closest pair 1.562 A, in-plane strains [0.0, 0.0112, 0.0726])
+[PASS] on-demand crystal pieces match full-cell pieces (largest position difference 7.1e-15 A)
+[PASS] slab-local rows fold back to the full-cell result 
+[PASS] pristine Al pieces: every atom owned once 
+ALL PASS
+{"n": 48, "natoms": 442368, "edges": 5308416, "lg_edges": 63700992, "lg_edges_over_2^26": 0.94921875, "t_build_s": 12.639609940350056, "out_degree_min_max": [12, 12], "in_degree_min_max": [12, 12], "bond_length_min_max": [2.545567274093628, 2.545588731765747], "lg_edges_not_sharing_an_atom": 0, "first_bad_lg_edge": null, "reference_lg_edges": 63700992, "mismatches": 0, "mismatches_past_2^26": 0, "first_mismatch": null}
+construct n=48 exit 0 Sun Nov  8 10:59:56 AM EST 2026
+{"n": 49, "natoms": 470596, "edges": 5647152, "lg_edges": 67765824, "lg_edges_over_2^26": 1.0097894668579102, "t_build_s": 3.497722796164453, "out_degree_min_max": [12, 12], "in_degree_min_max": [12, 12], "bond_length_min_max": [2.545567274093628, 2.545588731765747], "lg_edges_not_sharing_an_atom": 0, "first_bad_lg_edge": null, "reference_lg_edges": 67765824, "mismatches": 0, "mismatches_past_2^26": 0, "first_mismatch": null}
+construct n=49 exit 0 Sun Nov  8 11:00:15 AM EST 2026
+[ok  ] repeat_interleave      rows  66,060,288 width    1  diff below 0.00e+00  from 2^26 0.00e+00  (scale 1.00e+00)
+[ok  ] gather x[idx]          rows  66,060,288 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.35e+00)
+[ok  ] index_select           rows  66,060,288 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.35e+00)
+[ok  ] Linear                 rows  66,060,288 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 4.08e+00)
+[ok  ] LayerNorm              rows  66,060,288 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 5.80e+00)
+[ok  ] sigmoid                rows  66,060,288 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 9.98e-01)
+[ok  ] silu                   rows  66,060,288 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.25e+00)
+[ok  ] scatter_add_ (sum)     rows  66,060,288 width   64  diff below 0.00e+00  from 2^26 1.91e-06  (scale 2.60e+01)
+[ok  ] index_add_ (sum)       rows  66,060,288 width   64  diff below 0.00e+00  from 2^26 3.81e-06  (scale 2.60e+01)
+[ok  ] repeat_interleave      rows  71,303,168 width    1  diff below 0.00e+00  from 2^26 0.00e+00  (scale 1.00e+00)
+[ok  ] gather x[idx]          rows  71,303,168 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 5.77e+00)
+[ok  ] index_select           rows  71,303,168 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 5.77e+00)
+[ok  ] Linear                 rows  71,303,168 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 3.86e+00)
+[ok  ] LayerNorm              rows  71,303,168 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 5.55e+00)
+[ok  ] sigmoid                rows  71,303,168 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 9.98e-01)
+[ok  ] silu                   rows  71,303,168 width   64  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.03e+00)
+[ok  ] scatter_add_ (sum)     rows  71,303,168 width   64  diff below 0.00e+00  from 2^26 3.81e-06  (scale 2.56e+01)
+[ok  ] index_add_ (sum)       rows  71,303,168 width   64  diff below 0.00e+00  from 2^26 3.81e-06  (scale 2.56e+01)
+[ok  ] repeat_interleave      rows  71,303,168 width    1  diff below 0.00e+00  from 2^26 0.00e+00  (scale 1.00e+00)
+[ok  ] gather x[idx]          rows  71,303,168 width  128  diff below 0.00e+00  from 2^26 0.00e+00  (scale 5.86e+00)
+[ok  ] index_select           rows  71,303,168 width  128  diff below 0.00e+00  from 2^26 0.00e+00  (scale 5.86e+00)
+[ok  ] Linear                 rows  71,303,168 width  128  diff below 0.00e+00  from 2^26 0.00e+00  (scale 3.80e+00)
+[ok  ] LayerNorm              rows  71,303,168 width  128  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.14e+00)
+[ok  ] sigmoid                rows  71,303,168 width  128  diff below 0.00e+00  from 2^26 0.00e+00  (scale 9.98e-01)
+[ok  ] silu                   rows  71,303,168 width  128  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.24e+00)
+[ok  ] scatter_add_ (sum)     rows  71,303,168 width  128  diff below 0.00e+00  from 2^26 1.91e-06  (scale 2.51e+01)
+[ok  ] index_add_ (sum)       rows  71,303,168 width  128  diff below 0.00e+00  from 2^26 3.81e-06  (scale 2.51e+01)
+[ok  ] repeat_interleave      rows 135,266,304 width    1  diff below 0.00e+00  from 2^26 0.00e+00  (scale 1.00e+00)
+[ok  ] gather x[idx]          rows 135,266,304 width   32  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.05e+00)
+[ok  ] index_select           rows 135,266,304 width   32  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.05e+00)
+[ok  ] Linear                 rows 135,266,304 width   32  diff below 0.00e+00  from 2^26 0.00e+00  (scale 3.89e+00)
+[ok  ] LayerNorm              rows 135,266,304 width   32  diff below 0.00e+00  from 2^26 0.00e+00  (scale 4.73e+00)
+[ok  ] sigmoid                rows 135,266,304 width   32  diff below 0.00e+00  from 2^26 0.00e+00  (scale 9.99e-01)
+[ok  ] silu                   rows 135,266,304 width   32  diff below 0.00e+00  from 2^26 0.00e+00  (scale 6.73e+00)
+[ok  ] scatter_add_ (sum)     rows 135,266,304 width   32  diff below 0.00e+00  from 2^26 1.91e-06  (scale 2.58e+01)
+[ok  ] index_add_ (sum)       rows 135,266,304 width   32  diff below 0.00e+00  from 2^26 3.81e-06  (scale 2.58e+01)
+0 of 36 checks failed
+ops exit 0 Sun Nov  8 11:02:01 AM EST 2026
+v12 checkpoint: /home/jlee859/.cache/atomgptlab/alignn_ff/v12.2.2024_dft_3d_307k
+source /home/jlee859/.cache/atomgptlab/alignn_ff/v12.2.2024_dft_3d_307k
+original model settings {'name': 'alignn_atomwise', 'energy_mult_natoms': True, 'calculate_gradient': True, 'alignn_layers': 2, 'gcn_layers': 2, 'hidden_features': 64}
+config keys dropped (not in the pure config): []
+missing weights: []
+unexpected weights: 0 []
+wrote /data/jlee859/ffmax/models/v12_dft_3d_307k_pure | layers 2 + 2 | hidden 64
+{"kind": "Cu", "seed": 0, "rep": 4, "rattle": 0.0, "a_A": 3.6, "natoms": 256, "box_A": [14.4, 14.4, 14.4], "elements": {"29": 256}} built in 0 s
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=256 box [14.4, 14.4, 14.4] A, [1, 1, 1] cubes of [14.4, 14.4, 14.4] A, halo 20.01 A, 1 cubes on rank 0/1
+cube (0, 0, 0): 9983 atoms (256 own)  1285980 angles  graph 0.39 s  eval 1.27 s  peak 2.4 GB
+{'model_dir': '/data/jlee859/ffmax/models/v12_dft_3d_307k_pure', 'checkpoint_md5': '610982d1f40319ec5027ca0450c38e97', 'layers': [2, 2], 'hidden': 64, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 12, 'three_body_cutoff': None, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661203968, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '20862', 'host': 'atomgptlab07', 'natoms': 256, 'structure': '/data/jlee859/ffmax/structures/cu36_4', 'box_A': [14.4, 14.4, 14.4], 'k': [1, 1, 1], 'core_A': [14.4, 14.4, 14.4], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 1, 'cubes_done': 1, 'owned_done': 256, 'energy': 154.62753295898438, 'wall_s': 1.6997697190381587, 'host_peak_gb': 1.64572, 'owned_atoms_per_s': 150.60863664806408, 'neighbor_cap_binds': True, 'e_per_atom': 0.6040138006210327}
+chunk n=4 exit 0 Sun Nov  8 11:02:17 AM EST 2026
+{"kind": "Cu", "seed": 0, "rep": 48, "rattle": 0.0, "a_A": 3.6, "natoms": 442368, "box_A": [172.8, 172.8, 172.8], "elements": {"29": 442368}} built in 0 s
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=442368 box [172.8, 172.8, 172.8] A, [3, 3, 3] cubes of [57.6, 57.6, 57.6] A, halo 20.01 A, 27 cubes on rank 0/1
+cube (0, 0, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.31 s  eval 1.97 s  peak 18.0 GB
+cube (0, 0, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (0, 0, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (0, 1, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.08 s  peak 18.0 GB
+cube (0, 1, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.29 s  eval 1.09 s  peak 18.0 GB
+cube (0, 1, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (0, 2, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (0, 2, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (0, 2, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.31 s  eval 1.09 s  peak 18.0 GB
+cube (1, 0, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (1, 0, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (1, 0, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.08 s  peak 18.0 GB
+cube (1, 1, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.08 s  peak 18.0 GB
+cube (1, 1, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.08 s  peak 18.0 GB
+cube (1, 1, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (1, 2, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.08 s  peak 18.0 GB
+cube (1, 2, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.29 s  eval 1.08 s  peak 18.0 GB
+cube (1, 2, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.29 s  eval 1.08 s  peak 18.0 GB
+cube (2, 0, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (2, 0, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.08 s  peak 18.0 GB
+cube (2, 0, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (2, 1, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.31 s  eval 1.09 s  peak 18.0 GB
+cube (2, 1, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (2, 1, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.29 s  eval 1.08 s  peak 18.0 GB
+cube (2, 2, 0): 73091 atoms (16384 own)  9928428 angles  graph 0.30 s  eval 1.09 s  peak 18.0 GB
+cube (2, 2, 1): 73091 atoms (16384 own)  9928428 angles  graph 0.31 s  eval 1.08 s  peak 18.0 GB
+cube (2, 2, 2): 73091 atoms (16384 own)  9928428 angles  graph 0.29 s  eval 1.09 s  peak 18.0 GB
+{'model_dir': '/data/jlee859/ffmax/models/v12_dft_3d_307k_pure', 'checkpoint_md5': '610982d1f40319ec5027ca0450c38e97', 'layers': [2, 2], 'hidden': 64, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 12, 'three_body_cutoff': None, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661203968, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '20862', 'host': 'atomgptlab07', 'natoms': 442368, 'structure': '/data/jlee859/ffmax/structures/cu36_48', 'box_A': [172.8, 172.8, 172.8], 'k': [3, 3, 3], 'core_A': [57.6, 57.6, 57.6], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 27, 'cubes_done': 27, 'owned_done': 442368, 'energy': 267196.376953125, 'wall_s': 38.676325171254575, 'host_peak_gb': 2.17718, 'owned_atoms_per_s': 11437.694714822115, 'neighbor_cap_binds': True, 'e_per_atom': 0.6040138006210327}
+chunk n=48 exit 0 Sun Nov  8 11:02:58 AM EST 2026
+{"kind": "Cu", "seed": 0, "rep": 49, "rattle": 0.0, "a_A": 3.6, "natoms": 470596, "box_A": [176.4, 176.4, 176.4], "elements": {"29": 470596}} built in 0 s
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=470596 box [176.4, 176.4, 176.4] A, [3, 3, 3] cubes of [58.8, 58.8, 58.8] A, halo 20.01 A, 27 cubes on rank 0/1
+cube (0, 0, 0): 75155 atoms (17969 own)  10211628 angles  graph 0.32 s  eval 2.04 s  peak 18.6 GB
+cube (0, 0, 1): 75128 atoms (17968 own)  10207598 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (0, 0, 2): 75155 atoms (17424 own)  10211628 angles  graph 0.32 s  eval 1.12 s  peak 18.6 GB
+cube (0, 1, 0): 75128 atoms (17968 own)  10207598 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (0, 1, 1): 75135 atoms (17969 own)  10208948 angles  graph 0.31 s  eval 1.11 s  peak 18.5 GB
+cube (0, 1, 2): 75128 atoms (17424 own)  10207598 angles  graph 0.30 s  eval 1.12 s  peak 18.5 GB
+cube (0, 2, 0): 75155 atoms (17424 own)  10211628 angles  graph 0.30 s  eval 1.13 s  peak 18.6 GB
+cube (0, 2, 1): 75128 atoms (17424 own)  10207598 angles  graph 0.30 s  eval 1.12 s  peak 18.5 GB
+cube (0, 2, 2): 75155 atoms (16896 own)  10211628 angles  graph 0.31 s  eval 1.13 s  peak 18.6 GB
+cube (1, 0, 0): 75128 atoms (17968 own)  10207598 angles  graph 0.31 s  eval 1.11 s  peak 18.5 GB
+cube (1, 0, 1): 75135 atoms (17969 own)  10208948 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (1, 0, 2): 75128 atoms (17424 own)  10207598 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (1, 1, 0): 75135 atoms (17969 own)  10208948 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (1, 1, 1): 75220 atoms (17968 own)  10221384 angles  graph 0.31 s  eval 1.12 s  peak 18.6 GB
+cube (1, 1, 2): 75135 atoms (17424 own)  10208948 angles  graph 0.32 s  eval 1.12 s  peak 18.5 GB
+cube (1, 2, 0): 75128 atoms (17424 own)  10207598 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (1, 2, 1): 75135 atoms (17424 own)  10208948 angles  graph 0.31 s  eval 1.11 s  peak 18.5 GB
+cube (1, 2, 2): 75128 atoms (16896 own)  10207598 angles  graph 0.30 s  eval 1.11 s  peak 18.5 GB
+cube (2, 0, 0): 75155 atoms (17424 own)  10211628 angles  graph 0.31 s  eval 1.13 s  peak 18.6 GB
+cube (2, 0, 1): 75128 atoms (17424 own)  10207598 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (2, 0, 2): 75155 atoms (16896 own)  10211628 angles  graph 0.31 s  eval 1.13 s  peak 18.6 GB
+cube (2, 1, 0): 75128 atoms (17424 own)  10207598 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (2, 1, 1): 75135 atoms (17424 own)  10208948 angles  graph 0.31 s  eval 1.12 s  peak 18.5 GB
+cube (2, 1, 2): 75128 atoms (16896 own)  10207598 angles  graph 0.30 s  eval 1.12 s  peak 18.5 GB
+cube (2, 2, 0): 75155 atoms (16896 own)  10211628 angles  graph 0.30 s  eval 1.12 s  peak 18.6 GB
+cube (2, 2, 1): 75128 atoms (16896 own)  10207598 angles  graph 0.30 s  eval 1.12 s  peak 18.5 GB
+cube (2, 2, 2): 75155 atoms (16384 own)  10211628 angles  graph 0.30 s  eval 1.12 s  peak 18.6 GB
+{'model_dir': '/data/jlee859/ffmax/models/v12_dft_3d_307k_pure', 'checkpoint_md5': '610982d1f40319ec5027ca0450c38e97', 'layers': [2, 2], 'hidden': 64, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 12, 'three_body_cutoff': None, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661203968, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '20862', 'host': 'atomgptlab07', 'natoms': 470596, 'structure': '/data/jlee859/ffmax/structures/cu36_49', 'box_A': [176.4, 176.4, 176.4], 'k': [3, 3, 3], 'core_A': [58.800000000000004, 58.800000000000004, 58.800000000000004], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 27, 'cubes_done': 27, 'owned_done': 470596, 'energy': 284246.46875, 'wall_s': 39.85779606923461, 'host_peak_gb': 2.183848, 'owned_atoms_per_s': 11806.874599452405, 'neighbor_cap_binds': True, 'e_per_atom': 0.6040137798663822}
+chunk n=49 exit 0 Sun Nov  8 11:03:40 AM EST 2026
+{"kind": "Cu", "seed": 0, "rep": 52, "rattle": 0.0, "a_A": 3.6, "natoms": 562432, "box_A": [187.20000000000002, 187.20000000000002, 187.20000000000002], "elements": {"29": 562432}} built in 0 s
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=562432 box [187.2, 187.2, 187.2] A, [3, 3, 3] cubes of [62.4, 62.4, 62.4] A, halo 20.01 A, 27 cubes on rank 0/1
+cube (0, 0, 0): 84237 atoms (21438 own)  11469336 angles  graph 0.36 s  eval 2.18 s  peak 20.8 GB
+cube (0, 0, 1): 84208 atoms (21437 own)  11465010 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (0, 0, 2): 84237 atoms (20825 own)  11469336 angles  graph 0.36 s  eval 1.26 s  peak 20.8 GB
+cube (0, 1, 0): 84208 atoms (21437 own)  11465010 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (0, 1, 1): 84216 atoms (21438 own)  11466512 angles  graph 0.35 s  eval 1.26 s  peak 20.8 GB
+cube (0, 1, 2): 84208 atoms (20825 own)  11465010 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (0, 2, 0): 84237 atoms (20825 own)  11469336 angles  graph 0.35 s  eval 1.26 s  peak 20.8 GB
+cube (0, 2, 1): 84208 atoms (20825 own)  11465010 angles  graph 0.36 s  eval 1.27 s  peak 20.8 GB
+cube (0, 2, 2): 84237 atoms (20230 own)  11469336 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (1, 0, 0): 84208 atoms (21437 own)  11465010 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (1, 0, 1): 84216 atoms (21438 own)  11466512 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (1, 0, 2): 84208 atoms (20825 own)  11465010 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (1, 1, 0): 84216 atoms (21438 own)  11466512 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (1, 1, 1): 84305 atoms (21437 own)  11479548 angles  graph 0.34 s  eval 1.26 s  peak 20.8 GB
+cube (1, 1, 2): 84216 atoms (20825 own)  11466512 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (1, 2, 0): 84208 atoms (20825 own)  11465010 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (1, 2, 1): 84216 atoms (20825 own)  11466512 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (1, 2, 2): 84208 atoms (20230 own)  11465010 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (2, 0, 0): 84237 atoms (20825 own)  11469336 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (2, 0, 1): 84208 atoms (20825 own)  11465010 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (2, 0, 2): 84237 atoms (20230 own)  11469336 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (2, 1, 0): 84208 atoms (20825 own)  11465010 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (2, 1, 1): 84216 atoms (20825 own)  11466512 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (2, 1, 2): 84208 atoms (20230 own)  11465010 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+cube (2, 2, 0): 84237 atoms (20230 own)  11469336 angles  graph 0.35 s  eval 1.27 s  peak 20.8 GB
+cube (2, 2, 1): 84208 atoms (20230 own)  11465010 angles  graph 0.34 s  eval 1.26 s  peak 20.8 GB
+cube (2, 2, 2): 84237 atoms (19652 own)  11469336 angles  graph 0.34 s  eval 1.27 s  peak 20.8 GB
+{'model_dir': '/data/jlee859/ffmax/models/v12_dft_3d_307k_pure', 'checkpoint_md5': '610982d1f40319ec5027ca0450c38e97', 'layers': [2, 2], 'hidden': 64, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 12, 'three_body_cutoff': None, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661203968, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '20862', 'host': 'atomgptlab07', 'natoms': 562432, 'structure': '/data/jlee859/ffmax/structures/cu36_52', 'box_A': [187.20000000000002, 187.20000000000002, 187.20000000000002], 'k': [3, 3, 3], 'core_A': [62.400000000000006, 62.400000000000006, 62.400000000000006], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 27, 'cubes_done': 27, 'owned_done': 562432, 'energy': 339716.6884765625, 'wall_s': 44.9512470071204, 'host_peak_gb': 2.23268, 'owned_atoms_per_s': 12512.044435850896, 'neighbor_cap_binds': True, 'e_per_atom': 0.6040137980708112}
+chunk n=52 exit 0 Sun Nov  8 11:04:28 AM EST 2026
+{"kind": "Cu", "seed": 0, "rep": 58, "rattle": 0.0, "a_A": 3.6, "natoms": 780448, "box_A": [208.8, 208.8, 208.8], "elements": {"29": 780448}} built in 0 s
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=780448 box [208.8, 208.8, 208.8] A, [3, 3, 3] cubes of [69.6, 69.6, 69.6] A, halo 20.01 A, 27 cubes on rank 0/1
+cube (0, 0, 0): 104477 atoms (29660 own)  14277936 angles  graph 0.43 s  eval 2.62 s  peak 25.9 GB
+cube (0, 0, 1): 104444 atoms (29659 own)  14273018 angles  graph 0.41 s  eval 1.57 s  peak 25.9 GB
+cube (0, 0, 2): 104477 atoms (28899 own)  14277936 angles  graph 0.42 s  eval 1.58 s  peak 25.9 GB
+cube (0, 1, 0): 104444 atoms (29659 own)  14273018 angles  graph 0.42 s  eval 1.57 s  peak 25.9 GB
+cube (0, 1, 1): 104454 atoms (29660 own)  14274824 angles  graph 0.42 s  eval 1.58 s  peak 25.9 GB
+cube (0, 1, 2): 104444 atoms (28899 own)  14273018 angles  graph 0.42 s  eval 1.57 s  peak 25.9 GB
+cube (0, 2, 0): 104477 atoms (28899 own)  14277936 angles  graph 0.42 s  eval 1.57 s  peak 25.9 GB
+cube (0, 2, 1): 104444 atoms (28899 own)  14273018 angles  graph 0.43 s  eval 1.57 s  peak 25.9 GB
+cube (0, 2, 2): 104477 atoms (28158 own)  14277936 angles  graph 0.43 s  eval 1.58 s  peak 25.9 GB
+cube (1, 0, 0): 104444 atoms (29659 own)  14273018 angles  graph 0.43 s  eval 1.57 s  peak 25.9 GB
+cube (1, 0, 1): 104454 atoms (29660 own)  14274824 angles  graph 0.42 s  eval 1.58 s  peak 25.9 GB
+cube (1, 0, 2): 104444 atoms (28899 own)  14273018 angles  graph 0.42 s  eval 1.57 s  peak 25.9 GB
+cube (1, 1, 0): 104454 atoms (29660 own)  14274824 angles  graph 0.42 s  eval 1.58 s  peak 25.9 GB
+cube (1, 1, 1): 104551 atoms (29659 own)  14289060 angles  graph 0.41 s  eval 1.58 s  peak 25.9 GB
+cube (1, 1, 2): 104454 atoms (28899 own)  14274824 angles  graph 0.42 s  eval 1.58 s  peak 25.9 GB
+cube (1, 2, 0): 104444 atoms (28899 own)  14273018 angles  graph 0.42 s  eval 1.57 s  peak 25.9 GB
+cube (1, 2, 1): 104454 atoms (28899 own)  14274824 angles  graph 0.42 s  eval 1.58 s  peak 25.9 GB
+cube (1, 2, 2): 104444 atoms (28158 own)  14273018 angles  graph 0.42 s  eval 1.57 s  peak 25.9 GB
+cube (2, 0, 0): 104477 atoms (28899 own)  14277936 angles  graph 0.44 s  eval 1.57 s  peak 25.9 GB
+cube (2, 0, 1): 104444 atoms (28899 own)  14273018 angles  graph 0.41 s  eval 1.57 s  peak 25.9 GB
+cube (2, 0, 2): 104477 atoms (28158 own)  14277936 angles  graph 0.43 s  eval 1.58 s  peak 25.9 GB
+cube (2, 1, 0): 104444 atoms (28899 own)  14273018 angles  graph 0.42 s  eval 1.57 s  peak 25.9 GB
+cube (2, 1, 1): 104454 atoms (28899 own)  14274824 angles  graph 0.41 s  eval 1.58 s  peak 25.9 GB
+cube (2, 1, 2): 104444 atoms (28158 own)  14273018 angles  graph 0.41 s  eval 1.57 s  peak 25.9 GB
+cube (2, 2, 0): 104477 atoms (28158 own)  14277936 angles  graph 0.42 s  eval 1.58 s  peak 25.9 GB
+cube (2, 2, 1): 104444 atoms (28158 own)  14273018 angles  graph 0.42 s  eval 1.57 s  peak 25.9 GB
+cube (2, 2, 2): 104477 atoms (27436 own)  14277936 angles  graph 0.41 s  eval 1.58 s  peak 25.9 GB
+{'model_dir': '/data/jlee859/ffmax/models/v12_dft_3d_307k_pure', 'checkpoint_md5': '610982d1f40319ec5027ca0450c38e97', 'layers': [2, 2], 'hidden': 64, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 12, 'three_body_cutoff': None, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661203968, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '20862', 'host': 'atomgptlab07', 'natoms': 780448, 'structure': '/data/jlee859/ffmax/structures/cu36_58', 'box_A': [208.8, 208.8, 208.8], 'k': [3, 3, 3], 'core_A': [69.60000000000001, 69.60000000000001, 69.60000000000001], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 27, 'cubes_done': 27, 'owned_done': 780448, 'energy': 471401.341796875, 'wall_s': 55.51616057101637, 'host_peak_gb': 2.44578, 'owned_atoms_per_s': 14058.03268764686, 'neighbor_cap_binds': True, 'e_per_atom': 0.604013773879714}
+chunk n=58 exit 0 Sun Nov  8 11:05:26 AM EST 2026
+construct n=48: 442,368 atoms, 63,700,992 line-graph edges (0.949 x 2^26), not sharing an atom 0, mismatches 0 (past 2^26: 0)
+construct n=49: 470,596 atoms, 67,765,824 line-graph edges (1.010 x 2^26), not sharing an atom 0, mismatches 0 (past 2^26: 0)
+ops: 0 of 36 failed
+chunked v12 Cu energies (eV/atom) against the B200 single-graph run (v6):
+        256 atoms  chunked 0.604014  B200 0.6040  pieces 1  largest piece 9,983
+    442,368 atoms  chunked 0.604014  B200 0.6040  pieces 27  largest piece 73,091
+    470,596 atoms  chunked 0.604014  B200 0.6070  pieces 27  largest piece 75,220
+    562,432 atoms  chunked 0.604014  B200 0.7027  pieces 27  largest piece 84,305
+    780,448 atoms  chunked 0.604014  B200 0.8449  pieces 27  largest piece 104,551
+end Sun Nov  8 11:05:26 AM EST 2026

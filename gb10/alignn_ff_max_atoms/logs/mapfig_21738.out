@@ -1,0 +1,14 @@
+start Mon Nov  9 10:25:24 AM EST 2026 | atomgptlab12
+depth (A) of the deepest bin above each threshold
+layer  face    z (A)   half-thickness  >1 meV  >10 meV  >100 meV
+Si     bottom      0.0           200.2       2.5       1.5       1.5
+Si     top       400.5           200.2       5.0       4.0       1.0
+SiO2   bottom    402.5            13.9      13.0      13.0      13.0
+SiO2   top       430.2            13.9      13.7      13.7      13.7
+Al     bottom    432.2            98.2       6.3       2.3       2.3
+Al     top       628.6            98.2       4.1       0.1       0.1
+profile exit 0
+wrote gb10_energy_maps.png
+figure exit 0
+-rw------- 1 jlee859 domain users 1052188 Nov  9 10:25 /data/jlee859/ffmax/gb10_energy_maps.png
+end Mon Nov  9 10:25:28 AM EST 2026

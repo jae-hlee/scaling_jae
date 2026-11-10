@@ -1,0 +1,26 @@
+{
+ "n": 49,
+ "natoms": 470596,
+ "edges": 5647152,
+ "lg_edges": 67765824,
+ "lg_edges_over_2^26": 1.0097894668579102,
+ "t_build_s": 3.497722796164453,
+ "out_degree_min_max": [
+  12,
+  12
+ ],
+ "in_degree_min_max": [
+  12,
+  12
+ ],
+ "bond_length_min_max": [
+  2.545567274093628,
+  2.545588731765747
+ ],
+ "lg_edges_not_sharing_an_atom": 0,
+ "first_bad_lg_edge": null,
+ "reference_lg_edges": 67765824,
+ "mismatches": 0,
+ "mismatches_past_2^26": 0,
+ "first_mismatch": null
+}

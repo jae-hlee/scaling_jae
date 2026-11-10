@@ -1,0 +1,28 @@
+start Sun Nov  8 02:35:37 PM EST 2026 | atomgptlab07 | stack_1e8 --kind stack --layers Si:400,SiO2:30,Al:200 --lateral 1737.6
+               total        used        free      shared  buff/cache   available
+Mem:             121           4         103           0          15         117
+{"kind": "stack", "seed": 0, "layers": [{"layer": "Si", "cells": [320, 320, 74], "atoms": 60620800, "in_plane_strain": 0.0, "z_bottom_A": 0.0, "z_top_A": 400.4625}, {"layer": "SiO2", "cells": [243, 243, 4], "atoms": 5668704, "in_plane_strain": -0.0013104352024279065, "z_bottom_A": 402.4625, "z_top_A": 430.2075}, {"layer": "Al", "cells": [429, 429, 49], "atoms": 36072036, "in_plane_strain": 8.633341966679531e-05, "z_bottom_A": 432.2075, "z_top_A": 628.6324999999999}], "gap_A": 2.0, "vacuum_A": 10.0, "natoms": 102361540, "box_A": [1737.6, 1737.6, 638.6324999999999], "elements": {"8": 3779136, "13": 36072036, "14": 62510368}} built in 5 s
+	Command being timed: "/data/jlee859/miniforge3-aarch64/envs/alignn/bin/python /data/jlee859/ffmax/cells.py build --kind stack --layers Si:400,SiO2:30,Al:200 --lateral 1737.6 --out structures/stack_1e8"
+	User time (seconds): 4.60
+	System time (seconds): 0.30
+	Percent of CPU this job got: 87%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:05.60
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 5224344
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 21894
+	Voluntary context switches: 1773
+	Involuntary context switches: 160
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 5198096
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+exit 0 end Sun Nov  8 02:35:42 PM EST 2026

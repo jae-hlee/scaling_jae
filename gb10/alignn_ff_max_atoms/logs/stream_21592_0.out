@@ -1,0 +1,15 @@
+start Sun Nov  8 10:42:35 PM EST 2026 | atomgptlab12 | matpes_r2scan_paper stage9/s9_2B_forces --kind Si --rep 630 --rattle 0.05 --forces --ckpt --cluster_atoms 106000 | task 0 of 20
+device cuda | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+N=2000376000 box 3420.9 A, [38, 38, 38] cubes, halo 20.01 A, rank 0/20: x cubes 0-0, 1444 pieces, x cells -5..21
+/data/jlee859/ffmax/ff_stream.py:107: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+200/1444 pieces, 7,307,979 atoms, 899 s
+400/1444 pieces, 14,626,412 atoms, 1793 s
+600/1444 pieces, 21,939,057 atoms, 2689 s
+800/1444 pieces, 29,242,531 atoms, 3587 s
+1000/1444 pieces, 36,560,520 atoms, 4483 s
+1200/1444 pieces, 43,869,590 atoms, 5379 s
+1400/1444 pieces, 51,176,378 atoms, 6277 s
+{'model_dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'checkpoint_md5': '92cfe2955622c198c03085fc5320296b', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663235584, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_6a20fb5/alignn', 'slurm_job': '21707', 'host': 'atomgptlab12', 'natoms': 2000376000, 'kind': 'Si', 'rep': 630, 'a_A': 5.43, 'nb': 8, 'rattle': 0.05, 'seed': 0, 'box_A': [3420.8999999999996, 3420.8999999999996, 3420.8999999999996], 'k': [38, 38, 38], 'core_A': [90.02368421052631, 90.02368421052631, 90.02368421052631], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rank': 0, 'world': 20, 'slab_cubes_x': [0, 1], 'ixa': -5, 'ixb': 22, 'local_force_rows': 85730400, 'n_cubes': 54872, 'cubes_done': 1444, 'owned_done': 52787718, 'energy': -459231809.78125, 'wall_s': 6474.077249547001, 'host_peak_gb': 4.33824, 'owned_atoms_per_s': 8153.705302743124}
+exit 0 end Mon Nov  9 12:30:34 AM EST 2026
