@@ -1,0 +1,208 @@
+--- a/alignn/models/alignn_atomwise_pure.py	2026-11-09 11:03:53
++++ b/alignn/models/alignn_atomwise_pure.py	2026-11-09 11:05:10
+@@ -105,6 +105,14 @@
+     # (atom_dgl_multigraph default = 3.5) so the TorchScript forward_tensors
+     # line graph is identical to the ASE/training forward(g) line graph.
+     three_body_cutoff: float = 3.5
++    # Smooth message weights. When True, every bond message is multiplied by
++    # a C2 switch of its length and every angle message by the switches of
++    # its two bonds, so energies and forces stay continuous when a bond
++    # crosses either graph cutoff. Off by default: old checkpoints unchanged.
++    smooth_messages: bool = False
++    two_body_onset: float = 4.0
++    two_body_cutoff: float = 5.0
++    three_body_onset: float = 3.0
+     stress_multiplier: float = 1.0
+     add_reverse_forces: bool = True
+     lg_on_fly: bool = True
+@@ -165,6 +173,9 @@
+         self.src_update = nn.Linear(input_features, output_features)
+         self.dst_update = nn.Linear(input_features, output_features)
+         self.bn_nodes = nn.LayerNorm(output_features)
++        # Set on smooth_messages models, so that a caller that does not pass
++        # weights fails instead of silently evaluating a different model.
++        self.require_weights: bool = False
+ 
+     def forward_tensors(
+         self,
+@@ -173,6 +184,7 @@
+         num_nodes: int,
+         x: torch.Tensor,
+         y: torch.Tensor,
++        w: Optional[torch.Tensor] = None,
+     ) -> Tuple[torch.Tensor, torch.Tensor]:
+         """Script-friendly core: takes plain tensors instead of a graph."""
+         # Edge update: m = e_src[src] + e_dst[dst] + edge_gate(y)
+@@ -180,6 +192,14 @@
+         e_dst = self.dst_gate(x)
+         m = e_src[src] + e_dst[dst] + self.edge_gate(y)
+         sigma = torch.sigmoid(m)
++        floor = 1e-6
++        if w is not None:
++            # Weighted messages vanish continuously at the cutoff, and a
++            # floor of 1 keeps h continuous when a node's last message does.
++            sigma = sigma * w
++            floor = 1.0
++        elif self.require_weights:
++            raise RuntimeError("smooth_messages model called without weights")
+ 
+         # Node update aggregated at dst:
+         # h = sum_{(i,j)} sigma * Bh[src] / (sum sigma + eps).
+@@ -187,7 +207,7 @@
+         msg_h = Bh[src] * sigma
+         sum_sigma_h = scatter_sum(msg_h, dst, num_nodes)
+         sum_sigma = scatter_sum(sigma, dst, num_nodes)
+-        h = sum_sigma_h / (sum_sigma + 1e-6)
++        h = sum_sigma_h / (sum_sigma + floor)
+         x_new = self.src_update(x) + h
+ 
+         x_new = F.silu(self.bn_nodes(x_new))
+@@ -200,9 +220,13 @@
+ 
+     @torch.jit.ignore
+     def forward(
+-        self, g: TorchGraph, x: torch.Tensor, y: torch.Tensor
++        self,
++        g: TorchGraph,
++        x: torch.Tensor,
++        y: torch.Tensor,
++        w: Optional[torch.Tensor] = None,
+     ) -> Tuple[torch.Tensor, torch.Tensor]:
+-        return self.forward_tensors(g.src, g.dst, g.num_nodes, x, y)
++        return self.forward_tensors(g.src, g.dst, g.num_nodes, x, y, w)
+ 
+ 
+ def _scatter_softmax(
+@@ -411,12 +435,14 @@
+         x: torch.Tensor,
+         y: torch.Tensor,
+         z: torch.Tensor,
++        w_g: Optional[torch.Tensor] = None,
++        w_lg: Optional[torch.Tensor] = None,
+     ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+         x, m = self.node_update.forward_tensors(
+-            g_src, g_dst, g_num_nodes, x, y
++            g_src, g_dst, g_num_nodes, x, y, w_g
+         )
+         y, z = self.edge_update.forward_tensors(
+-            lg_src, lg_dst, lg_num_nodes, m, z
++            lg_src, lg_dst, lg_num_nodes, m, z, w_lg
+         )
+         return x, y, z
+ 
+@@ -428,6 +454,8 @@
+         x: torch.Tensor,
+         y: torch.Tensor,
+         z: torch.Tensor,
++        w_g: Optional[torch.Tensor] = None,
++        w_lg: Optional[torch.Tensor] = None,
+     ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+         # Attention convs (NAL/SAL) don't have forward_tensors — dispatch
+         # through the graph-object forward, which handles all conv types.
+@@ -445,6 +473,8 @@
+             x,
+             y,
+             z,
++            w_g,
++            w_lg,
+         )
+ 
+ 
+@@ -469,6 +499,12 @@
+     return torch.where(r <= inner_cutoff, envelope, torch.zeros_like(r))
+ 
+ 
++def smooth_switch(r: torch.Tensor, onset: float, cutoff: float) -> torch.Tensor:
++    """C2 switch of r: 1 below onset, 0 at cutoff and beyond."""
++    t = ((r - onset) / (cutoff - onset)).clamp(0.0, 1.0)
++    return 1.0 - t * t * t * (10.0 + t * (-15.0 + 6.0 * t))
++
++
+ def zbl_edge_energies(
+     z_i: torch.Tensor, z_j: torch.Tensor, r: torch.Tensor, r_cut: float
+ ) -> torch.Tensor:
+@@ -637,10 +673,32 @@
+         self.inner_cutoff: float = float(config.inner_cutoff)
+         self.exponent: int = int(config.exponent)
+         self.three_body_cutoff: float = float(config.three_body_cutoff)
++        self.smooth_messages: bool = bool(config.smooth_messages)
++        self.two_body_onset: float = float(config.two_body_onset)
++        self.two_body_cutoff: float = float(config.two_body_cutoff)
++        self.three_body_onset: float = float(config.three_body_onset)
++        if self.smooth_messages:
++            if config.conv_type != "alignn":
++                raise ValueError("smooth_messages needs conv_type alignn")
++            for layer in self.alignn_layers:
++                layer.node_update.require_weights = True
++                layer.edge_update.require_weights = True
++            for layer in self.gcn_layers:
++                layer.require_weights = True
+         self.grad_multiplier: int = int(config.grad_multiplier)
+         self.add_reverse_forces: bool = bool(config.add_reverse_forces)
+         self.stress_multiplier: float = float(config.stress_multiplier)
+ 
++    def message_weights(
++        self, bl: torch.Tensor, bl_i: torch.Tensor, bl_j: torch.Tensor
++    ) -> Tuple[torch.Tensor, torch.Tensor]:
++        """Weights of the bond messages and of the angle messages."""
++        w_g = smooth_switch(bl, self.two_body_onset, self.two_body_cutoff)
++        w_lg = smooth_switch(
++            bl_i, self.three_body_onset, self.three_body_cutoff
++        ) * smooth_switch(bl_j, self.three_body_onset, self.three_body_cutoff)
++        return w_g.unsqueeze(-1), w_lg.unsqueeze(-1)
++
+     # ----- species lookup (LAMMPS hands us atomic numbers, not features) -----
+ 
+     @torch.jit.ignore
+@@ -803,12 +861,30 @@
+         z = self.angle_embedding(h_cos)
+ 
+         # ALIGNN and GCN layers via tensor-only paths.
++        w_g: Optional[torch.Tensor] = None
++        w_lg: Optional[torch.Tensor] = None
++        if self.smooth_messages:
++            w_g, w_lg = self.message_weights(
++                bondlength,
++                bondlength.index_select(0, lg_src),
++                bondlength.index_select(0, lg_dst),
++            )
+         for layer in self.alignn_layers:
+             x, y, z = layer.forward_tensors(
+-                src, dst, num_nodes, lg_src, lg_dst, lg_num_nodes, x, y, z
++                src,
++                dst,
++                num_nodes,
++                lg_src,
++                lg_dst,
++                lg_num_nodes,
++                x,
++                y,
++                z,
++                w_g,
++                w_lg,
+             )
+         for layer in self.gcn_layers:
+-            x, y = layer.forward_tensors(src, dst, num_nodes, x, y)
++            x, y = layer.forward_tensors(src, dst, num_nodes, x, y, w_g)
+ 
+         # Mean readout (single graph) and final projection.
+         h_graph = x.mean(dim=0, keepdim=True)  # (1, hidden)
+@@ -912,10 +988,15 @@
+         else:
+             y = self.edge_embedding(bondlength)
+ 
+-        for layer in self.alignn_layers:
+-            x, y, z = layer(g, lg, x, y, z)
++        w_g = w_lg = None
++        if self.smooth_messages:
++            w_g, w_lg = self.message_weights(
++                bondlength, bondlength[lg.src], bondlength[lg.dst]
++            )
++        for layer in self.alignn_layers:
++            x, y, z = layer(g, lg, x, y, z, w_g, w_lg)
+         for layer in self.gcn_layers:
+-            x, y = layer(g, x, y)
++            x, y = layer(g, x, y) if w_g is None else layer(g, x, y, w_g)
+ 
+         # Per-graph readout (mean over nodes).
+         node_bid = g.node_batch_id

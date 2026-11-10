@@ -1,0 +1,198 @@
+start Mon Nov  9 11:19:25 AM EST 2026 | atomgptlab13
+atomgptlab-storage.wse.jhu.edu:/data  429T  141T  289T  33% /data
+total 3
+drwx------ 2 jlee859 domain users         5 Nov  9 11:19 .
+drwx------ 3 jlee859 domain users         3 Nov  9 11:19 ..
+-rw------- 1 jlee859 domain users 512955623 Oct 31 20:00 id_prop.json
+-rw------- 1 jlee859 domain users   9816351 Oct 31 20:00 ids_train_val_test.json
+-rw------- 1 jlee859 domain users       162 Oct 31 20:00 split_sizes.json
+{
+ "n_train": 347889,
+ "n_val": 19327,
+ "n_test": 19328,
+ "keep_data_order": true,
+ "energy": "total",
+ "duplicate_ids": 0,
+ "train_stride": 1,
+ "test_limit": 0
+}AFF-r2SCAN config against the training base:
+  batch_size: AFF-r2SCAN 64, base 2
+  ddp_find_unused_parameters: AFF-r2SCAN False, base True
+  filename: AFF-r2SCAN 'matpes_r2scan', base 'matpes'
+  keep_data_order: AFF-r2SCAN False, base True
+  learning_rate: AFF-r2SCAN 0.001, base 0.0003
+  lr_total_epochs: AFF-r2SCAN None, base 100
+  num_workers: AFF-r2SCAN 0, base 2
+  output_dir: AFF-r2SCAN 'results', base 'smooth_run'
+  resume_checkpoint: AFF-r2SCAN False, base True
+wrote /data/jlee859/ffsmooth/probe_config_21743.json
+model: {"alignn_layers": 2, "gcn_layers": 2, "hidden_features": 128, "graphwise_weight": 1.0, "gradwise_weight": 1.0, "stresswise_weight": 0.0, "smooth_messages": true, "two_body_onset": null, "three_body_onset": null}
+alignn from /data/jlee859/ffmax/alignn_smooth/alignn/__init__.py
+11:19:32 fatal: not a git repository (or any parent up to mount point /)
+11:19:32 Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+11:19:32 world_size 1
+11:19:32 root_dir /data/jlee859/ffsmooth/data/matpes_r2scan_ff_train_data
+11:19:41 len dataset 386544
+11:19:41 train_stress False
+11:19:41 Using pure-torch LMDB dataset (no DGL).
+11:19:41 MAX val: -0.305412655
+11:19:41 MIN val: -86.357756555
+11:19:41 MAD: 9.563288220559443
+11:19:41 Baseline MAE: 10.122501072811117
+11:19:41 data range -2.8437947 -84.28556585
+11:19:41 line_graph True
+11:19:41 [MEM] matpestrain_data: entry: nan GB
+11:19:41 [MEM] matpestrain_data: before write loop: nan GB
+11:19:58   0%|          | 0/4000 [00:00<?, ?it/s]  0%|          | 1/4000 [00:00<18:11,  3.66it/s]  1%|          | 25/4000 [00:00<00:46, 84.69it/s]  1%|          | 44/4000 [00:00<00:33, 118.18it/s]  2%|▏         | 64/4000 [00:00<00:27, 143.00it/s]  2%|▏         | 82/4000 [00:00<00:25, 151.32it/s]  3%|▎         | 105/4000 [00:00<00:22, 175.05it/s]  3%|▎         | 126/4000 [00:00<00:20, 184.74it/s]  4%|▍         | 150/4000 [00:00<00:19, 201.18it/s]  4%|▍         | 172/4000 [00:01<00:18, 206.63it/s]  5%|▍         | 194/4000 [00:01<00:18, 209.13it/s]  5%|▌         | 216/4000 [00:01<00:18, 204.53it/s]  6%|▌         | 243/4000 [00:01<00:16, 222.10it/s]  7%|▋         | 275/4000 [00:01<00:14, 250.11it/s]  8%|▊         | 301/4000 [00:01<00:15, 242.68it/s]  8%|▊         | 326/4000 [00:01<00:15, 233.21it/s]  9%|▉         | 350/4000 [00:01<00:16, 223.17it/s]  9%|▉         | 373/4000 [00:01<00:16, 223.26it/s] 10%|█         | 400/4000 [00:02<00:15, 235.79it/s] 11%|█         | 424/4000 [00:02<00:15, 232.19it/s] 11%|█▏        | 451/4000 [00:02<00:14, 242.43it/s] 12%|█▏        | 484/4000 [00:02<00:13, 266.89it/s] 13%|█▎        | 520/4000 [00:02<00:11, 293.01it/s] 14%|█▍        | 553/4000 [00:02<00:11, 301.51it/s] 15%|█▍        | 587/4000 [00:02<00:10, 310.46it/s] 15%|█▌        | 619/4000 [00:02<00:11, 306.49it/s] 16%|█▋        | 653/4000 [00:02<00:10, 314.30it/s] 17%|█▋        | 690/4000 [00:02<00:10, 330.56it/s] 18%|█▊        | 732/4000 [00:03<00:09, 356.80it/s] 19%|█▉        | 768/4000 [00:03<00:09, 346.38it/s] 20%|██        | 803/4000 [00:03<00:09, 336.81it/s] 21%|██        | 837/4000 [00:03<00:09, 336.53it/s] 22%|██▏       | 871/4000 [00:03<00:09, 324.75it/s] 23%|██▎       | 904/4000 [00:03<00:11, 275.76it/s] 23%|██▎       | 933/4000 [00:03<00:11, 268.59it/s] 24%|██▍       | 961/4000 [00:03<00:12, 247.99it/s] 25%|██▍       | 987/4000 [00:04<00:12, 238.42it/s] 25%|██▌       | 1012/4000 [00:04<00:12, 233.15it/s] 26%|██▌       | 1036/4000 [00:04<00:13, 223.65it/s] 26%|██▋       | 1059/4000 [00:04<00:13, 218.72it/s] 27%|██▋       | 1089/4000 [00:04<00:12, 237.95it/s] 28%|██▊       | 1114/4000 [00:04<00:12, 226.46it/s] 28%|██▊       | 1138/4000 [00:04<00:12, 228.10it/s] 29%|██▉       | 1162/4000 [00:04<00:12, 221.74it/s] 30%|██▉       | 1186/4000 [00:04<00:12, 225.72it/s] 30%|███       | 1209/4000 [00:05<00:12, 220.01it/s] 31%|███       | 1232/4000 [00:05<00:12, 222.48it/s] 31%|███▏      | 1255/4000 [00:05<00:13, 209.96it/s] 32%|███▏      | 1278/4000 [00:05<00:12, 214.09it/s] 32%|███▎      | 1300/4000 [00:05<00:12, 213.43it/s] 33%|███▎      | 1325/4000 [00:05<00:12, 222.49it/s] 34%|███▍      | 1356/4000 [00:05<00:10, 246.98it/s] 35%|███▍      | 1387/4000 [00:05<00:09, 262.08it/s] 35%|███▌      | 1414/4000 [00:05<00:10, 245.96it/s] 36%|███▌      | 1439/4000 [00:06<00:10, 237.11it/s] 37%|███▋      | 1463/4000 [00:06<00:11, 224.34it/s] 37%|███▋      | 1486/4000 [00:06<00:11, 219.74it/s] 38%|███▊      | 1509/4000 [00:06<00:11, 217.29it/s] 38%|███▊      | 1531/4000 [00:06<00:11, 213.05it/s] 39%|███▉      | 1554/4000 [00:06<00:11, 217.73it/s] 39%|███▉      | 1576/4000 [00:06<00:11, 213.18it/s] 40%|████      | 1600/4000 [00:06<00:10, 219.26it/s] 41%|████      | 1623/4000 [00:06<00:10, 220.16it/s] 41%|████      | 1646/4000 [00:07<00:11, 208.70it/s] 42%|████▏     | 1668/4000 [00:07<00:11, 206.79it/s] 42%|████▏     | 1689/4000 [00:07<00:11, 207.50it/s] 43%|████▎     | 1710/4000 [00:07<00:11, 207.22it/s] 44%|████▎     | 1742/4000 [00:07<00:09, 239.06it/s] 44%|████▍     | 1774/4000 [00:07<00:08, 261.97it/s] 45%|████▌     | 1802/4000 [00:07<00:08, 266.64it/s] 46%|████▌     | 1829/4000 [00:07<00:08, 249.78it/s] 46%|████▋     | 1855/4000 [00:07<00:08, 249.15it/s] 47%|████▋     | 1887/4000 [00:07<00:07, 267.25it/s] 48%|████▊     | 1914/4000 [00:08<00:08, 258.80it/s] 49%|████▊     | 1941/4000 [00:08<00:08, 241.16it/s] 49%|████▉     | 1966/4000 [00:08<00:08, 238.57it/s] 50%|████▉     | 1993/4000 [00:08<00:08, 246.53it/s] 50%|█████     | 2018/4000 [00:08<00:08, 229.45it/s] 51%|█████     | 2042/4000 [00:08<00:09, 211.47it/s] 52%|█████▏    | 2072/4000 [00:08<00:08, 233.55it/s] 52%|█████▎    | 2100/4000 [00:08<00:07, 244.02it/s] 53%|█████▎    | 2134/4000 [00:09<00:06, 268.30it/s] 54%|█████▍    | 2165/4000 [00:09<00:06, 278.35it/s] 55%|█████▍    | 2199/4000 [00:09<00:06, 293.62it/s] 56%|█████▌    | 2229/4000 [00:09<00:06, 275.70it/s] 56%|█████▋    | 2257/4000 [00:09<00:06, 259.42it/s] 57%|█████▋    | 2285/4000 [00:09<00:06, 264.40it/s] 58%|█████▊    | 2312/4000 [00:09<00:06, 243.24it/s] 58%|█████▊    | 2337/4000 [00:09<00:06, 239.29it/s] 59%|█████▉    | 2369/4000 [00:09<00:06, 259.44it/s] 60%|██████    | 2404/4000 [00:10<00:05, 283.61it/s] 61%|██████    | 2435/4000 [00:10<00:05, 290.89it/s] 62%|██████▏   | 2465/4000 [00:10<00:06, 252.69it/s] 62%|██████▏   | 2492/4000 [00:10<00:06, 241.59it/s] 63%|██████▎   | 2517/4000 [00:10<00:06, 233.70it/s] 64%|██████▎   | 2544/4000 [00:10<00:06, 241.01it/s] 64%|██████▍   | 2569/4000 [00:10<00:06, 228.79it/s] 65%|██████▍   | 2593/4000 [00:10<00:06, 221.71it/s] 66%|██████▌   | 2621/4000 [00:10<00:05, 236.35it/s] 66%|██████▋   | 2658/4000 [00:11<00:04, 271.15it/s] 67%|██████▋   | 2692/4000 [00:11<00:04, 285.89it/s] 68%|██████▊   | 2721/4000 [00:11<00:04, 256.96it/s] 69%|██████▉   | 2754/4000 [00:11<00:04, 274.78it/s] 70%|██████▉   | 2785/4000 [00:11<00:04, 282.86it/s] 70%|███████   | 2814/4000 [00:11<00:04, 282.36it/s] 71%|███████   | 2846/4000 [00:11<00:03, 291.59it/s] 72%|███████▏  | 2876/4000 [00:11<00:04, 276.00it/s] 73%|███████▎  | 2904/4000 [00:11<00:04, 250.63it/s] 73%|███████▎  | 2930/4000 [00:12<00:04, 235.02it/s] 74%|███████▍  | 2957/4000 [00:12<00:04, 243.67it/s] 75%|███████▍  | 2989/4000 [00:12<00:03, 262.72it/s] 75%|███████▌  | 3019/4000 [00:12<00:03, 270.97it/s] 76%|███████▋  | 3050/4000 [00:12<00:03, 281.53it/s] 77%|███████▋  | 3079/4000 [00:12<00:03, 282.11it/s] 78%|███████▊  | 3110/4000 [00:12<00:03, 288.27it/s] 78%|███████▊  | 3140/4000 [00:12<00:02, 290.01it/s] 79%|███████▉  | 3170/4000 [00:12<00:02, 291.94it/s] 80%|████████  | 3200/4000 [00:13<00:02, 266.77it/s] 81%|████████  | 3228/4000 [00:13<00:03, 244.81it/s] 81%|████████▏ | 3254/4000 [00:13<00:03, 234.20it/s] 82%|████████▏ | 3278/4000 [00:13<00:03, 228.79it/s] 83%|████████▎ | 3302/4000 [00:13<00:03, 228.41it/s] 83%|████████▎ | 3326/4000 [00:13<00:03, 217.72it/s] 84%|████████▍ | 3351/4000 [00:13<00:02, 225.38it/s] 84%|████████▍ | 3374/4000 [00:13<00:02, 222.50it/s] 85%|████████▍ | 3397/4000 [00:13<00:02, 214.49it/s] 86%|████████▌ | 3422/4000 [00:14<00:02, 221.00it/s] 86%|████████▌ | 3445/4000 [00:14<00:02, 220.67it/s] 87%|████████▋ | 3472/4000 [00:14<00:02, 233.79it/s] 88%|████████▊ | 3500/4000 [00:14<00:02, 245.70it/s] 88%|████████▊ | 3525/4000 [00:14<00:02, 233.99it/s] 89%|████████▊ | 3549/4000 [00:14<00:02, 221.16it/s] 89%|████████▉ | 3572/4000 [00:14<00:02, 212.20it/s] 90%|████████▉ | 3594/4000 [00:14<00:01, 208.52it/s] 90%|█████████ | 3615/4000 [00:14<00:01, 208.03it/s] 91%|█████████ | 3639/4000 [00:15<00:01, 214.22it/s] 92%|█████████▏| 3661/4000 [00:15<00:01, 215.36it/s] 92%|█████████▏| 3689/4000 [00:15<00:01, 233.71it/s] 93%|█████████▎| 3720/4000 [00:15<00:01, 254.72it/s] 94%|█████████▎| 3746/4000 [00:15<00:00, 254.56it/s] 94%|█████████▍| 3772/4000 [00:15<00:00, 237.81it/s] 95%|█████████▍| 3797/4000 [00:15<00:00, 227.37it/s] 96%|█████████▌| 3820/4000 [00:15<00:00, 209.28it/s] 96%|█████████▋| 3851/4000 [00:15<00:00, 233.66it/s] 97%|█████████▋| 3892/4000 [00:16<00:00, 281.00it/s] 98%|█████████▊| 3922/4000 [00:16<00:00, 282.58it/s] 99%|█████████▉| 3951/4000 [00:16<00:00, 277.72it/s]100%|█████████▉| 3981/4000 [00:16<00:00, 282.81it/s]100%|██████████| 4000/4000 [00:16<00:00, 242.92it/s]
+11:19:58 [MEM] matpestrain_data: after write loop: nan GB
+11:19:58 [MEM] matpestrain_data: after PureTorchLMDBDataset wrap: nan GB
+11:19:58 data range -4.325638799285715 -66.65330847875
+11:19:58 line_graph True
+11:19:58 [MEM] matpesval_data: entry: nan GB
+11:19:58 [MEM] matpesval_data: before write loop: nan GB
+11:20:00   0%|          | 0/400 [00:00<?, ?it/s]  6%|▌         | 22/400 [00:00<00:01, 218.57it/s] 11%|█▏        | 45/400 [00:00<00:01, 202.54it/s] 16%|█▋        | 66/400 [00:00<00:01, 204.68it/s] 22%|██▏       | 87/400 [00:00<00:01, 203.27it/s] 28%|██▊       | 110/400 [00:00<00:01, 212.27it/s] 33%|███▎      | 133/400 [00:00<00:01, 215.91it/s] 39%|███▉      | 156/400 [00:00<00:01, 218.09it/s] 44%|████▍     | 178/400 [00:00<00:01, 213.35it/s] 50%|█████     | 200/400 [00:00<00:00, 213.61it/s] 56%|█████▌    | 223/400 [00:01<00:00, 217.28it/s] 61%|██████▏   | 245/400 [00:01<00:00, 215.15it/s] 67%|██████▋   | 267/400 [00:01<00:00, 207.44it/s] 74%|███████▍  | 296/400 [00:01<00:00, 227.37it/s] 80%|███████▉  | 319/400 [00:01<00:00, 222.35it/s] 86%|████████▌ | 342/400 [00:01<00:00, 206.74it/s] 93%|█████████▎| 372/400 [00:01<00:00, 230.40it/s]100%|██████████| 400/400 [00:01<00:00, 243.93it/s]100%|██████████| 400/400 [00:01<00:00, 220.63it/s]
+11:20:00 [MEM] matpesval_data: after write loop: nan GB
+11:20:00 [MEM] matpesval_data: after PureTorchLMDBDataset wrap: nan GB
+11:20:00 data range -3.9869111436000004 -77.5424484075
+11:20:00 line_graph True
+11:20:00 [MEM] matpestest_data: entry: nan GB
+11:20:00 [MEM] matpestest_data: before write loop: nan GB
+11:20:01   0%|          | 0/400 [00:00<?, ?it/s]  8%|▊         | 31/400 [00:00<00:01, 302.71it/s] 16%|█▌        | 62/400 [00:00<00:01, 253.35it/s] 23%|██▎       | 93/400 [00:00<00:01, 276.38it/s] 31%|███       | 123/400 [00:00<00:00, 282.27it/s] 40%|███▉      | 159/400 [00:00<00:00, 306.82it/s] 48%|████▊     | 191/400 [00:00<00:00, 257.78it/s] 55%|█████▍    | 219/400 [00:00<00:00, 255.31it/s] 62%|██████▏   | 246/400 [00:00<00:00, 246.26it/s] 68%|██████▊   | 272/400 [00:01<00:00, 247.73it/s] 74%|███████▍  | 298/400 [00:01<00:00, 239.76it/s] 81%|████████  | 323/400 [00:01<00:00, 229.02it/s] 87%|████████▋ | 347/400 [00:01<00:00, 226.21it/s] 93%|█████████▎| 372/400 [00:01<00:00, 232.17it/s]100%|██████████| 400/400 [00:01<00:00, 253.69it/s]
+11:20:01 [MEM] matpestest_data: after write loop: nan GB
+11:20:01 [MEM] matpestest_data: after PureTorchLMDBDataset wrap: nan GB
+11:20:03 n_train: 4000
+11:20:03 n_val  : 400
+11:20:03 n_test : 400
+11:20:04 rank 0
+11:20:04 world_size 1
+11:20:04 config: {'version': 'NA', 'dataset': 'user_data', 'target': 'target', 'atom_features': 'cgcnn', 'neighbor_strategy': 'pure_torch', 'id_tag': 'jid', 'dtype': 'float32', 'random_seed': 123, 'classification_threshold': None, 'n_val': 400, 'n_test': 400, 'n_train': 4000, 'train_ratio': 0.9, 'val_ratio': 0.05, 'test_ratio': 0.05, 'target_multiplication_factor': None, 'epochs': 2, 'batch_size': 8, 'gpu_memory_fraction': None, 'use_amp': False, 'ddp_find_unused_parameters': True, 'resume_checkpoint': False, 'lr_total_epochs': 2, 'deterministic': False, 'weight_decay': 1e-05, 'learning_rate': 0.0003, 'filename': 'matpes', 'warmup_steps': 50, 'criterion': 'l1', 'optimizer': 'adamw', 'scheduler': 'onecycle', 'pin_memory': False, 'save_dataloader': False, 'write_checkpoint': True, 'write_predictions': True, 'store_outputs': False, 'progress': True, 'log_tensorboard': False, 'standard_scalar_and_pca': False, 'use_canonize': False, 'compute_line_graph': True, 'num_workers': 2, 'cutoff': 5.0, 'cutoff_extra': 3.0, 'three_body_cutoff': 3.5, 'max_neighbors': 52, 'keep_data_order': True, 'normalize_graph_level_loss': False, 'distributed': False, 'data_parallel': False, 'n_early_stopping': None, 'eval_best_checkpoint': True, 'use_ema': False, 'ema_decay': 0.999, 'torch_seed': None, 'output_dir': '/data/jlee859/ffsmooth/probe_out_21743', 'use_lmdb': True, 'read_existing': False, 'model': {'name': 'alignn_atomwise_pure', 'alignn_layers': 2, 'gcn_layers': 2, 'atom_input_features': 92, 'edge_input_features': 80, 'triplet_input_features': 40, 'embedding_features': 64, 'hidden_features': 128, 'output_features': 1, 'grad_multiplier': -1, 'calculate_gradient': True, 'atomwise_output_features': 0, 'graphwise_weight': 1.0, 'gradwise_weight': 1.0, 'stresswise_weight': 0.0, 'atomwise_weight': 0.0, 'link': 'identity', 'zero_inflated': False, 'classification': False, 'force_mult_natoms': False, 'energy_mult_natoms': True, 'include_pos_deriv': False, 'use_cutoff_function': True, 'inner_cutoff': 4.0, 'three_body_cutoff': 3.5, 'smooth_messages': True, 'two_body_onset': 4.0, 'two_body_cutoff': 5.0, 'three_body_onset': 3.0, 'stress_multiplier': 1.0, 'add_reverse_forces': True, 'lg_on_fly': True, 'batch_stress': True, 'multiply_cutoff': True, 'use_penalty': True, 'extra_features': 0, 'exponent': 5, 'penalty_factor': 0.1, 'penalty_threshold': 1.0, 'use_zbl': None, 'zbl_cutoff': 0.9, 'element_embedding': False, 'additional_output_features': 0, 'additional_output_weight': 0.0, 'conv_type': 'alignn', 'num_heads': 1}}
+11:20:04 {'atom_features': 'cgcnn',
+11:20:04  'batch_size': 8,
+11:20:04  'classification_threshold': None,
+11:20:04  'compute_line_graph': True,
+11:20:04  'criterion': 'l1',
+11:20:04  'cutoff': 5.0,
+11:20:04  'cutoff_extra': 3.0,
+11:20:04  'data_parallel': False,
+11:20:04  'dataset': 'user_data',
+11:20:04  'ddp_find_unused_parameters': True,
+11:20:04  'deterministic': False,
+11:20:04  'distributed': False,
+11:20:04  'dtype': 'float32',
+11:20:04  'ema_decay': 0.999,
+11:20:04  'epochs': 2,
+11:20:04  'eval_best_checkpoint': True,
+11:20:04  'filename': 'matpes',
+11:20:04  'gpu_memory_fraction': None,
+11:20:04  'id_tag': 'jid',
+11:20:04  'keep_data_order': True,
+11:20:04  'learning_rate': 0.0003,
+11:20:04  'log_tensorboard': False,
+11:20:04  'lr_total_epochs': 2,
+11:20:04  'max_neighbors': 52,
+11:20:04  'model': {'add_reverse_forces': True,
+11:20:04            'additional_output_features': 0,
+11:20:04            'additional_output_weight': 0.0,
+11:20:04            'alignn_layers': 2,
+11:20:04            'atom_input_features': 92,
+11:20:04            'atomwise_output_features': 0,
+11:20:04            'atomwise_weight': 0.0,
+11:20:04            'batch_stress': True,
+11:20:04            'calculate_gradient': True,
+11:20:04            'classification': False,
+11:20:04            'conv_type': 'alignn',
+11:20:04            'edge_input_features': 80,
+11:20:04            'element_embedding': False,
+11:20:04            'embedding_features': 64,
+11:20:04            'energy_mult_natoms': True,
+11:20:04            'exponent': 5,
+11:20:04            'extra_features': 0,
+11:20:04            'force_mult_natoms': False,
+11:20:04            'gcn_layers': 2,
+11:20:04            'grad_multiplier': -1,
+11:20:04            'gradwise_weight': 1.0,
+11:20:04            'graphwise_weight': 1.0,
+11:20:04            'hidden_features': 128,
+11:20:04            'include_pos_deriv': False,
+11:20:04            'inner_cutoff': 4.0,
+11:20:04            'lg_on_fly': True,
+11:20:04            'link': 'identity',
+11:20:04            'multiply_cutoff': True,
+11:20:04            'name': 'alignn_atomwise_pure',
+11:20:04            'num_heads': 1,
+11:20:04            'output_features': 1,
+11:20:04            'penalty_factor': 0.1,
+11:20:04            'penalty_threshold': 1.0,
+11:20:04            'smooth_messages': True,
+11:20:04            'stress_multiplier': 1.0,
+11:20:04            'stresswise_weight': 0.0,
+11:20:04            'three_body_cutoff': 3.5,
+11:20:04            'three_body_onset': 3.0,
+11:20:04            'triplet_input_features': 40,
+11:20:04            'two_body_cutoff': 5.0,
+11:20:04            'two_body_onset': 4.0,
+11:20:04            'use_cutoff_function': True,
+11:20:04            'use_penalty': True,
+11:20:04            'use_zbl': None,
+11:20:04            'zbl_cutoff': 0.9,
+11:20:04            'zero_inflated': False},
+11:20:04  'n_early_stopping': None,
+11:20:04  'n_test': 400,
+11:20:04  'n_train': 4000,
+11:20:04  'n_val': 400,
+11:20:04  'neighbor_strategy': 'pure_torch',
+11:20:04  'normalize_graph_level_loss': False,
+11:20:04  'num_workers': 2,
+11:20:04  'optimizer': 'adamw',
+11:20:04  'output_dir': '/data/jlee859/ffsmooth/probe_out_21743',
+11:20:04  'pin_memory': False,
+11:20:04  'progress': True,
+11:20:04  'random_seed': 123,
+11:20:04  'read_existing': False,
+11:20:04  'resume_checkpoint': False,
+11:20:04  'save_dataloader': False,
+11:20:04  'scheduler': 'onecycle',
+11:20:04  'standard_scalar_and_pca': False,
+11:20:04  'store_outputs': False,
+11:20:04  'target': 'target',
+11:20:04  'target_multiplication_factor': None,
+11:20:04  'test_ratio': 0.05,
+11:20:04  'three_body_cutoff': 3.5,
+11:20:04  'torch_seed': None,
+11:20:04  'train_ratio': 0.9,
+11:20:04  'use_amp': False,
+11:20:04  'use_canonize': False,
+11:20:04  'use_ema': False,
+11:20:04  'use_lmdb': True,
+11:20:04  'val_ratio': 0.05,
+11:20:04  'version': 'NA',
+11:20:04  'warmup_steps': 50,
+11:20:04  'weight_decay': 1e-05,
+11:20:04  'write_checkpoint': True,
+11:20:04  'write_predictions': True}
+11:20:04 
+11:20:04     _    _     ___ ____ _   _ _   _
+11:20:04    / \  | |   |_ _/ ___| \ | | \ | |
+11:20:04   / _ \ | |    | | |  _|  \| |  \| |
+11:20:04  / ___ \| |___ | | |_| | |\  | |\  |
+11:20:04 /_/   \_\_____|___\____|_| \_|_| \_|
+11:20:04 
+11:20:04 Model parameters 535937
+11:20:04 CUDA available True
+11:20:04 CUDA device count 1
+11:20:04    GPU: NVIDIA GB10. Max memory: 121.69 GB. Platform = Linux.
+11:20:04    Pytorch: 2.13.0+cu130. CUDA = 12.1. CUDA Toolkit = 13.0.
+11:20:04 
+11:20:28 Train Loss:  Epoch    Total      Graph      Atom       Grad       Stress     Addn.      Time      
+11:20:28              0        8.2687     7.7178     0.0000     0.5508     0.0000     0.0000     21.92     
+11:20:28 Val Loss:    Epoch    Total      Graph      Atom       Grad       Stress     Addn.      Time      
+11:20:28              0        2.4705     1.8147     0.0000     0.6559     0.0000     0.0000     0.92       Saving model
+11:20:51 Train Loss:  Epoch    Total      Graph      Atom       Grad       Stress     Addn.      Time      
+11:20:51              1        2.3553     1.7352     0.0000     0.6201     0.0000     0.0000     21.59     
+11:20:51 Val Loss:    Epoch    Total      Graph      Atom       Grad       Stress     Addn.      Time      
+11:20:51              1        1.6394     1.0153     0.0000     0.6241     0.0000     0.0000     0.77       Saving model
+11:20:51 Loaded best_model.pt for final evaluation (val loss 1.639384)
+11:20:57 TestLoss 1 858.0303019657731
+11:20:57 Closing LMDB.
+11:20:57 Time taken (s) 53.24248147010803
+train exit 0 end Mon Nov  9 11:20:58 AM EST 2026
