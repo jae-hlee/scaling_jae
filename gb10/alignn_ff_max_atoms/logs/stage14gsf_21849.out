@@ -1,0 +1,373 @@
+start Tue Nov 10 12:18:37 PM EST 2026 | atomgptlab09 | Cu | models: matpes_r2scan_paper alignn_ff_mptrj alignn_ff_matpes_pbe alignn_ff_matpes_r2scan | smooth: 
+== matpes_r2scan_paper Tue Nov 10 12:18:40 PM EST 2026
+device cuda | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+energy jump of +3.63 meV/atom between a = 3.534 and 3.543 A
+lattice constant 3.5811 A (fit), bulk modulus 124.85674260689086 GPa, E/atom -10.834852 eV
+/data/jlee859/ffmax/stacking_fault.py:79: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  return float(e), -grad.detach().double().cpu().numpy()
+slab: 576 atoms, 24 layers, box 10.13 x 13.16 x 62.55 A, relaxed in 25 steps to 0.0045 eV/A | (111) surface energy 1170 mJ/m^2 (1174 as built)
+unrelaxed lines, step about 0.05 A
+unrelaxed: intrinsic fault 25.3, unstable fault 189.3 at 0.76 A, atoms on top 1850.2, maximum along [1-10] 798.1 mJ/m^2 | largest bend 14.44 at 0.25 A (median 3.20)
+relaxed lines, step about 0.1 A
+  y  0.000 A       0.00 mJ/m^2     0 steps  0.0045 eV/A left
+  y  0.097 A       9.88 mJ/m^2     4 steps  0.0033 eV/A left
+  y  0.195 A      37.17 mJ/m^2    12 steps  0.0044 eV/A left
+  y  0.292 A      71.89 mJ/m^2    21 steps  0.0045 eV/A left
+  y  0.390 A      95.12 mJ/m^2    28 steps  0.0050 eV/A left
+  y  0.487 A     127.88 mJ/m^2    30 steps  0.0048 eV/A left
+  y  0.585 A     153.08 mJ/m^2    35 steps  0.0038 eV/A left
+  y  0.682 A     168.62 mJ/m^2    35 steps  0.0041 eV/A left
+  y  0.780 A     173.11 mJ/m^2    35 steps  0.0041 eV/A left
+  y  0.877 A     166.51 mJ/m^2    35 steps  0.0039 eV/A left
+  y  0.975 A     149.92 mJ/m^2    35 steps  0.0034 eV/A left
+  y  1.072 A     125.37 mJ/m^2    29 steps  0.0043 eV/A left
+  y  1.170 A      96.36 mJ/m^2    25 steps  0.0047 eV/A left
+  y  1.267 A      56.34 mJ/m^2    21 steps  0.0035 eV/A left
+  y  1.365 A      34.11 mJ/m^2     9 steps  0.0044 eV/A left
+  y  1.462 A      25.22 mJ/m^2     4 steps  0.0046 eV/A left
+  y  1.559 A      35.90 mJ/m^2     9 steps  0.0047 eV/A left
+  y  1.657 A      70.20 mJ/m^2    22 steps  0.0046 eV/A left
+  y  1.754 A     143.90 mJ/m^2    30 steps  0.0047 eV/A left
+  y  1.852 A     221.50 mJ/m^2    39 steps  0.0050 eV/A left
+  y  1.949 A     309.94 mJ/m^2    51 steps  0.0032 eV/A left
+  y  2.047 A     405.61 mJ/m^2    55 steps  0.0038 eV/A left
+  y  2.144 A     515.32 mJ/m^2    55 steps  0.0045 eV/A left
+  y  2.242 A     615.84 mJ/m^2    54 steps  0.0034 eV/A left
+  y  2.339 A     698.20 mJ/m^2    60 steps  0.0047 eV/A left
+  y  2.437 A     770.28 mJ/m^2    69 steps  0.0033 eV/A left
+  y  2.534 A     831.07 mJ/m^2    69 steps  0.0038 eV/A left
+  y  2.632 A     880.56 mJ/m^2    69 steps  0.0042 eV/A left
+  y  2.729 A     920.16 mJ/m^2    63 steps  0.0048 eV/A left
+  y  2.826 A     948.84 mJ/m^2    63 steps  0.0049 eV/A left
+  y  2.924 A     882.59 mJ/m^2    63 steps  0.0049 eV/A left
+  y  3.021 A     939.57 mJ/m^2    63 steps  0.0049 eV/A left
+  y  3.119 A     910.09 mJ/m^2    63 steps  0.0048 eV/A left
+  y  3.216 A     869.57 mJ/m^2    69 steps  0.0044 eV/A left
+  y  3.314 A     818.91 mJ/m^2    69 steps  0.0040 eV/A left
+  y  3.411 A     756.51 mJ/m^2    69 steps  0.0036 eV/A left
+  y  3.509 A     674.16 mJ/m^2    60 steps  0.0047 eV/A left
+  y  3.606 A     588.78 mJ/m^2    54 steps  0.0034 eV/A left
+  y  3.704 A     484.95 mJ/m^2    55 steps  0.0043 eV/A left
+  y  3.801 A     383.86 mJ/m^2    51 steps  0.0047 eV/A left
+  y  3.899 A     284.06 mJ/m^2    50 steps  0.0038 eV/A left
+  y  3.996 A     188.20 mJ/m^2    35 steps  0.0049 eV/A left
+  y  4.094 A     105.80 mJ/m^2    29 steps  0.0046 eV/A left
+  y  4.191 A      41.80 mJ/m^2    20 steps  0.0041 eV/A left
+  y  4.288 A      11.70 mJ/m^2     4 steps  0.0034 eV/A left
+  y  4.386 A      -0.00 mJ/m^2     0 steps  0.0045 eV/A left
+  x  0.000 A       0.00 mJ/m^2     0 steps  0.0045 eV/A left
+  x  0.097 A      10.78 mJ/m^2     4 steps  0.0032 eV/A left
+  x  0.195 A      37.02 mJ/m^2    13 steps  0.0039 eV/A left
+  x  0.292 A      85.65 mJ/m^2    27 steps  0.0047 eV/A left
+  x  0.390 A     146.24 mJ/m^2    35 steps  0.0036 eV/A left
+  x  0.487 A     213.06 mJ/m^2    42 steps  0.0044 eV/A left
+  x  0.584 A     280.97 mJ/m^2    55 steps  0.0037 eV/A left
+  x  0.682 A     350.72 mJ/m^2    44 steps  0.0044 eV/A left
+  x  0.779 A     408.34 mJ/m^2    55 steps  0.0037 eV/A left
+  x  0.877 A     459.41 mJ/m^2    55 steps  0.0041 eV/A left
+  x  0.974 A     500.79 mJ/m^2    55 steps  0.0045 eV/A left
+  x  1.071 A     532.08 mJ/m^2    55 steps  0.0049 eV/A left
+  x  1.169 A     561.62 mJ/m^2    54 steps  0.0030 eV/A left
+  x  1.266 A     562.28 mJ/m^2    54 steps  0.0031 eV/A left
+  x  1.364 A     561.62 mJ/m^2    54 steps  0.0030 eV/A left
+  x  1.461 A     532.08 mJ/m^2    55 steps  0.0049 eV/A left
+  x  1.558 A     500.79 mJ/m^2    55 steps  0.0045 eV/A left
+  x  1.656 A     459.41 mJ/m^2    55 steps  0.0041 eV/A left
+  x  1.753 A     408.34 mJ/m^2    55 steps  0.0037 eV/A left
+  x  1.850 A     350.72 mJ/m^2    44 steps  0.0044 eV/A left
+  x  1.948 A     280.97 mJ/m^2    55 steps  0.0037 eV/A left
+  x  2.045 A     213.06 mJ/m^2    42 steps  0.0044 eV/A left
+  x  2.143 A     146.24 mJ/m^2    35 steps  0.0036 eV/A left
+  x  2.240 A      85.65 mJ/m^2    27 steps  0.0047 eV/A left
+  x  2.337 A      37.02 mJ/m^2    13 steps  0.0039 eV/A left
+  x  2.435 A      10.78 mJ/m^2     4 steps  0.0032 eV/A left
+  x  2.532 A       0.00 mJ/m^2     0 steps  0.0045 eV/A left
+relaxed: intrinsic fault 25.2, unstable fault 173.1 at 0.78 A, atoms on top 882.6, maximum along [1-10] 562.3 mJ/m^2 | largest bend 17.79 at 1.27 A (median 10.50)
+intrinsic fault, as built, with 36 layers: 25.272 mJ/m^2 (-0.000 from 24 layers)
+done: 3397 evaluations in 719 s
+== alignn_ff_mptrj Tue Nov 10 12:30:43 PM EST 2026
+device cuda | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+energy jump of -28.79 meV/atom between a = 3.498 and 3.507 A
+lattice constant 3.6101 A (fit), bulk modulus 100.68115178165581 GPa, E/atom -4.093117 eV
+/data/jlee859/ffmax/stacking_fault.py:79: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  return float(e), -grad.detach().double().cpu().numpy()
+slab: 576 atoms, 24 layers, box 10.21 x 13.26 x 62.94 A, relaxed in 15 steps to 0.0041 eV/A | (111) surface energy 90 mJ/m^2 (91 as built)
+unrelaxed lines, step about 0.05 A
+unrelaxed: intrinsic fault 33.6, unstable fault 183.5 at 0.76 A, atoms on top 1480.0, maximum along [1-10] 694.4 mJ/m^2 | largest bend 65.76 at 0.10 A (median 1.36)
+relaxed lines, step about 0.1 A
+  y  0.000 A       0.00 mJ/m^2     0 steps  0.0041 eV/A left
+  y  0.098 A       6.21 mJ/m^2     4 steps  0.0036 eV/A left
+  y  0.197 A      86.52 mJ/m^2     5 steps  0.0034 eV/A left
+  y  0.295 A     108.94 mJ/m^2    15 steps  0.0049 eV/A left
+  y  0.393 A     130.21 mJ/m^2    27 steps  0.0045 eV/A left
+  y  0.491 A     147.85 mJ/m^2    29 steps  0.0045 eV/A left
+  y  0.590 A     160.55 mJ/m^2    31 steps  0.0048 eV/A left
+  y  0.688 A     167.95 mJ/m^2    32 steps  0.0046 eV/A left
+  y  0.786 A     169.42 mJ/m^2    32 steps  0.0047 eV/A left
+  y  0.884 A     166.14 mJ/m^2    32 steps  0.0044 eV/A left
+  y  0.983 A     158.75 mJ/m^2    29 steps  0.0049 eV/A left
+  y  1.081 A     147.24 mJ/m^2    28 steps  0.0043 eV/A left
+  y  1.179 A     131.82 mJ/m^2    22 steps  0.0045 eV/A left
+  y  1.277 A     114.26 mJ/m^2    13 steps  0.0045 eV/A left
+  y  1.376 A      39.54 mJ/m^2     5 steps  0.0043 eV/A left
+  y  1.474 A      33.56 mJ/m^2     0 steps  0.0043 eV/A left
+  y  1.572 A      40.69 mJ/m^2     5 steps  0.0047 eV/A left
+  y  1.670 A      63.16 mJ/m^2    24 steps  0.0033 eV/A left
+  y  1.769 A     100.29 mJ/m^2    31 steps  0.0049 eV/A left
+  y  1.867 A     149.13 mJ/m^2    39 steps  0.0036 eV/A left
+  y  1.965 A     204.35 mJ/m^2    43 steps  0.0047 eV/A left
+  y  2.063 A     256.36 mJ/m^2    54 steps  0.0029 eV/A left
+  y  2.162 A     454.83 mJ/m^2    51 steps  0.0040 eV/A left
+  y  2.260 A     519.68 mJ/m^2    53 steps  0.0044 eV/A left
+  y  2.358 A     580.50 mJ/m^2    52 steps  0.0049 eV/A left
+  y  2.456 A     632.92 mJ/m^2    59 steps  0.0048 eV/A left
+  y  2.555 A     677.17 mJ/m^2    56 steps  0.0040 eV/A left
+  y  2.653 A     713.15 mJ/m^2    56 steps  0.0048 eV/A left
+  y  2.751 A     738.69 mJ/m^2    56 steps  0.0050 eV/A left
+  y  2.849 A     753.12 mJ/m^2    56 steps  0.0048 eV/A left
+  y  2.948 A     834.35 mJ/m^2    59 steps  0.0048 eV/A left
+  y  3.046 A     749.83 mJ/m^2    56 steps  0.0046 eV/A left
+  y  3.144 A     736.93 mJ/m^2    56 steps  0.0049 eV/A left
+  y  3.242 A     712.87 mJ/m^2    58 steps  0.0045 eV/A left
+  y  3.341 A     677.75 mJ/m^2    57 steps  0.0048 eV/A left
+  y  3.439 A     633.08 mJ/m^2    60 steps  0.0036 eV/A left
+  y  3.537 A     578.73 mJ/m^2    52 steps  0.0049 eV/A left
+  y  3.635 A     518.75 mJ/m^2    59 steps  0.0043 eV/A left
+  y  3.734 A     444.27 mJ/m^2    53 steps  0.0042 eV/A left
+  y  3.832 A     243.92 mJ/m^2    66 steps  0.0037 eV/A left
+  y  3.930 A     184.22 mJ/m^2    41 steps  0.0049 eV/A left
+  y  4.028 A     123.08 mJ/m^2    35 steps  0.0048 eV/A left
+  y  4.127 A      70.30 mJ/m^2    28 steps  0.0050 eV/A left
+  y  4.225 A      30.86 mJ/m^2    16 steps  0.0045 eV/A left
+  y  4.323 A       7.40 mJ/m^2     4 steps  0.0043 eV/A left
+  y  4.421 A       0.00 mJ/m^2     0 steps  0.0041 eV/A left
+  x  0.000 A       0.00 mJ/m^2     0 steps  0.0041 eV/A left
+  x  0.098 A       6.80 mJ/m^2     4 steps  0.0040 eV/A left
+  x  0.196 A      89.85 mJ/m^2    12 steps  0.0045 eV/A left
+  x  0.295 A     122.18 mJ/m^2    23 steps  0.0049 eV/A left
+  x  0.393 A     161.49 mJ/m^2    32 steps  0.0046 eV/A left
+  x  0.491 A     204.68 mJ/m^2    37 steps  0.0044 eV/A left
+  x  0.589 A     247.29 mJ/m^2    41 steps  0.0044 eV/A left
+  x  0.687 A     285.43 mJ/m^2    48 steps  0.0048 eV/A left
+  x  0.785 A     319.24 mJ/m^2    51 steps  0.0043 eV/A left
+  x  0.884 A     350.95 mJ/m^2    56 steps  0.0034 eV/A left
+  x  0.982 A     377.78 mJ/m^2    51 steps  0.0046 eV/A left
+  x  1.080 A     398.17 mJ/m^2    53 steps  0.0042 eV/A left
+  x  1.178 A     412.24 mJ/m^2    51 steps  0.0039 eV/A left
+  x  1.276 A     487.18 mJ/m^2    53 steps  0.0044 eV/A left
+  x  1.375 A     412.24 mJ/m^2    51 steps  0.0039 eV/A left
+  x  1.473 A     398.17 mJ/m^2    53 steps  0.0042 eV/A left
+  x  1.571 A     377.78 mJ/m^2    51 steps  0.0046 eV/A left
+  x  1.669 A     350.95 mJ/m^2    56 steps  0.0034 eV/A left
+  x  1.767 A     319.24 mJ/m^2    51 steps  0.0043 eV/A left
+  x  1.865 A     285.43 mJ/m^2    48 steps  0.0048 eV/A left
+  x  1.964 A     247.29 mJ/m^2    41 steps  0.0044 eV/A left
+  x  2.062 A     204.68 mJ/m^2    37 steps  0.0044 eV/A left
+  x  2.160 A     161.49 mJ/m^2    32 steps  0.0046 eV/A left
+  x  2.258 A     122.18 mJ/m^2    23 steps  0.0049 eV/A left
+  x  2.356 A      89.85 mJ/m^2    12 steps  0.0045 eV/A left
+  x  2.455 A       6.80 mJ/m^2     4 steps  0.0040 eV/A left
+  x  2.553 A       0.00 mJ/m^2     0 steps  0.0041 eV/A left
+relaxed: intrinsic fault 33.6, unstable fault 169.4 at 0.79 A, atoms on top 834.3, maximum along [1-10] 487.2 mJ/m^2 | largest bend 74.10 at 0.10 A (median 4.84)
+intrinsic fault, as built, with 36 layers: 33.563 mJ/m^2 (+0.000 from 24 layers)
+done: 3137 evaluations in 3017 s
+== alignn_ff_matpes_pbe Tue Nov 10 01:21:05 PM EST 2026
+device cuda | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+energy jump of -6.17 meV/atom between a = 3.498 and 3.507 A
+energy jump of +2.79 meV/atom between a = 3.534 and 3.543 A
+lattice constant 3.6395 A (fit), bulk modulus 122.48729533387214 GPa, E/atom -3.745102 eV
+/data/jlee859/ffmax/stacking_fault.py:79: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  return float(e), -grad.detach().double().cpu().numpy()
+slab: 576 atoms, 24 layers, box 10.29 x 13.37 x 63.33 A, relaxed in 25 steps to 0.0048 eV/A | (111) surface energy 1158 mJ/m^2 (1162 as built)
+unrelaxed lines, step about 0.05 A
+unrelaxed: intrinsic fault 65.9, unstable fault 162.0 at 0.79 A, atoms on top 1701.2, maximum along [1-10] 674.9 mJ/m^2 | largest bend 35.43 at 1.29 A (median 1.99)
+relaxed lines, step about 0.1 A
+  y  0.000 A       0.00 mJ/m^2     0 steps  0.0048 eV/A left
+  y  0.099 A       7.89 mJ/m^2     4 steps  0.0028 eV/A left
+  y  0.198 A      28.13 mJ/m^2     4 steps  0.0047 eV/A left
+  y  0.297 A      59.44 mJ/m^2    14 steps  0.0039 eV/A left
+  y  0.396 A      89.91 mJ/m^2    26 steps  0.0044 eV/A left
+  y  0.495 A     116.36 mJ/m^2    28 steps  0.0050 eV/A left
+  y  0.594 A     136.53 mJ/m^2    31 steps  0.0047 eV/A left
+  y  0.693 A     151.57 mJ/m^2    35 steps  0.0035 eV/A left
+  y  0.792 A     154.80 mJ/m^2    35 steps  0.0036 eV/A left
+  y  0.891 A     138.25 mJ/m^2    35 steps  0.0036 eV/A left
+  y  0.991 A     124.82 mJ/m^2    30 steps  0.0046 eV/A left
+  y  1.090 A     105.65 mJ/m^2    25 steps  0.0049 eV/A left
+  y  1.189 A      82.18 mJ/m^2    25 steps  0.0035 eV/A left
+  y  1.288 A      57.21 mJ/m^2    19 steps  0.0044 eV/A left
+  y  1.387 A      72.18 mJ/m^2    13 steps  0.0047 eV/A left
+  y  1.486 A      65.57 mJ/m^2    10 steps  0.0047 eV/A left
+  y  1.585 A      73.50 mJ/m^2    16 steps  0.0050 eV/A left
+  y  1.684 A     108.63 mJ/m^2    23 steps  0.0048 eV/A left
+  y  1.783 A     153.21 mJ/m^2    30 steps  0.0047 eV/A left
+  y  1.882 A     214.01 mJ/m^2    35 steps  0.0049 eV/A left
+  y  1.981 A     293.74 mJ/m^2    52 steps  0.0021 eV/A left
+  y  2.080 A     372.12 mJ/m^2    46 steps  0.0048 eV/A left
+  y  2.179 A     454.17 mJ/m^2    51 steps  0.0048 eV/A left
+  y  2.278 A     528.45 mJ/m^2    55 steps  0.0032 eV/A left
+  y  2.377 A     596.35 mJ/m^2    55 steps  0.0036 eV/A left
+  y  2.476 A     654.97 mJ/m^2    73 steps  0.0043 eV/A left
+  y  2.575 A     704.64 mJ/m^2    69 steps  0.0046 eV/A left
+  y  2.674 A     743.89 mJ/m^2    60 steps  0.0050 eV/A left
+  y  2.774 A     770.45 mJ/m^2    61 steps  0.0049 eV/A left
+  y  2.873 A     788.92 mJ/m^2    62 steps  0.0048 eV/A left
+  y  2.972 A     626.75 mJ/m^2    64 steps  0.0047 eV/A left
+  y  3.071 A     778.08 mJ/m^2    62 steps  0.0048 eV/A left
+  y  3.170 A     758.66 mJ/m^2    61 steps  0.0049 eV/A left
+  y  3.269 A     731.58 mJ/m^2    60 steps  0.0049 eV/A left
+  y  3.368 A     691.87 mJ/m^2    69 steps  0.0046 eV/A left
+  y  3.467 A     640.96 mJ/m^2    66 steps  0.0049 eV/A left
+  y  3.566 A     579.19 mJ/m^2    55 steps  0.0035 eV/A left
+  y  3.665 A     500.51 mJ/m^2    55 steps  0.0030 eV/A left
+  y  3.764 A     419.42 mJ/m^2    54 steps  0.0048 eV/A left
+  y  3.863 A     325.78 mJ/m^2    46 steps  0.0041 eV/A left
+  y  3.962 A     237.66 mJ/m^2    51 steps  0.0036 eV/A left
+  y  4.061 A     155.39 mJ/m^2    35 steps  0.0043 eV/A left
+  y  4.160 A      90.12 mJ/m^2    25 steps  0.0047 eV/A left
+  y  4.259 A      39.13 mJ/m^2    14 steps  0.0048 eV/A left
+  y  4.358 A       9.27 mJ/m^2     4 steps  0.0028 eV/A left
+  y  4.457 A       0.00 mJ/m^2     0 steps  0.0048 eV/A left
+  x  0.000 A       0.00 mJ/m^2     0 steps  0.0048 eV/A left
+  x  0.099 A       8.57 mJ/m^2     4 steps  0.0028 eV/A left
+  x  0.198 A      33.72 mJ/m^2    14 steps  0.0042 eV/A left
+  x  0.297 A      75.73 mJ/m^2    25 steps  0.0047 eV/A left
+  x  0.396 A     124.08 mJ/m^2    30 steps  0.0048 eV/A left
+  x  0.495 A     180.85 mJ/m^2    35 steps  0.0045 eV/A left
+  x  0.594 A     239.22 mJ/m^2    47 steps  0.0048 eV/A left
+  x  0.693 A     293.50 mJ/m^2    51 steps  0.0043 eV/A left
+  x  0.792 A     342.46 mJ/m^2    46 steps  0.0043 eV/A left
+  x  0.891 A     381.74 mJ/m^2    51 steps  0.0040 eV/A left
+  x  0.990 A     412.75 mJ/m^2    51 steps  0.0047 eV/A left
+  x  1.089 A     440.43 mJ/m^2    55 steps  0.0033 eV/A left
+  x  1.188 A     456.70 mJ/m^2    54 steps  0.0038 eV/A left
+  x  1.287 A     492.15 mJ/m^2    55 steps  0.0021 eV/A left
+  x  1.386 A     456.70 mJ/m^2    54 steps  0.0038 eV/A left
+  x  1.485 A     440.43 mJ/m^2    55 steps  0.0033 eV/A left
+  x  1.584 A     412.75 mJ/m^2    51 steps  0.0047 eV/A left
+  x  1.683 A     381.74 mJ/m^2    51 steps  0.0040 eV/A left
+  x  1.782 A     342.46 mJ/m^2    46 steps  0.0043 eV/A left
+  x  1.881 A     293.50 mJ/m^2    51 steps  0.0043 eV/A left
+  x  1.980 A     239.22 mJ/m^2    47 steps  0.0048 eV/A left
+  x  2.079 A     180.85 mJ/m^2    35 steps  0.0045 eV/A left
+  x  2.178 A     124.08 mJ/m^2    30 steps  0.0048 eV/A left
+  x  2.277 A      75.73 mJ/m^2    25 steps  0.0047 eV/A left
+  x  2.376 A      33.72 mJ/m^2    14 steps  0.0042 eV/A left
+  x  2.475 A       8.57 mJ/m^2     4 steps  0.0028 eV/A left
+  x  2.574 A       0.00 mJ/m^2     0 steps  0.0048 eV/A left
+relaxed: intrinsic fault 65.6, unstable fault 154.8 at 0.79 A, atoms on top 626.7, maximum along [1-10] 492.2 mJ/m^2 | largest bend 39.94 at 1.29 A (median 6.01)
+intrinsic fault, as built, with 36 layers: 65.890 mJ/m^2 (-0.000 from 24 layers)
+done: 3264 evaluations in 3134 s
+== alignn_ff_matpes_r2scan Tue Nov 10 02:13:23 PM EST 2026
+device cuda | alignn /data/jlee859/ffmax/alignn_6a20fb5/alignn
+energy jump of -13.57 meV/atom between a = 3.498 and 3.507 A
+energy jump of +5.68 meV/atom between a = 3.534 and 3.543 A
+lattice constant 3.6150 A (reference (no minimum inside the scan)), bulk modulus None GPa, E/atom -10.835154 eV
+/data/jlee859/ffmax/stacking_fault.py:79: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  return float(e), -grad.detach().double().cpu().numpy()
+slab: 576 atoms, 24 layers, box 10.22 x 13.28 x 63.00 A, relaxed in 59 steps to 0.0048 eV/A | (111) surface energy 1165 mJ/m^2 (1293 as built)
+unrelaxed lines, step about 0.05 A
+unrelaxed: intrinsic fault 91.2, unstable fault 187.5 at 0.79 A, atoms on top 1713.7, maximum along [1-10] 716.4 mJ/m^2 | largest bend 37.76 at 1.33 A (median 2.88)
+relaxed lines, step about 0.1 A
+  y  0.000 A       0.00 mJ/m^2     0 steps  0.0048 eV/A left
+  y  0.098 A       9.03 mJ/m^2     3 steps  0.0049 eV/A left
+  y  0.197 A      43.63 mJ/m^2    13 steps  0.0042 eV/A left
+  y  0.295 A      60.25 mJ/m^2    22 steps  0.0049 eV/A left
+  y  0.394 A      95.95 mJ/m^2    28 steps  0.0050 eV/A left
+  y  0.492 A     129.79 mJ/m^2    31 steps  0.0047 eV/A left
+  y  0.590 A     157.72 mJ/m^2    34 steps  0.0046 eV/A left
+  y  0.689 A     183.74 mJ/m^2    39 steps  0.0032 eV/A left
+  y  0.787 A     191.94 mJ/m^2    39 steps  0.0033 eV/A left
+  y  0.885 A     181.72 mJ/m^2    34 steps  0.0048 eV/A left
+  y  0.984 A     168.77 mJ/m^2    34 steps  0.0041 eV/A left
+  y  1.082 A     148.57 mJ/m^2    30 steps  0.0046 eV/A left
+  y  1.181 A     109.32 mJ/m^2    27 steps  0.0048 eV/A left
+  y  1.279 A      84.87 mJ/m^2    21 steps  0.0040 eV/A left
+  y  1.377 A     104.42 mJ/m^2    16 steps  0.0044 eV/A left
+  y  1.476 A      97.27 mJ/m^2    15 steps  0.0041 eV/A left
+  y  1.574 A     106.25 mJ/m^2    16 steps  0.0046 eV/A left
+  y  1.673 A     134.98 mJ/m^2    26 steps  0.0046 eV/A left
+  y  1.771 A     202.54 mJ/m^2    35 steps  0.0032 eV/A left
+  y  1.869 A     215.34 mJ/m^2    44 steps  0.0050 eV/A left
+  y  1.968 A     306.03 mJ/m^2    47 steps  0.0047 eV/A left
+  y  2.066 A     401.80 mJ/m^2    55 steps  0.0046 eV/A left
+  y  2.165 A     511.07 mJ/m^2    58 steps  0.0049 eV/A left
+  y  2.263 A     606.64 mJ/m^2    65 steps  0.0045 eV/A left
+  y  2.361 A     687.07 mJ/m^2    65 steps  0.0048 eV/A left
+  y  2.460 A     757.91 mJ/m^2    53 steps  0.0045 eV/A left
+  y  2.558 A     816.99 mJ/m^2    58 steps  0.0044 eV/A left
+  y  2.656 A     864.55 mJ/m^2    58 steps  0.0048 eV/A left
+  y  2.755 A     900.16 mJ/m^2    59 steps  0.0043 eV/A left
+  y  2.853 A     924.49 mJ/m^2    53 steps  0.0040 eV/A left
+  y  2.952 A     958.58 mJ/m^2    59 steps  0.0044 eV/A left
+  y  3.050 A     939.00 mJ/m^2    62 steps  0.0050 eV/A left
+  y  3.148 A     914.28 mJ/m^2    59 steps  0.0043 eV/A left
+  y  3.247 A     876.16 mJ/m^2    58 steps  0.0049 eV/A left
+  y  3.345 A     825.63 mJ/m^2    58 steps  0.0044 eV/A left
+  y  3.444 A     755.18 mJ/m^2    60 steps  0.0050 eV/A left
+  y  3.542 A     680.60 mJ/m^2    65 steps  0.0049 eV/A left
+  y  3.640 A     594.61 mJ/m^2    65 steps  0.0046 eV/A left
+  y  3.739 A     492.89 mJ/m^2    58 steps  0.0047 eV/A left
+  y  3.837 A     390.22 mJ/m^2    55 steps  0.0044 eV/A left
+  y  3.936 A     285.92 mJ/m^2    49 steps  0.0046 eV/A left
+  y  4.034 A     188.02 mJ/m^2    43 steps  0.0047 eV/A left
+  y  4.132 A      95.01 mJ/m^2    29 steps  0.0048 eV/A left
+  y  4.231 A      35.67 mJ/m^2    20 steps  0.0037 eV/A left
+  y  4.329 A       1.14 mJ/m^2     4 steps  0.0036 eV/A left
+  y  4.427 A       0.00 mJ/m^2     0 steps  0.0048 eV/A left
+  x  0.000 A       0.00 mJ/m^2     0 steps  0.0048 eV/A left
+  x  0.098 A       0.21 mJ/m^2     4 steps  0.0032 eV/A left
+  x  0.197 A      42.00 mJ/m^2    20 steps  0.0037 eV/A left
+  x  0.295 A      88.97 mJ/m^2    26 steps  0.0047 eV/A left
+  x  0.393 A     149.25 mJ/m^2    38 steps  0.0041 eV/A left
+  x  0.492 A     217.41 mJ/m^2    44 steps  0.0049 eV/A left
+  x  0.590 A     286.19 mJ/m^2    47 steps  0.0043 eV/A left
+  x  0.688 A     355.14 mJ/m^2    51 steps  0.0046 eV/A left
+  x  0.787 A     415.20 mJ/m^2    55 steps  0.0048 eV/A left
+  x  0.885 A     467.36 mJ/m^2    57 steps  0.0050 eV/A left
+  x  0.983 A     509.92 mJ/m^2    58 steps  0.0049 eV/A left
+  x  1.081 A     541.74 mJ/m^2    59 steps  0.0045 eV/A left
+  x  1.180 A     562.02 mJ/m^2    59 steps  0.0046 eV/A left
+  x  1.278 A     563.70 mJ/m^2    50 steps  0.0044 eV/A left
+  x  1.376 A     562.02 mJ/m^2    59 steps  0.0046 eV/A left
+  x  1.475 A     541.74 mJ/m^2    59 steps  0.0045 eV/A left
+  x  1.573 A     509.92 mJ/m^2    58 steps  0.0049 eV/A left
+  x  1.671 A     467.36 mJ/m^2    57 steps  0.0050 eV/A left
+  x  1.770 A     415.20 mJ/m^2    55 steps  0.0048 eV/A left
+  x  1.868 A     355.14 mJ/m^2    51 steps  0.0046 eV/A left
+  x  1.966 A     286.19 mJ/m^2    47 steps  0.0043 eV/A left
+  x  2.065 A     217.41 mJ/m^2    44 steps  0.0049 eV/A left
+  x  2.163 A     149.25 mJ/m^2    38 steps  0.0041 eV/A left
+  x  2.261 A      88.97 mJ/m^2    26 steps  0.0047 eV/A left
+  x  2.360 A      42.00 mJ/m^2    20 steps  0.0037 eV/A left
+  x  2.458 A       0.21 mJ/m^2     4 steps  0.0032 eV/A left
+  x  2.556 A       0.00 mJ/m^2     0 steps  0.0048 eV/A left
+relaxed: intrinsic fault 97.3, unstable fault 191.9 at 0.79 A, atoms on top 958.6, maximum along [1-10] 563.7 mJ/m^2 | largest bend 44.00 at 1.28 A (median 17.90)
+intrinsic fault, as built, with 36 layers: 91.189 mJ/m^2 (+0.000 from 24 layers)
+done: 3482 evaluations in 3379 s
+== summary Tue Nov 10 03:09:46 PM EST 2026
+| Quantity | Exp. or DFT (paper) | EAM (paper) | COMB3 (paper) | alignn_ff_matpes_pbe | alignn_ff_matpes_r2scan | alignn_ff_mptrj | matpes_r2scan_paper |
+|---|---|---|---|---|---|---|---|
+| Lattice constant (A) | - | - | - | 3.640 | 3.615 | 3.610 | 3.581 |
+| Bulk modulus (GPa) | - | - | - | 122 | - | 101 | 125 |
+| (111) surface energy | - | - | - | 1158 (1162) | 1165 (1293) | 90 (91) | 1170 (1174) |
+| Intrinsic stacking fault | - | - | - | 66 (66) | 97 (91) | 34 (34) | 25 (25) |
+| Unstable stacking fault | - | - | - | 155 (162) | 192 (188) | 169 (184) | 173 (189) |
+| Maximum along [1-10] | - | - | - | 492 (675) | 564 (716) | 487 (694) | 562 (798) |
+| Atoms on top, along [11-2] | - | - | - | 627 (1701) | 959 (1714) | 834 (1480) | 883 (1850) |
+Energies in mJ/m^2: relaxed along z, with the as-built value in parentheses. Paper: Choudhary et al., J. Phys.: Condens. Matter 27, 015003 (2015), Table 1.
+alignn_ff_matpes_pbe: largest bend of the as-built line 35.43 mJ/m^2 at 1.29 A (median 1.99); intrinsic fault is a minimum: True; largest force left after relaxing 0.0050 eV/A
+  energy jump of -6.17 meV/atom between a = 3.498 and 3.507 A
+  energy jump of +2.79 meV/atom between a = 3.534 and 3.543 A
+alignn_ff_matpes_r2scan: largest bend of the as-built line 37.76 mJ/m^2 at 1.33 A (median 2.88); intrinsic fault is a minimum: True; largest force left after relaxing 0.0050 eV/A
+  energy jump of -13.57 meV/atom between a = 3.498 and 3.507 A
+  energy jump of +5.68 meV/atom between a = 3.534 and 3.543 A
+alignn_ff_mptrj: largest bend of the as-built line 65.76 mJ/m^2 at 0.10 A (median 1.36); intrinsic fault is a minimum: True; largest force left after relaxing 0.0050 eV/A
+  energy jump of -28.79 meV/atom between a = 3.498 and 3.507 A
+matpes_r2scan_paper: largest bend of the as-built line 14.44 mJ/m^2 at 0.25 A (median 3.20); intrinsic fault is a minimum: True; largest force left after relaxing 0.0050 eV/A
+  energy jump of +3.63 meV/atom between a = 3.534 and 3.543 A
+end rc 0 Tue Nov 10 03:09:46 PM EST 2026
