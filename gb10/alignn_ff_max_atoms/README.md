@@ -97,13 +97,15 @@ The scripts expect alignn at commit `6a20fb5` and the four checkpoints under `/d
 - `ff_stream.py`: chunked evaluation of a crystal whose pieces are generated from the lattice, so no task holds the cell; with forces each task keeps only its x slab, and `reduce` adds slabs block by block
 - `prep_v12.py`, `cliff_ops.py`: the B200 runs' checkpoint as a model folder for `ff_any.py` (5 A, 12 neighbors), and tests of the 2^26 line-graph threshold (graph construction against a CPU reference, layer operations past 2^26 rows)
 - `energy_maps.py`, `maps.sbatch`: per-atom energy maps for figures from the stage-7 and stage-10 runs (a 5 A slab, each atom's energy relative to the median of its material, atom by atom or binned), written as small files to `results/<model>/maps/` for `analysis/gb10_energy_maps_figure.py`
+- `stacking_fault.py`, `stage14_gsf.sbatch`: stacking-fault and surface energies of FCC Al or Cu (stage 14, below)
+- `stage15_check.sbatch`, `stage15_submit.sh`: the billion-atom runs with the retrained model (stage 15, below). `chunk_any.sbatch` and `stream.sbatch` take `SMOOTH=1` from the environment for a model with smooth_messages, and `SMOOTH=1 sbatch maps.sbatch` makes the energy maps of the retrained model's runs
 - `build.sbatch`, `chunk_any.sbatch`, `reduce_any.sbatch`, `stream.sbatch`, `stream_reduce.sbatch`: generic wrappers (build a structure; one array task of `ff_any.py` or `ff_stream.py`; reduce)
 - `stage7_poly.sbatch`, `stage7_1B_submit.sh`, `stage8_cliff.sbatch`, `stage9_check.sbatch`, `stage9_submit.sh`, `stage10_check.sbatch`, `stage10_submit.sh`: stages 7 to 10, below
 - `relax_check.py`, `relax_check.sbatch`: forces of a relaxed cell, which atoms keep large forces, and a test for force jumps at the graph cutoffs
 - `map_profile.py`, `maps_figure.sbatch`: how far the energy disturbance reaches into each layer of the gate stack, and the energy-map figure on the cluster
 - `stmv_convert.py`, `stage11_stmv.sbatch`: the NAMD STMV benchmark as a `cells.py` structure and one evaluation of it (stage 11, below)
 - `smooth_messages.patch`, `smooth_eval.py`, `smooth_check.py`, `prep_smooth.py`, `smooth_train_config.py`, `smooth_train_base.json`, `stage12_check.sbatch`, `stage12_probe.sbatch`, `stage12_train.sbatch`: switch weights on the bond and angle messages of ALIGNN, their checks, and retraining (stage 12, below)
-- `compare_models.py`, `stage13_compare.sbatch`, `stage13_rerun.sbatch`, `stage13_dryrun.sbatch`: stage 13, for after training (written 2026-11-09, not yet run). Errors of AFF-r2SCAN and the retrained model on the run's test frames and a sample of its training frames, energy conservation in float64 (Si at 1500 K, water at 300 K with and without the 52-neighbor cap, same start for both), then the stage-7 relaxation, the bond-crossing test and the STMV evaluation with the retrained model. The dry run tests the script on the 2-epoch probe model
+- `compare_models.py`, `stage13_compare.sbatch`, `stage13_rerun.sbatch`, `stage13_dryrun.sbatch`: stage 13 (below). Errors of AFF-r2SCAN and the retrained model on the run's test frames and a sample of its training frames, energy conservation in float64 (Si at 1500 K, water at 300 K with and without the 52-neighbor cap, same start for both), then the stage-7 relaxation, the bond-crossing test and the STMV evaluation with the retrained model. The dry run tests the script on the 2-epoch probe model
 
 ## Stages 7 to 10 (run 2026-11-08 to 09)
 
@@ -139,15 +141,121 @@ One evaluation of energy and forces with AFF-r2SCAN on one GB10, single precisio
 
 The rate is 28% below the 481 atoms/s sampled for water in stage 6, in part because these pieces are smaller (14.9 atoms evaluated per atom owned against 12.1). The 52-neighbor cap binds in every piece, as in water. At this rate the 305-million-atom SARS-CoV-2 envelope would take about 245 GB10-hours per force evaluation; that structure was not run.
 
-## Stage 12: removing the force jump (in progress, 2026-11-09)
+## Stage 12: removing the force jump (2026-11-09 to 10)
 
 `smooth_messages.patch` adds an optional C2 switch weight to the bond messages (4 to 5 A) and the angle messages (product of two switches, 3.0 to 3.5 A) of a copy of ALIGNN (`alignn_smooth` on the cluster; `alignn_6a20fb5` stays unpatched). A weight is needed because a new edge enters a message with a nonzero coefficient, so tapering features cannot remove the jump.
 
 - **Checks (job 21742, `logs/stage12check_21742.out`, `results/matpes_r2scan_paper/stage12/`).** Flag off reproduces unpatched ALIGNN (0 in energy, 2e-14 in forces). Forces match finite differences within 1.5e-6 eV/A. With the flag on and AFF-r2SCAN's weights, which were not trained for this model, the force change across 3.5 A is 0.0017-0.0023 eV/A, against 0.47-0.51 before. Chunked against full cell in float64: 1.4e-14 eV/atom and 3.5e-12 eV/A on the 772-atom stack.
 - **Speed probe (job 21743, `logs/stage12probe_21743.out`).** 4,000 training frames at batch 8 took 21.6 s per epoch on one GB10.
-- **Training (job 21744, running).** AFF-r2SCAN's recorded settings on MatPES r2SCAN on one GB10: 100 epochs, batch 64, learning rate 1e-3, a random split of 347,889 / 19,327 / 19,328 frames. About 18 minutes per epoch. There is no trained model or accuracy result yet.
+- **Training (job 21744, ended 2026-11-10).** AFF-r2SCAN's recorded settings on MatPES r2SCAN on one GB10: 100 epochs, batch 64, learning rate 1e-3, a random split of 347,889 / 19,327 / 19,328 frames. About 18 minutes per epoch. The lowest validation loss, 0.1834, was at epoch 99. That checkpoint is `models/aff_smooth` on the cluster (`best_model.pt` md5 8e4976dd2cd536de84044c7470726809). Its accuracy and energy conservation are in stage 13.
 
-Swaps at the 52-neighbor cap remain a separate possible discontinuity where the cap binds (water, STMV).
+Swaps at the 52-neighbor cap remain a separate possible discontinuity where the cap binds (water, STMV). Stage 13 found no effect of the cap on energy conservation in water.
+
+## Stage 13: the retrained model against AFF-r2SCAN (job 21860, 2026-11-10)
+
+`compare_models.py` on one GB10, both models through the patched ALIGNN copy (switch weights off for AFF-r2SCAN, on for the retrained model). Results in `results/matpes_r2scan_paper/stage13/test_21860.json` and `nve_21860.json`, log in `logs/stage13compare_21860.out`. Per-frame errors and the energy traces (`.npz`) stay on the cluster.
+
+Errors against MatPES r2SCAN, single precision. "Test" is the 19,328 test frames of the retraining run, "train" a sample of 2,000 of its training frames. No frame failed.
+
+| Frames | Model | E MAE (meV/atom) | E RMSE (meV/atom) | F MAE (eV/A) | F RMSE (eV/A) | Largest F error (eV/A) |
+|---|---|---:|---:|---:|---:|---:|
+| Test | AFF-r2SCAN | 39.78 | 172.15 | 0.1925 | 1.168 | 421.6 |
+| Test | retrained | 42.32 | 211.74 | 0.1383 | 0.526 | 176.5 |
+| Train | AFF-r2SCAN | 40.60 | 115.83 | 0.1775 | 0.725 | 15.7 |
+| Train | retrained | 36.09 | 109.22 | 0.1188 | 0.210 | 3.2 |
+
+On the test frames the retrained model's energy error is 6% higher and its force error 28% lower. The retraining run's split is ALIGNN's own split of this data with seed 123. AFF-r2SCAN's split file was not found, so it is assumed, not confirmed, that AFF-r2SCAN never trained on these test frames; if it did, its test errors here are too low.
+
+Energy conservation, float64, velocity Verlet, 2,000 steps from the same start for both models. Drift is the change of total energy from the first to the last step.
+
+| System | Atoms | Start | Step (fs) | Model | Drift (meV/atom) | Largest deviation (meV/atom) | Final T (K) |
+|---|---:|---|---:|---|---:|---:|---:|
+| Si, rattled 0.05 A | 512 | 1500 K | 1.0 | AFF-r2SCAN | +24.55 | 25.11 | 1,032 |
+| | | | | retrained | +0.084 | 0.117 | 927 |
+| Water | 1,536 | 300 K | 0.5 | AFF-r2SCAN | +1,404 | 1,404 | 7,724 |
+| | | | | retrained | +0.91 | 0.92 | 698 |
+| Water, cap lifted to 10,000 | 1,536 | 300 K | 0.5 | AFF-r2SCAN | +1,461 | 1,464 | 8,173 |
+| | | | | retrained | +0.57 | 0.59 | 682 |
+
+- AFF-r2SCAN does not conserve energy: Si gains 24.5 meV/atom in 2 ps, and water heats to thousands of kelvin within 1 ps. The retrained model's drift is about 290 times smaller in Si and 1,500 to 2,600 times smaller in water.
+- Lifting the 52-neighbor cap changes neither model's behavior in water, so the cap is not what breaks energy conservation there. Without the cap the models see more bonds than in training, so only the conservation of those two runs means anything.
+- With the retrained model the water goes from 300 K to about 670 K within 500 steps and stays near 690 K, while the total energy is conserved to within 1 meV/atom. The water cell is used as built, not equilibrated.
+- Not explained: the retrained model's energy in water rises steadily, and 3 of the 2,000 steps change the cell's energy by more than 20 times the median step (at most 141 meV for the cell, against a median of 6.1 meV), with and without the cap. Si has no such step.
+
+### Reruns with the retrained model (job 21861, 2026-11-11)
+
+`stage13_rerun.sbatch` on one GB10, 2 h 19 min in all. Results in `results/matpes_r2scan_paper/stage13/` (`relax_poly_si_150k_smooth.json`, `relax_check_smooth_trained_21861.json`, `stmv_forces_smooth_21861.json`), log in `logs/stage13rerun_21861.out`. Structures, forces and per-atom energies stay on the cluster.
+
+- **Relaxation.** The stage-7 run again: the same 155,281-atom polycrystal as built, one graph, FIRE at fixed cell, target 0.05 eV/A. It converged in 658 steps (7.4 s each, 1.35 h), where AFF-r2SCAN stopped at 0.496 eV/A after 2,000. Energy -8.612310 to -8.664916 eV/atom (a drop of 52.6 meV/atom), largest force 21.3 to 0.0479 eV/A, RMS per component 0.00022 eV/A, no atom above 0.05 eV/A.
+- **Bond-crossing test** (`relax_check.py`, trained weights). Ratio of the force change across a cutoff to the change on one side: 0.22 for three bonds at 3.5 A, 0.23 for one at 5 A and 0.22 for the control bond, the value of a smooth function. AFF-r2SCAN gave 16 to 38 at 3.5 A.
+- **STMV.** 1,066,628 atoms in 729 cubes (largest piece 22,263 atoms), GPU 58.3 GB, host 2.4 GB, 3,320 s (0.92 GB10-hours, 321 atoms/s; AFF-r2SCAN 3,084 s). E -5.449249 eV/atom and largest force component 8.57 eV/A, against -5.544803 and 20.84 with AFF-r2SCAN. As before this is a test of size and cost only, and the neighbor cap binds in every piece.
+
+The retrained model took 8% to 9% longer than AFF-r2SCAN in these two runs (7.4 against 6.8 s per relaxation step, 3,320 against 3,084 s for STMV). Stage 14 with the retrained model is in the stage 14 section.
+
+## Stage 15: the billion-atom runs with the retrained model (written 2026-11-11, not yet run)
+
+The force runs of a billion atoms or more again, with the stage-12 model (`models/aff_smooth`), the same cells and the same piece sizes, results in `results/aff_smooth/stage15/`. `bash stage15_submit.sh forces` submits the 1,021,299,267-atom polycrystal (`ff_any.py`, 10 tasks, with per-atom energies), 10^9 atoms of rattled Si (`ff_stream.py`, 36^3 cubes as in stage 4, 12 tasks) and 2,000,376,000 atoms of rattled Si (`ff_stream.py`, as in stage 9, 20 tasks): about 163 GB10-hours, AFF-r2SCAN's 149.5 times the 1.09 slowdown of stage 13. Modes `energy` (the two energy-only Si runs, about 29) and `stack` (the gate stack, about 11) are separate. Every array waits for `stage15_check.sbatch`, which compares chunked with full-cell results in double precision through both programs with the trained weights and fails above 1e-9 eV/A or 1e-11 eV/atom.
+
+Stage 4 ran the 10^9-atom Si cell with `ff_max_atoms.py`, which cannot take the retrained model, so this run uses `ff_stream.py` and its random displacements differ from stage 4's (same lattice and amplitude).
+
+## Stage 14: stacking-fault energies of Al (job 21783, 2026-11-09)
+
+A check before any dislocation or strain simulation: can these models describe slip in aluminum? `stacking_fault.py` (`stage14_gsf.sbatch`) follows the test of Choudhary et al., J. Phys.: Condens. Matter 27, 015003 (2015), in double precision on one GB10 (3 h 6 min for the four models). For each model it finds the lattice constant from the energy of FCC Al against a, builds a 576-atom (111) slab at that lattice constant (4 x 3 in plane, 24 layers, 15 A of vacuum), moves the upper half rigidly along [11-2] and [1-10], and records the energy change per area as built and with every atom relaxed along z (FIRE, 0.005 eV/A; every point converged within 77 steps). The (111) surface energy comes from the same slab. A 36-layer slab gives the same intrinsic fault energy to 0.001 mJ/m^2, and the energy returns to zero after one full period.
+
+Energies in mJ/m^2, relaxed with the as-built value in parentheses. The first two columns are from Table 1 of the paper.
+
+| Quantity | Exp. or DFT | COMB3 | AFF-r2SCAN | `alignn_ff_matpes_r2scan` | `alignn_ff_matpes_pbe` | `alignn_ff_mptrj` |
+|---|---|---|---|---|---|---|
+| Lattice constant (A) | 4.05 | 4.05 | 3.982 | 3.989 | 4.041 | 4.044 |
+| Bulk modulus (GPa) | 79 | 83 | 73 | 77 | not reliable | not reliable |
+| (111) surface energy | 750 to 980 | 720 | 469 (473) | 442 (442) | 461 (461) | 83 (85) |
+| Intrinsic stacking fault | 116 to 164 | 146 | 24 (24) | 29 (29) | 43 (44) | 28 (28) |
+| Unstable stacking fault | 154 to 291 | 194 | 171 (182) | 199 (226) | 150 (175) | 43 (48) |
+| Maximum along [1-10] | 250, 663 | 552 | 384 (595) | 365 (619) | 289 (520) | 102 (207) |
+| Atoms on top, along [11-2] | | | 438 (1272) | 341 (1166) | 310 (1128) | 118 (542) |
+
+- **The intrinsic fault is 3 to 7 times too low in every model** (24 to 43 against 116 to 164), and the surface energy is about half (far less for `alignn_ff_mptrj`, whose unstable fault is also far too low). The unstable fault and the bulk modulus of the two r2SCAN models are reasonable. With a fault this cheap, a strained Al polycrystal would fill with wide stacking faults and twins, so a dislocation simulation with these models would not be aluminum.
+- **The 3.5 A cutoff shows in the curves.** The as-built curve along [11-2] steps by 25 to 42 mJ/m^2 (5 for `alignn_ff_mptrj`), 13 to 23 times its typical bend, at 0.59 A for AFF-r2SCAN and 0.95 to 1.00 A for the others. A bond across the fault passes 3.5 A at 0.61 and 1.01 A of displacement when a = 3.98 A, and at 0.69 and 0.96 A when a = 4.04 A.
+- **The energy also jumps at the 5 A bond cutoff.** In the lattice-constant scan the energy rises by 6.9 (AFF-r2SCAN), 14.0, 11.0 and 5.1 meV/atom above the trend between a = 4.080 and 4.091 A, where the third neighbor shell (24 per atom, at a sqrt(3/2)) passes 5 A. That is about 0.3 meV per bond for AFF-r2SCAN, which fits with the one bond tested in stage 7 showing no visible change, but a whole shell passes at once in an FCC metal, 2.5% above the lattice constant of the r2SCAN models and 1% above that of the other two. The bulk moduli first fitted for `alignn_ff_matpes_pbe` and `alignn_ff_mptrj` (122 and 74 GPa) spanned this jump and are not reliable; `stacking_fault.py` now lists such jumps and keeps them out of the fit.
+
+Results are in `results/<model>/stage14/gsf_al_21783.json` (every curve, the lattice-constant scan and a 12 x 21 as-built gamma surface) with a quick-look `.png` each.
+
+### Copper (job 21849, 2026-11-10)
+
+The same test with `ELEMENT=Cu` (2 h 51 min; every relaxed point converged within 73 steps, the 36-layer check agrees to 2e-7 mJ/m^2, the energy returns to zero after one period). Reference fault energies are DFT-PBE values with the range of other calculations and experiment from Muzyk and Kurzydlowski, J. Min. Metall. Sect. B 55, 271 (2019), Table 1.
+
+| Quantity | Reference | AFF-r2SCAN | `alignn_ff_matpes_pbe` | `alignn_ff_mptrj` | `alignn_ff_matpes_r2scan` (not at its own lattice constant) |
+|---|---|---|---|---|---|
+| Lattice constant (A) | 3.615 (experiment) | 3.581 | 3.640 | 3.610 | 3.615 (fallback) |
+| Bulk modulus (GPa) | | 125 | 122 | 101 | |
+| (111) surface energy | | 1170 (1174) | 1158 (1162) | 90 (91) | 1165 (1293) |
+| Intrinsic stacking fault | 45 (38 to 58 calculated, 40 to 45 measured) | 25 (25) | 66 (66) | 34 (34) | 97 (91) |
+| Unstable stacking fault | 161 (158 to 184 calculated) | 173 (189) | 155 (162) | 169 (184) | 192 (188) |
+| Maximum along [1-10] | | 562 (798) | 492 (675) | 487 (694) | 564 (716) |
+| Atoms on top, along [11-2] | | 883 (1850) | 627 (1701) | 834 (1480) | 959 (1714) |
+
+- **Copper is described far better than aluminum.** For AFF-r2SCAN the unstable fault is inside the range of DFT values and the intrinsic fault is low by about 45% (25 against 45), where for Al it was low by a factor of 5 to 7. AFF-r2SCAN gives about 25 mJ/m^2 for both metals, so it is close for Cu because Cu really has a low fault energy. `alignn_ff_mptrj` again has almost no surface energy.
+- **Both cutoffs show in the lattice-constant scan.** Where the second neighbors pass 3.5 A (a = 3.50 A) the energy steps by 6.2, 13.6 and 28.8 meV/atom for the three 4+4-layer models, and by about 1.2 for AFF-r2SCAN, under the 2 meV at which the script reports a jump. Where the fourth shell passes 5 A (a = 3.536 A) it steps by 2.8 (`alignn_ff_matpes_pbe`), 5.7 (`alignn_ff_matpes_r2scan`) and 3.6 (AFF-r2SCAN). At AFF-r2SCAN's lattice constant that shell is at 5.06 A, 0.06 A outside the cutoff, and inside it each atom would have 54 neighbors, above the cap of 52.
+- **The `alignn_ff_matpes_r2scan` column is not at that model's lattice constant.** Its lowest energy in the scan is at a = 3.534 A, on the edge of the 5 A jump and 0.6 meV/atom below the smooth minimum near 3.57 A. The fit of that run failed there and the slab was built at the reference 3.615 A, 1.2% too large, which is why its surface relaxes by 128 mJ/m^2 and some relaxed values exceed the as-built ones. `stacking_fault.py` now fits only the jump-free part of the scan around the reference lattice constant; this column needs a rerun.
+
+### Retrained model (jobs 21862 for Al and 21863 for Cu, 2026-11-11)
+
+The same tests on the stage-12 model (`SMOOTH=aff_smooth MODELS=""`, 15 and 12 minutes). Results in `results/aff_smooth/stage14/`, logs `logs/stage14gsf_21862.out` and `logs/stage14gsf_21863.out`. Every relaxed point converged to 0.005 eV/A, the 36-layer check agrees to 0.001 mJ/m^2, and the energy returns to zero after one period. Relaxed values, as built in parentheses; AFF-r2SCAN and the references are repeated from the tables above.
+
+| Quantity | Al reference | Al, AFF-r2SCAN | Al, retrained | Cu reference | Cu, AFF-r2SCAN | Cu, retrained |
+|---|---|---|---|---|---|---|
+| Lattice constant (A) | 4.05 | 3.982 | 3.998 | 3.615 | 3.581 | 3.585 |
+| Bulk modulus (GPa) | 79 | 73 | 58 | | 125 | 154 |
+| (111) surface energy | 750 to 980 | 469 (473) | 673 (675) | | 1170 (1174) | 1247 (1251) |
+| Intrinsic stacking fault | 116 to 164 | 24 (24) | 69 (70) | 45 (38 to 58) | 25 (25) | 44 (44) |
+| Unstable stacking fault | 154 to 291 | 171 (182) | 209 (225) | 161 (158 to 184) | 173 (189) | 181 (200) |
+| Maximum along [1-10] | 250, 663 | 384 (595) | 452 (720) | | 562 (798) | 560 (806) |
+| Atoms on top, along [11-2] | | 438 (1272) | 638 (1645) | | 883 (1850) | 981 (1866) |
+
+- **The kinks are gone.** The largest bend of the as-built curve along [11-2] is 4.6 mJ/m^2 for Al and 5.3 for Cu, about twice the median bend (2.0 and 2.5), where AFF-r2SCAN stepped by 29 mJ/m^2 in Al, 16 times its median of 1.8.
+- **The energy jumps at the cutoffs are gone.** The script finds no jump in either lattice-constant scan, where AFF-r2SCAN rose by 6.9 meV/atom in Al and 3.6 in Cu as a neighbor shell passed 5 A.
+- **Copper's fault energies now match.** The intrinsic fault is 44 against 45 from DFT, and the unstable fault 181 against 158 to 184.
+- **Aluminum is closer but still low.** The intrinsic fault rose from 24 to 69 against 116 to 164, and the surface energy from 469 to 673 against 750 to 980. The bulk modulus fell to 58 GPa against 79, further off than AFF-r2SCAN's 73. An Al dislocation run with this model would still overstate stacking faults.
 
 ## Other structures (stage 6, job 19326)
 
