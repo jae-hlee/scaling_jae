@@ -1,0 +1,85 @@
+{
+ "slurm_job": "21769",
+ "host": "atomgptlab12",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_smooth/alignn",
+ "gpu": "NVIDIA GB10",
+ "models": {
+  "aff": {
+   "dir": "/data/jlee859/ffmax/models/matpes_r2scan_paper",
+   "best_model_md5": "92cfe2955622c198c03085fc5320296b",
+   "smooth_messages": false
+  },
+  "probe": {
+   "dir": "/data/jlee859/ffsmooth/probe_out_21743",
+   "best_model_md5": "c45bab7a7fa7097c2b4f9524ac947b84",
+   "smooth_messages": true
+  }
+ },
+ "split": {
+  "entries": 386544,
+  "n_train": 4000,
+  "n_val": 400,
+  "n_test": 400,
+  "random_seed": 123,
+  "keep_data_order": true,
+  "aff_ids_file": null
+ },
+ "history": {
+  "epochs": 2,
+  "best_epoch": 2,
+  "best_val_loss": 1.6393837058544158,
+  "last_val_loss": 1.6393837058544158
+ },
+ "sets": {
+  "test": {
+   "aff": {
+    "frames": 400,
+    "failed": 0,
+    "energy_mae_meV_atom": 44.37042151024398,
+    "energy_rmse_meV_atom": 156.89358192533663,
+    "energy_mae_with_penalty_meV_atom": 44.36269842380683,
+    "force_mae_eV_A": 0.16226279817589997,
+    "force_rmse_eV_A": 0.6339020077035724,
+    "force_max_err_eV_A": 14.721938570283204,
+    "wall_s": 14.05258517805487
+   },
+   "probe": {
+    "frames": 400,
+    "failed": 0,
+    "energy_mae_meV_atom": 1559.8750551117116,
+    "energy_rmse_meV_atom": 4402.125394060758,
+    "energy_mae_with_penalty_meV_atom": 1559.870834525285,
+    "force_mae_eV_A": 0.6156778906377625,
+    "force_rmse_eV_A": 1.2394741990924578,
+    "force_max_err_eV_A": 19.84209261614746,
+    "wall_s": 3.8499090648256242
+   }
+  },
+  "train_sample": {
+   "aff": {
+    "frames": 100,
+    "failed": 0,
+    "energy_mae_meV_atom": 28.70178230634874,
+    "energy_rmse_meV_atom": 45.24157111653828,
+    "energy_mae_with_penalty_meV_atom": 28.833006214334922,
+    "force_mae_eV_A": 0.21806548604555878,
+    "force_rmse_eV_A": 0.8535152452800804,
+    "force_max_err_eV_A": 10.030448850952148,
+    "wall_s": 0.9115742347203195
+   },
+   "probe": {
+    "frames": 100,
+    "failed": 0,
+    "energy_mae_meV_atom": 1177.0062767940447,
+    "energy_rmse_meV_atom": 3260.7327687863667,
+    "energy_mae_with_penalty_meV_atom": 1177.141293456339,
+    "force_mae_eV_A": 0.822636809707581,
+    "force_rmse_eV_A": 3.467993585369411,
+    "force_max_err_eV_A": 72.35930061791576,
+    "wall_s": 0.9761970150284469
+   }
+  }
+ },
+ "pred_csv_check": null
+}

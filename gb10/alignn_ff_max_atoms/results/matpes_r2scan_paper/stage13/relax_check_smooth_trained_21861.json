@@ -1,0 +1,135 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/aff_smooth",
+ "checkpoint_md5": "8e4976dd2cd536de84044c7470726809",
+ "layers": [
+  2,
+  2
+ ],
+ "hidden": 128,
+ "element_embedding": false,
+ "cutoff": 5.0,
+ "max_neighbors": 52,
+ "three_body_cutoff": 3.5,
+ "reach_A": 20.0,
+ "gpu": "NVIDIA GB10",
+ "gpu_memory_gb": 130.661138432,
+ "neighbor_list": "matscipy",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_smooth/alignn",
+ "slurm_job": "21861",
+ "host": "atomgptlab04",
+ "relaxed": "/data/jlee859/ffmax/results/matpes_r2scan_paper/stage13/relax_poly_si_150k_smooth_relaxed",
+ "natoms": 155281,
+ "relax_steps": 658,
+ "relax_converged": true,
+ "flags": {
+  "three_body_cutoff": 3.5,
+  "use_cutoff_function": true,
+  "inner_cutoff": 4.0,
+  "multiply_cutoff": true
+ },
+ "e_per_atom": -8.664915734660427,
+ "fmax": 0.04788054842209256,
+ "frms_component": 0.00022303238578413612,
+ "force_percentiles": {
+  "50": 0.00017561400427572465,
+  "90": 0.0002840618346875614,
+  "99": 0.0006592593287841952,
+  "99.9": 0.0027989208920889117,
+  "99.99": 0.01207794190601177
+ },
+ "atoms_above": {
+  "0.05": 0,
+  "0.1": 0,
+  "0.2": 0,
+  "0.4": 0
+ },
+ "max_degree": 33,
+ "near_cutoff": {
+  "all atoms": {
+   "atoms": 155281,
+   "gap35_01": 0.019152375371101423,
+   "gap35_05": 0.0832812771684881,
+   "gap50_01": 0.017362072629619852,
+   "gap50_05": 0.07807780732993734
+  },
+  "force > 0.05": {
+   "atoms": 0,
+   "gap35_01": NaN,
+   "gap35_05": NaN,
+   "gap50_01": NaN,
+   "gap50_05": NaN
+  },
+  "force > 0.2": {
+   "atoms": 0,
+   "gap35_01": NaN,
+   "gap35_05": NaN,
+   "gap50_01": NaN,
+   "gap50_05": NaN
+  },
+  "top 20": {
+   "atoms": 20,
+   "gap35_01": 0.05,
+   "gap35_05": 0.25,
+   "gap50_01": 0.15,
+   "gap50_05": 0.4
+  }
+ },
+ "crossing": [
+  {
+   "label": "3.5 A, force 0.048",
+   "atom": 36171,
+   "bond_A": 3.5683984153330295,
+   "target_A": 3.5,
+   "across": 0.005863700433043725,
+   "same": 0.026206795304327103,
+   "ratio": 0.22374732831509345,
+   "de_across": -0.0004506111145019531,
+   "de_same": 0.0019006729125976562
+  },
+  {
+   "label": "3.5 A, force 0.032",
+   "atom": 61569,
+   "bond_A": 3.5557830578848217,
+   "target_A": 3.5,
+   "across": 0.0037431248422867837,
+   "same": 0.016868547292701902,
+   "ratio": 0.22189965604840373,
+   "de_across": -0.0005578994750976562,
+   "de_same": 0.0010576248168945312
+  },
+  {
+   "label": "3.5 A, force 0.026",
+   "atom": 33272,
+   "bond_A": 3.5866420815858544,
+   "target_A": 3.5,
+   "across": 0.004201478377800152,
+   "same": 0.018933368238696412,
+   "ratio": 0.22190866014072885,
+   "de_across": -0.00010204315185546875,
+   "de_same": 0.0020194053649902344
+  },
+  {
+   "label": "5 A, force 0.048",
+   "atom": 61566,
+   "bond_A": 4.977733749843282,
+   "target_A": 5.0,
+   "across": 0.0020862101995669314,
+   "same": 0.009114683335245065,
+   "ratio": 0.2288845506568375,
+   "de_across": 0.0002827644348144531,
+   "de_same": 0.00019216537475585938
+  },
+  {
+   "label": "control",
+   "atom": 66528,
+   "bond_A": 4.496394730018843,
+   "target_A": 4.496394730018843,
+   "across": 0.00548892229584374,
+   "same": 0.02456473572896459,
+   "ratio": 0.22344723576129022,
+   "de_across": -0.00035572052001953125,
+   "de_same": 0.0002684593200683594
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "slurm_job": "21769",
+ "host": "atomgptlab12",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_smooth/alignn",
+ "gpu": "NVIDIA GB10",
+ "models": {
+  "aff": {
+   "dir": "/data/jlee859/ffmax/models/matpes_r2scan_paper",
+   "best_model_md5": "92cfe2955622c198c03085fc5320296b",
+   "smooth_messages": false
+  },
+  "probe": {
+   "dir": "/data/jlee859/ffsmooth/probe_out_21743",
+   "best_model_md5": "c45bab7a7fa7097c2b4f9524ac947b84",
+   "smooth_messages": true
+  }
+ },
+ "steps": 20,
+ "seed": 0,
+ "systems": {
+  "si_1500K": {
+   "atoms": 512,
+   "T0_K": 1500.0,
+   "dt_fs": 1.0,
+   "box_A": [
+    21.72,
+    21.72,
+    21.72
+   ],
+   "models": {
+    "aff": {
+     "steps_done": 20,
+     "T_end_K": 783.5799225888891,
+     "drift_meV_atom": -1.0585055650551567,
+     "max_dev_meV_atom": 1.0585055650551567,
+     "step_change_median_meV": 15.220283121834655,
+     "step_change_max_meV": 172.7038691069538,
+     "steps_over_20x_median": 0,
+     "wall_s": 3.741847734898329
+    },
+    "probe": {
+     "steps_done": 20,
+     "T_end_K": 1423.2913525203462,
+     "drift_meV_atom": 0.009962788460882166,
+     "max_dev_meV_atom": 0.010475585035862878,
+     "step_change_median_meV": 0.2545580014157167,
+     "step_change_max_meV": 0.5837659896315017,
+     "steps_over_20x_median": 0,
+     "wall_s": 1.7909224918112159
+    }
+   }
+  },
+  "water_300K": {
+   "atoms": 1536,
+   "T0_K": 300.0,
+   "dt_fs": 0.5,
+   "box_A": [
+    24.833877134963807,
+    24.833877134963807,
+    24.833877134963807
+   ],
+   "models": {
+    "aff": {
+     "steps_done": 20,
+     "T_end_K": 933.7658679397457,
+     "drift_meV_atom": -2.2167367450703543,
+     "max_dev_meV_atom": 59.14460433815923,
+     "step_change_median_meV": 32563.711314009197,
+     "step_change_max_meV": 113185.30841125357,
+     "steps_over_20x_median": 0,
+     "wall_s": 19.42659141123295
+    },
+    "probe": {
+     "steps_done": 20,
+     "T_end_K": 291.69644001133463,
+     "drift_meV_atom": -0.012514929168834973,
+     "max_dev_meV_atom": 0.03313555214864058,
+     "step_change_median_meV": 5.3830531251151115,
+     "step_change_max_meV": 25.967635287088342,
+     "steps_over_20x_median": 0,
+     "wall_s": 20.48631601827219
+    }
+   }
+  }
+ }
+}

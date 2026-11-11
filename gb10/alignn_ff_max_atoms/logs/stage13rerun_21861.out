@@ -1,0 +1,1451 @@
+start Wed Nov 11 06:07:15 AM UTC 2026 | atomgptlab04
+/data/jlee859/ffmax/ff_max_atoms.py:175: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  "Z": torch.from_numpy(np.asarray(numbers)).long().to(device),
+relax.py:55: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  return float(e), -grad.detach().double().cpu().numpy()
+step     0  E/atom -8.612310  fmax 21.3374  dt 0.100  11.1 s
+step     1  E/atom -8.624885  fmax 9.5161  dt 0.100  7.3 s
+step     2  E/atom -8.630931  fmax 4.3854  dt 0.100  7.3 s
+step     3  E/atom -8.632555  fmax 4.8482  dt 0.100  7.3 s
+step     4  E/atom -8.633031  fmax 4.3004  dt 0.050  7.3 s
+step     5  E/atom -8.633879  fmax 3.3456  dt 0.050  7.3 s
+step     6  E/atom -8.634920  fmax 2.9454  dt 0.050  7.3 s
+step     7  E/atom -8.635980  fmax 2.9762  dt 0.050  7.3 s
+step     8  E/atom -8.636939  fmax 3.0012  dt 0.050  7.3 s
+step     9  E/atom -8.637759  fmax 2.9771  dt 0.050  7.3 s
+step    10  E/atom -8.638487  fmax 2.9014  dt 0.050  7.3 s
+step    11  E/atom -8.639294  fmax 2.7058  dt 0.055  7.3 s
+step    12  E/atom -8.640291  fmax 2.5377  dt 0.061  7.3 s
+step    13  E/atom -8.641518  fmax 2.3519  dt 0.067  7.3 s
+step    14  E/atom -8.642873  fmax 2.2035  dt 0.073  7.3 s
+step    15  E/atom -8.644133  fmax 2.6564  dt 0.081  7.3 s
+step    16  E/atom -8.645158  fmax 3.5493  dt 0.089  7.3 s
+step    17  E/atom -8.646063  fmax 3.5364  dt 0.097  7.3 s
+step    18  E/atom -8.647053  fmax 3.7443  dt 0.107  7.3 s
+step    19  E/atom -8.648115  fmax 3.7568  dt 0.118  7.3 s
+step    20  E/atom -8.649070  fmax 4.5681  dt 0.130  7.3 s
+step    21  E/atom -8.649923  fmax 4.1179  dt 0.143  7.3 s
+step    22  E/atom -8.650820  fmax 4.4616  dt 0.157  7.3 s
+step    23  E/atom -8.651643  fmax 4.2792  dt 0.173  7.3 s
+step    24  E/atom -8.652362  fmax 3.7596  dt 0.190  7.3 s
+step    25  E/atom -8.652723  fmax 2.5674  dt 0.095  7.3 s
+step    26  E/atom -8.653284  fmax 1.8235  dt 0.095  7.3 s
+step    27  E/atom -8.653855  fmax 1.8174  dt 0.095  7.3 s
+step    28  E/atom -8.654330  fmax 1.7045  dt 0.095  7.3 s
+step    29  E/atom -8.654732  fmax 1.5880  dt 0.095  7.3 s
+step    30  E/atom -8.655122  fmax 1.6283  dt 0.095  7.3 s
+step    31  E/atom -8.655515  fmax 1.6640  dt 0.095  7.3 s
+step    32  E/atom -8.655923  fmax 2.1477  dt 0.104  7.3 s
+step    33  E/atom -8.656304  fmax 2.4213  dt 0.115  7.3 s
+step    34  E/atom -8.656664  fmax 2.9000  dt 0.126  7.3 s
+step    35  E/atom -8.657006  fmax 3.2089  dt 0.139  7.4 s
+step    36  E/atom -8.657313  fmax 3.5099  dt 0.153  7.3 s
+step    37  E/atom -8.657622  fmax 3.6606  dt 0.168  7.4 s
+step    38  E/atom -8.657965  fmax 3.5139  dt 0.185  7.4 s
+step    39  E/atom -8.658309  fmax 4.7276  dt 0.204  7.4 s
+step    40  E/atom -8.658678  fmax 3.2380  dt 0.224  7.4 s
+step    41  E/atom -8.659034  fmax 2.5830  dt 0.246  7.4 s
+step    42  E/atom -8.659200  fmax 1.6952  dt 0.123  7.4 s
+step    43  E/atom -8.659428  fmax 1.5978  dt 0.123  7.4 s
+step    44  E/atom -8.659624  fmax 1.4080  dt 0.123  7.4 s
+step    45  E/atom -8.659778  fmax 1.3965  dt 0.123  7.4 s
+step    46  E/atom -8.659932  fmax 1.3072  dt 0.123  7.4 s
+step    47  E/atom -8.660096  fmax 1.4909  dt 0.123  7.4 s
+step    48  E/atom -8.660259  fmax 1.5895  dt 0.123  7.4 s
+step    49  E/atom -8.660426  fmax 2.2018  dt 0.135  7.4 s
+step    50  E/atom -8.660591  fmax 2.6871  dt 0.149  7.4 s
+step    51  E/atom -8.660744  fmax 2.3693  dt 0.164  7.4 s
+step    52  E/atom -8.660888  fmax 3.1430  dt 0.180  7.4 s
+step    53  E/atom -8.661052  fmax 2.2887  dt 0.198  7.4 s
+step    54  E/atom -8.661224  fmax 2.8570  dt 0.218  7.4 s
+step    55  E/atom -8.661394  fmax 2.2695  dt 0.240  7.4 s
+step    56  E/atom -8.661563  fmax 5.3976  dt 0.264  7.4 s
+step    57  E/atom -8.661636  fmax 1.9248  dt 0.132  7.4 s
+step    58  E/atom -8.661733  fmax 1.1667  dt 0.132  7.4 s
+step    59  E/atom -8.661816  fmax 1.6538  dt 0.132  7.4 s
+step    60  E/atom -8.661887  fmax 1.7287  dt 0.132  7.4 s
+step    61  E/atom -8.661961  fmax 1.5584  dt 0.132  7.4 s
+step    62  E/atom -8.662044  fmax 1.1878  dt 0.132  7.4 s
+step    63  E/atom -8.662127  fmax 1.6315  dt 0.132  7.4 s
+step    64  E/atom -8.662209  fmax 1.7476  dt 0.145  7.4 s
+step    65  E/atom -8.662290  fmax 1.9970  dt 0.160  7.4 s
+step    66  E/atom -8.662370  fmax 3.0809  dt 0.176  7.4 s
+step    67  E/atom -8.662459  fmax 1.3954  dt 0.193  7.4 s
+step    68  E/atom -8.662550  fmax 2.8206  dt 0.213  7.4 s
+step    69  E/atom -8.662645  fmax 2.6810  dt 0.234  7.4 s
+step    70  E/atom -8.662734  fmax 3.3610  dt 0.257  7.4 s
+step    71  E/atom -8.662839  fmax 1.4743  dt 0.283  7.4 s
+step    72  E/atom -8.662935  fmax 2.3485  dt 0.311  7.4 s
+step    73  E/atom -8.662984  fmax 1.2971  dt 0.156  7.4 s
+step    74  E/atom -8.663040  fmax 1.2345  dt 0.156  7.4 s
+step    75  E/atom -8.663085  fmax 1.0614  dt 0.156  7.4 s
+step    76  E/atom -8.663128  fmax 1.1950  dt 0.156  7.4 s
+step    77  E/atom -8.663178  fmax 1.1306  dt 0.156  7.4 s
+step    78  E/atom -8.663227  fmax 1.2170  dt 0.156  7.4 s
+step    79  E/atom -8.663270  fmax 1.6176  dt 0.156  7.4 s
+step    80  E/atom -8.663315  fmax 1.3544  dt 0.171  7.4 s
+step    81  E/atom -8.663358  fmax 1.4735  dt 0.188  7.4 s
+step    82  E/atom -8.663401  fmax 2.3097  dt 0.207  7.4 s
+step    83  E/atom -8.663448  fmax 2.4488  dt 0.228  7.4 s
+step    84  E/atom -8.663496  fmax 1.6140  dt 0.251  7.4 s
+step    85  E/atom -8.663541  fmax 1.2925  dt 0.276  7.4 s
+step    86  E/atom -8.663558  fmax 1.2055  dt 0.138  7.4 s
+step    87  E/atom -8.663581  fmax 1.0373  dt 0.138  7.4 s
+step    88  E/atom -8.663602  fmax 0.9571  dt 0.138  7.4 s
+step    89  E/atom -8.663621  fmax 1.0885  dt 0.138  7.4 s
+step    90  E/atom -8.663640  fmax 1.2128  dt 0.138  7.4 s
+step    91  E/atom -8.663661  fmax 1.2035  dt 0.138  7.4 s
+step    92  E/atom -8.663683  fmax 0.9527  dt 0.138  7.4 s
+step    93  E/atom -8.663706  fmax 0.9739  dt 0.152  7.4 s
+step    94  E/atom -8.663727  fmax 1.8949  dt 0.167  7.4 s
+step    95  E/atom -8.663750  fmax 1.4123  dt 0.183  7.4 s
+step    96  E/atom -8.663776  fmax 1.3450  dt 0.202  7.4 s
+step    97  E/atom -8.663801  fmax 2.8748  dt 0.222  7.4 s
+step    98  E/atom -8.663829  fmax 1.3353  dt 0.244  7.4 s
+step    99  E/atom -8.663856  fmax 1.7652  dt 0.269  7.4 s
+step   100  E/atom -8.663885  fmax 1.2988  dt 0.295  7.4 s
+step   101  E/atom -8.663917  fmax 1.4644  dt 0.325  7.4 s
+step   102  E/atom -8.663950  fmax 1.5901  dt 0.357  7.4 s
+step   103  E/atom -8.663969  fmax 3.1227  dt 0.393  7.4 s
+step   104  E/atom -8.664012  fmax 1.2050  dt 0.197  7.4 s
+step   105  E/atom -8.664021  fmax 2.7454  dt 0.197  7.4 s
+step   106  E/atom -8.664033  fmax 1.9266  dt 0.098  7.4 s
+step   107  E/atom -8.664048  fmax 1.0355  dt 0.098  7.4 s
+step   108  E/atom -8.664053  fmax 1.2665  dt 0.098  7.4 s
+step   109  E/atom -8.664057  fmax 2.4193  dt 0.098  7.4 s
+step   110  E/atom -8.664058  fmax 2.1375  dt 0.049  7.4 s
+step   111  E/atom -8.664061  fmax 1.6305  dt 0.049  7.4 s
+step   112  E/atom -8.664065  fmax 1.0285  dt 0.049  7.4 s
+step   113  E/atom -8.664069  fmax 1.0193  dt 0.049  7.4 s
+step   114  E/atom -8.664070  fmax 1.0045  dt 0.049  7.4 s
+step   115  E/atom -8.664074  fmax 0.9814  dt 0.049  7.4 s
+step   116  E/atom -8.664076  fmax 1.0619  dt 0.049  7.4 s
+step   117  E/atom -8.664080  fmax 1.1892  dt 0.054  7.4 s
+step   118  E/atom -8.664083  fmax 1.0906  dt 0.059  7.4 s
+step   119  E/atom -8.664090  fmax 1.0257  dt 0.065  7.4 s
+step   120  E/atom -8.664097  fmax 1.1166  dt 0.072  7.4 s
+step   121  E/atom -8.664104  fmax 1.2106  dt 0.079  7.4 s
+step   122  E/atom -8.664111  fmax 1.3212  dt 0.087  7.4 s
+step   123  E/atom -8.664119  fmax 1.3261  dt 0.096  7.4 s
+step   124  E/atom -8.664128  fmax 1.4958  dt 0.105  7.4 s
+step   125  E/atom -8.664139  fmax 1.3481  dt 0.116  7.4 s
+step   126  E/atom -8.664149  fmax 1.6397  dt 0.127  7.4 s
+step   127  E/atom -8.664162  fmax 1.1615  dt 0.140  7.4 s
+step   128  E/atom -8.664175  fmax 1.0455  dt 0.154  7.4 s
+step   129  E/atom -8.664189  fmax 1.0068  dt 0.170  7.4 s
+step   130  E/atom -8.664204  fmax 1.2764  dt 0.187  7.4 s
+step   131  E/atom -8.664222  fmax 1.4744  dt 0.205  7.4 s
+step   132  E/atom -8.664238  fmax 1.6660  dt 0.226  7.4 s
+step   133  E/atom -8.664254  fmax 1.7323  dt 0.248  7.4 s
+step   134  E/atom -8.664265  fmax 3.0724  dt 0.273  7.4 s
+step   135  E/atom -8.664284  fmax 1.6657  dt 0.301  7.4 s
+step   136  E/atom -8.664298  fmax 2.8266  dt 0.331  7.4 s
+step   137  E/atom -8.664311  fmax 0.9861  dt 0.165  7.4 s
+step   138  E/atom -8.664318  fmax 1.7857  dt 0.165  7.4 s
+step   139  E/atom -8.664329  fmax 1.3507  dt 0.165  7.4 s
+step   140  E/atom -8.664342  fmax 1.2031  dt 0.165  7.4 s
+step   141  E/atom -8.664352  fmax 1.6121  dt 0.165  7.4 s
+step   142  E/atom -8.664365  fmax 0.7815  dt 0.165  7.4 s
+step   143  E/atom -8.664375  fmax 1.3338  dt 0.165  7.4 s
+step   144  E/atom -8.664384  fmax 1.3029  dt 0.182  7.4 s
+step   145  E/atom -8.664392  fmax 1.7931  dt 0.200  7.4 s
+step   146  E/atom -8.664396  fmax 1.4258  dt 0.100  7.4 s
+step   147  E/atom -8.664399  fmax 0.8616  dt 0.100  7.4 s
+step   148  E/atom -8.664402  fmax 0.8527  dt 0.100  7.4 s
+step   149  E/atom -8.664404  fmax 1.0745  dt 0.100  7.4 s
+step   150  E/atom -8.664408  fmax 0.7533  dt 0.100  7.4 s
+step   151  E/atom -8.664410  fmax 0.5213  dt 0.100  7.4 s
+step   152  E/atom -8.664413  fmax 0.7000  dt 0.100  7.4 s
+step   153  E/atom -8.664418  fmax 0.9016  dt 0.110  7.4 s
+step   154  E/atom -8.664423  fmax 0.6187  dt 0.121  7.4 s
+step   155  E/atom -8.664429  fmax 0.7124  dt 0.133  7.4 s
+step   156  E/atom -8.664436  fmax 0.7625  dt 0.146  7.4 s
+step   157  E/atom -8.664444  fmax 1.3712  dt 0.161  7.4 s
+step   158  E/atom -8.664453  fmax 1.6045  dt 0.177  7.4 s
+step   159  E/atom -8.664465  fmax 1.6714  dt 0.195  7.4 s
+step   160  E/atom -8.664475  fmax 1.8211  dt 0.214  7.4 s
+step   161  E/atom -8.664482  fmax 2.3677  dt 0.236  7.4 s
+step   162  E/atom -8.664492  fmax 1.3369  dt 0.259  7.4 s
+step   163  E/atom -8.664502  fmax 1.5313  dt 0.285  7.4 s
+step   164  E/atom -8.664506  fmax 1.1031  dt 0.143  7.4 s
+step   165  E/atom -8.664510  fmax 0.7903  dt 0.143  7.4 s
+step   166  E/atom -8.664515  fmax 0.9189  dt 0.143  7.4 s
+step   167  E/atom -8.664519  fmax 0.9858  dt 0.143  7.4 s
+step   168  E/atom -8.664524  fmax 0.9495  dt 0.143  7.4 s
+step   169  E/atom -8.664531  fmax 0.7901  dt 0.143  7.4 s
+step   170  E/atom -8.664534  fmax 1.1061  dt 0.143  7.4 s
+step   171  E/atom -8.664539  fmax 1.5837  dt 0.157  7.4 s
+step   172  E/atom -8.664545  fmax 1.2032  dt 0.173  7.4 s
+step   173  E/atom -8.664553  fmax 1.5347  dt 0.190  7.4 s
+step   174  E/atom -8.664561  fmax 1.9021  dt 0.209  7.4 s
+step   175  E/atom -8.664569  fmax 1.9335  dt 0.230  7.4 s
+step   176  E/atom -8.664581  fmax 1.4227  dt 0.253  7.4 s
+step   177  E/atom -8.664592  fmax 1.6441  dt 0.278  7.4 s
+step   178  E/atom -8.664602  fmax 1.5482  dt 0.306  7.4 s
+step   179  E/atom -8.664608  fmax 2.3747  dt 0.336  7.4 s
+step   180  E/atom -8.664616  fmax 1.7128  dt 0.168  7.4 s
+step   181  E/atom -8.664619  fmax 2.7344  dt 0.168  7.4 s
+step   182  E/atom -8.664622  fmax 1.8687  dt 0.084  7.4 s
+step   183  E/atom -8.664624  fmax 1.8934  dt 0.084  7.4 s
+step   184  E/atom -8.664626  fmax 1.9138  dt 0.084  7.4 s
+step   185  E/atom -8.664627  fmax 1.8871  dt 0.084  7.4 s
+step   186  E/atom -8.664630  fmax 1.7703  dt 0.084  7.4 s
+step   187  E/atom -8.664633  fmax 1.4816  dt 0.084  7.4 s
+step   188  E/atom -8.664637  fmax 1.1410  dt 0.084  7.4 s
+step   189  E/atom -8.664640  fmax 1.2080  dt 0.093  7.4 s
+step   190  E/atom -8.664643  fmax 1.8687  dt 0.102  7.4 s
+step   191  E/atom -8.664645  fmax 1.8851  dt 0.112  7.4 s
+step   192  E/atom -8.664649  fmax 1.2213  dt 0.123  7.4 s
+step   193  E/atom -8.664652  fmax 1.5063  dt 0.135  7.4 s
+step   194  E/atom -8.664654  fmax 1.9215  dt 0.149  7.4 s
+step   195  E/atom -8.664658  fmax 1.9103  dt 0.164  7.4 s
+step   196  E/atom -8.664661  fmax 1.0847  dt 0.180  7.4 s
+step   197  E/atom -8.664665  fmax 0.9584  dt 0.198  7.4 s
+step   198  E/atom -8.664668  fmax 1.3687  dt 0.218  7.4 s
+step   199  E/atom -8.664672  fmax 1.4245  dt 0.240  7.4 s
+step   200  E/atom -8.664674  fmax 0.8952  dt 0.120  7.4 s
+step   201  E/atom -8.664676  fmax 0.5189  dt 0.120  7.4 s
+step   202  E/atom -8.664676  fmax 1.0216  dt 0.120  7.4 s
+step   203  E/atom -8.664678  fmax 0.7907  dt 0.120  7.4 s
+step   204  E/atom -8.664679  fmax 0.5465  dt 0.120  7.4 s
+step   205  E/atom -8.664680  fmax 0.8077  dt 0.120  7.4 s
+step   206  E/atom -8.664683  fmax 0.8280  dt 0.120  7.4 s
+step   207  E/atom -8.664684  fmax 0.7118  dt 0.132  7.4 s
+step   208  E/atom -8.664687  fmax 0.7590  dt 0.145  7.4 s
+step   209  E/atom -8.664689  fmax 0.7711  dt 0.160  7.4 s
+step   210  E/atom -8.664691  fmax 0.7274  dt 0.176  7.4 s
+step   211  E/atom -8.664693  fmax 0.6124  dt 0.193  7.4 s
+step   212  E/atom -8.664696  fmax 0.8279  dt 0.213  7.4 s
+step   213  E/atom -8.664698  fmax 0.6913  dt 0.234  7.4 s
+step   214  E/atom -8.664701  fmax 0.7319  dt 0.257  7.4 s
+step   215  E/atom -8.664706  fmax 1.0779  dt 0.283  7.4 s
+step   216  E/atom -8.664710  fmax 2.4629  dt 0.311  7.4 s
+step   217  E/atom -8.664714  fmax 2.0390  dt 0.342  7.4 s
+step   218  E/atom -8.664718  fmax 1.3707  dt 0.171  7.4 s
+step   219  E/atom -8.664719  fmax 2.3028  dt 0.171  7.4 s
+step   220  E/atom -8.664719  fmax 1.5298  dt 0.086  7.4 s
+step   221  E/atom -8.664721  fmax 1.4186  dt 0.086  7.4 s
+step   222  E/atom -8.664722  fmax 1.4298  dt 0.086  7.4 s
+step   223  E/atom -8.664722  fmax 1.4214  dt 0.086  7.4 s
+step   224  E/atom -8.664724  fmax 1.4801  dt 0.086  7.4 s
+step   225  E/atom -8.664726  fmax 1.1708  dt 0.086  7.4 s
+step   226  E/atom -8.664727  fmax 0.8935  dt 0.086  7.4 s
+step   227  E/atom -8.664730  fmax 0.7593  dt 0.094  7.4 s
+step   228  E/atom -8.664730  fmax 1.3494  dt 0.104  7.4 s
+step   229  E/atom -8.664732  fmax 1.1670  dt 0.114  7.4 s
+step   230  E/atom -8.664734  fmax 1.0865  dt 0.125  7.4 s
+step   231  E/atom -8.664735  fmax 1.0784  dt 0.138  7.4 s
+step   232  E/atom -8.664737  fmax 1.4217  dt 0.152  7.4 s
+step   233  E/atom -8.664738  fmax 1.0179  dt 0.167  7.4 s
+step   234  E/atom -8.664740  fmax 1.0631  dt 0.183  7.4 s
+step   235  E/atom -8.664743  fmax 0.9178  dt 0.202  7.4 s
+step   236  E/atom -8.664745  fmax 0.7534  dt 0.222  7.4 s
+step   237  E/atom -8.664748  fmax 1.4208  dt 0.244  7.4 s
+step   238  E/atom -8.664751  fmax 1.6086  dt 0.269  7.4 s
+step   239  E/atom -8.664756  fmax 1.5806  dt 0.295  7.4 s
+step   240  E/atom -8.664761  fmax 2.2201  dt 0.325  7.4 s
+step   241  E/atom -8.664763  fmax 1.0038  dt 0.163  7.4 s
+step   242  E/atom -8.664764  fmax 2.3076  dt 0.163  7.4 s
+step   243  E/atom -8.664765  fmax 1.5941  dt 0.081  7.4 s
+step   244  E/atom -8.664766  fmax 0.8440  dt 0.081  7.4 s
+step   245  E/atom -8.664767  fmax 0.8109  dt 0.081  7.4 s
+step   246  E/atom -8.664767  fmax 1.2189  dt 0.081  7.4 s
+step   247  E/atom -8.664767  fmax 1.4670  dt 0.081  7.4 s
+step   248  E/atom -8.664768  fmax 1.2570  dt 0.081  7.5 s
+step   249  E/atom -8.664770  fmax 0.6357  dt 0.081  7.5 s
+step   250  E/atom -8.664771  fmax 0.4904  dt 0.089  7.4 s
+step   251  E/atom -8.664772  fmax 1.2084  dt 0.098  7.5 s
+step   252  E/atom -8.664774  fmax 1.1317  dt 0.108  7.5 s
+step   253  E/atom -8.664775  fmax 0.4583  dt 0.119  7.4 s
+step   254  E/atom -8.664775  fmax 0.9298  dt 0.131  7.5 s
+step   255  E/atom -8.664777  fmax 0.8753  dt 0.144  7.5 s
+step   256  E/atom -8.664779  fmax 0.6619  dt 0.158  7.4 s
+step   257  E/atom -8.664781  fmax 1.0630  dt 0.174  7.5 s
+step   258  E/atom -8.664784  fmax 0.7320  dt 0.192  7.5 s
+step   259  E/atom -8.664787  fmax 0.9601  dt 0.211  7.4 s
+step   260  E/atom -8.664790  fmax 1.1114  dt 0.232  7.4 s
+step   261  E/atom -8.664795  fmax 1.1550  dt 0.255  7.5 s
+step   262  E/atom -8.664797  fmax 1.0885  dt 0.281  7.4 s
+step   263  E/atom -8.664800  fmax 1.2170  dt 0.309  7.4 s
+step   264  E/atom -8.664798  fmax 2.3717  dt 0.339  7.4 s
+step   265  E/atom -8.664804  fmax 0.9097  dt 0.170  7.4 s
+step   266  E/atom -8.664802  fmax 2.1256  dt 0.170  7.4 s
+step   267  E/atom -8.664804  fmax 1.6245  dt 0.085  7.4 s
+step   268  E/atom -8.664805  fmax 0.6973  dt 0.085  7.4 s
+step   269  E/atom -8.664806  fmax 0.6326  dt 0.085  7.4 s
+step   270  E/atom -8.664806  fmax 0.5941  dt 0.042  7.4 s
+step   271  E/atom -8.664806  fmax 0.5782  dt 0.042  7.4 s
+step   272  E/atom -8.664806  fmax 0.5669  dt 0.042  7.4 s
+step   273  E/atom -8.664806  fmax 0.5518  dt 0.042  7.4 s
+step   274  E/atom -8.664806  fmax 0.5326  dt 0.042  7.4 s
+step   275  E/atom -8.664807  fmax 0.5094  dt 0.042  7.4 s
+step   276  E/atom -8.664807  fmax 0.4828  dt 0.042  7.4 s
+step   277  E/atom -8.664808  fmax 0.4501  dt 0.047  7.4 s
+step   278  E/atom -8.664808  fmax 0.4114  dt 0.051  7.4 s
+step   279  E/atom -8.664808  fmax 0.3670  dt 0.056  7.4 s
+step   280  E/atom -8.664808  fmax 0.3174  dt 0.062  7.4 s
+step   281  E/atom -8.664808  fmax 0.2633  dt 0.068  7.4 s
+step   282  E/atom -8.664808  fmax 0.2171  dt 0.075  7.4 s
+step   283  E/atom -8.664808  fmax 0.2451  dt 0.083  7.4 s
+step   284  E/atom -8.664808  fmax 0.2065  dt 0.091  7.4 s
+step   285  E/atom -8.664810  fmax 0.1858  dt 0.100  7.4 s
+step   286  E/atom -8.664810  fmax 0.2098  dt 0.110  7.4 s
+step   287  E/atom -8.664811  fmax 0.2474  dt 0.121  7.4 s
+step   288  E/atom -8.664812  fmax 0.2991  dt 0.133  7.4 s
+step   289  E/atom -8.664812  fmax 0.3560  dt 0.146  7.4 s
+step   290  E/atom -8.664813  fmax 0.3807  dt 0.161  7.4 s
+step   291  E/atom -8.664813  fmax 0.3253  dt 0.177  7.4 s
+step   292  E/atom -8.664815  fmax 0.3093  dt 0.195  7.4 s
+step   293  E/atom -8.664816  fmax 0.2420  dt 0.214  7.4 s
+step   294  E/atom -8.664817  fmax 0.5333  dt 0.236  7.4 s
+step   295  E/atom -8.664819  fmax 0.9487  dt 0.259  7.4 s
+step   296  E/atom -8.664821  fmax 0.6226  dt 0.285  7.4 s
+step   297  E/atom -8.664822  fmax 0.7231  dt 0.314  7.4 s
+step   298  E/atom -8.664824  fmax 1.0926  dt 0.345  7.4 s
+step   299  E/atom -8.664821  fmax 2.9151  dt 0.380  7.4 s
+step   300  E/atom -8.664829  fmax 0.9550  dt 0.190  7.4 s
+step   301  E/atom -8.664829  fmax 0.8857  dt 0.095  7.4 s
+step   302  E/atom -8.664829  fmax 0.8576  dt 0.095  7.4 s
+step   303  E/atom -8.664830  fmax 0.8103  dt 0.095  7.4 s
+step   304  E/atom -8.664831  fmax 0.7561  dt 0.095  7.4 s
+step   305  E/atom -8.664831  fmax 0.7393  dt 0.095  7.4 s
+step   306  E/atom -8.664833  fmax 0.4739  dt 0.095  7.4 s
+step   307  E/atom -8.664833  fmax 0.2263  dt 0.095  7.4 s
+step   308  E/atom -8.664833  fmax 0.4121  dt 0.104  7.4 s
+step   309  E/atom -8.664833  fmax 0.7975  dt 0.115  7.4 s
+step   310  E/atom -8.664833  fmax 1.0763  dt 0.126  7.4 s
+step   311  E/atom -8.664834  fmax 0.8482  dt 0.139  7.4 s
+step   312  E/atom -8.664835  fmax 0.4416  dt 0.153  7.4 s
+step   313  E/atom -8.664835  fmax 0.3977  dt 0.168  7.4 s
+step   314  E/atom -8.664835  fmax 0.3562  dt 0.084  7.4 s
+step   315  E/atom -8.664835  fmax 0.2772  dt 0.084  7.4 s
+step   316  E/atom -8.664835  fmax 0.1950  dt 0.084  7.4 s
+step   317  E/atom -8.664836  fmax 0.1628  dt 0.084  7.4 s
+step   318  E/atom -8.664836  fmax 0.1810  dt 0.084  7.4 s
+step   319  E/atom -8.664836  fmax 0.1761  dt 0.084  7.4 s
+step   320  E/atom -8.664836  fmax 0.2339  dt 0.084  7.4 s
+step   321  E/atom -8.664837  fmax 0.2425  dt 0.093  7.4 s
+step   322  E/atom -8.664837  fmax 0.1937  dt 0.102  7.4 s
+step   323  E/atom -8.664837  fmax 0.1461  dt 0.112  7.4 s
+step   324  E/atom -8.664837  fmax 0.1484  dt 0.123  7.4 s
+step   325  E/atom -8.664837  fmax 0.1588  dt 0.135  7.4 s
+step   326  E/atom -8.664837  fmax 0.1901  dt 0.149  7.4 s
+step   327  E/atom -8.664838  fmax 0.1743  dt 0.164  7.4 s
+step   328  E/atom -8.664838  fmax 0.2020  dt 0.180  7.4 s
+step   329  E/atom -8.664840  fmax 0.2419  dt 0.198  7.4 s
+step   330  E/atom -8.664841  fmax 0.3055  dt 0.218  7.4 s
+step   331  E/atom -8.664843  fmax 0.4163  dt 0.240  7.4 s
+step   332  E/atom -8.664845  fmax 0.6054  dt 0.264  7.4 s
+step   333  E/atom -8.664847  fmax 0.8763  dt 0.290  7.4 s
+step   334  E/atom -8.664849  fmax 1.1596  dt 0.319  7.4 s
+step   335  E/atom -8.664850  fmax 2.9555  dt 0.351  7.4 s
+step   336  E/atom -8.664851  fmax 1.1230  dt 0.176  7.4 s
+step   337  E/atom -8.664851  fmax 1.0886  dt 0.088  7.4 s
+step   338  E/atom -8.664852  fmax 1.0135  dt 0.088  7.4 s
+step   339  E/atom -8.664853  fmax 0.8997  dt 0.088  7.4 s
+step   340  E/atom -8.664853  fmax 0.7871  dt 0.088  7.4 s
+step   341  E/atom -8.664853  fmax 0.7176  dt 0.088  7.4 s
+step   342  E/atom -8.664853  fmax 0.6610  dt 0.088  7.4 s
+step   343  E/atom -8.664854  fmax 0.5993  dt 0.088  7.4 s
+step   344  E/atom -8.664854  fmax 0.5889  dt 0.097  7.4 s
+step   345  E/atom -8.664855  fmax 0.5156  dt 0.106  7.4 s
+step   346  E/atom -8.664855  fmax 0.5952  dt 0.117  7.4 s
+step   347  E/atom -8.664856  fmax 0.4853  dt 0.129  7.4 s
+step   348  E/atom -8.664858  fmax 0.3968  dt 0.141  7.4 s
+step   349  E/atom -8.664858  fmax 0.3405  dt 0.156  7.4 s
+step   350  E/atom -8.664858  fmax 0.5646  dt 0.171  7.4 s
+step   351  E/atom -8.664858  fmax 0.4772  dt 0.188  7.4 s
+step   352  E/atom -8.664858  fmax 0.4372  dt 0.207  7.4 s
+step   353  E/atom -8.664859  fmax 0.5752  dt 0.228  7.4 s
+step   354  E/atom -8.664859  fmax 0.4616  dt 0.114  7.4 s
+step   355  E/atom -8.664859  fmax 0.3383  dt 0.114  7.4 s
+step   356  E/atom -8.664859  fmax 0.3480  dt 0.114  7.4 s
+step   357  E/atom -8.664859  fmax 0.3263  dt 0.114  7.4 s
+step   358  E/atom -8.664859  fmax 0.3089  dt 0.114  7.4 s
+step   359  E/atom -8.664861  fmax 0.3048  dt 0.114  7.4 s
+step   360  E/atom -8.664861  fmax 0.2915  dt 0.114  7.4 s
+step   361  E/atom -8.664861  fmax 0.2576  dt 0.125  7.4 s
+step   362  E/atom -8.664861  fmax 0.2243  dt 0.138  7.4 s
+step   363  E/atom -8.664861  fmax 0.2291  dt 0.152  7.4 s
+step   364  E/atom -8.664861  fmax 0.2815  dt 0.167  7.4 s
+step   365  E/atom -8.664862  fmax 0.2284  dt 0.183  7.4 s
+step   366  E/atom -8.664862  fmax 0.2487  dt 0.202  7.4 s
+step   367  E/atom -8.664862  fmax 0.2724  dt 0.222  7.4 s
+step   368  E/atom -8.664863  fmax 0.3563  dt 0.244  7.4 s
+step   369  E/atom -8.664864  fmax 0.4647  dt 0.269  7.4 s
+step   370  E/atom -8.664864  fmax 0.7632  dt 0.296  7.4 s
+step   371  E/atom -8.664866  fmax 1.9455  dt 0.325  7.4 s
+step   372  E/atom -8.664866  fmax 0.3441  dt 0.163  7.4 s
+step   373  E/atom -8.664866  fmax 0.3324  dt 0.081  7.4 s
+step   374  E/atom -8.664866  fmax 0.3099  dt 0.081  7.4 s
+step   375  E/atom -8.664866  fmax 0.2787  dt 0.081  7.4 s
+step   376  E/atom -8.664866  fmax 0.2418  dt 0.081  7.4 s
+step   377  E/atom -8.664866  fmax 0.2027  dt 0.081  7.4 s
+step   378  E/atom -8.664866  fmax 0.1645  dt 0.081  7.4 s
+step   379  E/atom -8.664866  fmax 0.1535  dt 0.081  7.4 s
+step   380  E/atom -8.664866  fmax 0.1567  dt 0.089  7.4 s
+step   381  E/atom -8.664866  fmax 0.1638  dt 0.098  7.4 s
+step   382  E/atom -8.664867  fmax 0.1772  dt 0.108  7.4 s
+step   383  E/atom -8.664866  fmax 0.1994  dt 0.119  7.4 s
+step   384  E/atom -8.664866  fmax 0.2286  dt 0.131  7.4 s
+step   385  E/atom -8.664868  fmax 0.2632  dt 0.144  7.4 s
+step   386  E/atom -8.664868  fmax 0.3191  dt 0.158  7.4 s
+step   387  E/atom -8.664868  fmax 0.3960  dt 0.174  7.4 s
+step   388  E/atom -8.664869  fmax 0.4967  dt 0.192  7.4 s
+step   389  E/atom -8.664869  fmax 0.5563  dt 0.211  7.4 s
+step   390  E/atom -8.664870  fmax 0.5525  dt 0.232  7.4 s
+step   391  E/atom -8.664871  fmax 0.6495  dt 0.255  7.4 s
+step   392  E/atom -8.664872  fmax 0.4188  dt 0.281  7.4 s
+step   393  E/atom -8.664874  fmax 0.5581  dt 0.309  7.4 s
+step   394  E/atom -8.664874  fmax 1.7082  dt 0.339  7.4 s
+step   395  E/atom -8.664875  fmax 0.2276  dt 0.170  7.4 s
+step   396  E/atom -8.664874  fmax 1.8801  dt 0.170  7.4 s
+step   397  E/atom -8.664874  fmax 1.2560  dt 0.085  7.4 s
+step   398  E/atom -8.664875  fmax 0.3212  dt 0.085  7.4 s
+step   399  E/atom -8.664875  fmax 0.5864  dt 0.085  7.4 s
+step   400  E/atom -8.664875  fmax 0.5502  dt 0.042  7.4 s
+step   401  E/atom -8.664875  fmax 0.4795  dt 0.042  7.4 s
+step   402  E/atom -8.664875  fmax 0.3783  dt 0.042  7.4 s
+step   403  E/atom -8.664875  fmax 0.2530  dt 0.042  7.4 s
+step   404  E/atom -8.664875  fmax 0.2033  dt 0.042  7.4 s
+step   405  E/atom -8.664875  fmax 0.2175  dt 0.042  7.4 s
+step   406  E/atom -8.664875  fmax 0.2335  dt 0.042  7.4 s
+step   407  E/atom -8.664875  fmax 0.2585  dt 0.047  7.4 s
+step   408  E/atom -8.664875  fmax 0.3163  dt 0.051  7.4 s
+step   409  E/atom -8.664875  fmax 0.3081  dt 0.056  7.4 s
+step   410  E/atom -8.664875  fmax 0.2889  dt 0.062  7.4 s
+step   411  E/atom -8.664875  fmax 0.2733  dt 0.068  7.4 s
+step   412  E/atom -8.664875  fmax 0.2385  dt 0.075  7.4 s
+step   413  E/atom -8.664876  fmax 0.2230  dt 0.083  7.4 s
+step   414  E/atom -8.664877  fmax 0.2116  dt 0.091  7.4 s
+step   415  E/atom -8.664877  fmax 0.1747  dt 0.100  7.4 s
+step   416  E/atom -8.664877  fmax 0.2513  dt 0.110  7.4 s
+step   417  E/atom -8.664877  fmax 0.3289  dt 0.121  7.4 s
+step   418  E/atom -8.664878  fmax 0.3303  dt 0.133  7.4 s
+step   419  E/atom -8.664879  fmax 0.3025  dt 0.146  7.4 s
+step   420  E/atom -8.664879  fmax 0.3463  dt 0.161  7.4 s
+step   421  E/atom -8.664880  fmax 0.4018  dt 0.177  7.4 s
+step   422  E/atom -8.664880  fmax 0.4032  dt 0.195  7.4 s
+step   423  E/atom -8.664882  fmax 0.3425  dt 0.214  7.4 s
+step   424  E/atom -8.664882  fmax 0.4933  dt 0.236  7.4 s
+step   425  E/atom -8.664882  fmax 0.4175  dt 0.118  7.4 s
+step   426  E/atom -8.664882  fmax 0.2952  dt 0.118  7.4 s
+step   427  E/atom -8.664883  fmax 0.2070  dt 0.118  7.4 s
+step   428  E/atom -8.664883  fmax 0.1682  dt 0.118  7.4 s
+step   429  E/atom -8.664883  fmax 0.2297  dt 0.118  7.4 s
+step   430  E/atom -8.664883  fmax 0.2528  dt 0.118  7.4 s
+step   431  E/atom -8.664883  fmax 0.2451  dt 0.118  7.4 s
+step   432  E/atom -8.664883  fmax 0.2226  dt 0.130  7.4 s
+step   433  E/atom -8.664883  fmax 0.1720  dt 0.143  7.4 s
+step   434  E/atom -8.664883  fmax 0.1635  dt 0.157  7.4 s
+step   435  E/atom -8.664883  fmax 0.1448  dt 0.173  7.4 s
+step   436  E/atom -8.664884  fmax 0.1687  dt 0.190  7.4 s
+step   437  E/atom -8.664884  fmax 0.1407  dt 0.209  7.4 s
+step   438  E/atom -8.664885  fmax 0.1467  dt 0.230  7.4 s
+step   439  E/atom -8.664884  fmax 0.1388  dt 0.253  7.4 s
+step   440  E/atom -8.664885  fmax 0.1519  dt 0.278  7.4 s
+step   441  E/atom -8.664886  fmax 0.2024  dt 0.306  7.4 s
+step   442  E/atom -8.664886  fmax 0.1865  dt 0.337  7.4 s
+step   443  E/atom -8.664885  fmax 0.8745  dt 0.370  7.4 s
+step   444  E/atom -8.664886  fmax 0.3257  dt 0.185  7.4 s
+step   445  E/atom -8.664886  fmax 0.2226  dt 0.093  7.4 s
+step   446  E/atom -8.664887  fmax 0.1444  dt 0.093  7.4 s
+step   447  E/atom -8.664887  fmax 0.1337  dt 0.093  7.4 s
+step   448  E/atom -8.664886  fmax 0.2381  dt 0.093  7.4 s
+step   449  E/atom -8.664886  fmax 0.2191  dt 0.093  7.4 s
+step   450  E/atom -8.664886  fmax 0.0923  dt 0.093  7.4 s
+step   451  E/atom -8.664886  fmax 0.0722  dt 0.093  7.4 s
+step   452  E/atom -8.664886  fmax 0.1789  dt 0.102  7.4 s
+step   453  E/atom -8.664887  fmax 0.1454  dt 0.112  7.4 s
+step   454  E/atom -8.664887  fmax 0.0667  dt 0.123  7.4 s
+step   455  E/atom -8.664887  fmax 0.1680  dt 0.136  7.4 s
+step   456  E/atom -8.664887  fmax 0.0792  dt 0.149  7.4 s
+step   457  E/atom -8.664887  fmax 0.1418  dt 0.164  7.4 s
+step   458  E/atom -8.664887  fmax 0.0847  dt 0.180  7.4 s
+step   459  E/atom -8.664887  fmax 0.1867  dt 0.198  7.4 s
+step   460  E/atom -8.664887  fmax 0.1084  dt 0.218  7.4 s
+step   461  E/atom -8.664887  fmax 0.1315  dt 0.240  7.4 s
+step   462  E/atom -8.664887  fmax 0.2640  dt 0.264  7.4 s
+step   463  E/atom -8.664887  fmax 0.4766  dt 0.290  7.4 s
+step   464  E/atom -8.664888  fmax 1.0924  dt 0.320  7.4 s
+step   465  E/atom -8.664888  fmax 0.1704  dt 0.160  7.4 s
+step   466  E/atom -8.664888  fmax 0.8992  dt 0.160  7.4 s
+step   467  E/atom -8.664888  fmax 0.6979  dt 0.080  7.4 s
+step   468  E/atom -8.664888  fmax 0.3290  dt 0.080  7.4 s
+step   469  E/atom -8.664888  fmax 0.1836  dt 0.080  7.4 s
+step   470  E/atom -8.664888  fmax 0.1838  dt 0.040  7.4 s
+step   471  E/atom -8.664888  fmax 0.1841  dt 0.040  7.4 s
+step   472  E/atom -8.664888  fmax 0.1847  dt 0.040  7.4 s
+step   473  E/atom -8.664888  fmax 0.1855  dt 0.040  7.4 s
+step   474  E/atom -8.664888  fmax 0.1864  dt 0.040  7.4 s
+step   475  E/atom -8.664888  fmax 0.1875  dt 0.040  7.4 s
+step   476  E/atom -8.664888  fmax 0.1887  dt 0.040  7.4 s
+step   477  E/atom -8.664888  fmax 0.1904  dt 0.044  7.4 s
+step   478  E/atom -8.664888  fmax 0.1923  dt 0.048  7.4 s
+step   479  E/atom -8.664888  fmax 0.1947  dt 0.053  7.4 s
+step   480  E/atom -8.664888  fmax 0.1975  dt 0.058  7.4 s
+step   481  E/atom -8.664888  fmax 0.2008  dt 0.064  7.4 s
+step   482  E/atom -8.664888  fmax 0.2048  dt 0.071  7.4 s
+step   483  E/atom -8.664888  fmax 0.2096  dt 0.078  7.4 s
+step   484  E/atom -8.664888  fmax 0.2146  dt 0.086  7.4 s
+step   485  E/atom -8.664888  fmax 0.2190  dt 0.094  7.4 s
+step   486  E/atom -8.664889  fmax 0.2255  dt 0.104  7.4 s
+step   487  E/atom -8.664889  fmax 0.2427  dt 0.114  7.4 s
+step   488  E/atom -8.664889  fmax 0.2610  dt 0.125  7.4 s
+step   489  E/atom -8.664889  fmax 0.2767  dt 0.138  7.4 s
+step   490  E/atom -8.664890  fmax 0.2801  dt 0.152  7.4 s
+step   491  E/atom -8.664890  fmax 0.2422  dt 0.167  7.4 s
+step   492  E/atom -8.664890  fmax 0.2890  dt 0.184  7.4 s
+step   493  E/atom -8.664891  fmax 0.4156  dt 0.202  7.4 s
+step   494  E/atom -8.664891  fmax 0.6725  dt 0.222  7.4 s
+step   495  E/atom -8.664891  fmax 0.5559  dt 0.111  7.4 s
+step   496  E/atom -8.664891  fmax 0.3758  dt 0.111  7.4 s
+step   497  E/atom -8.664891  fmax 0.2268  dt 0.111  7.4 s
+step   498  E/atom -8.664891  fmax 0.2122  dt 0.111  7.4 s
+step   499  E/atom -8.664891  fmax 0.2560  dt 0.111  7.4 s
+step   500  E/atom -8.664891  fmax 0.2692  dt 0.111  7.4 s
+step   501  E/atom -8.664891  fmax 0.2465  dt 0.111  7.4 s
+step   502  E/atom -8.664891  fmax 0.2291  dt 0.122  7.4 s
+step   503  E/atom -8.664891  fmax 0.2318  dt 0.134  7.4 s
+step   504  E/atom -8.664892  fmax 0.1659  dt 0.148  7.4 s
+step   505  E/atom -8.664892  fmax 0.1301  dt 0.163  7.4 s
+step   506  E/atom -8.664892  fmax 0.1408  dt 0.179  7.4 s
+step   507  E/atom -8.664893  fmax 0.1373  dt 0.197  7.4 s
+step   508  E/atom -8.664893  fmax 0.1531  dt 0.216  7.4 s
+step   509  E/atom -8.664893  fmax 0.1157  dt 0.238  7.4 s
+step   510  E/atom -8.664893  fmax 0.1322  dt 0.262  7.4 s
+step   511  E/atom -8.664894  fmax 0.1626  dt 0.288  7.4 s
+step   512  E/atom -8.664894  fmax 0.2523  dt 0.317  7.4 s
+step   513  E/atom -8.664894  fmax 0.6740  dt 0.348  7.4 s
+step   514  E/atom -8.664893  fmax 2.4531  dt 0.383  7.4 s
+step   515  E/atom -8.664895  fmax 0.6890  dt 0.192  7.4 s
+step   516  E/atom -8.664895  fmax 0.4483  dt 0.096  7.4 s
+step   517  E/atom -8.664895  fmax 0.1845  dt 0.096  7.4 s
+step   518  E/atom -8.664895  fmax 0.3530  dt 0.096  7.4 s
+step   519  E/atom -8.664895  fmax 0.5453  dt 0.096  7.4 s
+step   520  E/atom -8.664895  fmax 0.4832  dt 0.096  7.4 s
+step   521  E/atom -8.664895  fmax 0.2238  dt 0.096  7.4 s
+step   522  E/atom -8.664895  fmax 0.2444  dt 0.096  7.4 s
+step   523  E/atom -8.664895  fmax 0.4563  dt 0.105  7.4 s
+step   524  E/atom -8.664896  fmax 0.3601  dt 0.116  7.4 s
+step   525  E/atom -8.664896  fmax 0.3204  dt 0.128  7.4 s
+step   526  E/atom -8.664896  fmax 0.3913  dt 0.140  7.4 s
+step   527  E/atom -8.664896  fmax 0.2550  dt 0.154  7.4 s
+step   528  E/atom -8.664897  fmax 0.3288  dt 0.170  7.4 s
+step   529  E/atom -8.664898  fmax 0.3575  dt 0.187  7.4 s
+step   530  E/atom -8.664898  fmax 0.4894  dt 0.205  7.4 s
+step   531  E/atom -8.664899  fmax 0.6835  dt 0.226  7.4 s
+step   532  E/atom -8.664900  fmax 0.9523  dt 0.249  7.4 s
+step   533  E/atom -8.664901  fmax 0.9724  dt 0.273  7.4 s
+step   534  E/atom -8.664903  fmax 1.1568  dt 0.301  7.4 s
+step   535  E/atom -8.664903  fmax 2.3222  dt 0.331  7.4 s
+step   536  E/atom -8.664903  fmax 0.5537  dt 0.165  7.4 s
+step   537  E/atom -8.664903  fmax 2.7371  dt 0.165  7.4 s
+step   538  E/atom -8.664904  fmax 1.7938  dt 0.083  7.4 s
+step   539  E/atom -8.664904  fmax 0.4498  dt 0.083  7.4 s
+step   540  E/atom -8.664904  fmax 0.7770  dt 0.083  7.4 s
+step   541  E/atom -8.664904  fmax 0.7349  dt 0.041  7.4 s
+step   542  E/atom -8.664904  fmax 0.6521  dt 0.041  7.4 s
+step   543  E/atom -8.664904  fmax 0.5316  dt 0.041  7.4 s
+step   544  E/atom -8.664905  fmax 0.3793  dt 0.041  7.4 s
+step   545  E/atom -8.664904  fmax 0.2151  dt 0.041  7.4 s
+step   546  E/atom -8.664904  fmax 0.2130  dt 0.041  7.4 s
+step   547  E/atom -8.664905  fmax 0.2108  dt 0.041  7.4 s
+step   548  E/atom -8.664904  fmax 0.3100  dt 0.045  7.4 s
+step   549  E/atom -8.664904  fmax 0.4101  dt 0.050  7.4 s
+step   550  E/atom -8.664904  fmax 0.4298  dt 0.055  7.4 s
+step   551  E/atom -8.664904  fmax 0.3483  dt 0.061  7.4 s
+step   552  E/atom -8.664905  fmax 0.2056  dt 0.067  7.4 s
+step   553  E/atom -8.664905  fmax 0.2077  dt 0.073  7.4 s
+step   554  E/atom -8.664906  fmax 0.2574  dt 0.081  7.4 s
+step   555  E/atom -8.664906  fmax 0.3028  dt 0.089  7.4 s
+step   556  E/atom -8.664906  fmax 0.2185  dt 0.098  7.4 s
+step   557  E/atom -8.664906  fmax 0.2441  dt 0.107  7.4 s
+step   558  E/atom -8.664906  fmax 0.2784  dt 0.118  7.4 s
+step   559  E/atom -8.664906  fmax 0.2645  dt 0.130  7.4 s
+step   560  E/atom -8.664907  fmax 0.2525  dt 0.143  7.4 s
+step   561  E/atom -8.664906  fmax 0.2214  dt 0.157  7.4 s
+step   562  E/atom -8.664907  fmax 0.2306  dt 0.173  7.4 s
+step   563  E/atom -8.664907  fmax 0.2620  dt 0.190  7.4 s
+step   564  E/atom -8.664907  fmax 0.2855  dt 0.209  7.4 s
+step   565  E/atom -8.664907  fmax 0.1558  dt 0.230  7.4 s
+step   566  E/atom -8.664908  fmax 0.1284  dt 0.253  7.4 s
+step   567  E/atom -8.664908  fmax 0.2994  dt 0.278  7.4 s
+step   568  E/atom -8.664909  fmax 0.2007  dt 0.139  7.4 s
+step   569  E/atom -8.664909  fmax 0.1987  dt 0.139  7.4 s
+step   570  E/atom -8.664909  fmax 0.2584  dt 0.139  7.4 s
+step   571  E/atom -8.664909  fmax 0.1265  dt 0.139  7.4 s
+step   572  E/atom -8.664909  fmax 0.1877  dt 0.139  7.4 s
+step   573  E/atom -8.664909  fmax 0.1946  dt 0.139  7.4 s
+step   574  E/atom -8.664909  fmax 0.1091  dt 0.139  7.4 s
+step   575  E/atom -8.664909  fmax 0.2117  dt 0.153  7.4 s
+step   576  E/atom -8.664909  fmax 0.1124  dt 0.168  7.4 s
+step   577  E/atom -8.664909  fmax 0.2093  dt 0.185  7.4 s
+step   578  E/atom -8.664910  fmax 0.1554  dt 0.204  7.4 s
+step   579  E/atom -8.664910  fmax 0.2074  dt 0.224  7.4 s
+step   580  E/atom -8.664911  fmax 0.2992  dt 0.246  7.4 s
+step   581  E/atom -8.664912  fmax 0.3725  dt 0.271  7.4 s
+step   582  E/atom -8.664912  fmax 0.4166  dt 0.298  7.4 s
+step   583  E/atom -8.664912  fmax 1.1396  dt 0.328  7.4 s
+step   584  E/atom -8.664912  fmax 0.1888  dt 0.164  7.4 s
+step   585  E/atom -8.664912  fmax 0.9631  dt 0.164  7.4 s
+step   586  E/atom -8.664912  fmax 0.7384  dt 0.082  7.4 s
+step   587  E/atom -8.664912  fmax 0.3268  dt 0.082  7.4 s
+step   588  E/atom -8.664912  fmax 0.1890  dt 0.082  7.4 s
+step   589  E/atom -8.664912  fmax 0.1761  dt 0.041  7.4 s
+step   590  E/atom -8.664912  fmax 0.1514  dt 0.041  7.4 s
+step   591  E/atom -8.664912  fmax 0.1192  dt 0.041  7.4 s
+step   592  E/atom -8.664912  fmax 0.1148  dt 0.041  7.4 s
+step   593  E/atom -8.664912  fmax 0.1093  dt 0.041  7.4 s
+step   594  E/atom -8.664912  fmax 0.1038  dt 0.041  7.4 s
+step   595  E/atom -8.664912  fmax 0.1015  dt 0.041  7.4 s
+step   596  E/atom -8.664912  fmax 0.0986  dt 0.045  7.4 s
+step   597  E/atom -8.664912  fmax 0.0992  dt 0.050  7.4 s
+step   598  E/atom -8.664912  fmax 0.0963  dt 0.055  7.4 s
+step   599  E/atom -8.664912  fmax 0.0838  dt 0.060  7.4 s
+step   600  E/atom -8.664912  fmax 0.0745  dt 0.066  7.4 s
+step   601  E/atom -8.664912  fmax 0.0658  dt 0.073  7.4 s
+step   602  E/atom -8.664912  fmax 0.0782  dt 0.080  7.4 s
+step   603  E/atom -8.664912  fmax 0.0747  dt 0.088  7.4 s
+step   604  E/atom -8.664912  fmax 0.0773  dt 0.097  7.4 s
+step   605  E/atom -8.664912  fmax 0.0771  dt 0.106  7.4 s
+step   606  E/atom -8.664912  fmax 0.0722  dt 0.117  7.4 s
+step   607  E/atom -8.664912  fmax 0.0559  dt 0.129  7.4 s
+step   608  E/atom -8.664912  fmax 0.0638  dt 0.142  7.4 s
+step   609  E/atom -8.664912  fmax 0.0594  dt 0.156  7.4 s
+step   610  E/atom -8.664912  fmax 0.0618  dt 0.171  7.4 s
+step   611  E/atom -8.664912  fmax 0.0618  dt 0.188  7.4 s
+step   612  E/atom -8.664912  fmax 0.0779  dt 0.207  7.4 s
+step   613  E/atom -8.664912  fmax 0.0928  dt 0.228  7.4 s
+step   614  E/atom -8.664912  fmax 0.1191  dt 0.251  7.4 s
+step   615  E/atom -8.664912  fmax 0.1574  dt 0.276  7.4 s
+step   616  E/atom -8.664912  fmax 0.2160  dt 0.303  7.4 s
+step   617  E/atom -8.664913  fmax 0.2991  dt 0.334  7.4 s
+step   618  E/atom -8.664914  fmax 0.4198  dt 0.367  7.4 s
+step   619  E/atom -8.664914  fmax 1.8282  dt 0.404  7.4 s
+step   620  E/atom -8.664915  fmax 0.9314  dt 0.202  7.4 s
+step   621  E/atom -8.664915  fmax 0.5412  dt 0.101  7.4 s
+step   622  E/atom -8.664915  fmax 0.1835  dt 0.101  7.4 s
+step   623  E/atom -8.664915  fmax 0.5455  dt 0.101  7.4 s
+step   624  E/atom -8.664915  fmax 0.4948  dt 0.050  7.4 s
+step   625  E/atom -8.664916  fmax 0.3974  dt 0.050  7.4 s
+step   626  E/atom -8.664916  fmax 0.2620  dt 0.050  7.4 s
+step   627  E/atom -8.664916  fmax 0.1724  dt 0.050  7.4 s
+step   628  E/atom -8.664916  fmax 0.1730  dt 0.050  7.4 s
+step   629  E/atom -8.664916  fmax 0.1992  dt 0.050  7.4 s
+step   630  E/atom -8.664915  fmax 0.2906  dt 0.050  7.4 s
+step   631  E/atom -8.664916  fmax 0.3262  dt 0.056  7.4 s
+step   632  E/atom -8.664916  fmax 0.2890  dt 0.061  7.4 s
+step   633  E/atom -8.664916  fmax 0.1740  dt 0.067  7.4 s
+step   634  E/atom -8.664916  fmax 0.0882  dt 0.074  7.4 s
+step   635  E/atom -8.664916  fmax 0.1733  dt 0.081  7.4 s
+step   636  E/atom -8.664916  fmax 0.2489  dt 0.089  7.4 s
+step   637  E/atom -8.664916  fmax 0.1841  dt 0.098  7.4 s
+step   638  E/atom -8.664916  fmax 0.1117  dt 0.108  7.4 s
+step   639  E/atom -8.664916  fmax 0.2027  dt 0.119  7.4 s
+step   640  E/atom -8.664916  fmax 0.1866  dt 0.131  7.4 s
+step   641  E/atom -8.664916  fmax 0.0597  dt 0.144  7.4 s
+step   642  E/atom -8.664916  fmax 0.2045  dt 0.158  7.4 s
+step   643  E/atom -8.664916  fmax 0.0717  dt 0.174  7.4 s
+step   644  E/atom -8.664916  fmax 0.2187  dt 0.192  7.4 s
+step   645  E/atom -8.664916  fmax 0.0615  dt 0.211  7.4 s
+step   646  E/atom -8.664916  fmax 0.1578  dt 0.232  7.4 s
+step   647  E/atom -8.664916  fmax 0.2709  dt 0.255  7.4 s
+step   648  E/atom -8.664916  fmax 0.0944  dt 0.128  7.4 s
+step   649  E/atom -8.664916  fmax 0.1305  dt 0.128  7.4 s
+step   650  E/atom -8.664916  fmax 0.1104  dt 0.064  7.4 s
+step   651  E/atom -8.664916  fmax 0.0729  dt 0.064  7.4 s
+step   652  E/atom -8.664916  fmax 0.0550  dt 0.064  7.4 s
+step   653  E/atom -8.664916  fmax 0.0536  dt 0.064  7.4 s
+step   654  E/atom -8.664916  fmax 0.0627  dt 0.064  7.4 s
+step   655  E/atom -8.664916  fmax 0.0823  dt 0.064  7.4 s
+step   656  E/atom -8.664916  fmax 0.0799  dt 0.064  7.4 s
+step   657  E/atom -8.664916  fmax 0.0533  dt 0.070  7.4 s
+step   658  E/atom -8.664916  fmax 0.0479  dt 0.077  7.4 s
+done: 658 steps, converged True, fmax 0.0479, E/atom -8.664916
+relax done, rc 0 Wed Nov 11 07:28:32 AM UTC 2026
+155,281 atoms, 658 FIRE steps, converged True
+model: {'three_body_cutoff': 3.5, 'use_cutoff_function': True, 'inner_cutoff': 4.0, 'multiply_cutoff': True}
+E/atom -8.664916  largest force 0.0479  rms per component 0.00022 eV/A
+force percentiles (eV/A): {'50': 0.0002, '90': 0.0003, '99': 0.0007, '99.9': 0.0028, '99.99': 0.0121}
+atoms with force above 0.05 eV/A: 0 (0.000%)
+atoms with force above 0.1 eV/A: 0 (0.000%)
+atoms with force above 0.2 eV/A: 0 (0.000%)
+atoms with force above 0.4 eV/A: 0 (0.000%)
+largest number of bonds on an atom 33 (cap 52)
+
+share of atoms with a bond within d of a cutoff
+group             atoms  3.5 A, 0.01  3.5 A, 0.05  5 A, 0.01  5 A, 0.05
+all atoms       155,281        0.019        0.083      0.017      0.078
+force > 0.05          0          nan          nan        nan        nan
+force > 0.2           0          nan          nan        nan        nan
+top 20               20        0.050        0.250      0.150      0.400
+
+largest forces
+  atom     force  bonds<=3.5  shortest bond  gap to 3.5  gap to 5
+ 61566    0.0479           6         2.3480      0.1297    0.0223
+ 36171    0.0477           5         2.2955      0.0684    0.0969
+ 61570    0.0343           9         2.3066      0.1297    0.0503
+ 61569    0.0315           6         2.3480      0.0558    0.0561
+ 61598    0.0274           5         2.3990      0.1274    0.0922
+ 33272    0.0255           5         2.3399      0.0866    0.1070
+ 36225    0.0245           6         2.3038      0.0663    0.0093
+ 36223    0.0234           5         2.3351      0.0814    0.0573
+ 64100    0.0223           4         2.3249      0.1370    0.3159
+ 36172    0.0203           4         2.3038      0.1825    0.1044
+ 61592    0.0160           4         2.3561      0.0425    0.0477
+ 60646    0.0149           5         2.3136      0.2117    0.0177
+ 60657    0.0139           5         2.3233      0.0176    0.3651
+ 21816    0.0135           6         2.2957      0.0078    0.0131
+ 36227    0.0134           4         2.3066      0.0373    0.5287
+ 61602    0.0127           4         2.3362      0.1286    0.0792
+ 36169    0.0115           4         2.2977      0.2827    0.0026
+ 98434    0.0114           4         2.3321      0.0663    0.0085
+ 34779    0.0114           4         2.3260      0.0373    0.0223
+ 60659    0.0108           4         2.2798      0.1684    0.0505
+
+forces across a cutoff (eV/A); smooth forces give across/same of about 0.22
+bond                     length    across      same   ratio  dE across    dE same
+3.5 A, force 0.048       3.5684   0.00586   0.02621    0.22   -0.00045    0.00190
+3.5 A, force 0.032       3.5558   0.00374   0.01687    0.22   -0.00056    0.00106
+3.5 A, force 0.026       3.5866   0.00420   0.01893    0.22   -0.00010    0.00202
+5 A, force 0.048         4.9777   0.00209   0.00911    0.23    0.00028    0.00019
+control                  4.4964   0.00549   0.02456    0.22   -0.00036    0.00027
+relax check done, rc 0 Wed Nov 11 07:31:17 AM UTC 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_smooth/alignn
+N=1066628 box [216.83, 216.83, 216.83] A, [9, 9, 9] cubes of [24.09, 24.09, 24.09] A, halo 20.01 A, 729 cubes on rank 0/1
+ff_any.py:240: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 21269 atoms (1384 own)  5940182 angles  graph 0.17 s  eval 7.10 s  peak 51.2 GB
+cube (0, 0, 1): 21735 atoms (1514 own)  6318004 angles  graph 0.18 s  eval 4.36 s  peak 54.2 GB
+cube (0, 0, 2): 22115 atoms (1507 own)  6678406 angles  graph 0.17 s  eval 4.53 s  peak 57.0 GB
+cube (0, 0, 3): 21952 atoms (1467 own)  6553394 angles  graph 0.17 s  eval 4.47 s  peak 56.0 GB
+cube (0, 0, 4): 21663 atoms (1466 own)  6301362 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (0, 0, 5): 21824 atoms (1489 own)  6502720 angles  graph 0.16 s  eval 4.43 s  peak 55.6 GB
+cube (0, 0, 6): 22043 atoms (1509 own)  6632092 angles  graph 0.17 s  eval 4.49 s  peak 56.7 GB
+cube (0, 0, 7): 21619 atoms (1473 own)  6239796 angles  graph 0.15 s  eval 4.27 s  peak 53.5 GB
+cube (0, 0, 8): 21176 atoms (1381 own)  5875986 angles  graph 0.16 s  eval 4.07 s  peak 50.6 GB
+cube (0, 1, 0): 21685 atoms (1464 own)  6290780 angles  graph 0.15 s  eval 4.30 s  peak 54.0 GB
+cube (0, 1, 1): 22091 atoms (1499 own)  6677486 angles  graph 0.17 s  eval 4.51 s  peak 57.0 GB
+cube (0, 1, 2): 22076 atoms (1514 own)  6656480 angles  graph 0.18 s  eval 4.50 s  peak 56.8 GB
+cube (0, 1, 3): 21783 atoms (1433 own)  6436246 angles  graph 0.16 s  eval 4.39 s  peak 55.1 GB
+cube (0, 1, 4): 21571 atoms (1457 own)  6228298 angles  graph 0.17 s  eval 4.29 s  peak 53.5 GB
+cube (0, 1, 5): 21924 atoms (1479 own)  6497838 angles  graph 0.16 s  eval 4.43 s  peak 55.6 GB
+cube (0, 1, 6): 22096 atoms (1486 own)  6675882 angles  graph 0.16 s  eval 4.52 s  peak 57.0 GB
+cube (0, 1, 7): 21989 atoms (1499 own)  6582214 angles  graph 0.16 s  eval 4.47 s  peak 56.3 GB
+cube (0, 1, 8): 21670 atoms (1412 own)  6266738 angles  graph 0.15 s  eval 4.29 s  peak 53.8 GB
+cube (0, 2, 0): 22096 atoms (1476 own)  6644422 angles  graph 0.17 s  eval 4.50 s  peak 56.8 GB
+cube (0, 2, 1): 22098 atoms (1458 own)  6689932 angles  graph 0.17 s  eval 4.52 s  peak 57.1 GB
+cube (0, 2, 2): 21828 atoms (1467 own)  6494428 angles  graph 0.16 s  eval 4.43 s  peak 55.5 GB
+cube (0, 2, 3): 21747 atoms (1420 own)  6367132 angles  graph 0.16 s  eval 4.36 s  peak 54.6 GB
+cube (0, 2, 4): 21663 atoms (1427 own)  6289876 angles  graph 0.17 s  eval 4.33 s  peak 54.0 GB
+cube (0, 2, 5): 21912 atoms (1463 own)  6483048 angles  graph 0.17 s  eval 4.43 s  peak 55.5 GB
+cube (0, 2, 6): 21889 atoms (1496 own)  6523050 angles  graph 0.16 s  eval 4.43 s  peak 55.8 GB
+cube (0, 2, 7): 22033 atoms (1510 own)  6628484 angles  graph 0.17 s  eval 4.49 s  peak 56.6 GB
+cube (0, 2, 8): 22078 atoms (1503 own)  6630876 angles  graph 0.17 s  eval 4.50 s  peak 56.7 GB
+cube (0, 3, 0): 21945 atoms (1476 own)  6571332 angles  graph 0.16 s  eval 4.46 s  peak 56.2 GB
+cube (0, 3, 1): 21812 atoms (1446 own)  6424764 angles  graph 0.16 s  eval 4.39 s  peak 55.0 GB
+cube (0, 3, 2): 21671 atoms (1439 own)  6318492 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (0, 3, 3): 21799 atoms (1447 own)  6460960 angles  graph 0.16 s  eval 4.42 s  peak 55.3 GB
+cube (0, 3, 4): 21831 atoms (1458 own)  6487326 angles  graph 0.17 s  eval 4.44 s  peak 55.5 GB
+cube (0, 3, 5): 21814 atoms (1465 own)  6463978 angles  graph 0.16 s  eval 4.42 s  peak 55.3 GB
+cube (0, 3, 6): 21732 atoms (1456 own)  6358188 angles  graph 0.16 s  eval 4.35 s  peak 54.5 GB
+cube (0, 3, 7): 21731 atoms (1447 own)  6375830 angles  graph 0.16 s  eval 4.36 s  peak 54.6 GB
+cube (0, 3, 8): 21936 atoms (1475 own)  6577628 angles  graph 0.16 s  eval 4.48 s  peak 56.2 GB
+cube (0, 4, 0): 21736 atoms (1433 own)  6379052 angles  graph 0.16 s  eval 4.37 s  peak 54.6 GB
+cube (0, 4, 1): 21597 atoms (1451 own)  6264140 angles  graph 0.16 s  eval 4.31 s  peak 53.7 GB
+cube (0, 4, 2): 21574 atoms (1444 own)  6237150 angles  graph 0.16 s  eval 4.29 s  peak 53.5 GB
+cube (0, 4, 3): 21673 atoms (1457 own)  6329518 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (0, 4, 4): 21723 atoms (1467 own)  6385732 angles  graph 0.17 s  eval 4.38 s  peak 54.7 GB
+cube (0, 4, 5): 21670 atoms (1491 own)  6317572 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (0, 4, 6): 21598 atoms (1419 own)  6247410 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (0, 4, 7): 21571 atoms (1463 own)  6217750 angles  graph 0.16 s  eval 4.27 s  peak 53.4 GB
+cube (0, 4, 8): 21745 atoms (1476 own)  6390518 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (0, 5, 0): 21931 atoms (1490 own)  6586680 angles  graph 0.16 s  eval 4.48 s  peak 56.3 GB
+cube (0, 5, 1): 21830 atoms (1464 own)  6496272 angles  graph 0.17 s  eval 4.43 s  peak 55.6 GB
+cube (0, 5, 2): 21691 atoms (1464 own)  6345242 angles  graph 0.17 s  eval 4.34 s  peak 54.4 GB
+cube (0, 5, 3): 21619 atoms (1451 own)  6283016 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (0, 5, 4): 21625 atoms (1435 own)  6302624 angles  graph 0.15 s  eval 4.32 s  peak 54.0 GB
+cube (0, 5, 5): 21631 atoms (1428 own)  6310130 angles  graph 0.17 s  eval 4.33 s  peak 54.1 GB
+cube (0, 5, 6): 21767 atoms (1448 own)  6397448 angles  graph 0.16 s  eval 4.38 s  peak 54.8 GB
+cube (0, 5, 7): 21851 atoms (1449 own)  6483032 angles  graph 0.16 s  eval 4.42 s  peak 55.5 GB
+cube (0, 5, 8): 21872 atoms (1477 own)  6545738 angles  graph 0.16 s  eval 4.44 s  peak 55.9 GB
+cube (0, 6, 0): 22137 atoms (1476 own)  6714104 angles  graph 0.17 s  eval 4.54 s  peak 57.3 GB
+cube (0, 6, 1): 22168 atoms (1495 own)  6739500 angles  graph 0.18 s  eval 4.55 s  peak 57.5 GB
+cube (0, 6, 2): 22000 atoms (1483 own)  6586692 angles  graph 0.17 s  eval 4.48 s  peak 56.3 GB
+cube (0, 6, 3): 21754 atoms (1471 own)  6362962 angles  graph 0.16 s  eval 4.36 s  peak 54.5 GB
+cube (0, 6, 4): 21628 atoms (1465 own)  6284494 angles  graph 0.15 s  eval 4.32 s  peak 53.9 GB
+cube (0, 6, 5): 21829 atoms (1499 own)  6498326 angles  graph 0.18 s  eval 4.43 s  peak 55.6 GB
+cube (0, 6, 6): 22058 atoms (1516 own)  6660998 angles  graph 0.17 s  eval 4.51 s  peak 56.9 GB
+cube (0, 6, 7): 22212 atoms (1445 own)  6753960 angles  graph 0.17 s  eval 4.56 s  peak 57.6 GB
+cube (0, 6, 8): 22097 atoms (1490 own)  6635670 angles  graph 0.17 s  eval 4.49 s  peak 56.7 GB
+cube (0, 7, 0): 21699 atoms (1464 own)  6322014 angles  graph 0.16 s  eval 4.31 s  peak 54.2 GB
+cube (0, 7, 1): 22002 atoms (1516 own)  6597908 angles  graph 0.16 s  eval 4.47 s  peak 56.4 GB
+cube (0, 7, 2): 22168 atoms (1498 own)  6713096 angles  graph 0.17 s  eval 4.54 s  peak 57.3 GB
+cube (0, 7, 3): 21885 atoms (1479 own)  6483164 angles  graph 0.17 s  eval 4.43 s  peak 55.5 GB
+cube (0, 7, 4): 21605 atoms (1457 own)  6267262 angles  graph 0.16 s  eval 4.30 s  peak 53.8 GB
+cube (0, 7, 5): 21908 atoms (1445 own)  6530330 angles  graph 0.16 s  eval 4.44 s  peak 55.8 GB
+cube (0, 7, 6): 22174 atoms (1531 own)  6773460 angles  graph 0.17 s  eval 4.56 s  peak 57.8 GB
+cube (0, 7, 7): 22038 atoms (1503 own)  6644850 angles  graph 0.17 s  eval 4.49 s  peak 56.7 GB
+cube (0, 7, 8): 21668 atoms (1454 own)  6295986 angles  graph 0.16 s  eval 4.29 s  peak 54.0 GB
+cube (0, 8, 0): 21378 atoms (1370 own)  6004146 angles  graph 0.15 s  eval 4.14 s  peak 51.7 GB
+cube (0, 8, 1): 21677 atoms (1471 own)  6303782 angles  graph 0.15 s  eval 4.30 s  peak 54.0 GB
+cube (0, 8, 2): 22156 atoms (1508 own)  6702628 angles  graph 0.17 s  eval 4.53 s  peak 57.2 GB
+cube (0, 8, 3): 21897 atoms (1480 own)  6499164 angles  graph 0.17 s  eval 4.43 s  peak 55.6 GB
+cube (0, 8, 4): 21627 atoms (1458 own)  6278958 angles  graph 0.17 s  eval 4.31 s  peak 53.9 GB
+cube (0, 8, 5): 21851 atoms (1478 own)  6518182 angles  graph 0.16 s  eval 4.43 s  peak 55.7 GB
+cube (0, 8, 6): 22028 atoms (1459 own)  6635094 angles  graph 0.16 s  eval 4.49 s  peak 56.7 GB
+cube (0, 8, 7): 21690 atoms (1457 own)  6315626 angles  graph 0.16 s  eval 4.31 s  peak 54.1 GB
+cube (0, 8, 8): 21304 atoms (1389 own)  5973080 angles  graph 0.16 s  eval 4.13 s  peak 51.4 GB
+cube (1, 0, 0): 21718 atoms (1495 own)  6371424 angles  graph 0.16 s  eval 4.35 s  peak 54.6 GB
+cube (1, 0, 1): 22058 atoms (1470 own)  6632256 angles  graph 0.17 s  eval 4.49 s  peak 56.7 GB
+cube (1, 0, 2): 22097 atoms (1460 own)  6675668 angles  graph 0.17 s  eval 4.52 s  peak 57.0 GB
+cube (1, 0, 3): 21793 atoms (1457 own)  6435376 angles  graph 0.16 s  eval 4.40 s  peak 55.1 GB
+cube (1, 0, 4): 21667 atoms (1400 own)  6311132 angles  graph 0.16 s  eval 4.39 s  peak 54.1 GB
+cube (1, 0, 5): 21826 atoms (1498 own)  6425892 angles  graph 0.17 s  eval 4.48 s  peak 55.0 GB
+cube (1, 0, 6): 22056 atoms (1501 own)  6667892 angles  graph 0.17 s  eval 4.59 s  peak 56.9 GB
+cube (1, 0, 7): 21994 atoms (1503 own)  6565652 angles  graph 0.17 s  eval 4.49 s  peak 56.1 GB
+cube (1, 0, 8): 21744 atoms (1459 own)  6338204 angles  graph 0.16 s  eval 4.33 s  peak 54.3 GB
+cube (1, 1, 0): 22030 atoms (1498 own)  6597492 angles  graph 0.17 s  eval 4.51 s  peak 56.4 GB
+cube (1, 1, 1): 22146 atoms (1476 own)  6722058 angles  graph 0.17 s  eval 4.61 s  peak 57.4 GB
+cube (1, 1, 2): 21947 atoms (1504 own)  6574008 angles  graph 0.16 s  eval 4.54 s  peak 56.2 GB
+cube (1, 1, 3): 21735 atoms (1454 own)  6349364 angles  graph 0.16 s  eval 4.39 s  peak 54.4 GB
+cube (1, 1, 4): 21555 atoms (1472 own)  6207714 angles  graph 0.16 s  eval 4.29 s  peak 53.3 GB
+cube (1, 1, 5): 21776 atoms (1443 own)  6368676 angles  graph 0.17 s  eval 4.43 s  peak 54.6 GB
+cube (1, 1, 6): 22006 atoms (1497 own)  6564742 angles  graph 0.17 s  eval 4.54 s  peak 56.1 GB
+cube (1, 1, 7): 22129 atoms (1464 own)  6664884 angles  graph 0.17 s  eval 4.56 s  peak 56.9 GB
+cube (1, 1, 8): 22088 atoms (1494 own)  6601916 angles  graph 0.17 s  eval 4.52 s  peak 56.5 GB
+cube (1, 2, 0): 22158 atoms (1510 own)  6709352 angles  graph 0.17 s  eval 4.56 s  peak 57.3 GB
+cube (1, 2, 1): 22015 atoms (1484 own)  6624572 angles  graph 0.18 s  eval 4.58 s  peak 56.6 GB
+cube (1, 2, 2): 21738 atoms (1462 own)  6373720 angles  graph 0.17 s  eval 4.43 s  peak 54.6 GB
+cube (1, 2, 3): 21624 atoms (1470 own)  6267424 angles  graph 0.16 s  eval 4.37 s  peak 53.8 GB
+cube (1, 2, 4): 21602 atoms (1423 own)  6239324 angles  graph 0.17 s  eval 4.32 s  peak 53.6 GB
+cube (1, 2, 5): 21746 atoms (1429 own)  6333020 angles  graph 0.16 s  eval 4.35 s  peak 54.3 GB
+cube (1, 2, 6): 21944 atoms (1459 own)  6511252 angles  graph 0.16 s  eval 4.50 s  peak 55.7 GB
+cube (1, 2, 7): 22115 atoms (1488 own)  6684394 angles  graph 0.16 s  eval 4.61 s  peak 57.1 GB
+cube (1, 2, 8): 22141 atoms (1514 own)  6678102 angles  graph 0.18 s  eval 4.59 s  peak 57.0 GB
+cube (1, 3, 0): 21881 atoms (1480 own)  6527832 angles  graph 0.17 s  eval 4.50 s  peak 55.8 GB
+cube (1, 3, 1): 21842 atoms (1462 own)  6428872 angles  graph 0.16 s  eval 4.40 s  peak 55.1 GB
+cube (1, 3, 2): 21666 atoms (1459 own)  6267696 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (1, 3, 3): 21742 atoms (1468 own)  6397968 angles  graph 0.16 s  eval 4.38 s  peak 54.8 GB
+cube (1, 3, 4): 21727 atoms (1484 own)  6398044 angles  graph 0.16 s  eval 4.39 s  peak 54.8 GB
+cube (1, 3, 5): 21794 atoms (1448 own)  6438690 angles  graph 0.17 s  eval 4.41 s  peak 55.1 GB
+cube (1, 3, 6): 21744 atoms (1471 own)  6378678 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (1, 3, 7): 21859 atoms (1458 own)  6467804 angles  graph 0.17 s  eval 4.42 s  peak 55.4 GB
+cube (1, 3, 8): 21982 atoms (1463 own)  6568398 angles  graph 0.17 s  eval 4.47 s  peak 56.2 GB
+cube (1, 4, 0): 21615 atoms (1427 own)  6290808 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (1, 4, 1): 21655 atoms (1466 own)  6318946 angles  graph 0.17 s  eval 4.34 s  peak 54.2 GB
+cube (1, 4, 2): 21603 atoms (1475 own)  6255586 angles  graph 0.15 s  eval 4.31 s  peak 53.7 GB
+cube (1, 4, 3): 21697 atoms (1439 own)  6330422 angles  graph 0.17 s  eval 4.34 s  peak 54.3 GB
+cube (1, 4, 4): 21675 atoms (1471 own)  6343944 angles  graph 0.17 s  eval 4.35 s  peak 54.4 GB
+cube (1, 4, 5): 21683 atoms (1456 own)  6356642 angles  graph 0.17 s  eval 4.36 s  peak 54.5 GB
+cube (1, 4, 6): 21673 atoms (1459 own)  6322256 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (1, 4, 7): 21650 atoms (1464 own)  6283622 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (1, 4, 8): 21666 atoms (1462 own)  6338002 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (1, 5, 0): 21879 atoms (1472 own)  6528762 angles  graph 0.16 s  eval 4.45 s  peak 55.8 GB
+cube (1, 5, 1): 21804 atoms (1476 own)  6427718 angles  graph 0.16 s  eval 4.40 s  peak 55.0 GB
+cube (1, 5, 2): 21683 atoms (1446 own)  6331892 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (1, 5, 3): 21587 atoms (1455 own)  6242464 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (1, 5, 4): 21592 atoms (1447 own)  6252560 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (1, 5, 5): 21600 atoms (1448 own)  6260654 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (1, 5, 6): 21757 atoms (1441 own)  6377090 angles  graph 0.17 s  eval 4.38 s  peak 54.7 GB
+cube (1, 5, 7): 21846 atoms (1472 own)  6428776 angles  graph 0.16 s  eval 4.40 s  peak 55.1 GB
+cube (1, 5, 8): 21914 atoms (1476 own)  6500636 angles  graph 0.17 s  eval 4.44 s  peak 55.6 GB
+cube (1, 6, 0): 22165 atoms (1484 own)  6722250 angles  graph 0.17 s  eval 4.55 s  peak 57.4 GB
+cube (1, 6, 1): 22080 atoms (1514 own)  6663330 angles  graph 0.18 s  eval 4.51 s  peak 56.9 GB
+cube (1, 6, 2): 21841 atoms (1461 own)  6465018 angles  graph 0.17 s  eval 4.41 s  peak 55.3 GB
+cube (1, 6, 3): 21682 atoms (1437 own)  6297650 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (1, 6, 4): 21560 atoms (1464 own)  6200178 angles  graph 0.16 s  eval 4.27 s  peak 53.2 GB
+cube (1, 6, 5): 21684 atoms (1404 own)  6365520 angles  graph 0.15 s  eval 4.36 s  peak 54.5 GB
+cube (1, 6, 6): 21890 atoms (1508 own)  6525518 angles  graph 0.16 s  eval 4.45 s  peak 55.8 GB
+cube (1, 6, 7): 21980 atoms (1497 own)  6565248 angles  graph 0.17 s  eval 4.46 s  peak 56.1 GB
+cube (1, 6, 8): 22080 atoms (1496 own)  6655754 angles  graph 0.17 s  eval 4.51 s  peak 56.9 GB
+cube (1, 7, 0): 22015 atoms (1484 own)  6626304 angles  graph 0.16 s  eval 4.48 s  peak 56.6 GB
+cube (1, 7, 1): 22048 atoms (1492 own)  6646902 angles  graph 0.17 s  eval 4.49 s  peak 56.8 GB
+cube (1, 7, 2): 21993 atoms (1501 own)  6552750 angles  graph 0.17 s  eval 4.45 s  peak 56.0 GB
+cube (1, 7, 3): 21836 atoms (1437 own)  6439244 angles  graph 0.16 s  eval 4.40 s  peak 55.1 GB
+cube (1, 7, 4): 21642 atoms (1456 own)  6294234 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (1, 7, 5): 21844 atoms (1496 own)  6458638 angles  graph 0.17 s  eval 4.42 s  peak 55.3 GB
+cube (1, 7, 6): 22073 atoms (1486 own)  6686326 angles  graph 0.16 s  eval 4.53 s  peak 57.1 GB
+cube (1, 7, 7): 22122 atoms (1509 own)  6672932 angles  graph 0.17 s  eval 4.51 s  peak 57.0 GB
+cube (1, 7, 8): 22006 atoms (1494 own)  6591006 angles  graph 0.17 s  eval 4.46 s  peak 56.3 GB
+cube (1, 8, 0): 21851 atoms (1428 own)  6427852 angles  graph 0.15 s  eval 4.37 s  peak 55.1 GB
+cube (1, 8, 1): 21982 atoms (1458 own)  6601348 angles  graph 0.16 s  eval 4.46 s  peak 56.4 GB
+cube (1, 8, 2): 22094 atoms (1491 own)  6655544 angles  graph 0.16 s  eval 4.49 s  peak 56.9 GB
+cube (1, 8, 3): 21868 atoms (1464 own)  6459354 angles  graph 0.16 s  eval 4.41 s  peak 55.3 GB
+cube (1, 8, 4): 21709 atoms (1454 own)  6343024 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (1, 8, 5): 21866 atoms (1464 own)  6513136 angles  graph 0.17 s  eval 4.44 s  peak 55.7 GB
+cube (1, 8, 6): 22133 atoms (1477 own)  6723472 angles  graph 0.16 s  eval 4.54 s  peak 57.4 GB
+cube (1, 8, 7): 22065 atoms (1440 own)  6608110 angles  graph 0.16 s  eval 4.48 s  peak 56.5 GB
+cube (1, 8, 8): 21744 atoms (1485 own)  6353460 angles  graph 0.16 s  eval 4.33 s  peak 54.4 GB
+cube (2, 0, 0): 22248 atoms (1517 own)  6836388 angles  graph 0.17 s  eval 4.60 s  peak 58.3 GB
+cube (2, 0, 1): 22076 atoms (1499 own)  6691846 angles  graph 0.18 s  eval 4.53 s  peak 57.1 GB
+cube (2, 0, 2): 21880 atoms (1486 own)  6489908 angles  graph 0.16 s  eval 4.43 s  peak 55.5 GB
+cube (2, 0, 3): 21690 atoms (1480 own)  6325700 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (2, 0, 4): 21638 atoms (1469 own)  6290084 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (2, 0, 5): 21698 atoms (1431 own)  6286708 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (2, 0, 6): 21917 atoms (1506 own)  6498796 angles  graph 0.16 s  eval 4.44 s  peak 55.6 GB
+cube (2, 0, 7): 22147 atoms (1491 own)  6732688 angles  graph 0.16 s  eval 4.54 s  peak 57.5 GB
+cube (2, 0, 8): 22235 atoms (1538 own)  6803028 angles  graph 0.17 s  eval 4.58 s  peak 58.0 GB
+cube (2, 1, 0): 22129 atoms (1491 own)  6749944 angles  graph 0.16 s  eval 4.55 s  peak 57.6 GB
+cube (2, 1, 1): 21952 atoms (1473 own)  6592244 angles  graph 0.16 s  eval 4.47 s  peak 56.3 GB
+cube (2, 1, 2): 21724 atoms (1469 own)  6386132 angles  graph 0.16 s  eval 4.36 s  peak 54.7 GB
+cube (2, 1, 3): 21617 atoms (1452 own)  6268218 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (2, 1, 4): 21572 atoms (1451 own)  6204346 angles  graph 0.16 s  eval 4.27 s  peak 53.3 GB
+cube (2, 1, 5): 21560 atoms (1423 own)  6186418 angles  graph 0.15 s  eval 4.26 s  peak 53.2 GB
+cube (2, 1, 6): 21771 atoms (1467 own)  6371508 angles  graph 0.16 s  eval 4.37 s  peak 54.6 GB
+cube (2, 1, 7): 22077 atoms (1515 own)  6666350 angles  graph 0.17 s  eval 4.52 s  peak 56.9 GB
+cube (2, 1, 8): 22212 atoms (1510 own)  6791948 angles  graph 0.16 s  eval 4.58 s  peak 57.9 GB
+cube (2, 2, 0): 21970 atoms (1484 own)  6579010 angles  graph 0.16 s  eval 4.47 s  peak 56.2 GB
+cube (2, 2, 1): 21844 atoms (1489 own)  6484138 angles  graph 0.16 s  eval 4.43 s  peak 55.5 GB
+cube (2, 2, 2): 21605 atoms (1473 own)  6245906 angles  graph 0.15 s  eval 4.30 s  peak 53.6 GB
+cube (2, 2, 3): 21614 atoms (1436 own)  6226860 angles  graph 0.16 s  eval 4.29 s  peak 53.5 GB
+cube (2, 2, 4): 21629 atoms (1451 own)  6196892 angles  graph 0.16 s  eval 4.27 s  peak 53.3 GB
+cube (2, 2, 5): 21625 atoms (1493 own)  6211872 angles  graph 0.16 s  eval 4.28 s  peak 53.4 GB
+cube (2, 2, 6): 21763 atoms (1442 own)  6383498 angles  graph 0.16 s  eval 4.38 s  peak 54.7 GB
+cube (2, 2, 7): 21904 atoms (1477 own)  6530156 angles  graph 0.17 s  eval 4.45 s  peak 55.9 GB
+cube (2, 2, 8): 22010 atoms (1453 own)  6609074 angles  graph 0.16 s  eval 4.48 s  peak 56.5 GB
+cube (2, 3, 0): 21841 atoms (1486 own)  6436328 angles  graph 0.16 s  eval 4.41 s  peak 55.1 GB
+cube (2, 3, 1): 21796 atoms (1446 own)  6386974 angles  graph 0.17 s  eval 4.38 s  peak 54.7 GB
+cube (2, 3, 2): 21612 atoms (1453 own)  6229112 angles  graph 0.16 s  eval 4.29 s  peak 53.5 GB
+cube (2, 3, 3): 21639 atoms (1445 own)  6267112 angles  graph 0.17 s  eval 4.31 s  peak 53.8 GB
+cube (2, 3, 4): 21722 atoms (1443 own)  6344754 angles  graph 0.16 s  eval 4.36 s  peak 54.4 GB
+cube (2, 3, 5): 21703 atoms (1451 own)  6343200 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (2, 3, 6): 21654 atoms (1508 own)  6317362 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (2, 3, 7): 21717 atoms (1454 own)  6408470 angles  graph 0.16 s  eval 4.38 s  peak 54.9 GB
+cube (2, 3, 8): 21810 atoms (1428 own)  6474362 angles  graph 0.16 s  eval 4.42 s  peak 55.4 GB
+cube (2, 4, 0): 21736 atoms (1425 own)  6382790 angles  graph 0.16 s  eval 4.38 s  peak 54.7 GB
+cube (2, 4, 1): 21733 atoms (1468 own)  6389778 angles  graph 0.17 s  eval 4.38 s  peak 54.7 GB
+cube (2, 4, 2): 21699 atoms (1439 own)  6307750 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (2, 4, 3): 21629 atoms (1488 own)  6250736 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (2, 4, 4): 21667 atoms (1457 own)  6328488 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (2, 4, 5): 21668 atoms (1448 own)  6319270 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (2, 4, 6): 21632 atoms (1450 own)  6264878 angles  graph 0.16 s  eval 4.30 s  peak 53.8 GB
+cube (2, 4, 7): 21622 atoms (1430 own)  6305424 angles  graph 0.16 s  eval 4.32 s  peak 54.1 GB
+cube (2, 4, 8): 21664 atoms (1461 own)  6330724 angles  graph 0.16 s  eval 4.33 s  peak 54.3 GB
+cube (2, 5, 0): 21830 atoms (1441 own)  6471442 angles  graph 0.16 s  eval 4.42 s  peak 55.4 GB
+cube (2, 5, 1): 21731 atoms (1464 own)  6405514 angles  graph 0.16 s  eval 4.38 s  peak 54.9 GB
+cube (2, 5, 2): 21720 atoms (1427 own)  6362606 angles  graph 0.17 s  eval 4.36 s  peak 54.5 GB
+cube (2, 5, 3): 21651 atoms (1472 own)  6297820 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (2, 5, 4): 21626 atoms (1428 own)  6289566 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (2, 5, 5): 21571 atoms (1455 own)  6188216 angles  graph 0.16 s  eval 4.26 s  peak 53.2 GB
+cube (2, 5, 6): 21601 atoms (1400 own)  6228430 angles  graph 0.16 s  eval 4.28 s  peak 53.5 GB
+cube (2, 5, 7): 21686 atoms (1461 own)  6316332 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (2, 5, 8): 21785 atoms (1477 own)  6394384 angles  graph 0.16 s  eval 4.37 s  peak 54.8 GB
+cube (2, 6, 0): 21946 atoms (1513 own)  6576612 angles  graph 0.17 s  eval 4.47 s  peak 56.2 GB
+cube (2, 6, 1): 21954 atoms (1456 own)  6580856 angles  graph 0.17 s  eval 4.47 s  peak 56.2 GB
+cube (2, 6, 2): 21733 atoms (1449 own)  6387224 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (2, 6, 3): 21683 atoms (1439 own)  6312998 angles  graph 0.16 s  eval 4.34 s  peak 54.1 GB
+cube (2, 6, 4): 21517 atoms (1462 own)  6198298 angles  graph 0.16 s  eval 4.26 s  peak 53.2 GB
+cube (2, 6, 5): 21569 atoms (1452 own)  6261000 angles  graph 0.16 s  eval 4.31 s  peak 53.7 GB
+cube (2, 6, 6): 21683 atoms (1447 own)  6358310 angles  graph 0.16 s  eval 4.35 s  peak 54.5 GB
+cube (2, 6, 7): 21846 atoms (1453 own)  6473698 angles  graph 0.17 s  eval 4.41 s  peak 55.4 GB
+cube (2, 6, 8): 21968 atoms (1444 own)  6556018 angles  graph 0.16 s  eval 4.46 s  peak 56.1 GB
+cube (2, 7, 0): 22109 atoms (1526 own)  6730440 angles  graph 0.16 s  eval 4.55 s  peak 57.4 GB
+cube (2, 7, 1): 22094 atoms (1465 own)  6700716 angles  graph 0.17 s  eval 4.54 s  peak 57.2 GB
+cube (2, 7, 2): 21880 atoms (1467 own)  6481354 angles  graph 0.17 s  eval 4.42 s  peak 55.5 GB
+cube (2, 7, 3): 21723 atoms (1462 own)  6383516 angles  graph 0.17 s  eval 4.37 s  peak 54.7 GB
+cube (2, 7, 4): 21652 atoms (1449 own)  6357990 angles  graph 0.17 s  eval 4.36 s  peak 54.5 GB
+cube (2, 7, 5): 21708 atoms (1457 own)  6403394 angles  graph 0.16 s  eval 4.39 s  peak 54.8 GB
+cube (2, 7, 6): 21921 atoms (1484 own)  6521648 angles  graph 0.16 s  eval 4.45 s  peak 55.8 GB
+cube (2, 7, 7): 21987 atoms (1470 own)  6606114 angles  graph 0.16 s  eval 4.48 s  peak 56.5 GB
+cube (2, 7, 8): 22130 atoms (1506 own)  6642730 angles  graph 0.17 s  eval 4.50 s  peak 56.8 GB
+cube (2, 8, 0): 22263 atoms (1485 own)  6825582 angles  graph 0.18 s  eval 4.60 s  peak 58.2 GB
+cube (2, 8, 1): 22148 atoms (1523 own)  6734014 angles  graph 0.17 s  eval 4.55 s  peak 57.5 GB
+cube (2, 8, 2): 21927 atoms (1490 own)  6506354 angles  graph 0.16 s  eval 4.44 s  peak 55.7 GB
+cube (2, 8, 3): 21812 atoms (1447 own)  6404012 angles  graph 0.16 s  eval 4.39 s  peak 54.9 GB
+cube (2, 8, 4): 21633 atoms (1460 own)  6303042 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (2, 8, 5): 21692 atoms (1415 own)  6347220 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (2, 8, 6): 21963 atoms (1495 own)  6566010 angles  graph 0.17 s  eval 4.47 s  peak 56.1 GB
+cube (2, 8, 7): 22131 atoms (1515 own)  6700680 angles  graph 0.17 s  eval 4.53 s  peak 57.2 GB
+cube (2, 8, 8): 22203 atoms (1454 own)  6762170 angles  graph 0.17 s  eval 4.55 s  peak 57.7 GB
+cube (3, 0, 0): 22014 atoms (1472 own)  6618944 angles  graph 0.16 s  eval 4.49 s  peak 56.6 GB
+cube (3, 0, 1): 21907 atoms (1471 own)  6530736 angles  graph 0.17 s  eval 4.45 s  peak 55.8 GB
+cube (3, 0, 2): 21810 atoms (1479 own)  6422902 angles  graph 0.16 s  eval 4.39 s  peak 55.0 GB
+cube (3, 0, 3): 21764 atoms (1446 own)  6394646 angles  graph 0.16 s  eval 4.38 s  peak 54.8 GB
+cube (3, 0, 4): 21714 atoms (1497 own)  6370016 angles  graph 0.16 s  eval 4.37 s  peak 54.6 GB
+cube (3, 0, 5): 21615 atoms (1436 own)  6247218 angles  graph 0.17 s  eval 4.30 s  peak 53.6 GB
+cube (3, 0, 6): 21727 atoms (1465 own)  6307756 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (3, 0, 7): 21914 atoms (1465 own)  6503296 angles  graph 0.16 s  eval 4.44 s  peak 55.7 GB
+cube (3, 0, 8): 21910 atoms (1484 own)  6543802 angles  graph 0.17 s  eval 4.44 s  peak 56.0 GB
+cube (3, 1, 0): 21865 atoms (1465 own)  6528340 angles  graph 0.17 s  eval 4.45 s  peak 55.8 GB
+cube (3, 1, 1): 21809 atoms (1433 own)  6462546 angles  graph 0.16 s  eval 4.41 s  peak 55.3 GB
+cube (3, 1, 2): 21743 atoms (1431 own)  6411744 angles  graph 0.17 s  eval 4.39 s  peak 54.9 GB
+cube (3, 1, 3): 21701 atoms (1470 own)  6385472 angles  graph 0.16 s  eval 4.38 s  peak 54.7 GB
+cube (3, 1, 4): 21604 atoms (1434 own)  6257426 angles  graph 0.16 s  eval 4.31 s  peak 53.7 GB
+cube (3, 1, 5): 21645 atoms (1460 own)  6246550 angles  graph 0.16 s  eval 4.30 s  peak 53.6 GB
+cube (3, 1, 6): 21629 atoms (1441 own)  6275348 angles  graph 0.17 s  eval 4.31 s  peak 53.8 GB
+cube (3, 1, 7): 21835 atoms (1443 own)  6466964 angles  graph 0.16 s  eval 4.41 s  peak 55.4 GB
+cube (3, 1, 8): 21865 atoms (1463 own)  6539698 angles  graph 0.17 s  eval 4.45 s  peak 55.9 GB
+cube (3, 2, 0): 21821 atoms (1453 own)  6444042 angles  graph 0.16 s  eval 4.41 s  peak 55.2 GB
+cube (3, 2, 1): 21719 atoms (1459 own)  6358784 angles  graph 0.17 s  eval 4.36 s  peak 54.5 GB
+cube (3, 2, 2): 21659 atoms (1446 own)  6313508 angles  graph 0.16 s  eval 4.34 s  peak 54.1 GB
+cube (3, 2, 3): 21658 atoms (1437 own)  6303114 angles  graph 0.16 s  eval 4.32 s  peak 54.1 GB
+cube (3, 2, 4): 21605 atoms (1427 own)  6210970 angles  graph 0.17 s  eval 4.29 s  peak 53.4 GB
+cube (3, 2, 5): 21548 atoms (1443 own)  6172384 angles  graph 0.16 s  eval 4.26 s  peak 53.0 GB
+cube (3, 2, 6): 21613 atoms (1420 own)  6241826 angles  graph 0.17 s  eval 4.29 s  peak 53.6 GB
+cube (3, 2, 7): 21743 atoms (1463 own)  6351722 angles  graph 0.17 s  eval 4.36 s  peak 54.5 GB
+cube (3, 2, 8): 21808 atoms (1472 own)  6446578 angles  graph 0.17 s  eval 4.41 s  peak 55.2 GB
+cube (3, 3, 0): 21812 atoms (1442 own)  6443868 angles  graph 0.17 s  eval 4.42 s  peak 55.2 GB
+cube (3, 3, 1): 21737 atoms (1484 own)  6375640 angles  graph 0.16 s  eval 4.36 s  peak 54.6 GB
+cube (3, 3, 2): 21713 atoms (1426 own)  6347086 angles  graph 0.16 s  eval 4.36 s  peak 54.4 GB
+cube (3, 3, 3): 21643 atoms (1472 own)  6317130 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (3, 3, 4): 21692 atoms (1470 own)  6340958 angles  graph 0.16 s  eval 4.35 s  peak 54.3 GB
+cube (3, 3, 5): 21584 atoms (1468 own)  6237338 angles  graph 0.17 s  eval 4.29 s  peak 53.5 GB
+cube (3, 3, 6): 21677 atoms (1449 own)  6306906 angles  graph 0.17 s  eval 4.33 s  peak 54.1 GB
+cube (3, 3, 7): 21644 atoms (1470 own)  6305856 angles  graph 0.17 s  eval 4.33 s  peak 54.1 GB
+cube (3, 3, 8): 21697 atoms (1470 own)  6379166 angles  graph 0.17 s  eval 4.37 s  peak 54.6 GB
+cube (3, 4, 0): 21694 atoms (1477 own)  6387500 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (3, 4, 1): 21592 atoms (1466 own)  6312096 angles  graph 0.16 s  eval 4.32 s  peak 54.1 GB
+cube (3, 4, 2): 21691 atoms (1439 own)  6327646 angles  graph 0.17 s  eval 4.34 s  peak 54.3 GB
+cube (3, 4, 3): 21742 atoms (1474 own)  6365302 angles  graph 0.17 s  eval 4.37 s  peak 54.6 GB
+cube (3, 4, 4): 21832 atoms (1472 own)  6463744 angles  graph 0.16 s  eval 4.43 s  peak 55.3 GB
+cube (3, 4, 5): 21725 atoms (1472 own)  6367044 angles  graph 0.17 s  eval 4.37 s  peak 54.6 GB
+cube (3, 4, 6): 21656 atoms (1430 own)  6316806 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (3, 4, 7): 21649 atoms (1482 own)  6298548 angles  graph 0.17 s  eval 4.33 s  peak 54.0 GB
+cube (3, 4, 8): 21693 atoms (1449 own)  6350842 angles  graph 0.17 s  eval 4.35 s  peak 54.4 GB
+cube (3, 5, 0): 21658 atoms (1463 own)  6310488 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (3, 5, 1): 21656 atoms (1459 own)  6315492 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (3, 5, 2): 21706 atoms (1472 own)  6326886 angles  graph 0.17 s  eval 4.34 s  peak 54.3 GB
+cube (3, 5, 3): 21706 atoms (1450 own)  6338046 angles  graph 0.17 s  eval 4.36 s  peak 54.3 GB
+cube (3, 5, 4): 21704 atoms (1453 own)  6333394 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (3, 5, 5): 21640 atoms (1434 own)  6273586 angles  graph 0.15 s  eval 4.31 s  peak 53.8 GB
+cube (3, 5, 6): 21599 atoms (1456 own)  6275412 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (3, 5, 7): 21574 atoms (1465 own)  6255268 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (3, 5, 8): 21672 atoms (1465 own)  6321482 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (3, 6, 0): 21768 atoms (1471 own)  6375986 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (3, 6, 1): 21736 atoms (1443 own)  6380038 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (3, 6, 2): 21654 atoms (1470 own)  6301636 angles  graph 0.17 s  eval 4.33 s  peak 54.0 GB
+cube (3, 6, 3): 21605 atoms (1477 own)  6273396 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (3, 6, 4): 21616 atoms (1468 own)  6253200 angles  graph 0.17 s  eval 4.30 s  peak 53.7 GB
+cube (3, 6, 5): 21598 atoms (1486 own)  6269688 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (3, 6, 6): 21640 atoms (1445 own)  6307674 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (3, 6, 7): 21650 atoms (1464 own)  6317286 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (3, 6, 8): 21692 atoms (1445 own)  6309202 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (3, 7, 0): 21850 atoms (1467 own)  6489176 angles  graph 0.16 s  eval 4.43 s  peak 55.5 GB
+cube (3, 7, 1): 21789 atoms (1440 own)  6445806 angles  graph 0.16 s  eval 4.40 s  peak 55.2 GB
+cube (3, 7, 2): 21649 atoms (1489 own)  6284540 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (3, 7, 3): 21641 atoms (1446 own)  6298174 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (3, 7, 4): 21640 atoms (1446 own)  6312138 angles  graph 0.17 s  eval 4.32 s  peak 54.1 GB
+cube (3, 7, 5): 21672 atoms (1468 own)  6344470 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (3, 7, 6): 21694 atoms (1448 own)  6347568 angles  graph 0.17 s  eval 4.35 s  peak 54.4 GB
+cube (3, 7, 7): 21810 atoms (1419 own)  6420844 angles  graph 0.16 s  eval 4.39 s  peak 55.0 GB
+cube (3, 7, 8): 21781 atoms (1469 own)  6365972 angles  graph 0.16 s  eval 4.35 s  peak 54.6 GB
+cube (3, 8, 0): 21970 atoms (1490 own)  6565964 angles  graph 0.17 s  eval 4.46 s  peak 56.1 GB
+cube (3, 8, 1): 21955 atoms (1448 own)  6580982 angles  graph 0.17 s  eval 4.47 s  peak 56.2 GB
+cube (3, 8, 2): 21843 atoms (1423 own)  6443100 angles  graph 0.16 s  eval 4.41 s  peak 55.2 GB
+cube (3, 8, 3): 21756 atoms (1470 own)  6408612 angles  graph 0.16 s  eval 4.39 s  peak 54.9 GB
+cube (3, 8, 4): 21756 atoms (1471 own)  6409396 angles  graph 0.17 s  eval 4.39 s  peak 54.9 GB
+cube (3, 8, 5): 21651 atoms (1451 own)  6291664 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (3, 8, 6): 21737 atoms (1483 own)  6380170 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (3, 8, 7): 21896 atoms (1469 own)  6496152 angles  graph 0.16 s  eval 4.44 s  peak 55.6 GB
+cube (3, 8, 8): 21978 atoms (1470 own)  6545870 angles  graph 0.16 s  eval 4.46 s  peak 56.0 GB
+cube (4, 0, 0): 21674 atoms (1458 own)  6285264 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (4, 0, 1): 21675 atoms (1446 own)  6348148 angles  graph 0.17 s  eval 4.36 s  peak 54.4 GB
+cube (4, 0, 2): 21713 atoms (1484 own)  6347780 angles  graph 0.15 s  eval 4.35 s  peak 54.4 GB
+cube (4, 0, 3): 21727 atoms (1439 own)  6398688 angles  graph 0.17 s  eval 4.37 s  peak 54.8 GB
+cube (4, 0, 4): 21805 atoms (1486 own)  6461520 angles  graph 0.17 s  eval 4.42 s  peak 55.3 GB
+cube (4, 0, 5): 21706 atoms (1461 own)  6357480 angles  graph 0.16 s  eval 4.36 s  peak 54.5 GB
+cube (4, 0, 6): 21682 atoms (1456 own)  6282892 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (4, 0, 7): 21615 atoms (1439 own)  6238246 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (4, 0, 8): 21527 atoms (1444 own)  6214488 angles  graph 0.16 s  eval 4.28 s  peak 53.3 GB
+cube (4, 1, 0): 21520 atoms (1436 own)  6212316 angles  graph 0.16 s  eval 4.27 s  peak 53.3 GB
+cube (4, 1, 1): 21596 atoms (1473 own)  6285772 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (4, 1, 2): 21705 atoms (1438 own)  6342386 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (4, 1, 3): 21747 atoms (1469 own)  6356588 angles  graph 0.16 s  eval 4.36 s  peak 54.5 GB
+cube (4, 1, 4): 21715 atoms (1434 own)  6370292 angles  graph 0.17 s  eval 4.36 s  peak 54.6 GB
+cube (4, 1, 5): 21668 atoms (1424 own)  6298688 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (4, 1, 6): 21601 atoms (1457 own)  6279696 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (4, 1, 7): 21646 atoms (1490 own)  6285978 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (4, 1, 8): 21556 atoms (1441 own)  6223306 angles  graph 0.17 s  eval 4.28 s  peak 53.4 GB
+cube (4, 2, 0): 21620 atoms (1443 own)  6291482 angles  graph 0.16 s  eval 4.31 s  peak 54.0 GB
+cube (4, 2, 1): 21615 atoms (1457 own)  6280272 angles  graph 0.16 s  eval 4.31 s  peak 53.9 GB
+cube (4, 2, 2): 21586 atoms (1490 own)  6296140 angles  graph 0.17 s  eval 4.31 s  peak 54.0 GB
+cube (4, 2, 3): 21633 atoms (1441 own)  6305426 angles  graph 0.17 s  eval 4.33 s  peak 54.1 GB
+cube (4, 2, 4): 21562 atoms (1474 own)  6226692 angles  graph 0.16 s  eval 4.28 s  peak 53.5 GB
+cube (4, 2, 5): 21490 atoms (1475 own)  6129794 angles  graph 0.17 s  eval 4.23 s  peak 52.7 GB
+cube (4, 2, 6): 21606 atoms (1425 own)  6221608 angles  graph 0.16 s  eval 4.28 s  peak 53.4 GB
+cube (4, 2, 7): 21679 atoms (1484 own)  6299854 angles  graph 0.17 s  eval 4.33 s  peak 54.0 GB
+cube (4, 2, 8): 21632 atoms (1445 own)  6286452 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (4, 3, 0): 21826 atoms (1479 own)  6446370 angles  graph 0.16 s  eval 4.42 s  peak 55.2 GB
+cube (4, 3, 1): 21705 atoms (1431 own)  6361006 angles  graph 0.16 s  eval 4.36 s  peak 54.5 GB
+cube (4, 3, 2): 21720 atoms (1462 own)  6375104 angles  graph 0.16 s  eval 4.37 s  peak 54.6 GB
+cube (4, 3, 3): 21768 atoms (1445 own)  6424000 angles  graph 0.16 s  eval 4.40 s  peak 55.0 GB
+cube (4, 3, 4): 21708 atoms (1461 own)  6350166 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (4, 3, 5): 21568 atoms (1458 own)  6212846 angles  graph 0.16 s  eval 4.27 s  peak 53.3 GB
+cube (4, 3, 6): 21613 atoms (1451 own)  6270804 angles  graph 0.17 s  eval 4.31 s  peak 53.8 GB
+cube (4, 3, 7): 21692 atoms (1467 own)  6317354 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (4, 3, 8): 21729 atoms (1474 own)  6380248 angles  graph 0.16 s  eval 4.38 s  peak 54.7 GB
+cube (4, 4, 0): 21776 atoms (1452 own)  6432098 angles  graph 0.17 s  eval 4.40 s  peak 55.1 GB
+cube (4, 4, 1): 21659 atoms (1497 own)  6314912 angles  graph 0.17 s  eval 4.32 s  peak 54.1 GB
+cube (4, 4, 2): 21708 atoms (1435 own)  6350290 angles  graph 0.16 s  eval 4.36 s  peak 54.4 GB
+cube (4, 4, 3): 21750 atoms (1502 own)  6399154 angles  graph 0.17 s  eval 4.38 s  peak 54.8 GB
+cube (4, 4, 4): 21896 atoms (1463 own)  6530698 angles  graph 0.17 s  eval 4.46 s  peak 55.9 GB
+cube (4, 4, 5): 21792 atoms (1469 own)  6434764 angles  graph 0.17 s  eval 4.41 s  peak 55.1 GB
+cube (4, 4, 6): 21737 atoms (1466 own)  6378964 angles  graph 0.17 s  eval 4.38 s  peak 54.7 GB
+cube (4, 4, 7): 21777 atoms (1428 own)  6378886 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (4, 4, 8): 21763 atoms (1444 own)  6418242 angles  graph 0.17 s  eval 4.39 s  peak 55.0 GB
+cube (4, 5, 0): 21621 atoms (1481 own)  6273044 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (4, 5, 1): 21645 atoms (1405 own)  6266170 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (4, 5, 2): 21662 atoms (1463 own)  6275686 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (4, 5, 3): 21732 atoms (1435 own)  6346506 angles  graph 0.17 s  eval 4.35 s  peak 54.4 GB
+cube (4, 5, 4): 21800 atoms (1470 own)  6404316 angles  graph 0.16 s  eval 4.40 s  peak 54.9 GB
+cube (4, 5, 5): 21742 atoms (1473 own)  6380980 angles  graph 0.17 s  eval 4.38 s  peak 54.7 GB
+cube (4, 5, 6): 21678 atoms (1444 own)  6321402 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (4, 5, 7): 21579 atoms (1455 own)  6268474 angles  graph 0.16 s  eval 4.30 s  peak 53.8 GB
+cube (4, 5, 8): 21645 atoms (1492 own)  6303632 angles  graph 0.17 s  eval 4.33 s  peak 54.0 GB
+cube (4, 6, 0): 21617 atoms (1438 own)  6257450 angles  graph 0.17 s  eval 4.30 s  peak 53.7 GB
+cube (4, 6, 1): 21655 atoms (1434 own)  6291084 angles  graph 0.17 s  eval 4.32 s  peak 54.0 GB
+cube (4, 6, 2): 21604 atoms (1452 own)  6245858 angles  graph 0.17 s  eval 4.30 s  peak 53.6 GB
+cube (4, 6, 3): 21581 atoms (1445 own)  6226578 angles  graph 0.16 s  eval 4.29 s  peak 53.5 GB
+cube (4, 6, 4): 21633 atoms (1442 own)  6279926 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (4, 6, 5): 21641 atoms (1466 own)  6295528 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (4, 6, 6): 21720 atoms (1477 own)  6342586 angles  graph 0.15 s  eval 4.35 s  peak 54.4 GB
+cube (4, 6, 7): 21623 atoms (1442 own)  6260146 angles  graph 0.16 s  eval 4.31 s  peak 53.7 GB
+cube (4, 6, 8): 21577 atoms (1461 own)  6220404 angles  graph 0.16 s  eval 4.27 s  peak 53.4 GB
+cube (4, 7, 0): 21640 atoms (1442 own)  6293424 angles  graph 0.17 s  eval 4.33 s  peak 54.0 GB
+cube (4, 7, 1): 21578 atoms (1481 own)  6264740 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (4, 7, 2): 21566 atoms (1449 own)  6231306 angles  graph 0.18 s  eval 4.29 s  peak 53.5 GB
+cube (4, 7, 3): 21524 atoms (1465 own)  6192616 angles  graph 0.16 s  eval 4.26 s  peak 53.2 GB
+cube (4, 7, 4): 21606 atoms (1434 own)  6263872 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (4, 7, 5): 21668 atoms (1459 own)  6316326 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (4, 7, 6): 21664 atoms (1446 own)  6318158 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (4, 7, 7): 21696 atoms (1428 own)  6334916 angles  graph 0.16 s  eval 4.35 s  peak 54.3 GB
+cube (4, 7, 8): 21550 atoms (1470 own)  6229208 angles  graph 0.17 s  eval 4.29 s  peak 53.5 GB
+cube (4, 8, 0): 21683 atoms (1457 own)  6319642 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (4, 8, 1): 21679 atoms (1436 own)  6357590 angles  graph 0.16 s  eval 4.36 s  peak 54.5 GB
+cube (4, 8, 2): 21641 atoms (1464 own)  6336452 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (4, 8, 3): 21710 atoms (1458 own)  6384894 angles  graph 0.16 s  eval 4.38 s  peak 54.7 GB
+cube (4, 8, 4): 21709 atoms (1481 own)  6393430 angles  graph 0.17 s  eval 4.38 s  peak 54.8 GB
+cube (4, 8, 5): 21594 atoms (1468 own)  6262030 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (4, 8, 6): 21599 atoms (1445 own)  6271000 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (4, 8, 7): 21669 atoms (1434 own)  6288570 angles  graph 0.17 s  eval 4.33 s  peak 54.0 GB
+cube (4, 8, 8): 21680 atoms (1460 own)  6280128 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (5, 0, 0): 21884 atoms (1483 own)  6507982 angles  graph 0.17 s  eval 4.43 s  peak 55.7 GB
+cube (5, 0, 1): 21913 atoms (1476 own)  6533648 angles  graph 0.18 s  eval 4.46 s  peak 55.9 GB
+cube (5, 0, 2): 21776 atoms (1469 own)  6437772 angles  graph 0.17 s  eval 4.40 s  peak 55.1 GB
+cube (5, 0, 3): 21631 atoms (1493 own)  6315564 angles  graph 0.17 s  eval 4.33 s  peak 54.1 GB
+cube (5, 0, 4): 21712 atoms (1441 own)  6377372 angles  graph 0.17 s  eval 4.37 s  peak 54.6 GB
+cube (5, 0, 5): 21703 atoms (1478 own)  6356040 angles  graph 0.17 s  eval 4.36 s  peak 54.5 GB
+cube (5, 0, 6): 21829 atoms (1449 own)  6461344 angles  graph 0.17 s  eval 4.42 s  peak 55.3 GB
+cube (5, 0, 7): 21982 atoms (1475 own)  6568642 angles  graph 0.18 s  eval 4.46 s  peak 56.2 GB
+cube (5, 0, 8): 21948 atoms (1472 own)  6541958 angles  graph 0.17 s  eval 4.44 s  peak 56.0 GB
+cube (5, 1, 0): 21769 atoms (1434 own)  6429258 angles  graph 0.17 s  eval 4.39 s  peak 55.0 GB
+cube (5, 1, 1): 21807 atoms (1430 own)  6461092 angles  graph 0.17 s  eval 4.41 s  peak 55.3 GB
+cube (5, 1, 2): 21722 atoms (1454 own)  6394978 angles  graph 0.16 s  eval 4.38 s  peak 54.8 GB
+cube (5, 1, 3): 21766 atoms (1417 own)  6410328 angles  graph 0.17 s  eval 4.39 s  peak 54.9 GB
+cube (5, 1, 4): 21787 atoms (1467 own)  6406280 angles  graph 0.16 s  eval 4.38 s  peak 54.9 GB
+cube (5, 1, 5): 21789 atoms (1458 own)  6422600 angles  graph 0.16 s  eval 4.40 s  peak 55.0 GB
+cube (5, 1, 6): 21731 atoms (1478 own)  6399010 angles  graph 0.17 s  eval 4.38 s  peak 54.8 GB
+cube (5, 1, 7): 21788 atoms (1424 own)  6403898 angles  graph 0.17 s  eval 4.38 s  peak 54.9 GB
+cube (5, 1, 8): 21848 atoms (1422 own)  6432824 angles  graph 0.16 s  eval 4.39 s  peak 55.1 GB
+cube (5, 2, 0): 21686 atoms (1441 own)  6337338 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (5, 2, 1): 21658 atoms (1467 own)  6313122 angles  graph 0.17 s  eval 4.33 s  peak 54.1 GB
+cube (5, 2, 2): 21672 atoms (1486 own)  6322734 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (5, 2, 3): 21685 atoms (1441 own)  6356472 angles  graph 0.16 s  eval 4.35 s  peak 54.5 GB
+cube (5, 2, 4): 21668 atoms (1494 own)  6310288 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (5, 2, 5): 21696 atoms (1445 own)  6319798 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (5, 2, 6): 21673 atoms (1443 own)  6287394 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (5, 2, 7): 21659 atoms (1471 own)  6261930 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (5, 2, 8): 21721 atoms (1471 own)  6338334 angles  graph 0.16 s  eval 4.36 s  peak 54.4 GB
+cube (5, 3, 0): 21707 atoms (1447 own)  6338734 angles  graph 0.16 s  eval 4.35 s  peak 54.3 GB
+cube (5, 3, 1): 21606 atoms (1446 own)  6272798 angles  graph 0.17 s  eval 4.31 s  peak 53.8 GB
+cube (5, 3, 2): 21630 atoms (1451 own)  6264522 angles  graph 0.16 s  eval 4.30 s  peak 53.8 GB
+cube (5, 3, 3): 21646 atoms (1438 own)  6307414 angles  graph 0.17 s  eval 4.33 s  peak 54.1 GB
+cube (5, 3, 4): 21687 atoms (1458 own)  6320696 angles  graph 0.17 s  eval 4.34 s  peak 54.2 GB
+cube (5, 3, 5): 21659 atoms (1426 own)  6295158 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (5, 3, 6): 21661 atoms (1466 own)  6285026 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (5, 3, 7): 21715 atoms (1454 own)  6322472 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (5, 3, 8): 21788 atoms (1456 own)  6395344 angles  graph 0.17 s  eval 4.39 s  peak 54.8 GB
+cube (5, 4, 0): 21802 atoms (1454 own)  6421930 angles  graph 0.17 s  eval 4.39 s  peak 55.0 GB
+cube (5, 4, 1): 21642 atoms (1482 own)  6306584 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (5, 4, 2): 21603 atoms (1460 own)  6267736 angles  graph 0.17 s  eval 4.30 s  peak 53.8 GB
+cube (5, 4, 3): 21699 atoms (1469 own)  6378558 angles  graph 0.17 s  eval 4.37 s  peak 54.6 GB
+cube (5, 4, 4): 21749 atoms (1473 own)  6425894 angles  graph 0.17 s  eval 4.40 s  peak 55.0 GB
+cube (5, 4, 5): 21727 atoms (1486 own)  6385592 angles  graph 0.17 s  eval 4.38 s  peak 54.7 GB
+cube (5, 4, 6): 21631 atoms (1486 own)  6308990 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (5, 4, 7): 21695 atoms (1473 own)  6328026 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (5, 4, 8): 21759 atoms (1459 own)  6365982 angles  graph 0.16 s  eval 4.37 s  peak 54.6 GB
+cube (5, 5, 0): 21609 atoms (1457 own)  6288390 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (5, 5, 1): 21562 atoms (1466 own)  6228748 angles  graph 0.17 s  eval 4.28 s  peak 53.5 GB
+cube (5, 5, 2): 21676 atoms (1462 own)  6335922 angles  graph 0.17 s  eval 4.35 s  peak 54.3 GB
+cube (5, 5, 3): 21803 atoms (1468 own)  6465834 angles  graph 0.16 s  eval 4.42 s  peak 55.3 GB
+cube (5, 5, 4): 21733 atoms (1477 own)  6405634 angles  graph 0.16 s  eval 4.39 s  peak 54.9 GB
+cube (5, 5, 5): 21668 atoms (1435 own)  6335670 angles  graph 0.17 s  eval 4.34 s  peak 54.3 GB
+cube (5, 5, 6): 21607 atoms (1448 own)  6298180 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (5, 5, 7): 21619 atoms (1441 own)  6292810 angles  graph 0.17 s  eval 4.32 s  peak 54.0 GB
+cube (5, 5, 8): 21649 atoms (1456 own)  6318824 angles  graph 0.17 s  eval 4.33 s  peak 54.2 GB
+cube (5, 6, 0): 21749 atoms (1420 own)  6392374 angles  graph 0.16 s  eval 4.37 s  peak 54.8 GB
+cube (5, 6, 1): 21681 atoms (1475 own)  6322934 angles  graph 0.17 s  eval 4.34 s  peak 54.2 GB
+cube (5, 6, 2): 21546 atoms (1487 own)  6236132 angles  graph 0.16 s  eval 4.28 s  peak 53.5 GB
+cube (5, 6, 3): 21597 atoms (1422 own)  6289340 angles  graph 0.16 s  eval 4.31 s  peak 53.9 GB
+cube (5, 6, 4): 21591 atoms (1457 own)  6272204 angles  graph 0.17 s  eval 4.30 s  peak 53.8 GB
+cube (5, 6, 5): 21540 atoms (1501 own)  6212204 angles  graph 0.17 s  eval 4.28 s  peak 53.3 GB
+cube (5, 6, 6): 21594 atoms (1432 own)  6243120 angles  graph 0.17 s  eval 4.30 s  peak 53.6 GB
+cube (5, 6, 7): 21563 atoms (1428 own)  6216530 angles  graph 0.16 s  eval 4.28 s  peak 53.4 GB
+cube (5, 6, 8): 21678 atoms (1415 own)  6312990 angles  graph 0.16 s  eval 4.32 s  peak 54.1 GB
+cube (5, 7, 0): 21841 atoms (1451 own)  6514102 angles  graph 0.16 s  eval 4.43 s  peak 55.7 GB
+cube (5, 7, 1): 21775 atoms (1465 own)  6444154 angles  graph 0.17 s  eval 4.40 s  peak 55.1 GB
+cube (5, 7, 2): 21587 atoms (1425 own)  6287292 angles  graph 0.16 s  eval 4.31 s  peak 53.9 GB
+cube (5, 7, 3): 21524 atoms (1454 own)  6240098 angles  graph 0.16 s  eval 4.29 s  peak 53.5 GB
+cube (5, 7, 4): 21598 atoms (1442 own)  6233656 angles  graph 0.16 s  eval 4.29 s  peak 53.5 GB
+cube (5, 7, 5): 21588 atoms (1463 own)  6262182 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (5, 7, 6): 21755 atoms (1439 own)  6363664 angles  graph 0.16 s  eval 4.37 s  peak 54.6 GB
+cube (5, 7, 7): 21814 atoms (1468 own)  6420928 angles  graph 0.16 s  eval 4.38 s  peak 55.0 GB
+cube (5, 7, 8): 21759 atoms (1458 own)  6422610 angles  graph 0.16 s  eval 4.38 s  peak 55.0 GB
+cube (5, 8, 0): 21919 atoms (1483 own)  6562124 angles  graph 0.17 s  eval 4.46 s  peak 56.1 GB
+cube (5, 8, 1): 21886 atoms (1485 own)  6518474 angles  graph 0.16 s  eval 4.44 s  peak 55.7 GB
+cube (5, 8, 2): 21742 atoms (1426 own)  6418918 angles  graph 0.16 s  eval 4.39 s  peak 55.0 GB
+cube (5, 8, 3): 21634 atoms (1455 own)  6302064 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (5, 8, 4): 21640 atoms (1459 own)  6296450 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (5, 8, 5): 21548 atoms (1436 own)  6225222 angles  graph 0.16 s  eval 4.28 s  peak 53.4 GB
+cube (5, 8, 6): 21799 atoms (1478 own)  6418526 angles  graph 0.16 s  eval 4.40 s  peak 55.0 GB
+cube (5, 8, 7): 22026 atoms (1521 own)  6609020 angles  graph 0.16 s  eval 4.49 s  peak 56.5 GB
+cube (5, 8, 8): 21952 atoms (1487 own)  6584854 angles  graph 0.16 s  eval 4.47 s  peak 56.3 GB
+cube (6, 0, 0): 22015 atoms (1458 own)  6631448 angles  graph 0.17 s  eval 4.48 s  peak 56.6 GB
+cube (6, 0, 1): 22079 atoms (1512 own)  6674836 angles  graph 0.17 s  eval 4.51 s  peak 57.0 GB
+cube (6, 0, 2): 21867 atoms (1497 own)  6498824 angles  graph 0.16 s  eval 4.42 s  peak 55.6 GB
+cube (6, 0, 3): 21714 atoms (1418 own)  6297992 angles  graph 0.16 s  eval 4.33 s  peak 54.0 GB
+cube (6, 0, 4): 21666 atoms (1428 own)  6281430 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (6, 0, 5): 21752 atoms (1450 own)  6380120 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (6, 0, 6): 21956 atoms (1475 own)  6583668 angles  graph 0.17 s  eval 4.47 s  peak 56.3 GB
+cube (6, 0, 7): 22189 atoms (1533 own)  6797232 angles  graph 0.17 s  eval 4.58 s  peak 58.0 GB
+cube (6, 0, 8): 22063 atoms (1475 own)  6683712 angles  graph 0.18 s  eval 4.51 s  peak 57.0 GB
+cube (6, 1, 0): 22010 atoms (1536 own)  6653700 angles  graph 0.17 s  eval 4.50 s  peak 56.8 GB
+cube (6, 1, 1): 22007 atoms (1475 own)  6618924 angles  graph 0.16 s  eval 4.48 s  peak 56.5 GB
+cube (6, 1, 2): 21760 atoms (1447 own)  6432864 angles  graph 0.15 s  eval 4.39 s  peak 55.1 GB
+cube (6, 1, 3): 21688 atoms (1487 own)  6337182 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (6, 1, 4): 21705 atoms (1488 own)  6373966 angles  graph 0.16 s  eval 4.36 s  peak 54.6 GB
+cube (6, 1, 5): 21748 atoms (1460 own)  6439400 angles  graph 0.16 s  eval 4.40 s  peak 55.1 GB
+cube (6, 1, 6): 21863 atoms (1487 own)  6504528 angles  graph 0.16 s  eval 4.43 s  peak 55.7 GB
+cube (6, 1, 7): 22036 atoms (1496 own)  6637400 angles  graph 0.17 s  eval 4.50 s  peak 56.7 GB
+cube (6, 1, 8): 22038 atoms (1472 own)  6657540 angles  graph 0.17 s  eval 4.50 s  peak 56.8 GB
+cube (6, 2, 0): 21900 atoms (1472 own)  6504396 angles  graph 0.16 s  eval 4.43 s  peak 55.7 GB
+cube (6, 2, 1): 21778 atoms (1479 own)  6451594 angles  graph 0.17 s  eval 4.40 s  peak 55.2 GB
+cube (6, 2, 2): 21685 atoms (1434 own)  6339054 angles  graph 0.17 s  eval 4.35 s  peak 54.3 GB
+cube (6, 2, 3): 21565 atoms (1465 own)  6251274 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (6, 2, 4): 21656 atoms (1428 own)  6325342 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (6, 2, 5): 21706 atoms (1409 own)  6360874 angles  graph 0.16 s  eval 4.37 s  peak 54.5 GB
+cube (6, 2, 6): 21771 atoms (1467 own)  6410074 angles  graph 0.16 s  eval 4.39 s  peak 54.9 GB
+cube (6, 2, 7): 21878 atoms (1474 own)  6480276 angles  graph 0.17 s  eval 4.42 s  peak 55.5 GB
+cube (6, 2, 8): 21945 atoms (1474 own)  6540988 angles  graph 0.17 s  eval 4.46 s  peak 55.9 GB
+cube (6, 3, 0): 21756 atoms (1464 own)  6361000 angles  graph 0.17 s  eval 4.36 s  peak 54.5 GB
+cube (6, 3, 1): 21623 atoms (1478 own)  6276728 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (6, 3, 2): 21628 atoms (1442 own)  6298166 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (6, 3, 3): 21614 atoms (1421 own)  6293862 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (6, 3, 4): 21551 atoms (1468 own)  6239202 angles  graph 0.17 s  eval 4.29 s  peak 53.5 GB
+cube (6, 3, 5): 21665 atoms (1415 own)  6286208 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (6, 3, 6): 21716 atoms (1463 own)  6349748 angles  graph 0.15 s  eval 4.36 s  peak 54.4 GB
+cube (6, 3, 7): 21824 atoms (1472 own)  6395986 angles  graph 0.16 s  eval 4.40 s  peak 54.8 GB
+cube (6, 3, 8): 21872 atoms (1434 own)  6450128 angles  graph 0.17 s  eval 4.42 s  peak 55.3 GB
+cube (6, 4, 0): 21713 atoms (1459 own)  6312284 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (6, 4, 1): 21627 atoms (1444 own)  6258200 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (6, 4, 2): 21551 atoms (1425 own)  6249570 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (6, 4, 3): 21572 atoms (1456 own)  6311756 angles  graph 0.16 s  eval 4.32 s  peak 54.1 GB
+cube (6, 4, 4): 21741 atoms (1447 own)  6410974 angles  graph 0.16 s  eval 4.39 s  peak 54.9 GB
+cube (6, 4, 5): 21736 atoms (1442 own)  6400400 angles  graph 0.16 s  eval 4.39 s  peak 54.8 GB
+cube (6, 4, 6): 21742 atoms (1483 own)  6380470 angles  graph 0.17 s  eval 4.37 s  peak 54.7 GB
+cube (6, 4, 7): 21730 atoms (1462 own)  6335348 angles  graph 0.16 s  eval 4.35 s  peak 54.3 GB
+cube (6, 4, 8): 21730 atoms (1451 own)  6319352 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (6, 5, 0): 21658 atoms (1454 own)  6309254 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (6, 5, 1): 21555 atoms (1424 own)  6243334 angles  graph 0.16 s  eval 4.28 s  peak 53.6 GB
+cube (6, 5, 2): 21562 atoms (1413 own)  6242514 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (6, 5, 3): 21668 atoms (1462 own)  6350244 angles  graph 0.17 s  eval 4.35 s  peak 54.4 GB
+cube (6, 5, 4): 21773 atoms (1467 own)  6391124 angles  graph 0.16 s  eval 4.39 s  peak 54.8 GB
+cube (6, 5, 5): 21646 atoms (1469 own)  6307450 angles  graph 0.16 s  eval 4.32 s  peak 54.1 GB
+cube (6, 5, 6): 21701 atoms (1447 own)  6343510 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (6, 5, 7): 21650 atoms (1492 own)  6316990 angles  graph 0.16 s  eval 4.34 s  peak 54.2 GB
+cube (6, 5, 8): 21741 atoms (1461 own)  6363222 angles  graph 0.16 s  eval 4.36 s  peak 54.5 GB
+cube (6, 6, 0): 21841 atoms (1477 own)  6448714 angles  graph 0.17 s  eval 4.39 s  peak 55.2 GB
+cube (6, 6, 1): 21758 atoms (1466 own)  6400480 angles  graph 0.16 s  eval 4.37 s  peak 54.8 GB
+cube (6, 6, 2): 21596 atoms (1440 own)  6256258 angles  graph 0.15 s  eval 4.30 s  peak 53.7 GB
+cube (6, 6, 3): 21526 atoms (1456 own)  6225430 angles  graph 0.16 s  eval 4.27 s  peak 53.4 GB
+cube (6, 6, 4): 21627 atoms (1452 own)  6249072 angles  graph 0.16 s  eval 4.31 s  peak 53.6 GB
+cube (6, 6, 5): 21534 atoms (1413 own)  6190528 angles  graph 0.16 s  eval 4.26 s  peak 53.2 GB
+cube (6, 6, 6): 21660 atoms (1438 own)  6277006 angles  graph 0.17 s  eval 4.32 s  peak 53.9 GB
+cube (6, 6, 7): 21721 atoms (1477 own)  6316972 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (6, 6, 8): 21793 atoms (1462 own)  6381056 angles  graph 0.16 s  eval 4.36 s  peak 54.7 GB
+cube (6, 7, 0): 22018 atoms (1481 own)  6615666 angles  graph 0.17 s  eval 4.48 s  peak 56.5 GB
+cube (6, 7, 1): 21906 atoms (1498 own)  6557096 angles  graph 0.16 s  eval 4.45 s  peak 56.0 GB
+cube (6, 7, 2): 21689 atoms (1441 own)  6338216 angles  graph 0.16 s  eval 4.32 s  peak 54.3 GB
+cube (6, 7, 3): 21500 atoms (1452 own)  6188686 angles  graph 0.16 s  eval 4.26 s  peak 53.1 GB
+cube (6, 7, 4): 21493 atoms (1431 own)  6159044 angles  graph 0.16 s  eval 4.25 s  peak 52.9 GB
+cube (6, 7, 5): 21516 atoms (1436 own)  6183678 angles  graph 0.17 s  eval 4.26 s  peak 53.1 GB
+cube (6, 7, 6): 21848 atoms (1441 own)  6412166 angles  graph 0.16 s  eval 4.39 s  peak 55.0 GB
+cube (6, 7, 7): 22044 atoms (1463 own)  6591998 angles  graph 0.17 s  eval 4.47 s  peak 56.4 GB
+cube (6, 7, 8): 21953 atoms (1532 own)  6585118 angles  graph 0.16 s  eval 4.46 s  peak 56.3 GB
+cube (6, 8, 0): 22070 atoms (1474 own)  6645496 angles  graph 0.16 s  eval 4.49 s  peak 56.8 GB
+cube (6, 8, 1): 22130 atoms (1494 own)  6687624 angles  graph 0.16 s  eval 4.52 s  peak 57.1 GB
+cube (6, 8, 2): 21862 atoms (1465 own)  6487458 angles  graph 0.17 s  eval 4.42 s  peak 55.5 GB
+cube (6, 8, 3): 21559 atoms (1412 own)  6218672 angles  graph 0.16 s  eval 4.27 s  peak 53.4 GB
+cube (6, 8, 4): 21480 atoms (1457 own)  6163452 angles  graph 0.16 s  eval 4.25 s  peak 52.9 GB
+cube (6, 8, 5): 21626 atoms (1452 own)  6283522 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (6, 8, 6): 21990 atoms (1506 own)  6557674 angles  graph 0.16 s  eval 4.47 s  peak 56.1 GB
+cube (6, 8, 7): 22257 atoms (1520 own)  6811058 angles  graph 0.17 s  eval 4.59 s  peak 58.1 GB
+cube (6, 8, 8): 22113 atoms (1464 own)  6701752 angles  graph 0.16 s  eval 4.52 s  peak 57.2 GB
+cube (7, 0, 0): 21620 atoms (1470 own)  6273500 angles  graph 0.17 s  eval 4.29 s  peak 53.8 GB
+cube (7, 0, 1): 22008 atoms (1512 own)  6553180 angles  graph 0.17 s  eval 4.44 s  peak 56.0 GB
+cube (7, 0, 2): 21941 atoms (1480 own)  6558746 angles  graph 0.16 s  eval 4.45 s  peak 56.1 GB
+cube (7, 0, 3): 21720 atoms (1457 own)  6385864 angles  graph 0.16 s  eval 4.36 s  peak 54.7 GB
+cube (7, 0, 4): 21670 atoms (1441 own)  6306418 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (7, 0, 5): 21860 atoms (1464 own)  6484244 angles  graph 0.17 s  eval 4.42 s  peak 55.5 GB
+cube (7, 0, 6): 22087 atoms (1475 own)  6673190 angles  graph 0.16 s  eval 4.51 s  peak 57.0 GB
+cube (7, 0, 7): 22145 atoms (1508 own)  6709768 angles  graph 0.16 s  eval 4.52 s  peak 57.3 GB
+cube (7, 0, 8): 21694 atoms (1483 own)  6348536 angles  graph 0.16 s  eval 4.32 s  peak 54.4 GB
+cube (7, 1, 0): 22073 atoms (1476 own)  6667532 angles  graph 0.16 s  eval 4.51 s  peak 56.9 GB
+cube (7, 1, 1): 22051 atoms (1479 own)  6709724 angles  graph 0.16 s  eval 4.53 s  peak 57.2 GB
+cube (7, 1, 2): 21914 atoms (1471 own)  6517424 angles  graph 0.17 s  eval 4.44 s  peak 55.8 GB
+cube (7, 1, 3): 21734 atoms (1453 own)  6373450 angles  graph 0.16 s  eval 4.36 s  peak 54.6 GB
+cube (7, 1, 4): 21661 atoms (1477 own)  6346850 angles  graph 0.16 s  eval 4.36 s  peak 54.4 GB
+cube (7, 1, 5): 21877 atoms (1465 own)  6496820 angles  graph 0.16 s  eval 4.43 s  peak 55.6 GB
+cube (7, 1, 6): 22076 atoms (1505 own)  6679194 angles  graph 0.16 s  eval 4.52 s  peak 57.0 GB
+cube (7, 1, 7): 22185 atoms (1480 own)  6728490 angles  graph 0.18 s  eval 4.53 s  peak 57.4 GB
+cube (7, 1, 8): 22008 atoms (1463 own)  6628162 angles  graph 0.16 s  eval 4.48 s  peak 56.6 GB
+cube (7, 2, 0): 22184 atoms (1505 own)  6755094 angles  graph 0.17 s  eval 4.56 s  peak 57.6 GB
+cube (7, 2, 1): 22013 atoms (1456 own)  6648546 angles  graph 0.17 s  eval 4.50 s  peak 56.8 GB
+cube (7, 2, 2): 21841 atoms (1431 own)  6470014 angles  graph 0.16 s  eval 4.42 s  peak 55.4 GB
+cube (7, 2, 3): 21599 atoms (1468 own)  6248544 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (7, 2, 4): 21643 atoms (1435 own)  6286908 angles  graph 0.16 s  eval 4.32 s  peak 53.9 GB
+cube (7, 2, 5): 21823 atoms (1456 own)  6427334 angles  graph 0.16 s  eval 4.40 s  peak 55.1 GB
+cube (7, 2, 6): 21937 atoms (1490 own)  6532954 angles  graph 0.16 s  eval 4.45 s  peak 55.9 GB
+cube (7, 2, 7): 22064 atoms (1483 own)  6642684 angles  graph 0.17 s  eval 4.51 s  peak 56.8 GB
+cube (7, 2, 8): 22102 atoms (1528 own)  6693376 angles  graph 0.17 s  eval 4.52 s  peak 57.1 GB
+cube (7, 3, 0): 21943 atoms (1456 own)  6518714 angles  graph 0.16 s  eval 4.44 s  peak 55.8 GB
+cube (7, 3, 1): 21773 atoms (1453 own)  6375198 angles  graph 0.17 s  eval 4.36 s  peak 54.6 GB
+cube (7, 3, 2): 21533 atoms (1434 own)  6241252 angles  graph 0.17 s  eval 4.28 s  peak 53.5 GB
+cube (7, 3, 3): 21520 atoms (1446 own)  6243670 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (7, 3, 4): 21640 atoms (1431 own)  6263242 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (7, 3, 5): 21684 atoms (1474 own)  6303336 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (7, 3, 6): 21725 atoms (1470 own)  6387430 angles  graph 0.16 s  eval 4.38 s  peak 54.7 GB
+cube (7, 3, 7): 21865 atoms (1447 own)  6453726 angles  graph 0.16 s  eval 4.42 s  peak 55.3 GB
+cube (7, 3, 8): 21986 atoms (1494 own)  6568150 angles  graph 0.17 s  eval 4.47 s  peak 56.2 GB
+cube (7, 4, 0): 21681 atoms (1442 own)  6325770 angles  graph 0.16 s  eval 4.33 s  peak 54.2 GB
+cube (7, 4, 1): 21506 atoms (1436 own)  6204776 angles  graph 0.16 s  eval 4.27 s  peak 53.3 GB
+cube (7, 4, 2): 21446 atoms (1500 own)  6170748 angles  graph 0.16 s  eval 4.25 s  peak 53.0 GB
+cube (7, 4, 3): 21620 atoms (1476 own)  6310202 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (7, 4, 4): 21685 atoms (1457 own)  6346292 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (7, 4, 5): 21660 atoms (1421 own)  6315612 angles  graph 0.17 s  eval 4.34 s  peak 54.2 GB
+cube (7, 4, 6): 21706 atoms (1486 own)  6357214 angles  graph 0.17 s  eval 4.36 s  peak 54.5 GB
+cube (7, 4, 7): 21753 atoms (1482 own)  6384300 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (7, 4, 8): 21762 atoms (1455 own)  6388892 angles  graph 0.16 s  eval 4.38 s  peak 54.7 GB
+cube (7, 5, 0): 21896 atoms (1458 own)  6480636 angles  graph 0.17 s  eval 4.43 s  peak 55.5 GB
+cube (7, 5, 1): 21742 atoms (1470 own)  6367048 angles  graph 0.16 s  eval 4.36 s  peak 54.6 GB
+cube (7, 5, 2): 21560 atoms (1410 own)  6248052 angles  graph 0.16 s  eval 4.30 s  peak 53.6 GB
+cube (7, 5, 3): 21685 atoms (1438 own)  6359562 angles  graph 0.16 s  eval 4.35 s  peak 54.5 GB
+cube (7, 5, 4): 21734 atoms (1479 own)  6348152 angles  graph 0.16 s  eval 4.36 s  peak 54.4 GB
+cube (7, 5, 5): 21616 atoms (1447 own)  6273012 angles  graph 0.15 s  eval 4.32 s  peak 53.8 GB
+cube (7, 5, 6): 21741 atoms (1459 own)  6370836 angles  graph 0.17 s  eval 4.37 s  peak 54.6 GB
+cube (7, 5, 7): 21809 atoms (1439 own)  6476688 angles  graph 0.17 s  eval 4.42 s  peak 55.4 GB
+cube (7, 5, 8): 21880 atoms (1495 own)  6469748 angles  graph 0.16 s  eval 4.42 s  peak 55.4 GB
+cube (7, 6, 0): 22057 atoms (1477 own)  6629984 angles  graph 0.16 s  eval 4.49 s  peak 56.7 GB
+cube (7, 6, 1): 21929 atoms (1501 own)  6535638 angles  graph 0.16 s  eval 4.44 s  peak 55.9 GB
+cube (7, 6, 2): 21706 atoms (1451 own)  6360206 angles  graph 0.16 s  eval 4.35 s  peak 54.5 GB
+cube (7, 6, 3): 21653 atoms (1461 own)  6310196 angles  graph 0.16 s  eval 4.33 s  peak 54.1 GB
+cube (7, 6, 4): 21620 atoms (1454 own)  6261450 angles  graph 0.16 s  eval 4.30 s  peak 53.7 GB
+cube (7, 6, 5): 21618 atoms (1454 own)  6245642 angles  graph 0.16 s  eval 4.29 s  peak 53.6 GB
+cube (7, 6, 6): 21905 atoms (1458 own)  6474838 angles  graph 0.16 s  eval 4.43 s  peak 55.4 GB
+cube (7, 6, 7): 22023 atoms (1499 own)  6640398 angles  graph 0.16 s  eval 4.49 s  peak 56.7 GB
+cube (7, 6, 8): 22037 atoms (1509 own)  6595980 angles  graph 0.17 s  eval 4.47 s  peak 56.4 GB
+cube (7, 7, 0): 21919 atoms (1478 own)  6538232 angles  graph 0.17 s  eval 4.43 s  peak 55.9 GB
+cube (7, 7, 1): 22063 atoms (1482 own)  6624328 angles  graph 0.17 s  eval 4.49 s  peak 56.6 GB
+cube (7, 7, 2): 21938 atoms (1493 own)  6496698 angles  graph 0.17 s  eval 4.43 s  peak 55.6 GB
+cube (7, 7, 3): 21734 atoms (1452 own)  6339152 angles  graph 0.17 s  eval 4.35 s  peak 54.4 GB
+cube (7, 7, 4): 21556 atoms (1427 own)  6227114 angles  graph 0.16 s  eval 4.28 s  peak 53.4 GB
+cube (7, 7, 5): 21704 atoms (1436 own)  6354942 angles  graph 0.16 s  eval 4.35 s  peak 54.5 GB
+cube (7, 7, 6): 22000 atoms (1501 own)  6585378 angles  graph 0.17 s  eval 4.47 s  peak 56.3 GB
+cube (7, 7, 7): 22130 atoms (1466 own)  6710284 angles  graph 0.16 s  eval 4.53 s  peak 57.3 GB
+cube (7, 7, 8): 21979 atoms (1479 own)  6580846 angles  graph 0.17 s  eval 4.45 s  peak 56.3 GB
+cube (7, 8, 0): 21572 atoms (1443 own)  6218054 angles  graph 0.17 s  eval 4.25 s  peak 53.3 GB
+cube (7, 8, 1): 22044 atoms (1475 own)  6580336 angles  graph 0.17 s  eval 4.46 s  peak 56.3 GB
+cube (7, 8, 2): 22036 atoms (1509 own)  6606340 angles  graph 0.17 s  eval 4.47 s  peak 56.5 GB
+cube (7, 8, 3): 21806 atoms (1470 own)  6387020 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (7, 8, 4): 21546 atoms (1437 own)  6210252 angles  graph 0.16 s  eval 4.27 s  peak 53.3 GB
+cube (7, 8, 5): 21742 atoms (1456 own)  6388150 angles  graph 0.17 s  eval 4.36 s  peak 54.7 GB
+cube (7, 8, 6): 22095 atoms (1490 own)  6673910 angles  graph 0.17 s  eval 4.51 s  peak 57.0 GB
+cube (7, 8, 7): 22036 atoms (1515 own)  6638420 angles  graph 0.17 s  eval 4.48 s  peak 56.7 GB
+cube (7, 8, 8): 21693 atoms (1447 own)  6325144 angles  graph 0.16 s  eval 4.31 s  peak 54.2 GB
+cube (8, 0, 0): 21321 atoms (1363 own)  5974810 angles  graph 0.15 s  eval 4.13 s  peak 51.4 GB
+cube (8, 0, 1): 21822 atoms (1440 own)  6376560 angles  graph 0.17 s  eval 4.35 s  peak 54.7 GB
+cube (8, 0, 2): 22095 atoms (1518 own)  6656256 angles  graph 0.18 s  eval 4.50 s  peak 56.9 GB
+cube (8, 0, 3): 21895 atoms (1433 own)  6549636 angles  graph 0.17 s  eval 4.45 s  peak 56.0 GB
+cube (8, 0, 4): 21653 atoms (1403 own)  6323518 angles  graph 0.17 s  eval 4.34 s  peak 54.2 GB
+cube (8, 0, 5): 21873 atoms (1475 own)  6539156 angles  graph 0.16 s  eval 4.44 s  peak 55.9 GB
+cube (8, 0, 6): 22078 atoms (1463 own)  6623248 angles  graph 0.16 s  eval 4.49 s  peak 56.6 GB
+cube (8, 0, 7): 21748 atoms (1434 own)  6321584 angles  graph 0.16 s  eval 4.32 s  peak 54.2 GB
+cube (8, 0, 8): 21245 atoms (1358 own)  5928142 angles  graph 0.15 s  eval 4.09 s  peak 51.1 GB
+cube (8, 1, 0): 21695 atoms (1459 own)  6323050 angles  graph 0.16 s  eval 4.31 s  peak 54.2 GB
+cube (8, 1, 1): 22012 atoms (1501 own)  6615886 angles  graph 0.16 s  eval 4.48 s  peak 56.5 GB
+cube (8, 1, 2): 22021 atoms (1508 own)  6633446 angles  graph 0.17 s  eval 4.48 s  peak 56.7 GB
+cube (8, 1, 3): 21852 atoms (1504 own)  6487402 angles  graph 0.16 s  eval 4.43 s  peak 55.5 GB
+cube (8, 1, 4): 21596 atoms (1445 own)  6294406 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (8, 1, 5): 21896 atoms (1465 own)  6535398 angles  graph 0.16 s  eval 4.45 s  peak 55.9 GB
+cube (8, 1, 6): 22145 atoms (1516 own)  6724410 angles  graph 0.17 s  eval 4.54 s  peak 57.4 GB
+cube (8, 1, 7): 22098 atoms (1507 own)  6650528 angles  graph 0.17 s  eval 4.49 s  peak 56.8 GB
+cube (8, 1, 8): 21696 atoms (1461 own)  6305628 angles  graph 0.15 s  eval 4.31 s  peak 54.1 GB
+cube (8, 2, 0): 22065 atoms (1488 own)  6662616 angles  graph 0.17 s  eval 4.51 s  peak 56.9 GB
+cube (8, 2, 1): 21982 atoms (1550 own)  6615886 angles  graph 0.17 s  eval 4.48 s  peak 56.5 GB
+cube (8, 2, 2): 21818 atoms (1488 own)  6470472 angles  graph 0.16 s  eval 4.41 s  peak 55.4 GB
+cube (8, 2, 3): 21658 atoms (1463 own)  6302604 angles  graph 0.16 s  eval 4.32 s  peak 54.0 GB
+cube (8, 2, 4): 21609 atoms (1455 own)  6279924 angles  graph 0.16 s  eval 4.31 s  peak 53.9 GB
+cube (8, 2, 5): 21809 atoms (1459 own)  6465450 angles  graph 0.16 s  eval 4.42 s  peak 55.3 GB
+cube (8, 2, 6): 21932 atoms (1478 own)  6603208 angles  graph 0.16 s  eval 4.47 s  peak 56.4 GB
+cube (8, 2, 7): 22113 atoms (1476 own)  6656416 angles  graph 0.17 s  eval 4.50 s  peak 56.9 GB
+cube (8, 2, 8): 22156 atoms (1459 own)  6693052 angles  graph 0.17 s  eval 4.52 s  peak 57.2 GB
+cube (8, 3, 0): 21915 atoms (1500 own)  6518618 angles  graph 0.16 s  eval 4.43 s  peak 55.8 GB
+cube (8, 3, 1): 21760 atoms (1412 own)  6404652 angles  graph 0.18 s  eval 4.38 s  peak 54.8 GB
+cube (8, 3, 2): 21566 atoms (1454 own)  6292392 angles  graph 0.16 s  eval 4.31 s  peak 53.9 GB
+cube (8, 3, 3): 21658 atoms (1466 own)  6361398 angles  graph 0.17 s  eval 4.35 s  peak 54.5 GB
+cube (8, 3, 4): 21730 atoms (1491 own)  6378464 angles  graph 0.16 s  eval 4.38 s  peak 54.6 GB
+cube (8, 3, 5): 21719 atoms (1479 own)  6350292 angles  graph 0.16 s  eval 4.35 s  peak 54.4 GB
+cube (8, 3, 6): 21691 atoms (1429 own)  6370818 angles  graph 0.16 s  eval 4.36 s  peak 54.6 GB
+cube (8, 3, 7): 21706 atoms (1437 own)  6366434 angles  graph 0.16 s  eval 4.36 s  peak 54.5 GB
+cube (8, 3, 8): 21933 atoms (1517 own)  6566136 angles  graph 0.17 s  eval 4.47 s  peak 56.1 GB
+cube (8, 4, 0): 21733 atoms (1455 own)  6373172 angles  graph 0.17 s  eval 4.36 s  peak 54.6 GB
+cube (8, 4, 1): 21564 atoms (1466 own)  6236340 angles  graph 0.16 s  eval 4.28 s  peak 53.5 GB
+cube (8, 4, 2): 21509 atoms (1461 own)  6228074 angles  graph 0.16 s  eval 4.27 s  peak 53.4 GB
+cube (8, 4, 3): 21624 atoms (1462 own)  6317734 angles  graph 0.15 s  eval 4.33 s  peak 54.2 GB
+cube (8, 4, 4): 21712 atoms (1488 own)  6358240 angles  graph 0.15 s  eval 4.36 s  peak 54.5 GB
+cube (8, 4, 5): 21659 atoms (1464 own)  6298532 angles  graph 0.15 s  eval 4.33 s  peak 54.0 GB
+cube (8, 4, 6): 21633 atoms (1437 own)  6266872 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (8, 4, 7): 21612 atoms (1452 own)  6273100 angles  graph 0.16 s  eval 4.31 s  peak 53.8 GB
+cube (8, 4, 8): 21713 atoms (1460 own)  6366596 angles  graph 0.16 s  eval 4.37 s  peak 54.6 GB
+cube (8, 5, 0): 21876 atoms (1508 own)  6554444 angles  graph 0.16 s  eval 4.44 s  peak 56.0 GB
+cube (8, 5, 1): 21866 atoms (1485 own)  6510142 angles  graph 0.16 s  eval 4.43 s  peak 55.7 GB
+cube (8, 5, 2): 21691 atoms (1440 own)  6351332 angles  graph 0.17 s  eval 4.35 s  peak 54.4 GB
+cube (8, 5, 3): 21696 atoms (1444 own)  6333352 angles  graph 0.16 s  eval 4.34 s  peak 54.3 GB
+cube (8, 5, 4): 21667 atoms (1448 own)  6319126 angles  graph 0.17 s  eval 4.34 s  peak 54.2 GB
+cube (8, 5, 5): 21668 atoms (1419 own)  6309846 angles  graph 0.16 s  eval 4.34 s  peak 54.1 GB
+cube (8, 5, 6): 21749 atoms (1448 own)  6369282 angles  graph 0.17 s  eval 4.36 s  peak 54.6 GB
+cube (8, 5, 7): 21828 atoms (1470 own)  6450304 angles  graph 0.17 s  eval 4.41 s  peak 55.2 GB
+cube (8, 5, 8): 21785 atoms (1474 own)  6473894 angles  graph 0.16 s  eval 4.41 s  peak 55.4 GB
+cube (8, 6, 0): 22100 atoms (1445 own)  6704896 angles  graph 0.17 s  eval 4.51 s  peak 57.2 GB
+cube (8, 6, 1): 22181 atoms (1530 own)  6744464 angles  graph 0.17 s  eval 4.55 s  peak 57.6 GB
+cube (8, 6, 2): 21973 atoms (1473 own)  6542424 angles  graph 0.16 s  eval 4.45 s  peak 56.0 GB
+cube (8, 6, 3): 21780 atoms (1466 own)  6380956 angles  graph 0.16 s  eval 4.37 s  peak 54.7 GB
+cube (8, 6, 4): 21650 atoms (1445 own)  6291154 angles  graph 0.17 s  eval 4.32 s  peak 54.0 GB
+cube (8, 6, 5): 21765 atoms (1453 own)  6419008 angles  graph 0.16 s  eval 4.39 s  peak 55.0 GB
+cube (8, 6, 6): 22035 atoms (1482 own)  6640816 angles  graph 0.17 s  eval 4.50 s  peak 56.7 GB
+cube (8, 6, 7): 22159 atoms (1534 own)  6735170 angles  graph 0.17 s  eval 4.54 s  peak 57.5 GB
+cube (8, 6, 8): 22054 atoms (1421 own)  6614894 angles  graph 0.17 s  eval 4.48 s  peak 56.5 GB
+cube (8, 7, 0): 21618 atoms (1491 own)  6260264 angles  graph 0.16 s  eval 4.28 s  peak 53.7 GB
+cube (8, 7, 1): 22142 atoms (1447 own)  6662060 angles  graph 0.17 s  eval 4.50 s  peak 56.9 GB
+cube (8, 7, 2): 22175 atoms (1506 own)  6700136 angles  graph 0.17 s  eval 4.52 s  peak 57.2 GB
+cube (8, 7, 3): 21920 atoms (1470 own)  6526638 angles  graph 0.18 s  eval 4.45 s  peak 55.8 GB
+cube (8, 7, 4): 21608 atoms (1464 own)  6313094 angles  graph 0.16 s  eval 4.32 s  peak 54.1 GB
+cube (8, 7, 5): 21836 atoms (1466 own)  6492194 angles  graph 0.16 s  eval 4.42 s  peak 55.5 GB
+cube (8, 7, 6): 22158 atoms (1471 own)  6738662 angles  graph 0.18 s  eval 4.54 s  peak 57.5 GB
+cube (8, 7, 7): 22015 atoms (1522 own)  6614488 angles  graph 0.18 s  eval 4.46 s  peak 56.5 GB
+cube (8, 7, 8): 21619 atoms (1486 own)  6286876 angles  graph 0.17 s  eval 4.29 s  peak 53.9 GB
+cube (8, 8, 0): 21234 atoms (1368 own)  5883858 angles  graph 0.15 s  eval 4.07 s  peak 50.7 GB
+cube (8, 8, 1): 21791 atoms (1454 own)  6331030 angles  graph 0.17 s  eval 4.33 s  peak 54.3 GB
+cube (8, 8, 2): 22209 atoms (1484 own)  6715972 angles  graph 0.17 s  eval 4.54 s  peak 57.4 GB
+cube (8, 8, 3): 21897 atoms (1517 own)  6507084 angles  graph 0.17 s  eval 4.43 s  peak 55.7 GB
+cube (8, 8, 4): 21646 atoms (1434 own)  6310754 angles  graph 0.17 s  eval 4.33 s  peak 54.1 GB
+cube (8, 8, 5): 21808 atoms (1511 own)  6475848 angles  graph 0.16 s  eval 4.41 s  peak 55.4 GB
+cube (8, 8, 6): 22017 atoms (1434 own)  6638856 angles  graph 0.17 s  eval 4.49 s  peak 56.7 GB
+cube (8, 8, 7): 21757 atoms (1464 own)  6338062 angles  graph 0.16 s  eval 4.31 s  peak 54.3 GB
+cube (8, 8, 8): 21249 atoms (1376 own)  5930094 angles  graph 0.15 s  eval 4.10 s  peak 51.1 GB
+{'model_dir': '/data/jlee859/ffmax/models/aff_smooth', 'checkpoint_md5': '8e4976dd2cd536de84044c7470726809', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661138432, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_smooth/alignn', 'slurm_job': '21861', 'host': 'atomgptlab04', 'natoms': 1066628, 'structure': '/data/jlee859/ffmax/structures/stmv', 'box_A': [216.832, 216.832, 216.832], 'k': [9, 9, 9], 'core_A': [24.092444444444443, 24.092444444444443, 24.092444444444443], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 729, 'cubes_done': 729, 'owned_done': 1066628, 'energy': -5812322.06640625, 'wall_s': 3320.005362609867, 'host_peak_gb': 2.318544, 'owned_atoms_per_s': 321.27297504167893, 'neighbor_cap_binds': True, 'e_per_atom': -5.449249472549239, 'max_abs_f': 8.574534168683662, 'net_force': [0.00015051992760262145, 0.00024369566340409765, 8.632084368875859e-05]}
+end rc 0 Wed Nov 11 08:26:42 AM UTC 2026

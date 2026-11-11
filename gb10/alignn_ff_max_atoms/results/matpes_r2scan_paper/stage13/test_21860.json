@@ -1,0 +1,86 @@
+{
+ "slurm_job": "21860",
+ "host": "atomgptlab04",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_smooth/alignn",
+ "gpu": "NVIDIA GB10",
+ "models": {
+  "aff": {
+   "dir": "/data/jlee859/ffmax/models/matpes_r2scan_paper",
+   "best_model_md5": "92cfe2955622c198c03085fc5320296b",
+   "smooth_messages": false
+  },
+  "smooth": {
+   "dir": "/data/jlee859/ffmax/models/aff_smooth",
+   "best_model_md5": "8e4976dd2cd536de84044c7470726809",
+   "smooth_messages": true
+  }
+ },
+ "split": {
+  "entries": 386544,
+  "n_train": 347889,
+  "n_val": 19327,
+  "n_test": 19328,
+  "random_seed": 123,
+  "keep_data_order": false,
+  "recomputed_from_file_order": true,
+  "aff_ids_file": null
+ },
+ "history": {
+  "epochs": 100,
+  "best_epoch": 99,
+  "best_val_loss": 0.18335086437842704,
+  "last_val_loss": 0.18335088596537413
+ },
+ "sets": {
+  "test": {
+   "aff": {
+    "frames": 19328,
+    "failed": 0,
+    "energy_mae_meV_atom": 39.77816400372921,
+    "energy_rmse_meV_atom": 172.1537660090398,
+    "energy_mae_with_penalty_meV_atom": 39.788475992478865,
+    "force_mae_eV_A": 0.19253327498169323,
+    "force_rmse_eV_A": 1.1680446347298072,
+    "force_max_err_eV_A": 421.56500124031254,
+    "wall_s": 176.53540911292657
+   },
+   "smooth": {
+    "frames": 19328,
+    "failed": 0,
+    "energy_mae_meV_atom": 42.3193589909027,
+    "energy_rmse_meV_atom": 211.7388692679605,
+    "energy_mae_with_penalty_meV_atom": 42.33543444820248,
+    "force_mae_eV_A": 0.13828701891853956,
+    "force_rmse_eV_A": 0.525604686058663,
+    "force_max_err_eV_A": 176.4772957309375,
+    "wall_s": 164.9658401340712
+   }
+  },
+  "train_sample": {
+   "aff": {
+    "frames": 2000,
+    "failed": 0,
+    "energy_mae_meV_atom": 40.601019029585856,
+    "energy_rmse_meV_atom": 115.83089694567194,
+    "energy_mae_with_penalty_meV_atom": 40.63731961977937,
+    "force_mae_eV_A": 0.17745563543490325,
+    "force_rmse_eV_A": 0.7247866050352799,
+    "force_max_err_eV_A": 15.678875714228516,
+    "wall_s": 15.974163986975327
+   },
+   "smooth": {
+    "frames": 2000,
+    "failed": 0,
+    "energy_mae_meV_atom": 36.090805930611964,
+    "energy_rmse_meV_atom": 109.224039692324,
+    "energy_mae_with_penalty_meV_atom": 36.12643403694737,
+    "force_mae_eV_A": 0.11879019471292326,
+    "force_rmse_eV_A": 0.21032428869595224,
+    "force_max_err_eV_A": 3.1507736944670106,
+    "wall_s": 17.345411034068093
+   }
+  }
+ },
+ "pred_csv_check": null
+}

@@ -1,0 +1,92 @@
+start Wed Nov 11 02:54:51 AM UTC 2026 | atomgptlab04
+8e4976dd2cd536de84044c7470726809  best_model.pt
+06721a4609c23f0233be07d78a20c3a8  config.json
+AFF-r2SCAN split file: none in /data/jlee859/ffmax/models/matpes_r2scan_paper
+other split files (not used):
+alignn from /data/jlee859/ffmax/alignn_smooth/alignn/__init__.py
+386,544 entries read in 14 s
+split: {"entries": 386544, "n_train": 347889, "n_val": 19327, "n_test": 19328, "random_seed": 123, "keep_data_order": false, "recomputed_from_file_order": true, "aff_ids_file": null}
+model aff: {'dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'best_model_md5': '92cfe2955622c198c03085fc5320296b', 'smooth_messages': False}
+model smooth: {'dir': '/data/jlee859/ffmax/models/aff_smooth', 'best_model_md5': '8e4976dd2cd536de84044c7470726809', 'smooth_messages': True}
+/data/jlee859/ffmax/compare_models.py:168: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e = float(res["out"].squeeze())
+test aff: 2,000/19,328 frames, 32 s
+test aff: 4,000/19,328 frames, 50 s
+test aff: 6,000/19,328 frames, 64 s
+test aff: 8,000/19,328 frames, 77 s
+test aff: 10,000/19,328 frames, 93 s
+test aff: 12,000/19,328 frames, 111 s
+test aff: 14,000/19,328 frames, 130 s
+test aff: 16,000/19,328 frames, 147 s
+test aff: 18,000/19,328 frames, 167 s
+test smooth: 2,000/19,328 frames, 17 s
+test smooth: 4,000/19,328 frames, 33 s
+test smooth: 6,000/19,328 frames, 50 s
+test smooth: 8,000/19,328 frames, 67 s
+test smooth: 10,000/19,328 frames, 84 s
+test smooth: 12,000/19,328 frames, 103 s
+test smooth: 14,000/19,328 frames, 121 s
+test smooth: 16,000/19,328 frames, 138 s
+test smooth: 18,000/19,328 frames, 154 s
+
+test: 19,328 frames evaluated by every model
+model          E MAE    E RMSE  E+pen MAE    F MAE   F RMSE    F max  failed
+            meV/atom  meV/atom   meV/atom     eV/A     eV/A     eV/A
+aff            39.78    172.15      39.79   0.1925   1.1680   421.57       0
+smooth         42.32    211.74      42.34   0.1383   0.5256   176.48       0
+train_sample aff: 2,000/2,000 frames, 16 s
+train_sample smooth: 2,000/2,000 frames, 17 s
+
+train_sample: 2,000 frames evaluated by every model
+model          E MAE    E RMSE  E+pen MAE    F MAE   F RMSE    F max  failed
+            meV/atom  meV/atom   meV/atom     eV/A     eV/A     eV/A
+aff            40.60    115.83      40.64   0.1775   0.7248    15.68       0
+smooth         36.09    109.22      36.13   0.1188   0.2103     3.15       0
+history: {"epochs": 100, "best_epoch": 99, "best_val_loss": 0.18335086437842704, "last_val_loss": 0.18335088596537413}
+prediction csv check: null
+wrote /data/jlee859/ffmax/results/matpes_r2scan_paper/stage13/test_21860.json
+test done, rc 0 Wed Nov 11 03:01:29 AM UTC 2026
+model aff: {'dir': '/data/jlee859/ffmax/models/matpes_r2scan_paper', 'best_model_md5': '92cfe2955622c198c03085fc5320296b', 'smooth_messages': False}
+model smooth: {'dir': '/data/jlee859/ffmax/models/aff_smooth', 'best_model_md5': '8e4976dd2cd536de84044c7470726809', 'smooth_messages': True}
+
+si_1500K: 512 atoms, 1500 K, dt 1.0 fs, 2000 steps, neighbor cap of the model
+/data/jlee859/ffmax/smooth_check.py:42: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  return float(res["energy"]), res["forces"].detach().double().cpu().numpy()
+aff step 500: T 951 K, E - E0 +3.9327 meV/atom, 43 s
+aff step 1000: T 969 K, E - E0 +9.7160 meV/atom, 84 s
+aff step 1500: T 1078 K, E - E0 +16.9856 meV/atom, 125 s
+aff step 2000: T 1032 K, E - E0 +24.5485 meV/atom, 166 s
+aff: {"steps_done": 2000, "T_end_K": 1031.6712033900283, "drift_meV_atom": 24.54849838276374, "max_dev_meV_atom": 25.106628692794786, "step_change_median_meV": 51.71956877393313, "step_change_max_meV": 378.985507230027, "steps_over_20x_median": 0, "wall_s": 165.63243758492172}
+smooth step 500: T 1003 K, E - E0 +0.0801 meV/atom, 42 s
+smooth step 1000: T 870 K, E - E0 +0.0911 meV/atom, 84 s
+smooth step 1500: T 966 K, E - E0 +0.0736 meV/atom, 127 s
+smooth step 2000: T 927 K, E - E0 +0.0845 meV/atom, 169 s
+smooth: {"steps_done": 2000, "T_end_K": 926.84400561009, "drift_meV_atom": 0.0844573778202573, "max_dev_meV_atom": 0.11747354239233232, "step_change_median_meV": 0.4920288633911696, "step_change_max_meV": 5.665521592163714, "steps_over_20x_median": 0, "wall_s": 168.9320546661038}
+
+water_300K: 1536 atoms, 300 K, dt 0.5 fs, 2000 steps, neighbor cap of the model
+aff step 500: T 2882 K, E - E0 +164.3729 meV/atom, 478 s
+aff step 1000: T 4156 K, E - E0 +484.0935 meV/atom, 985 s
+aff step 1500: T 6065 K, E - E0 +906.5717 meV/atom, 1502 s
+aff step 2000: T 7724 K, E - E0 +1404.0162 meV/atom, 2027 s
+aff: {"steps_done": 2000, "T_end_K": 7723.687291885169, "drift_meV_atom": 1404.016157141589, "max_dev_meV_atom": 1404.4176928926763, "step_change_median_meV": 2121.6746354766656, "step_change_max_meV": 113185.30841125175, "steps_over_20x_median": 30, "wall_s": 2027.1722164009698}
+smooth step 500: T 665 K, E - E0 +0.3201 meV/atom, 507 s
+smooth step 1000: T 694 K, E - E0 +0.4645 meV/atom, 1043 s
+smooth step 1500: T 693 K, E - E0 +0.6192 meV/atom, 1577 s
+smooth step 2000: T 698 K, E - E0 +0.9059 meV/atom, 2116 s
+smooth: {"steps_done": 2000, "T_end_K": 697.6049800327335, "drift_meV_atom": 0.9059122556832241, "max_dev_meV_atom": 0.9196227917710095, "step_change_median_meV": 6.10393529132125, "step_change_max_meV": 140.78274769690324, "steps_over_20x_median": 3, "wall_s": 2116.4644252611324}
+
+water_300K_nocap: 1536 atoms, 300 K, dt 0.5 fs, 2000 steps, neighbor cap 10000
+aff step 500: T 2893 K, E - E0 +168.3996 meV/atom, 478 s
+aff step 1000: T 4433 K, E - E0 +500.7939 meV/atom, 983 s
+aff step 1500: T 6011 K, E - E0 +891.0156 meV/atom, 1501 s
+aff step 2000: T 8173 K, E - E0 +1461.2780 meV/atom, 2025 s
+aff: {"steps_done": 2000, "T_end_K": 8172.926926009784, "drift_meV_atom": 1461.2779923427186, "max_dev_meV_atom": 1463.5129658373535, "step_change_median_meV": 2106.4039567622785, "step_change_max_meV": 113534.61255158618, "steps_over_20x_median": 30, "wall_s": 2025.098029260058}
+smooth step 500: T 680 K, E - E0 +0.2241 meV/atom, 504 s
+smooth step 1000: T 696 K, E - E0 +0.3152 meV/atom, 1036 s
+smooth step 1500: T 693 K, E - E0 +0.4820 meV/atom, 1569 s
+smooth step 2000: T 682 K, E - E0 +0.5693 meV/atom, 2103 s
+smooth: {"steps_done": 2000, "T_end_K": 681.5793676209356, "drift_meV_atom": 0.5692830226233051, "max_dev_meV_atom": 0.5890717640741153, "step_change_median_meV": 6.176758903166046, "step_change_max_meV": 140.66164192354336, "steps_over_20x_median": 3, "wall_s": 2102.5302344199736}
+wrote /data/jlee859/ffmax/results/matpes_r2scan_paper/stage13/nve_21860.json
+end rc 0 Wed Nov 11 05:24:58 AM UTC 2026
