@@ -122,6 +122,8 @@ analysis/                     cross-GPU comparison
 ├── scaling_forces.py           -> scaling_forces.png (energy+forces+stress ALIGNN-FF on GB10/H200)
 ├── scaling_all.py              -> scaling_all.png (all seven runs on one plot)
 ├── cross_gpu_figure.py         -> cross_gpu.png (two panels: energy-only B200/GB10/H200; with forces GB10/H200)
+├── gb10_billion_figures.py     -> gb10_decomposition.png, gb10_scaling.png, gb10_halo.png (GB10 chunked runs)
+├── gb10_energy_maps_figure.py  -> gb10_energy_maps.png (per-atom energy maps; needs the maps from energy_maps.py)
 └── results_report.py           -> results_report.pdf (summary, plot, full result tables)
 ```
 
