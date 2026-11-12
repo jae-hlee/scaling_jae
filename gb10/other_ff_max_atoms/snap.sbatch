@@ -218,7 +218,7 @@ if [[ " $STAGES " == *" sweep "* ]]; then
     $PY sweep.py lammps --exe $LMP \
         --exe_args="-k on g 1 -sf kk -pk kokkos newton on neigh half" \
         --pair_file $POT/pair.in --copy $POT/Si.snapcoeff $POT/Si.snapparam \
-        --skin 2.0 --timestep 0.0005 --steps 5 \
+        --skin 2.0 --timestep 0.0005 --steps 1 --timeout 10800 \
         --work $B/work/snap --out $R/sweep "${FRESH_FLAG[@]}" \
         --note "LAMMPS $(git -C $L rev-parse --short HEAD) snap/kk, quadratic SNAP 2J 8, potential $WHICH, job $J" || rc=1
 fi

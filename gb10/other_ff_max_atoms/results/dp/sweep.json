@@ -1,0 +1,189 @@
+{
+ "rows": [
+  {
+   "i": 4,
+   "atoms": 512,
+   "rc": 0,
+   "wall_s": 7.028101921081543,
+   "mem_used_gb": 2.781384704,
+   "mem_available_before_gb": 125.824049152,
+   "rss_peak_gb": 2.336722944,
+   "timed_out": false,
+   "e_static_per_atom": -8.627197182364764,
+   "f_static_max": 3.419139971150287e-14,
+   "t_load_s": 4.261196964420378,
+   "t_static_s": 0.9988313494250178,
+   "steps_evaluated": 5,
+   "t_steps_s": 0.7748033413663507,
+   "torch_peak_gb": 0.66992128,
+   "how": "DeepPot, nlist_backend vesin",
+   "nvrtc_loaded": [
+    "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8",
+    "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+    "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc-builtins.so.13.0.88",
+    "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc.so.13.0.88"
+   ],
+   "atom_steps_per_s": 3304.064222910409,
+   "s_per_atom_step": 0.0003026575552212307,
+   "ok": true,
+   "status": "ok"
+  },
+  {
+   "i": 10,
+   "atoms": 8000,
+   "rc": 0,
+   "wall_s": 10.638274908065796,
+   "mem_used_gb": 12.010135552,
+   "mem_available_before_gb": 125.807857664,
+   "rss_peak_gb": 2.346770432,
+   "timed_out": false,
+   "e_static_per_atom": -8.627197182364766,
+   "f_static_max": 8.403369146370299e-14,
+   "t_load_s": 3.3319269781932235,
+   "t_static_s": 2.090281859971583,
+   "steps_evaluated": 5,
+   "t_steps_s": 3.89578440412879,
+   "torch_peak_gb": 9.399327744,
+   "how": "DeepPot, nlist_backend vesin",
+   "nvrtc_loaded": [
+    "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8",
+    "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+    "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc-builtins.so.13.0.88",
+    "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc.so.13.0.88"
+   ],
+   "atom_steps_per_s": 10267.508632563859,
+   "s_per_atom_step": 9.739461010321974e-05,
+   "ok": true,
+   "status": "ok"
+  },
+  {
+   "i": 13,
+   "atoms": 17576,
+   "rc": 0,
+   "wall_s": 17.076072931289673,
+   "mem_used_gb": 35.725111296,
+   "mem_available_before_gb": 125.787570176,
+   "rss_peak_gb": 2.345385984,
+   "timed_out": false,
+   "e_static_per_atom": -8.627197182364764,
+   "f_static_max": 1.2098658254224061e-13,
+   "t_load_s": 3.729537202976644,
+   "t_static_s": 3.5382953574880958,
+   "steps_evaluated": 5,
+   "t_steps_s": 8.426650612615049,
+   "torch_peak_gb": 31.768339456,
+   "how": "DeepPot, nlist_backend vesin",
+   "nvrtc_loaded": [
+    "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8",
+    "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+    "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc-builtins.so.13.0.88",
+    "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc.so.13.0.88"
+   ],
+   "atom_steps_per_s": 10428.817336800455,
+   "s_per_atom_step": 9.58881498932072e-05,
+   "ok": true,
+   "status": "ok"
+  },
+  {
+   "i": 16,
+   "atoms": 32768,
+   "rc": 0,
+   "wall_s": 31.32248616218567,
+   "mem_used_gb": 97.813798912,
+   "mem_available_before_gb": 125.796225024,
+   "rss_peak_gb": 2.338766848,
+   "timed_out": false,
+   "e_static_per_atom": -8.627197182364764,
+   "f_static_max": 1.959118631211787e-13,
+   "t_load_s": 4.918196819722652,
+   "t_static_s": 7.9816142013296485,
+   "steps_evaluated": 5,
+   "t_steps_s": 16.16551322955638,
+   "torch_peak_gb": 91.66891008,
+   "how": "DeepPot, nlist_backend vesin",
+   "nvrtc_loaded": [
+    "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8",
+    "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+    "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc-builtins.so.13.0.88",
+    "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc.so.13.0.88"
+   ],
+   "atom_steps_per_s": 10135.156098876061,
+   "s_per_atom_step": 9.866646258274158e-05,
+   "ok": true,
+   "status": "ok"
+  },
+  {
+   "i": 20,
+   "atoms": 64000,
+   "rc": -9,
+   "wall_s": 26.69068431854248,
+   "mem_used_gb": 125.645398016,
+   "mem_available_before_gb": 125.94221056,
+   "rss_peak_gb": 1.764274176,
+   "timed_out": false,
+   "ok": false,
+   "status": "killed",
+   "stderr_tail": [
+    "To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information."
+   ],
+   "stdout_tail": []
+  },
+  {
+   "i": 18,
+   "atoms": 46656,
+   "rc": -9,
+   "wall_s": 33.1637978553772,
+   "mem_used_gb": 126.970376192,
+   "mem_available_before_gb": 127.194394624,
+   "rss_peak_gb": 1.782431744,
+   "timed_out": false,
+   "ok": false,
+   "status": "killed",
+   "stderr_tail": [
+    "To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information."
+   ],
+   "stdout_tail": []
+  },
+  {
+   "i": 17,
+   "atoms": 39304,
+   "rc": -9,
+   "wall_s": 45.75039505958557,
+   "mem_used_gb": 127.154843648,
+   "mem_available_before_gb": 127.154843648,
+   "rss_peak_gb": 1.782439936,
+   "timed_out": false,
+   "ok": false,
+   "status": "killed",
+   "stderr_tail": [
+    "To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information."
+   ],
+   "stdout_tail": []
+  }
+ ],
+ "attempting": null,
+ "result": {
+  "largest_ok_i": 16,
+  "largest_ok_atoms": 32768,
+  "largest_ok_mem_used_gb": 97.813798912,
+  "largest_ok_kb_per_atom": 2985.04025,
+  "first_failed_i": 17,
+  "first_failed_atoms": 39304,
+  "first_failed_status": "killed",
+  "reached_max_i_without_failure": false
+ },
+ "signature": "9590bf349329456888b9c5f626015249",
+ "engine": "python",
+ "exe": "/data/jlee859/ffother/venv_dp/bin/python",
+ "engine_info": {
+  "exe_args": "/data/jlee859/ffother/py_eval.py size --kind dp --model /data/jlee859/ffother/dp/train/model.pth --nlist vesin"
+ },
+ "a_si": 5.43,
+ "steps": 5,
+ "e_tol": 0.0001,
+ "note": "DeePMD-kit 3.2.0 pt, se_e2_a rcut 8, uncompressed, DeepPot with vesin, build cuda, job 21888",
+ "host": "atomgptlab11",
+ "slurm_job": "21888",
+ "mem_total_gb": 130.661203968,
+ "e_ref_per_atom": -8.627197182364764
+}

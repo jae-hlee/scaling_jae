@@ -1,0 +1,48 @@
+{
+ "rows": [
+  {
+   "i": 4,
+   "atoms": 512,
+   "rc": 1,
+   "wall_s": 4.822192192077637,
+   "mem_used_gb": 0.947351552,
+   "mem_available_before_gb": 118.112514048,
+   "rss_peak_gb": 1.17587968,
+   "timed_out": false,
+   "ok": false,
+   "status": "error",
+   "stderr_tail": [
+    "    frame_results = [",
+    "  File \"/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_neighbor_list.py\", line 140, in <listcomp>",
+    "    _build_single(",
+    "  File \"/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_neighbor_list.py\", line 231, in _build_single",
+    "    ii, jj, ss = vesin_search_ijs(",
+    "  File \"/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_graph_builder.py\", line 87, in vesin_search_ijs",
+    "    ii, jj, ss = nl.compute(",
+    "  File \"/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/vesin_torch/_neighbors.py\", line 94, in compute",
+    "    results = self._c.compute(",
+    "RuntimeError: failed to compute neighbors: KernelFactory::compileAndCacheKernel: Failed to compile CUDA program:",
+    "nvrtc: error: invalid value for --gpu-architecture (-arch)",
+    ""
+   ],
+   "stdout_tail": []
+  }
+ ],
+ "attempting": null,
+ "result": {
+  "failed_at_smoke_test": "error"
+ },
+ "signature": "b591882a256e8834d11444173a534be6",
+ "engine": "python",
+ "exe": "/data/jlee859/ffother/venv_dp/bin/python",
+ "engine_info": {
+  "exe_args": "/data/jlee859/ffother/py_eval.py size --kind dp --model /data/jlee859/ffother/dp/train/model.pth"
+ },
+ "a_si": 5.43,
+ "steps": 5,
+ "e_tol": 0.0001,
+ "note": "DeePMD-kit 3.2.0 pt, se_e2_a rcut 8, uncompressed, DeepPot with vesin, build cpu, job 21869",
+ "host": "atomgptlab08",
+ "slurm_job": "21869",
+ "mem_total_gb": 130.661203968
+}

@@ -1,0 +1,95 @@
+start Wed Nov 11 06:24:54 PM UTC 2026 | atomgptlab04 | stages: build train sweep
+Cloning into '/data/jlee859/ffother/src/GPUMD'...
+Note: switching to '11ba6fbdb4d71b2cdb351b39972fa057521585b3'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Updating files:  24% (309/1240)Updating files:  25% (310/1240)Updating files:  26% (323/1240)Updating files:  27% (335/1240)Updating files:  28% (348/1240)Updating files:  29% (360/1240)Updating files:  30% (372/1240)Updating files:  31% (385/1240)Updating files:  32% (397/1240)Updating files:  33% (410/1240)Updating files:  34% (422/1240)Updating files:  35% (434/1240)Updating files:  36% (447/1240)Updating files:  37% (459/1240)Updating files:  38% (472/1240)Updating files:  39% (484/1240)Updating files:  40% (496/1240)Updating files:  41% (509/1240)Updating files:  42% (521/1240)Updating files:  43% (534/1240)Updating files:  44% (546/1240)Updating files:  45% (558/1240)Updating files:  46% (571/1240)Updating files:  47% (583/1240)Updating files:  48% (596/1240)Updating files:  49% (608/1240)Updating files:  50% (620/1240)Updating files:  51% (633/1240)Updating files:  52% (645/1240)Updating files:  53% (658/1240)Updating files:  54% (670/1240)Updating files:  55% (682/1240)Updating files:  56% (695/1240)Updating files:  57% (707/1240)Updating files:  58% (720/1240)Updating files:  59% (732/1240)Updating files:  60% (744/1240)Updating files:  61% (757/1240)Updating files:  62% (769/1240)Updating files:  63% (782/1240)Updating files:  64% (794/1240)Updating files:  65% (806/1240)Updating files:  65% (808/1240)Updating files:  66% (819/1240)Updating files:  67% (831/1240)Updating files:  68% (844/1240)Updating files:  69% (856/1240)Updating files:  70% (868/1240)Updating files:  71% (881/1240)Updating files:  72% (893/1240)Updating files:  73% (906/1240)Updating files:  74% (918/1240)Updating files:  75% (930/1240)Updating files:  76% (943/1240)Updating files:  77% (955/1240)Updating files:  78% (968/1240)Updating files:  79% (980/1240)Updating files:  80% (992/1240)Updating files:  81% (1005/1240)Updating files:  82% (1017/1240)Updating files:  83% (1030/1240)Updating files:  84% (1042/1240)Updating files:  85% (1054/1240)Updating files:  86% (1067/1240)Updating files:  87% (1079/1240)Updating files:  88% (1092/1240)Updating files:  89% (1104/1240)Updating files:  90% (1116/1240)Updating files:  90% (1122/1240)Updating files:  91% (1129/1240)Updating files:  92% (1141/1240)Updating files:  93% (1154/1240)Updating files:  94% (1166/1240)Updating files:  95% (1178/1240)Updating files:  96% (1191/1240)Updating files:  97% (1203/1240)Updating files:  98% (1216/1240)Updating files:  99% (1228/1240)Updating files: 100% (1240/1240)Updating files: 100% (1240/1240), done.
+makefile as shipped:
+3:# 1) You can modify -arch=sm_60 according to 
+18:CUDA_ARCH=-arch=sm_60
+29:CFLAGS = -std=c++14 -O3 $(CUDA_ARCH) -Xcompiler="$(WARN_FLAGS)"
+makefile now:
+3:# 1) You can modify -arch=sm_121 according to 
+18:CUDA_ARCH=-arch=sm_121
+29:CFLAGS = -std=c++17 -O3 $(CUDA_ARCH) -Xcompiler="$(WARN_FLAGS)"
+build: make ok in 17 s
+gpumd: /data/jlee859/ffother/src/GPUMD/src/gpumd
+nep:   /data/jlee859/ffother/src/GPUMD/src/nep
+GPUMD commit: 11ba6fbdb4d71b2cdb351b39972fa057521585b3
+train: 123 training frames, 16 validation frames, 10000 generations in all
+type        1 Si
+version     4
+cutoff      6 4
+n_max       4 4
+basis_size  8 8
+neuron      30
+zbl         2
+lambda_e    1
+lambda_f    1
+lambda_v    0
+batch       123
+population  50
+generation  10000
+Compile specialized NEP training kernels (sm_121).
+train: nep exit 0 after 105 s, generation 10000
+train: loss.out, first and last lines (generation, total, L1, L2, then RMSE of energy, force, virial for train and for validation):
+100      0.38954     0.01719     0.02056     0.09166       0.26013       0.00000       0.08865       0.34678       0.00000      
+10000    0.18843     0.02186     0.03015     0.02090       0.11553       0.00000       0.03652       0.28041       0.00000      
+train: head of nep.txt (the last two numbers of the cutoff line are the neighbor-list sizes):
+nep4_zbl 1 Si 
+zbl 1 2
+cutoff 6 4 70 20
+n_max 4 4
+basis_size 8 8
+l_max 4 2 0 
+ANN 30 0
+test frames (16), NEP against MatPES r2SCAN:
+energy: MAE 24.01, RMSE 35.16 meV/atom, 16 frames
+forces: MAE 0.1036, RMSE 0.1470 eV/A, 126 components
+first lines of energy_train.out and force_train.out (prediction, then reference):
+-7.38219 -7.39438
+-8.00168 -8.00161
+-0.0741152 -0.528052 -2.61343 -0.1397 -0.418111 -2.49671
+0.0741152 0.528052 2.61343 0.1397 0.418111 2.49671
+engine: {"potential": "/data/jlee859/ffother/nep/train/nep.txt", "potential_lines": ["nep4_zbl 1 Si", "zbl 1 2", "cutoff 6 4 70 20", "n_max 4 4", "basis_size 8 8", "l_max 4 2 0", "ANN 30 0"], "cutoff_radial": 6.0, "cutoff_angular": 4.0, "mn_radial": 70, "mn_angular": 20, "angular_list_int32_limit_atoms": 85899345}
+i    4  atoms           512  ok           mem    0.7 GB  rss    0.2 GB  wall     0.6 s  E -8.753244 eV/atom  9.520e+05 atom-steps/s
+i   20  atoms        64,000  ok           mem    0.9 GB  rss    0.3 GB  wall     0.6 s  E -8.753243 eV/atom  1.534e+07 atom-steps/s
+i   25  atoms       125,000  ok           mem    1.1 GB  rss    0.3 GB  wall     0.8 s  E -8.753243 eV/atom  1.595e+07 atom-steps/s
+i   31  atoms       238,328  ok           mem    1.0 GB  rss    0.3 GB  wall     0.8 s  E -8.753244 eV/atom  1.687e+07 atom-steps/s
+i   39  atoms       474,552  ok           mem    1.8 GB  rss    0.4 GB  wall     1.0 s  E -8.753244 eV/atom  1.718e+07 atom-steps/s
+i   49  atoms       941,192  ok           mem    3.0 GB  rss    0.5 GB  wall     1.6 s  E -8.753243 eV/atom  1.698e+07 atom-steps/s
+i   62  atoms     1,906,624  ok           mem    5.2 GB  rss    0.7 GB  wall     2.4 s  E -8.753243 eV/atom  1.761e+07 atom-steps/s
+i   78  atoms     3,796,416  ok           mem    9.5 GB  rss    1.0 GB  wall     4.4 s  E -8.753244 eV/atom  1.740e+07 atom-steps/s
+i   98  atoms     7,529,536  ok           mem   18.0 GB  rss    1.7 GB  wall     8.0 s  E -8.753243 eV/atom  1.713e+07 atom-steps/s
+i  123  atoms    14,886,936  ok           mem   34.8 GB  rss    3.2 GB  wall    15.9 s  E -8.753244 eV/atom  1.638e+07 atom-steps/s
+i  155  atoms    29,791,000  ok           mem   68.4 GB  rss    6.0 GB  wall    31.1 s  E -8.753244 eV/atom  1.648e+07 atom-steps/s
+i  195  atoms    59,319,000  killed       mem  125.3 GB  rss   11.7 GB  wall   369.2 s
+i  175  atoms    42,875,000  ok           mem   98.1 GB  rss    8.5 GB  wall    44.7 s  E -8.753244 eV/atom  1.665e+07 atom-steps/s
+i  185  atoms    50,653,000  ok           mem  115.5 GB  rss   10.0 GB  wall    51.6 s  E -8.753244 eV/atom  1.646e+07 atom-steps/s
+i  190  atoms    54,872,000  ok           mem  125.0 GB  rss   10.8 GB  wall    55.3 s  E -8.753244 eV/atom  1.699e+07 atom-steps/s
+i  192  atoms    56,623,104  ok           mem  126.6 GB  rss   11.2 GB  wall    83.8 s  E -8.753244 eV/atom  1.464e+07 atom-steps/s
+
+result: {"largest_ok_i": 192, "largest_ok_atoms": 56623104, "largest_ok_mem_used_gb": 126.575751168, "largest_ok_kb_per_atom": 2.235408203125, "first_failed_i": 195, "first_failed_atoms": 59319000, "first_failed_status": "killed", "reached_max_i_without_failure": false, "int32_limit_atoms": 85899345, "first_failed_is_above_int32_limit": false}
+first failing size: i 195, 59,319,000 atoms, killed
+    Finished initializing positions and related parameters.
+    ---------------------------------------------------------------
+    
+    
+    ---------------------------------------------------------------
+    Started executing the commands in run.in.
+wrote /data/jlee859/ffother/results/nep/sweep.json
+end rc 0 Wed Nov 11 06:38:29 PM UTC 2026

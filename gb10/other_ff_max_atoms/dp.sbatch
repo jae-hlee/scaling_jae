@@ -48,16 +48,29 @@ build_dp() {  # build_dp cuda|cpu
     export DP_ENABLE_TENSORFLOW=0 DP_ENABLE_PYTORCH=1 DP_VARIANT=$1
     export CUDAToolkit_ROOT=/usr/local/cuda
     export PYTORCH_ROOT=$($PY -c "import torch; print(torch.__path__[0])")
+    # PyTorch's CMake detects the GB10's compute capability 12.1, turns it
+    # into "12.1(2.0)" with a text replacement meant for capability 2.1, and
+    # asks nvcc for compute_20, which CUDA 13 does not have (job 21869). An
+    # explicit list skips the detection. 9.0+PTX adds portable code that the
+    # driver compiles for the GB10 when the library loads, and works whether
+    # or not this PyTorch accepts a two-digit capability in this list
+    export TORCH_CUDA_ARCH_LIST="9.0+PTX"
     # e3nn: the PyTorch backend imports it, but lists it only in an extra that
     # also pins another torch. --no-cache-dir: a wheel built for one variant
-    # must not be reused for the other
+    # must not be reused for the other. An installed deepmd-kit is rebuilt
+    # in place (--force-reinstall --no-deps); pip keeps it if the build fails
+    local again=()
+    $V/bin/python -c "import deepmd" 2>/dev/null && again=(--force-reinstall --no-deps)
+    $V/bin/python -m pip install --no-cache-dir -c $B/dp/constraints.txt "${again[@]}" \
+        --no-binary deepmd-kit deepmd-kit==3.2.0 > $B/logs/dp_pip_${1}_$J.log 2>&1 || return 1
     $V/bin/python -m pip install --no-cache-dir -c $B/dp/constraints.txt \
-        --no-binary deepmd-kit deepmd-kit==3.2.0 "vesin[torch]" "e3nn>=0.5.9" \
-        > $B/logs/dp_pip_${1}_$J.log 2>&1
+        "vesin[torch]" "e3nn>=0.5.9" >> $B/logs/dp_pip_${1}_$J.log 2>&1
 }
 if [[ " $STAGES " == *" install "* ]]; then
-    if [ -x $V/bin/dp ] && [ -s $V/dp_variant ]; then
-        echo "install: already there, variant $(cat $V/dp_variant)"
+    if [ -x $V/bin/dp ] && [ "$(cat $V/dp_variant 2>/dev/null)" = cuda ]; then
+        echo "install: already there, variant cuda"
+    elif [ -x $V/bin/dp ] && [ "${NO_CUDA:-0}" = 1 ]; then
+        echo "install: keeping the build without CUDA kernels (NO_CUDA=1)"
     else
         [ -x $V/bin/python ] || $PY -m venv --system-site-packages $V \
             || { echo "install: could not make the venv"; exit 5; }
@@ -68,10 +81,14 @@ if [[ " $STAGES " == *" install "* ]]; then
             echo cuda > $V/dp_variant
         else
             echo "install: the CUDA build FAILED, errors and last lines of logs/dp_pip_cuda_$J.log:"
-            grep -n -m 8 -E 'error|Error' $B/logs/dp_pip_cuda_$J.log | cut -c1-300
+            grep -n -m 8 -E 'error|Error|fatal|gencode' $B/logs/dp_pip_cuda_$J.log | cut -c1-300
             tail -n 12 $B/logs/dp_pip_cuda_$J.log | cut -c1-300
-            echo "install: building without the CUDA kernels"
-            build_dp cpu || { echo "install: that FAILED too:"; tail -n 25 $B/logs/dp_pip_cpu_$J.log | cut -c1-300; exit 5; }
+            if $V/bin/python -c "import deepmd" 2>/dev/null; then
+                echo "install: keeping the earlier build without CUDA kernels"
+            else
+                echo "install: building without the CUDA kernels"
+                build_dp cpu || { echo "install: that FAILED too:"; tail -n 25 $B/logs/dp_pip_cpu_$J.log | cut -c1-300; exit 5; }
+            fi
             echo cpu > $V/dp_variant
         fi
         echo "install: built variant $(cat $V/dp_variant) in $((SECONDS - t0)) s"
@@ -83,6 +100,10 @@ $V/bin/python -c "import e3nn" 2>/dev/null \
     || { echo "install: could not install e3nn"; exit 5; }
 VARIANT=$(cat $V/dp_variant 2>/dev/null || echo unknown)
 $V/bin/python - <<'EOF' || { echo "the venv does not import"; exit 5; }
+import sys
+sys.path.insert(0, "/data/jlee859/ffother")
+import py_eval
+py_eval.preload_nvrtc()  # as py_eval.py does before DeepPot (see there)
 import importlib.metadata as md
 import torch
 print("torch", torch.__version__, "from", torch.__file__)
@@ -109,6 +130,7 @@ try:  # the neighbor list of the sweep, on the GPU (it loads libnvrtc)
     print("vesin on the GPU:", int(i.shape[0]), "pairs for 64 points")
 except Exception as err:
     print("WARNING, vesin on the GPU failed:", type(err).__name__, str(err)[:300])
+print("libnvrtc loaded:", py_eval.loaded_nvrtc())
 EOF
 
 # ------------------------------------------------------------------ train
@@ -173,10 +195,13 @@ EOF
             && echo "train: compressed to model-compress.pth" \
             || { echo "train: compress FAILED (only the uncompressed model will be swept):"; tail -n 12 compress.log | cut -c1-300; rm -f model-compress.pth; }
     fi
+    # through py_eval.py with DeePMD's own neighbor list, which is fine for
+    # these cells of at most 24 atoms (dp test chose vesin, which failed on
+    # this GPU in job 21869)
     echo "test frames, DP against MatPES r2SCAN:"
-    $V/bin/dp --pt test -m model.pth -s $D/deepmd/test > test.log 2>&1 \
-        && { grep -i -E 'number of test data|Energy (MAE|RMSE)/Natoms|Force +(MAE|RMSE)' test.log | tail -n 4; cp test.log $R/test_$J.log; } \
-        || { echo "test: FAILED:"; tail -n 15 test.log | cut -c1-300; }
+    $V/bin/python $B/py_eval.py errors --kind dp --model model.pth --nlist native \
+        --xyz $D/test.extxyz --out $R/test_errors_$J.json \
+        || echo "test: FAILED"
     cp input.json lcurve.out $R/ 2>/dev/null
     cd $B
 fi
@@ -189,19 +214,22 @@ if [[ " $STAGES " == *" sweep "* ]]; then
     # (about 14 kB per atom). Diamond Si has 98, so 128 is enough here, and
     # too few is an error, not a wrong result
     export VESIN_CUDA_MAX_PAIRS_PER_POINT=128
+    # the neighbor list of DeepPot for the sweep: vesin or nv (both linear in
+    # the number of atoms); native builds all pairs and would measure that
+    NLIST=${NLIST:-vesin}
     FRESH_FLAG=()
     [ "${FRESH:-0}" = 1 ] && FRESH_FLAG=(--fresh)
     $PY sweep.py python --exe $V/bin/python \
-        --exe_args="$B/py_eval.py size --kind dp --model $T/model.pth" \
+        --exe_args="$B/py_eval.py size --kind dp --model $T/model.pth --nlist $NLIST" \
         --steps 5 --start 10 --work $B/work/dp --out $R/sweep "${FRESH_FLAG[@]}" \
-        --note "DeePMD-kit 3.2.0 pt, se_e2_a rcut 8, uncompressed, DeepPot with vesin, build $VARIANT, job $J" || rc=1
+        --note "DeePMD-kit 3.2.0 pt, se_e2_a rcut 8, uncompressed, DeepPot with $NLIST, build $VARIANT, job $J" || rc=1
     if [ "$VARIANT" != cuda ]; then
         echo "sweep: built without the CUDA kernels, so a compressed model cannot run on the GPU: no compressed sweep"
     elif [ -s $T/model-compress.pth ]; then
         $PY sweep.py python --exe $V/bin/python \
-            --exe_args="$B/py_eval.py size --kind dp --model $T/model-compress.pth" \
+            --exe_args="$B/py_eval.py size --kind dp --model $T/model-compress.pth --nlist $NLIST" \
             --steps 5 --start 10 --work $B/work/dp_compressed --out $R/sweep_compressed "${FRESH_FLAG[@]}" \
-            --note "DeePMD-kit 3.2.0 pt, se_e2_a rcut 8, compressed, DeepPot with vesin, build $VARIANT, job $J" || rc=1
+            --note "DeePMD-kit 3.2.0 pt, se_e2_a rcut 8, compressed, DeepPot with $NLIST, build $VARIANT, job $J" || rc=1
     else
         echo "sweep: no compressed model, so no compressed sweep"
     fi

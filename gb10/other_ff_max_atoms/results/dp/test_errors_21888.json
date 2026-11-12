@@ -1,0 +1,17 @@
+{
+ "frames": 16,
+ "frames_skipped": 0,
+ "force_components": 126,
+ "energy_mae_meV_atom": 231.78657139696284,
+ "energy_rmse_meV_atom": 312.2824585556839,
+ "force_mae_eV_A": 0.22320959263875773,
+ "force_rmse_eV_A": 0.3488560105053383,
+ "how": "DeepPot, nlist_backend native",
+ "xyz": "/data/jlee859/ffother/data/si/test.extxyz",
+ "nvrtc_loaded": [
+  "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8",
+  "/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12",
+  "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc-builtins.so.13.0.88",
+  "/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc.so.13.0.88"
+ ]
+}

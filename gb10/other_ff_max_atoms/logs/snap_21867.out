@@ -1,0 +1,120 @@
+start Wed Nov 11 01:24:59 PM EST 2026 | atomgptlab05 | stages: build train sweep
+Cloning into '/data/jlee859/ffother/src/lammps-30Sep2026'...
+Note: switching to '098ffdefa525cabc82272925de02e9884f58c657'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+Updating files:   1% (262/15425)Updating files:   2% (309/15425)Updating files:   3% (463/15425)Updating files:   4% (617/15425)Updating files:   4% (636/15425)Updating files:   5% (772/15425)Updating files:   6% (926/15425)Updating files:   7% (1080/15425)Updating files:   7% (1099/15425)Updating files:   8% (1234/15425)Updating files:   9% (1389/15425)Updating files:   9% (1475/15425)Updating files:  10% (1543/15425)Updating files:  11% (1697/15425)Updating files:  11% (1799/15425)Updating files:  12% (1851/15425)Updating files:  13% (2006/15425)Updating files:  14% (2160/15425)Updating files:  14% (2167/15425)Updating files:  15% (2314/15425)Updating files:  16% (2468/15425)Updating files:  16% (2605/15425)Updating files:  17% (2623/15425)Updating files:  18% (2777/15425)Updating files:  18% (2929/15425)Updating files:  19% (2931/15425)Updating files:  20% (3085/15425)Updating files:  21% (3240/15425)Updating files:  21% (3251/15425)Updating files:  22% (3394/15425)Updating files:  23% (3548/15425)Updating files:  23% (3556/15425)Updating files:  24% (3702/15425)Updating files:  25% (3857/15425)Updating files:  25% (3859/15425)Updating files:  26% (4011/15425)Updating files:  27% (4165/15425)Updating files:  27% (4233/15425)Updating files:  28% (4319/15425)Updating files:  29% (4474/15425)Updating files:  30% (4628/15425)Updating files:  30% (4684/15425)Updating files:  31% (4782/15425)Updating files:  32% (4936/15425)Updating files:  33% (5091/15425)Updating files:  33% (5127/15425)Updating files:  34% (5245/15425)Updating files:  35% (5399/15425)Updating files:  36% (5553/15425)Updating files:  36% (5554/15425)Updating files:  37% (5708/15425)Updating files:  38% (5862/15425)Updating files:  38% (6012/15425)Updating files:  39% (6016/15425)Updating files:  40% (6170/15425)Updating files:  41% (6325/15425)Updating files:  41% (6404/15425)Updating files:  42% (6479/15425)Updating files:  43% (6633/15425)Updating files:  44% (6787/15425)Updating files:  45% (6942/15425)Updating files:  45% (6945/15425)Updating files:  46% (7096/15425)Updating files:  47% (7250/15425)Updating files:  47% (7329/15425)Updating files:  48% (7404/15425)Updating files:  49% (7559/15425)Updating files:  50% (7713/15425)Updating files:  50% (7735/15425)Updating files:  51% (7867/15425)Updating files:  52% (8021/15425)Updating files:  52% (8087/15425)Updating files:  53% (8176/15425)Updating files:  54% (8330/15425)Updating files:  54% (8415/15425)Updating files:  55% (8484/15425)Updating files:  56% (8638/15425)Updating files:  57% (8793/15425)Updating files:  57% (8912/15425)Updating files:  58% (8947/15425)Updating files:  59% (9101/15425)Updating files:  60% (9255/15425)Updating files:  60% (9300/15425)Updating files:  61% (9410/15425)Updating files:  62% (9564/15425)Updating files:  62% (9671/15425)Updating files:  63% (9718/15425)Updating files:  64% (9872/15425)Updating files:  65% (10027/15425)Updating files:  65% (10084/15425)Updating files:  66% (10181/15425)Updating files:  67% (10335/15425)Updating files:  68% (10489/15425)Updating files:  68% (10530/15425)Updating files:  69% (10644/15425)Updating files:  70% (10798/15425)Updating files:  71% (10952/15425)Updating files:  72% (11106/15425)Updating files:  72% (11184/15425)Updating files:  73% (11261/15425)Updating files:  74% (11415/15425)Updating files:  74% (11568/15425)Updating files:  75% (11569/15425)Updating files:  76% (11723/15425)Updating files:  77% (11878/15425)Updating files:  77% (12014/15425)Updating files:  78% (12032/15425)Updating files:  79% (12186/15425)Updating files:  80% (12340/15425)Updating files:  80% (12401/15425)Updating files:  81% (12495/15425)Updating files:  82% (12649/15425)Updating files:  82% (12797/15425)Updating files:  83% (12803/15425)Updating files:  84% (12957/15425)Updating files:  85% (13112/15425)Updating files:  86% (13266/15425)Updating files:  86% (13267/15425)Updating files:  87% (13420/15425)Updating files:  88% (13574/15425)Updating files:  88% (13648/15425)Updating files:  89% (13729/15425)Updating files:  90% (13883/15425)Updating files:  90% (14003/15425)Updating files:  91% (14037/15425)Updating files:  92% (14191/15425)Updating files:  93% (14346/15425)Updating files:  93% (14483/15425)Updating files:  94% (14500/15425)Updating files:  95% (14654/15425)Updating files:  96% (14808/15425)Updating files:  96% (14865/15425)Updating files:  97% (14963/15425)Updating files:  98% (15117/15425)Updating files:  99% (15271/15425)Updating files:  99% (15335/15425)Updating files: 100% (15425/15425)Updating files: 100% (15425/15425), done.
+LAMMPS: stable_30Sep2026_update1 098ffde
+loading initial cache file ../cmake/presets/kokkos-cuda.cmake
+-- Kokkos version: 5.2.1
+-- Kokkos is configured for CMake languages CXX compilation (using NVIDIA version 13.0.88)
+--     Device Parallel: Kokkos::Cuda
+-- Found CUDAToolkit: /usr/local/cuda/targets/sbsa-linux/include (found version "13.0.88") 
+-- Kokkos Backends: SERIAL;CUDA
+ * CUDAToolkit
+      C++ Flags:     -Xcudafe --diag_suppress=unrecognized_pragma,--diag_suppress=128,--diag_suppress=186 -O3 -DNDEBUG
+-- Kokkos Devices: CUDA;SERIAL
+-- Kokkos Architecture: BLACKWELL121
+build: ok in 281 s
+train: CPU LAMMPS library built
+FitSNAP: 1a9b0507fa2ba292a6497ec363707944c1cb89cd
+lammps module: 20260930 True
+Si_train: 123 frames, 398 atoms -> JSON/Si_train
+Si_test: 16 frames, 42 atoms -> JSON/Si_test
+train: FitSNAP ok in 15 s
+train: Si_metrics.md (errors in eV/atom and eV/A; Si_test rows are the unseen frames):
+|                                                  |   ncount |          mae |         rmse |        rsq |
+|:-------------------------------------------------|---------:|-------------:|-------------:|-----------:|
+| ('*ALL', 'Unweighted', 'Training', 'Energy')     |      123 |  5.89488e-10 |  4.60103e-09 |   1        |
+| ('*ALL', 'Unweighted', 'Training', 'Force')      |     1194 |  1.00901e-09 |  6.98636e-09 |   1        |
+| ('*ALL', 'Unweighted', 'Testing', 'Energy')      |       16 |  0.234722    |  0.383247    |  -0.144611 |
+| ('*ALL', 'Unweighted', 'Testing', 'Force')       |      126 |  2.67276     |  4.25471     | -25.0026   |
+| ('*ALL', 'weighted', 'Training', 'Energy')       |      123 |  5.89488e-08 |  4.60103e-07 |   1        |
+| ('*ALL', 'weighted', 'Training', 'Force')        |     1194 |  1.00901e-09 |  6.98636e-09 |   1        |
+| ('*ALL', 'weighted', 'Testing', 'Energy')        |       16 | 23.4722      | 38.3247      |  -0.144611 |
+| ('*ALL', 'weighted', 'Testing', 'Force')         |      126 |  2.67276     |  4.25471     | -25.0026   |
+| ('Si_test', 'Unweighted', 'Testing', 'Energy')   |       16 |  0.234722    |  0.383247    |  -0.144611 |
+| ('Si_test', 'Unweighted', 'Testing', 'Force')    |      126 |  2.67276     |  4.25471     | -25.0026   |
+| ('Si_test', 'weighted', 'Testing', 'Energy')     |       16 | 23.4722      | 38.3247      |  -0.144611 |
+| ('Si_test', 'weighted', 'Testing', 'Force')      |      126 |  2.67276     |  4.25471     | -25.0026   |
+| ('Si_train', 'Unweighted', 'Training', 'Energy') |      123 |  5.89488e-10 |  4.60103e-09 |   1        |
+| ('Si_train', 'Unweighted', 'Training', 'Force')  |     1194 |  1.00901e-09 |  6.98636e-09 |   1        |
+| ('Si_train', 'weighted', 'Training', 'Energy')   |      123 |  5.89488e-08 |  4.60103e-07 |   1        |
+| ('Si_train', 'weighted', 'Training', 'Force')    |     1194 |  1.00901e-09 |  6.98636e-09 |   1        |
+# FitSNAP fit generated on 2026-11-11 13:33:01.973133 with Hash: f83d97eee00afc7f8b5a4d855e74fad5
+
+1 1596
+Si 0.5 1.0
+# required
+rcutfac 4.8
+twojmax 8
+
+# optional
+rfac0 0.99363
+rmin0 0.0
+bzeroflag 0
+wselfallflag 0
+chemflag 0
+bnormflag 0
+switchinnerflag 0
+quadraticflag 1
+
+# This file was generated by FitSNAP.
+# Hash: f83d97eee00afc7f8b5a4d855e74fad5
+# FitSNAP REFERENCE section settings:
+# units metal
+# atom_style atomic
+# pair_style zero 10.0
+# pair_coeff * *
+lmp: /data/jlee859/ffother/src/lammps-30Sep2026/build-kk/lmp
+Large-scale Atomic/Molecular Massively Parallel Simulator - 30 Sep 2026 - Update 1
+KOKKOS package API: CUDA Serial
+Kokkos library version: 5.2.1
+sweep: potential trained here with FitSNAP
+# required
+rcutfac 4.8
+twojmax 8
+
+# optional
+rfac0 0.99363
+rmin0 0.0
+bzeroflag 0
+wselfallflag 0
+chemflag 0
+bnormflag 0
+switchinnerflag 0
+quadraticflag 1
+
+# This file was generated by FitSNAP.
+# Hash: f83d97eee00afc7f8b5a4d855e74fad5
+# FitSNAP REFERENCE section settings:
+# units metal
+# atom_style atomic
+# pair_style zero 10.0
+# pair_coeff * *
+engine: {"pair_lines": ["pair_style snap", "pair_coeff * * Si.snapcoeff Si.snapparam Si"], "copied_files": ["/data/jlee859/ffother/snap/pot/Si.snapcoeff", "/data/jlee859/ffother/snap/pot/Si.snapparam"], "exe_args": "-k on g 1 -sf kk -pk kokkos newton on neigh half", "skin_A": 2.0, "timestep_ps": 0.0005}
+i    4  atoms           512  ok           mem    0.3 GB  rss    0.2 GB  wall     0.8 s  E -8.792999 eV/atom  1.150e+05 atom-steps/s
+i   20  atoms        64,000  ok           mem    2.6 GB  rss    0.2 GB  wall     2.8 s  E -8.792999 eV/atom  2.279e+05 atom-steps/s
+i   25  atoms       125,000  ok           mem    2.6 GB  rss    0.2 GB  wall     4.6 s  E -8.792999 eV/atom  2.282e+05 atom-steps/s
+i   31  atoms       238,328  ok           mem    2.7 GB  rss    0.2 GB  wall     8.2 s  E -8.792999 eV/atom  2.283e+05 atom-steps/s
+i   39  atoms       474,552  ok           mem    2.9 GB  rss    0.3 GB  wall    15.7 s  E -8.792999 eV/atom  2.286e+05 atom-steps/s
+i   49  atoms       941,192  ok           mem    3.3 GB  rss    0.5 GB  wall    30.3 s  E -8.792999 eV/atom  2.285e+05 atom-steps/s
+i   62  atoms     1,906,624  ok           mem    4.4 GB  rss    0.7 GB  wall    60.7 s  E -8.792999 eV/atom  2.274e+05 atom-steps/s
+i   78  atoms     3,796,416  ok           mem    5.6 GB  rss    1.3 GB  wall   120.4 s  E -8.792999 eV/atom  2.269e+05 atom-steps/s
+i   98  atoms     7,529,536  ok           mem    8.3 GB  rss    2.1 GB  wall   237.9 s  E -8.792999 eV/atom  2.268e+05 atom-steps/s
+i  123  atoms    14,886,936  ok           mem   13.2 GB  rss    3.9 GB  wall   469.5 s  E -8.792999 eV/atom  2.268e+05 atom-steps/s
+slurmstepd-atomgptlab05: error: *** JOB 21867 ON atomgptlab05 CANCELLED AT 2026-11-11T14:03:13 ***

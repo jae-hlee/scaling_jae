@@ -2,7 +2,7 @@
 
 How many atoms the model families of the large-scale records (DP, SNAP, NEP, Allegro) can run on
 one GB10 (121.7 GiB unified memory), for comparison with ALIGNN-FF in `../alignn_ff_max_atoms/`.
-Started 2026-11-11. **There are no results yet. Of the scripts here only `probe.sbatch` has run.**
+Started 2026-11-11. All four have results (below); the DP compressed limit is bracketed, not pinned.
 
 Each model is trained on a GB10 on the pure-Si frames of the MatPES r2SCAN data (the data
 AFF-r2SCAN was trained on), with the size settings of its record paper where published. The test is
@@ -38,6 +38,29 @@ coefficients of a quadratic SNAP with 2J = 8, so that fit is underdetermined.
 
 The four model jobs were submitted on 2026-11-11 as 21866 (NEP), 21867 (SNAP), 21868 (Allegro) and
 21869 (DP).
+
+## Results so far (2026-11-11)
+
+Largest pristine diamond-Si cell (8 i^3 atoms) that ran a static evaluation and the following steps with the energy per atom of the 512-atom cell, on one GB10. Memory is the largest drop of the node's available memory during the run (CPU and GPU together), so it is comparable between these rows but only roughly with the ALIGNN-FF numbers, which are GPU allocations. "Test" errors are on the 16 held-out frames.
+
+| Model | Job | Largest cell that ran | First that failed | Memory per atom | Speed (atom-steps/s) | Test errors (energy, forces) |
+|---|---|---:|---:|---:|---:|---|
+| NEP, GPUMD v5.9.1 | 21866 | 56,623,104 (i 192, 126.6 GB) | 59,319,000 (i 195), killed by the host for memory | about 2.3 kB | 1.7e7 | 24.0 meV/atom, 0.104 eV/A |
+| Allegro, nequip 0.19.1 (ASE calculator, AOT Inductor) | 21868 | 74,088 (i 21, 108.0 GB) | 85,184 (i 22), killed by the host for memory | about 1.46 MB | 1.0e4 | 59.7 meV/atom, 0.155 eV/A |
+| SNAP, LAMMPS KOKKOS | 21887 | 157,464,000 (i 270, 115.5 GB) | 164,566,592 (i 274), ended by SIGTERM at 114.5 GB | about 0.73 kB | 2.3e5 | 235 meV/atom, 2.67 eV/A (fit underdetermined) |
+| DP, DeePMD-kit 3.2.0, uncompressed (`DeepPot`, vesin) | 21888 | 32,768 (i 16, 97.8 GB) | 39,304 (i 17), killed by the host for memory | about 3.0 MB | 1.0e4 | 232 meV/atom, 0.223 eV/A |
+| DP, compressed | 21888 | 32,768 (i 16, 98.2 GB) | 46,656 (i 18) killed; 39,304 not finished (the job itself was killed) | about 3.0 MB | 2.7e4 | same model |
+| ALIGNN-FF (AFF-r2SCAN), one graph with checkpointing, `../alignn_ff_max_atoms/` | | 195,112 | | 0.526 MB (GPU) | | |
+
+- **NEP.** `make` built `gpumd` and `nep` in 17 s with the two flag changes; training took 105 s for 10,000 generations. The training data put 70 radial and 20 angular neighbors in `nep.txt`, so gpumd's 32-bit limit is 85,899,345 atoms, above the size that ran out of memory: memory is the limit. Energy per atom agreed with the 512-atom cell to 1e-6 eV at every size. The bisection stopped at 2% of i, so the true limit lies between 56.6 and 59.3 million atoms. The size just below the limit ran at 1.46e7 atom-steps/s instead of about 1.7e7, a sign of memory pressure.
+- **Allegro.** 12.5 million parameters (SC23 sizes), trained for 100 epochs (validation at the end: 46.8 meV/atom, 0.112 eV/A). The job started at 18:38:57 UTC although it was submitted about 18:25, and its log begins with the installation, training and compilation already done and seven sizes already measured, so (my reading) Slurm requeued it during the 74,088-atom size, after the 85,184- and 125,000-atom sizes had been killed for memory, and the requeue overwrote the log of the first run. The requeued run repeated that size, which then fit; `sacct -j 21868 --duplicates` would show both runs. Every evaluation includes stress, which the ASE target of a compiled model always computes. ALIGNN-FF through its own ASE calculator stops at 54,872 atoms.
+- **SNAP, sweep (job 21887, 1 MD step per size, 3-hour limit per size).** 157,464,000 atoms ran in 36 minutes at 2.3e5 atom-steps/s with the energy per atom of the 512-atom cell. The next sizes (164.6, 171.9 and 238.3 million) ended with signal 15 (SIGTERM) after drawing 114 to 124 GB, with nothing on stderr. `sweep.py` records that as "error"; my reading is that the node's memory protection ended them (the other models' failures at the limit were SIGKILL), so the ceiling is between 157.5 and 164.6 million atoms.
+- **SNAP, build and fit.** LAMMPS built with KOKKOS 5.2.1 for BLACKWELL121 in 281 s. The quadratic fit with 2J = 8 has 1,596 coefficients against 1,317 equations, so FitSNAP reproduces the training frames exactly (errors of 1e-9) and the test frames badly (R^2 below zero). Memory and speed do not depend on the coefficients, so the sweep stands for any quadratic 2J = 8 SNAP with a 4.8 A cutoff. With 5 steps per size, sizes above about 100 million atoms would pass the 1-hour limit per size, so the sweep was restarted with 1 step and a 3-hour limit.
+- **DP, rerun (job 21888).** Both fixes below worked: the build with CUDA kernels succeeded (`TORCH_CUDA_ARCH_LIST="9.0+PTX"`, 167 s) and vesin ran on the GPU once CUDA 13's NVRTC was loaded first (the process also maps a CUDA 12.8 copy later). The uncompressed model stops between 32,768 and 39,304 atoms at about 3 MB per atom, close to the roughly 3.4 MB per atom of the 2020 Cu record (16 GB per V100 / 4,656 atoms). The compressed model is 2.6 times faster but uses the same memory at 32,768 atoms; the 2022 record's 0.13 MB per atom came from LAMMPS with further kernel work, not from this Python path. Why compression saves no memory here was not investigated. Test errors through DeePMD's own neighbor list: 232 meV/atom and 0.223 eV/A (overfitted; validation RMSE 274 meV/atom).
+- **DP, first run (job 21869).** The build with DeePMD's CUDA kernels failed (reason in `logs/dp_pip_cuda_21869.log` on the cluster), so the build without them was used and the compressed model cannot run on the GPU. Training ran (1,887 s, 100,000 steps; at most 168 neighbors within 8 A in the training data, so `sel` came out near 188 rather than the records' 512; validation RMSE 274 meV/atom and 0.375 eV/A against 0.7 meV/atom and 0.012 eV/A on the training frames, so it overfits). `dp test` and the sweep both stopped in the vesin neighbor list on the GPU: `nvrtc: error: invalid value for --gpu-architecture (-arch)`. Two causes, found by reading the sources, and the changes made for the next run:
+  - The CUDA build: PyTorch's CMake detects compute capability 12.1 and its text replacement for capability 2.1 (`string(REPLACE "2.1" "2.1(2.0)" ...)` in `select_compute_arch.cmake`) turns it into `12.1(2.0)`, so nvcc was asked for `compute_20` (`nvcc fatal : Unsupported gpu architecture 'compute_20'`). `dp.sbatch` now sets `TORCH_CUDA_ARCH_LIST="9.0+PTX"`, which skips the detection; the driver compiles the PTX for the GB10 when the library loads. A two-digit entry such as `12.1` is not accepted by the pattern in PyTorch 2.2's version of that file (`^([0-9]\.[0-9]...)$`), and the 2.13 version was not checked.
+  - The neighbor list: vesin compiles its kernels through the gpu-lite header with `--gpu-architecture=sm_<major*10+minor>` and uses the first `libnvrtc` already loaded in the process. CUDA 12.9 added `sm_121`, so the NVRTC in use must have been a CUDA 12 copy. `py_eval.py` now loads `/usr/local/cuda/targets/sbsa-linux/lib/libnvrtc.so.13` before torch and records the NVRTC files that are mapped. DeePMD's other linear-memory list, `nv`, needs `nvalchemi-toolkit-ops`, which requires Python 3.11 or newer.
+  - `dp test` is replaced by `py_eval.py errors` with DeePMD's own (all-pairs) neighbor list, which is fine for test cells of at most 24 atoms.
 
 ## Files
 

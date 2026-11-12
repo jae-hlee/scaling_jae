@@ -1,0 +1,76 @@
+start Wed Nov 11 01:25:12 PM EST 2026 | atomgptlab08 | stages: install train sweep
+torch==2.13.0+cu130
+install: the CUDA build FAILED, errors and last lines of logs/dp_pip_cuda_21869.log:
+129:  Building wheel for deepmd-kit (pyproject.toml): finished with status 'error'
+130:  error: subprocess-exited-with-error
+266:  note: This error originates from a subprocess, and is likely not a problem with pip.
+      ninja: build stopped: subcommand failed.
+      
+      *** CMake build failed
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for deepmd-kit
+Failed to build deepmd-kit
+ERROR: Could not build wheels for deepmd-kit, which is required to install pyproject.toml-based projects
+
+[notice] A new release of pip is available: 23.0.1 -> 26.3
+[notice] To update, run: /data/jlee859/ffother/venv_dp/bin/python -m pip install --upgrade pip
+install: building without the CUDA kernels
+install: built variant cpu in 79 s
+torch 2.13.0+cu130 from /data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/torch/__init__.py
+deepmd-kit 3.2.0 | vesin 0.6.2
+custom op library loaded: True
+To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information.
+To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information.
+deepmd PyTorch backend imports, e3nn 0.6.0
+built variant: cpu
+WARNING, vesin on the GPU failed: RuntimeError failed to compute neighbors: KernelFactory::compileAndCacheKernel: Failed to compile CUDA program:
+nvrtc: error: invalid value for --gpu-architecture (-arch)
+
+train: 9 training systems, 100000 steps
+train: dp train exit 0 after 1887 s
+[2026-11-11 13:27:07,390] DEEPMD INFO    Calculate neighbor statistics... (add --skip-neighbor-stat to skip this step)
+[2026-11-11 13:27:09,947] DEEPMD INFO    Neighbor statistics: training data with minimal neighbor distance: 1.733486
+[2026-11-11 13:27:09,947] DEEPMD INFO    Neighbor statistics: training data with maximum neighbor size: [168] (cutoff radius: 8.000000)
+train: frozen to model.pth
+train: lcurve.out, header and last line:
+# step       rmse_val    rmse_trn    rmse_e_val  rmse_e_trn    rmse_f_val  rmse_f_trn   lr      
+ 100000      5.55e-01    1.21e-02      2.74e-01    7.33e-04      3.75e-01    1.15e-02    5.9e-08
+train: compressed to model-compress.pth
+test frames, DP against MatPES r2SCAN:
+test: FAILED:
+  File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt/infer/deep_eval.py", line 798, in _eval_lower_strategy
+    ext_coord, ext_atype, nlist, mapping = self._nlist_builder.build(
+  File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_neighbor_list.py", line 139, in build
+    frame_results = [
+  File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_neighbor_list.py", line 140, in <listcomp>
+    _build_single(
+  File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_neighbor_list.py", line 231, in _build_single
+    ii, jj, ss = vesin_search_ijs(
+  File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_graph_builder.py", line 87, in vesin_search_ijs
+    ii, jj, ss = nl.compute(
+  File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/vesin_torch/_neighbors.py", line 94, in compute
+    results = self._c.compute(
+RuntimeError: failed to compute neighbors: KernelFactory::compileAndCacheKernel: Failed to compile CUDA program:
+nvrtc: error: invalid value for --gpu-architecture (-arch)
+
+engine: {"exe_args": "/data/jlee859/ffother/py_eval.py size --kind dp --model /data/jlee859/ffother/dp/train/model.pth"}
+i    4  atoms           512  error        mem    0.9 GB  rss    1.2 GB  wall     4.8 s
+the small test failed, nothing else was run:
+stdout_tail
+stderr_tail
+        frame_results = [
+      File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_neighbor_list.py", line 140, in <listcomp>
+        _build_single(
+      File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_neighbor_list.py", line 231, in _build_single
+        ii, jj, ss = vesin_search_ijs(
+      File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/deepmd/pt_expt/utils/vesin_graph_builder.py", line 87, in vesin_search_ijs
+        ii, jj, ss = nl.compute(
+      File "/data/jlee859/ffother/venv_dp/lib/python3.10/site-packages/vesin_torch/_neighbors.py", line 94, in compute
+        results = self._c.compute(
+    RuntimeError: failed to compute neighbors: KernelFactory::compileAndCacheKernel: Failed to compile CUDA program:
+    nvrtc: error: invalid value for --gpu-architecture (-arch)
+    
+sweep: built without the CUDA kernels, so a compressed model cannot run on the GPU: no compressed sweep
+end rc 1 Wed Nov 11 01:58:53 PM EST 2026

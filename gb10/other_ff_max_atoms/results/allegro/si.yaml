@@ -1,0 +1,97 @@
+run: [train]
+
+cutoff_radius: 4.0
+model_type_names: [Si]
+num_scalar_features: 1024
+monitored_metric: val0_epoch/weighted_sum
+
+data:
+  _target_: nequip.data.datamodule.ASEDataModule
+  seed: 123
+  split_dataset:
+    file_path: /data/jlee859/ffother/allegro/train/trainval.extxyz
+    train: 0.9
+    val: 0.1
+  transforms:
+    - _target_: nequip.data.transforms.ChemicalSpeciesToAtomTypeMapper
+      model_type_names: ${model_type_names}
+    - _target_: nequip.data.transforms.NeighborListTransform
+      r_max: ${cutoff_radius}
+  train_dataloader:
+    _target_: torch.utils.data.DataLoader
+    batch_size: 5
+    shuffle: true
+  val_dataloader:
+    _target_: torch.utils.data.DataLoader
+    batch_size: 10
+  test_dataloader: ${data.val_dataloader}
+  stats_manager:
+    _target_: nequip.data.CommonDataStatisticsManager
+    type_names: ${model_type_names}
+
+trainer:
+  _target_: lightning.Trainer
+  accelerator: gpu
+  max_epochs: 100
+  log_every_n_steps: 5
+  enable_progress_bar: false
+  logger:
+    _target_: lightning.pytorch.loggers.CSVLogger
+    save_dir: ${hydra:runtime.output_dir}
+  callbacks:
+    - _target_: lightning.pytorch.callbacks.ModelCheckpoint
+      monitor: ${monitored_metric}
+      dirpath: ${hydra:runtime.output_dir}
+      filename: best
+      save_last: true
+
+training_module:
+  _target_: nequip.train.EMALightningModule
+  loss:
+    _target_: nequip.train.EnergyForceLoss
+    per_atom_energy: true
+    coeffs:
+      total_energy: 1.0
+      forces: 1.0
+  val_metrics:
+    _target_: nequip.train.EnergyForceMetrics
+    coeffs:
+      per_atom_energy_mae: 1.0
+      forces_mae: 1.0
+  test_metrics: ${training_module.val_metrics}
+  optimizer:
+    _target_: torch.optim.Adam
+    lr: 0.001
+  model:
+    _target_: allegro.model.AllegroModel
+    compile_mode: eager
+    seed: 456
+    model_dtype: float32
+    type_names: ${model_type_names}
+    r_max: ${cutoff_radius}
+    radial_chemical_embed:
+      _target_: allegro.nn.TwoBodyBesselScalarEmbed
+      num_bessels: 8
+      bessel_trainable: true
+      polynomial_cutoff_p: 6
+    radial_chemical_embed_dim: 128
+    scalar_embed_mlp_hidden_layers_depth: 2
+    scalar_embed_mlp_hidden_layers_width: 512
+    scalar_embed_mlp_nonlinearity: silu
+    l_max: 2
+    num_layers: 2
+    num_scalar_features: ${num_scalar_features}
+    num_tensor_features: 64
+    allegro_mlp_hidden_layers_depth: 3
+    allegro_mlp_hidden_layers_width: ${num_scalar_features}
+    allegro_mlp_nonlinearity: silu
+    parity: true
+    tp_path_channel_coupling: true
+    readout_mlp_hidden_layers_depth: 1
+    readout_mlp_hidden_layers_width: 128
+    readout_mlp_nonlinearity: silu
+    avg_num_neighbors: ${training_data_stats:per_type_num_neighbors_mean}
+    per_type_energy_shifts: ${training_data_stats:per_atom_energy_mean}
+    per_type_energy_scales: ${training_data_stats:forces_rms}
+    per_type_energy_scales_trainable: false
+    per_type_energy_shifts_trainable: false

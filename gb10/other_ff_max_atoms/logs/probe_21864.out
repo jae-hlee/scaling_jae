@@ -1,0 +1,162 @@
+
+== node
+Wed Nov 11 01:26:14 AM EST 2026 | atomgptlab05 | aarch64 | kernel 7.0.0-1019-nvidia
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+VERSION_ID="24.04"
+cores: 20
+               total        used        free      shared  buff/cache   available
+Mem:             121          12          84           0          25         108
+Filesystem                            Size  Used Avail Use% Mounted on
+atomgptlab-storage.wse.jhu.edu:/data  429T  144T  286T  34% /data
+/dev/nvme0n1p2                        197G   43G  145G  23% /
+glibc: ldd (Ubuntu GLIBC 2.39-0ubuntu8.9) 2.39
+
+== GPU
+$ nvidia-smi --query-gpu=name,driver_version,memory.total,memory.used --format=csv
+name, driver_version, memory.total [MiB], memory.used [MiB]
+NVIDIA GB10, 580.173.02, [N/A], [N/A]
+$ nvidia-smi --query-compute-apps=pid,used_memory --format=csv
+pid, used_gpu_memory [MiB]
+$ nvidia-smi
+Wed Nov 11 01:26:14 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.173.02             Driver Version: 580.173.02     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GB10                    On  |   0000000F:01:00.0 Off |                  N/A |
+| N/A   35C    P8              5W /  N/A  | Not Supported          |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+== compilers and build tools on the node
+gcc: /usr/bin/gcc | gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+g++: /usr/bin/g++ | g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+gfortran: NOT FOUND
+cc: /usr/bin/cc | cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+c++: /usr/bin/c++ | c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+clang: /usr/bin/clang | Ubuntu clang version 18.1.3 (1ubuntu1)
+make: /usr/bin/make | GNU Make 4.3
+cmake: /usr/bin/cmake | cmake version 3.28.3
+ninja: NOT FOUND
+git: /usr/bin/git | git version 2.43.0
+wget: /usr/bin/wget | GNU Wget 1.21.4 built on linux-gnu.
+curl: /usr/bin/curl | curl 8.5.0 (aarch64-unknown-linux-gnu) libcurl/8.5.0 OpenSSL/3.0.13 zlib/1.3 brotli/1.1.0 zstd/1.5.5 libidn2/2.3.7 libpsl/0.21.2 (+libidn2/2.3.7) libssh/0.10.6/openssl/zlib nghttp2/1.59.0 librtmp/2.3 OpenLDAP/2.6.10
+tar: /usr/bin/tar | tar (GNU tar) 1.35
+unzip: /usr/bin/unzip | caution:  both -n and -o specified; ignoring -o
+
+== CUDA toolkit (nvcc, headers, libraries)
+CUDA_HOME=unset CUDA_PATH=unset
+/usr/local/cuda
+/usr/local/cuda-13
+/usr/local/cuda-13.0
+nvcc at /usr/local/cuda-13.0/bin/nvcc: Build cuda_13.0.r13.0/compiler.36424714_0
+nvcc at /usr/local/cuda-13/bin/nvcc: Build cuda_13.0.r13.0/compiler.36424714_0
+nvcc at /usr/local/cuda/bin/nvcc: Build cuda_13.0.r13.0/compiler.36424714_0
+/usr/local/cuda-13.0/targets/sbsa-linux/include/cuda_runtime.h
+	libnvrtc.so.13 (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libnvrtc.so.13
+	libnvrtc.so (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libnvrtc.so
+	libcusolver.so.12 (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcusolver.so.12
+	libcusolver.so (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcusolver.so
+	libcurand.so.10 (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcurand.so.10
+	libcurand.so (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcurand.so
+	libcufft.so.12 (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcufft.so.12
+	libcufft.so (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcufft.so
+	libcudart.so.13 (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcudart.so.13
+	libcudart.so (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcudart.so
+	libcublas.so.13 (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcublas.so.13
+	libcublas.so (libc6,AArch64) => /usr/local/cuda/targets/sbsa-linux/lib/libcublas.so
+
+== MPI and environment modules
+mpirun: NOT FOUND
+mpiexec: NOT FOUND
+mpicc: NOT FOUND
+mpicxx: NOT FOUND
+srun: /usr/bin/srun
+no environment modules
+
+== conda
+conda
+mamba
+alignn
+atomgpt
+protein
+uma
+24G	/data/jlee859/miniforge3-aarch64
+
+== python env 'alignn'
+python 3.10.20 aarch64
+torch 2.13.0+cu130 | cuda 13.0 | cudnn 92000
+device NVIDIA GB10 | capability (12, 1) | arch list ['sm_80', 'sm_90', 'sm_100', 'sm_110', 'sm_120']
+cxx11 abi True
+cmake prefix /data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/torch/share/cmake
+torch/lib: libc10.so, libc10_cuda.so, libtorch.so, libtorch_cpu.so, libtorch_cuda.so, libtorch_cuda_linalg.so, libtorch_global_deps.so, libtorch_nvshmem.so, libtorch_python.so
+cuda mem_get_info: free 83.5 GiB, total 121.7 GiB
+ase                      3.29.0
+jarvis-tools             2026.6.12
+matscipy                 1.2.0
+numpy                    2.2.6
+nvidia-cublas            13.1.1.3
+nvidia-cublas-cu12       12.8.4.1
+nvidia-cuda-cupti        13.0.85
+nvidia-cuda-cupti-cu12   12.8.90
+nvidia-cuda-nvrtc        13.0.88
+nvidia-cuda-nvrtc-cu12   12.8.93
+nvidia-cuda-runtime      13.0.96
+nvidia-cuda-runtime-cu12 12.8.90
+nvidia-cudnn-cu12        9.19.0.56
+nvidia-cudnn-cu13        9.20.0.48
+nvidia-cufft             12.0.0.61
+nvidia-cufft-cu12        11.3.3.83
+nvidia-cufile            1.15.1.6
+nvidia-cufile-cu12       1.13.1.3
+nvidia-curand            10.4.0.35
+nvidia-curand-cu12       10.3.9.90
+nvidia-cusolver          12.0.4.66
+nvidia-cusolver-cu12     11.7.3.90
+nvidia-cusparse          12.6.3.3
+nvidia-cusparse-cu12     12.5.8.93
+nvidia-cusparselt-cu12   0.7.1
+nvidia-cusparselt-cu13   0.8.1
+nvidia-nccl-cu12         2.28.9
+nvidia-nccl-cu13         2.29.7
+nvidia-nvjitlink         13.2.78
+nvidia-nvjitlink-cu12    12.8.93
+nvidia-nvshmem-cu12      3.4.5
+nvidia-nvshmem-cu13      3.4.5
+nvidia-nvtx              13.0.85
+nvidia-nvtx-cu12         12.8.90
+pandas                   2.3.3
+scipy                    1.15.3
+pip 26.2 from /data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/pip (python 3.10)
+python include /data/jlee859/miniforge3-aarch64/envs/alignn/include/python3.10
+
+== internet from this node
+https://github.com -> 200
+https://pypi.org/simple/pip/ -> 200
+https://download.lammps.org -> 200
+https://conda.anaconda.org/conda-forge/linux-aarch64/repodata.json.zst -> 200
+$ git ls-remote https://github.com/lammps/lammps.git HEAD
+823eafc0a855efdbf85d0be028abfe115d673439	HEAD
+
+== a CUDA program compiles and runs
+nvcc (default arch): builds | kernel ok 7 | cudaMemGetInfo free 83.5 GiB total 121.7 GiB
+nvcc -arch=sm_121: builds | kernel ok 7 | cudaMemGetInfo free 83.3 GiB total 121.7 GiB
+nvcc -arch=sm_120: builds | kernel ok 7 | cudaMemGetInfo free 83.3 GiB total 121.7 GiB
+nvcc -arch=sm_75: builds | kernel ok 7 | cudaMemGetInfo free 83.2 GiB total 121.7 GiB
+nvcc -arch=sm_60: FAILS | nvcc fatal   : Unsupported gpu architecture 'sm_60'
+
+== training data (MatPES r2SCAN, as used for stage 12)
+-rw------- 1 jlee859 domain users 512955623 Oct 31 20:00 /data/jlee859/ffsmooth/data/matpes_r2scan_ff_train_data/id_prop.json
+
+probe end Wed Nov 11 01:27:00 AM EST 2026

@@ -1,0 +1,24 @@
+start Wed Nov 11 06:22:19 PM UTC 2026 | atomgptlab04 | Si
+386,544 entries; keys of the first: ['atoms', 'energy_per_atom', 'forces', 'jid', 'stresses', 'total_energy']
+atoms keys: ['abc', 'angles', 'cartesian', 'coords', 'elements', 'lattice_mat', 'props']
+single-element frames, 15 most common: [('N', 1519), ('C', 302), ('Si', 155), ('Nb', 142), ('Pu', 111), ('Ba', 110), ('Ge', 103), ('Fe', 91), ('O', 91), ('H', 89), ('Sr', 85), ('S', 85), ('Ce', 85), ('P', 76), ('Sb', 74)]
+requested: Si 155
+all frames: {"frames": 155, "atoms_total": 482, "atoms_min": 1, "atoms_median": 2.0, "atoms_max": 24, "energy_per_atom_min": -8.774763405, "energy_per_atom_median": -7.95412487, "energy_per_atom_max": -6.68129117125, "force_component_max": 14.98739464, "frames_with_force_above_10": 2, "left_handed_cells_made_right_handed": 0, "volume_per_atom_min": 13.862997778525342, "volume_per_atom_median": 19.284741617596666, "volume_per_atom_max": 127.73829571702679}
+atoms per frame -> number of frames: {"1": 4, "2": 116, "4": 16, "6": 3, "8": 12, "9": 1, "12": 1, "23": 1, "24": 1}
+train: 123 frames, 398 atoms, 9 DeePMD systems
+val: 16 frames, 42 atoms, 3 DeePMD systems
+test: 16 frames, 42 atoms, 3 DeePMD systems
+wrote /data/jlee859/ffother/data/si
+total 4
+drwx------ 3 jlee859 domain users     8 Nov 11 18:22 .
+drwx------ 3 jlee859 domain users     3 Nov 11 18:22 ..
+-rw------- 1 jlee859 domain users 80626 Nov 11 18:22 all.extxyz
+drwx------ 5 jlee859 domain users     5 Nov 11 18:22 deepmd
+-rw------- 1 jlee859 domain users  6600 Nov 11 18:22 summary.json
+-rw------- 1 jlee859 domain users  7685 Nov 11 18:22 test.extxyz
+-rw------- 1 jlee859 domain users 65277 Nov 11 18:22 train.extxyz
+-rw------- 1 jlee859 domain users  7664 Nov 11 18:22 val.extxyz
+2
+Lattice="4.7300034217 0.0000000000 0.0000000000 1.7227466780 1.7880615427 0.0000000000 0.1508625111 -0.1908944236 5.7198577489" Properties=species:S:1:pos:R:3:forces:R:3 energy=-14.8909358400 pbc="T T T" config_type=matpes_r2scan frame_id=matpes-20240214_92_9
+Si 3.3639467437 0.2348784573 2.6468300000 -0.0147734200 -0.0619664600 2.1639968600
+end rc 0 Wed Nov 11 06:22:31 PM UTC 2026

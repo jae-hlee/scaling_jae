@@ -1,0 +1,11 @@
+{
+ "frames": 16,
+ "frames_skipped": 0,
+ "force_components": 126,
+ "energy_mae_meV_atom": 59.68326114289724,
+ "energy_rmse_meV_atom": 68.00009095125769,
+ "force_mae_eV_A": 0.15526426994646214,
+ "force_rmse_eV_A": 0.2248711119761152,
+ "how": "compiled",
+ "xyz": "/data/jlee859/ffother/data/si/test.extxyz"
+}

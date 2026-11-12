@@ -61,10 +61,36 @@ class Allegro:
         return e, np.asarray(atoms.get_forces())
 
 
+NVRTC13 = "/usr/local/cuda/targets/sbsa-linux/lib/libnvrtc.so.13"
+
+
+def preload_nvrtc():
+    """vesin compiles its GPU kernels with NVRTC for sm_<capability> (sm_121
+    on a GB10) and uses the first libnvrtc already loaded in the process. In
+    job 21869 that was a CUDA 12 copy, which does not know sm_121 (CUDA 12.9
+    added it), so the compile failed. Loading CUDA 13's NVRTC before torch
+    makes it the first. Set NVRTC_PRELOAD="" to skip."""
+    import ctypes
+    import os
+    path = os.environ.get("NVRTC_PRELOAD", NVRTC13)
+    if path and os.path.exists(path):
+        ctypes.CDLL(path, mode=ctypes.RTLD_GLOBAL)
+
+
+def loaded_nvrtc():
+    """The libnvrtc files mapped into this process, for the record."""
+    try:
+        with open("/proc/self/maps") as fh:
+            return sorted({line.split()[-1] for line in fh if "nvrtc" in line})
+    except OSError:
+        return []
+
+
 class DP:
     """DeePMD-kit DeepPot with a linear-memory neighbor list."""
 
     def __init__(self, model, nlist):
+        preload_nvrtc()  # before deepmd imports torch
         from deepmd.infer import DeepPot
         self.dp = DeepPot(model, nlist_backend=nlist)
         self.how = f"DeepPot, nlist_backend {nlist}"
@@ -111,7 +137,8 @@ def size(args):
            "f_static_max": float(np.abs(f).max()),
            "t_load_s": t_load, "t_static_s": t_static,
            "steps_evaluated": args.steps, "t_steps_s": t_steps,
-           "torch_peak_gb": gpu_peak_gb(), "how": model.how}
+           "torch_peak_gb": gpu_peak_gb(), "how": model.how,
+           "nvrtc_loaded": loaded_nvrtc()}
     if args.steps and t_steps > 0:
         res["atom_steps_per_s"] = args.steps * n / t_steps
         res["s_per_atom_step"] = t_steps / (args.steps * n)
@@ -161,7 +188,7 @@ def errors(args):
            "energy_rmse_meV_atom": 1e3 * float(np.sqrt((de ** 2).mean())),
            "force_mae_eV_A": float(np.abs(df).mean()),
            "force_rmse_eV_A": float(np.sqrt((df ** 2).mean())),
-           "how": model.how, "xyz": args.xyz}
+           "how": model.how, "xyz": args.xyz, "nvrtc_loaded": loaded_nvrtc()}
     print(f"energy: MAE {res['energy_mae_meV_atom']:.2f}, RMSE "
           f"{res['energy_rmse_meV_atom']:.2f} meV/atom, {res['frames']} frames"
           f" ({skipped} skipped)")

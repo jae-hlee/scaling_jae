@@ -1,0 +1,2 @@
+energy: MAE 24.01, RMSE 35.16 meV/atom, 16 frames
+forces: MAE 0.1036, RMSE 0.1470 eV/A, 126 components

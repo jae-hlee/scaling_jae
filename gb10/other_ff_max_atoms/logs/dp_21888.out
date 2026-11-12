@@ -1,0 +1,44 @@
+start Thu Nov 12 01:37:57 AM EST 2026 | atomgptlab11 | stages: install train sweep
+torch==2.13.0+cu130
+install: built variant cuda in 167 s
+torch 2.13.0+cu130 from /data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/torch/__init__.py
+deepmd-kit 3.2.0 | vesin 0.6.2
+custom op library loaded: True
+To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information.
+To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information.
+deepmd PyTorch backend imports, e3nn 0.6.0
+built variant: cuda
+vesin on the GPU: 8610 pairs for 64 points
+libnvrtc loaded: ['/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc-builtins.so.12.8', '/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/nvidia/cuda_nvrtc/lib/libnvrtc.so.12', '/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc-builtins.so.13.0.88', '/usr/local/cuda-13.0/targets/sbsa-linux/lib/libnvrtc.so.13.0.88']
+train: already there
+train: lcurve.out, header and last line:
+# step       rmse_val    rmse_trn    rmse_e_val  rmse_e_trn    rmse_f_val  rmse_f_trn   lr      
+ 100000      5.55e-01    1.21e-02      2.74e-01    7.33e-04      3.75e-01    1.15e-02    5.9e-08
+test frames, DP against MatPES r2SCAN:
+To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information.
+energy: MAE 231.79, RMSE 312.28 meV/atom, 16 frames (0 skipped)
+forces: MAE 0.2232, RMSE 0.3489 eV/A, 126 components
+wrote /data/jlee859/ffother/results/dp/test_errors_21888.json
+/data/jlee859/ffother/results/dp/sweep.json is from another model, engine build or settings: starting again
+engine: {"exe_args": "/data/jlee859/ffother/py_eval.py size --kind dp --model /data/jlee859/ffother/dp/train/model.pth --nlist vesin"}
+i    4  atoms           512  ok           mem    2.8 GB  rss    2.3 GB  wall     7.0 s  E -8.627197 eV/atom  3.304e+03 atom-steps/s
+i   10  atoms         8,000  ok           mem   12.0 GB  rss    2.3 GB  wall    10.6 s  E -8.627197 eV/atom  1.027e+04 atom-steps/s
+i   13  atoms        17,576  ok           mem   35.7 GB  rss    2.3 GB  wall    17.1 s  E -8.627197 eV/atom  1.043e+04 atom-steps/s
+i   16  atoms        32,768  ok           mem   97.8 GB  rss    2.3 GB  wall    31.3 s  E -8.627197 eV/atom  1.014e+04 atom-steps/s
+i   20  atoms        64,000  killed       mem  125.6 GB  rss    1.8 GB  wall    26.7 s
+i   18  atoms        46,656  killed       mem  127.0 GB  rss    1.8 GB  wall    33.2 s
+i   17  atoms        39,304  killed       mem  127.2 GB  rss    1.8 GB  wall    45.8 s
+
+result: {"largest_ok_i": 16, "largest_ok_atoms": 32768, "largest_ok_mem_used_gb": 97.813798912, "largest_ok_kb_per_atom": 2985.04025, "first_failed_i": 17, "first_failed_atoms": 39304, "first_failed_status": "killed", "reached_max_i_without_failure": false}
+first failing size: i 17, 39,304 atoms, killed
+    To get the best performance, it is recommended to adjust the number of threads by setting the environment variables OMP_NUM_THREADS, DP_INTRA_OP_PARALLELISM_THREADS, and DP_INTER_OP_PARALLELISM_THREADS. See https://deepmd.rtfd.io/parallelism/ for more information.
+wrote /data/jlee859/ffother/results/dp/sweep.json
+engine: {"exe_args": "/data/jlee859/ffother/py_eval.py size --kind dp --model /data/jlee859/ffother/dp/train/model-compress.pth --nlist vesin"}
+i    4  atoms           512  ok           mem    2.6 GB  rss    2.5 GB  wall    21.1 s  E -8.627197 eV/atom  3.962e+03 atom-steps/s
+i   10  atoms         8,000  ok           mem   11.3 GB  rss    2.3 GB  wall    10.2 s  E -8.627197 eV/atom  2.668e+04 atom-steps/s
+i   13  atoms        17,576  ok           mem   35.9 GB  rss    2.4 GB  wall    11.0 s  E -8.627197 eV/atom  2.896e+04 atom-steps/s
+i   16  atoms        32,768  ok           mem   98.2 GB  rss    2.4 GB  wall    16.9 s  E -8.627197 eV/atom  2.685e+04 atom-steps/s
+i   20  atoms        64,000  killed       mem  126.5 GB  rss    1.8 GB  wall    13.7 s
+i   18  atoms        46,656  killed       mem  127.0 GB  rss    1.8 GB  wall    20.2 s
+/var/spool/slurmd/job21888/slurm_script: line 236: 2315613 Killed                  $PY sweep.py python --exe $V/bin/python --exe_args="$B/py_eval.py size --kind dp --model $T/model-compress.pth --nlist $NLIST" --steps 5 --start 10 --work $B/work/dp_compressed --out $R/sweep_compressed "${FRESH_FLAG[@]}" --note "DeePMD-kit 3.2.0 pt, se_e2_a rcut 8, compressed, DeepPot with $NLIST, build $VARIANT, job $J"
+end rc 1 Thu Nov 12 01:46:24 AM EST 2026

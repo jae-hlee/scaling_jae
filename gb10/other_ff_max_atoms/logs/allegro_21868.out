@@ -1,0 +1,41 @@
+start Wed Nov 11 06:38:57 PM UTC 2026 | atomgptlab04 | stages: install train compile sweep
+install: already there
+torch 2.13.0+cu130 from /data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/site-packages/torch/__init__.py
+cuda available True
+nequip 0.19.1
+nequip-allegro 0.8.3
+e3nn 0.6.0
+lightning 2.6.6
+matscipy 1.2.0
+ase 3.29.0
+numpy 2.2.6
+train: already there, /data/jlee859/ffother/allegro/train/run/best.ckpt
+train: checkpoint /data/jlee859/ffother/allegro/train/run/best.ckpt
+train: /data/jlee859/ffother/allegro/train/run/lightning_logs/version_0/metrics.csv, header and last two rows:
+epoch,step,train_loss_epoch/forces_mse,train_loss_epoch/per_atom_energy_mse,train_loss_epoch/weighted_sum,train_loss_step/forces_mse,train_loss_step/per_atom_energy_mse,train_loss_step/weighted_sum,val0_epoch/forces_mae,val0_epoch/forces_maxabserr,val0_epoch/forces_rmse,val0_epoch/per_atom_energy_mae,val0_epoch/per_atom_energy_maxabserr,val0_epoch/per_atom_energy_rmse,val0_epoch/total_energy_mae,v
+99,2599,,,,,,,0.11158768135608088,0.5996072647033219,0.16946311802028638,0.04681238920742274,0.10556330929068913,0.05530106405978801,0.10522856875464424,0.3016985488347679,0.13222745858682072,0.07920003528175182
+99,2599,0.023642496019965646,0.006756141624085389,0.015199318822025517,,,,,,,,,,,,,
+12.5 M    Trainable params
+0         Non-trainable params
+compile: already there
+evaluating: compiled with AOT Inductor
+test frames, Allegro against MatPES r2SCAN:
+energy: MAE 59.68, RMSE 68.00 meV/atom, 16 frames (0 skipped)
+forces: MAE 0.1553, RMSE 0.2249 eV/A, 126 components
+wrote /data/jlee859/ffother/results/allegro/test_errors_21868.json
+the job ended during size i 21: trying it once more
+continuing from /data/jlee859/ffother/results/allegro/sweep.json: 7 sizes kept
+engine: {"exe_args": "/data/jlee859/ffother/py_eval.py size --kind allegro --model /data/jlee859/ffother/allegro/train/si_ase.nequip.pt2"}
+i    4  atoms           512  ok           mem    2.0 GB  rss    1.5 GB  wall     5.8 s  E -8.567813 eV/atom  1.012e+04 atom-steps/s
+i   10  atoms         8,000  ok           mem   12.9 GB  rss    1.5 GB  wall     9.4 s  E -8.567813 eV/atom  1.040e+04 atom-steps/s
+i   13  atoms        17,576  ok           mem   26.6 GB  rss    1.5 GB  wall    16.1 s  E -8.567813 eV/atom  1.034e+04 atom-steps/s
+i   16  atoms        32,768  ok           mem   48.5 GB  rss    1.6 GB  wall    25.1 s  E -8.567813 eV/atom  1.060e+04 atom-steps/s
+i   20  atoms        64,000  ok           mem   93.7 GB  rss    1.6 GB  wall    46.8 s  E -8.567813 eV/atom  1.010e+04 atom-steps/s
+i   25  atoms       125,000  killed       mem  116.2 GB  rss    1.6 GB  wall   102.7 s
+i   22  atoms        85,184  killed       mem  118.7 GB  rss    1.6 GB  wall   214.3 s
+i   21  atoms        74,088  ok           mem  108.0 GB  rss    1.7 GB  wall    55.2 s  E -8.567813 eV/atom  1.014e+04 atom-steps/s
+
+result: {"largest_ok_i": 21, "largest_ok_atoms": 74088, "largest_ok_mem_used_gb": 108.0265728, "largest_ok_kb_per_atom": 1458.084612892776, "first_failed_i": 22, "first_failed_atoms": 85184, "first_failed_status": "killed", "reached_max_i_without_failure": false}
+first failing size: i 22, 85,184 atoms, killed
+wrote /data/jlee859/ffother/results/allegro/sweep.json
+end rc 0 Wed Nov 11 06:40:26 PM UTC 2026
