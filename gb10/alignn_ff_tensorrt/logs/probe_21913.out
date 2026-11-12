@@ -1,0 +1,1564 @@
+start Thu Nov 12 01:39:36 AM EST 2026 | atomgptlab09
+NVIDIA GB10, 580.178.04
+torch==2.13.0+cu130
+  torch 2.13.0+cu130 | cuda available True
+   tensorrt-cu13 11.4.0.106
+   tensorrt_cu13_libs 11.4.0.106
+   onnx 1.23.2
+   onnxscript 0.7.2
+  torch 2.13.0+cu130 | cuda available True
+   tensorrt-rtx 1.7.1.116
+   tensorrt_rtx_cu13_libs 1.7.1.116
+   onnx 1.23.2
+
+=== 1. TensorRT 11.4, API network  01:41:29
+RESULT {"lib": "trt", "version": "11.4.0.106", "torch": "2.13.0+cu130", "gpu": "NVIDIA GB10"}
+[11/12/2026-01:41:31] [TRT] [W] DLA requests all profiles have same min, max, and opt value. All dla layers are falling back to GPU
+[11/12/2026-01:41:32] [TRT] [W] Using default stream in enqueueV3() may lead to performance issues due to additional calls to cudaStreamSynchronize() by TensorRT to ensure correct synchronization. Please use non-default stream instead.
+RESULT {"build_s": 1.6018147245049477, "first_run_s": 0.00017518363893032074, "max_abs_err": 0.0}
+PASS basic trt: max error 0.00e+00
+=== 1. TensorRT 11.4, API network: exit 0
+
+=== 1. TensorRT-RTX 1.7, API network and runtime cache  01:41:33
+RESULT {"lib": "rtx", "version": "1.7.1.116", "torch": "2.13.0+cu130", "gpu": "NVIDIA GB10"}
+[11/12/2026-01:41:35] [TRT] [W] Using default stream in enqueueV3() may lead to performance issues due to additional calls to cudaStreamSynchronize() by TensorRT to ensure correct synchronization. Please use non-default stream instead.
+[11/12/2026-01:41:35] [TRT] [W] Using default stream in enqueueV3() may lead to performance issues due to additional calls to cudaStreamSynchronize() by TensorRT to ensure correct synchronization. Please use non-default stream instead.
+RESULT {"build_s": 0.30523819755762815, "first_run_s": 0.00016110390424728394, "max_abs_err": 4.76837158203125e-07, "cache_bytes": 20917, "run_with_loaded_cache_s": 0.00012396741658449173, "max_abs_err_with_cache": 4.76837158203125e-07}
+PASS basic rtx: max error 4.77e-07
+=== 1. TensorRT-RTX 1.7, API network and runtime cache: exit 0
+
+=== 2. ONNX scatter-add model  01:41:36
+PASS wrote /data/jlee859/fftrt/results/scatter_add.onnx
+=== 2. ONNX scatter-add model: exit 0
+
+=== 2. TensorRT 11.4, scatter-add  01:41:36
+[11/12/2026-01:41:37] [TRT] [W] ModelImporter.cpp:826: Make sure input indices has Int64 binding.
+[11/12/2026-01:41:38] [TRT] [W] DLA requests all profiles have same min, max, and opt value. All dla layers are falling back to GPU
+[11/12/2026-01:41:38] [TRT] [W] Using default stream in enqueueV3() may lead to performance issues due to additional calls to cudaStreamSynchronize() by TensorRT to ensure correct synchronization. Please use non-default stream instead.
+RESULT {"lib": "trt", "build_s": 0.262351643294096, "run_s": 0.0010578697547316551, "max_abs_err": 5.46872615814209e-06, "note": "float32 sums of about 30 numbers of size 1"}
+PASS scatter-add trt: max error 5.47e-06
+=== 2. TensorRT 11.4, scatter-add: exit 0
+
+=== 2. TensorRT-RTX 1.7, scatter-add  01:41:38
+[11/12/2026-01:41:39] [TRT] [W] ModelImporter.cpp:1071: Make sure input indices has Int64 binding.
+[11/12/2026-01:41:39] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpImporters.cpp:7476 In function importScatterElements:
+[9] Unsupported reduction type
+RESULT {"lib": "rtx", "stage": "parse or build", "error": "ONNX parse failed:  : Unsupported reduction type"}
+FAIL scatter-add rtx: ONNX parse failed:  : Unsupported reduction type
+=== 2. TensorRT-RTX 1.7, scatter-add: exit 1
+
+=== 3. export AFF-r2SCAN, Si rep 4  01:41:39
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  refs[f"e_bond_sum_{tag}"] = float(e_bond.sum())
+RESULT {"stage": "rewritten function against atom_energies, float32", "atoms": 512, "edges": 14336, "line_edges": 8192, "max_abs_d_e_atom": 2.86102294921875e-06, "max_abs_d_force": 1.1205673217773438e-05}
+RESULT {"stage": "PyTorch timing", "atom_energies_and_grad_s": 0.014427943155169487, "same_part_as_engine_s": 0.014003961347043514}
+make_fx (functionalized) failed: RuntimeError: You are attempting to call Tensor.requires_grad_() (or perhaps using torch.autograd.functional.* APIs) inside of a function being transformed by a functorch transform. This is unsupported, please attempt to use the functorch transforms (e.g. grad, vjp, jacrev, jacfwd, hessian) or call requires_grad_() outside of a function being transformed instead.
+RESULT {"stage": "make_fx trace (plain), 2.3 s", "nodes": 1168, "op_counts": {"aten.alias.default": 32, "aten.index_select.default": 6, "aten.sub.Tensor": 68, "aten.mm.default": 32, "aten.add.Tensor": 113, "aten.linalg_vector_norm.default": 3, "aten.mul.Tensor": 253, "aten.sum.dim_IntList": 34, "aten.neg.default": 15, "aten.clamp.default": 5, "aten.div.Tensor": 54, "aten.permute.default": 67, "aten.addmm.default": 36, "aten.native_layer_norm.default": 17, "<built-in function getitem>": 51, "aten.sigmoid.default": 37, "aten.pow.Tensor_Scalar": 18, "aten.le.Scalar": 3, "aten.full_like.default": 4, "aten.where.self": 12, "aten.unsqueeze.default": 23, "aten.exp.default": 6, "aten.index.Tensor": 18, "aten.full.default": 31, "aten.expand.default": 15, "aten.scatter_add_.default": 12, "aten.squeeze.dims": 4, "aten.lt.Scalar": 2, "aten._to_copy.default": 2, "aten.reciprocal.default": 1, "aten.mul.Scalar": 8, "aten.scalar_tensor.default": 10, "aten.ge.Scalar": 5, "aten.logical_and_.default": 2, "aten.gather.default": 12, "aten.index_put.default": 19, "aten.eq.Scalar": 3, "aten.copy_.default": 3}, "max_abs_d_e_atom_vs_eager": 2.86102294921875e-06, "max_abs_d_force_vs_eager": 1.0907649993896484e-05}
+  torch.onnx.export(gm, tuple(ins), path, dynamo=True,
+W1112 01:41:47.603000 2272639 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1112 01:41:47.603000 2272639 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1112 01:41:47.603000 2272639 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1112 01:41:47.603000 2272639 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `joint()` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `joint()` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+RESULT {"stage": "onnx export, as traced", "exporter": "dynamo", "failed_attempts": {}, "onnx_mb": 7.989666, "opset": [["", 18]], "inputs": ["pos", "lat", "src", "dst", "shift", "feats", "z_num", "lg_src", "lg_dst"], "outputs": ["e_atom", "forces"], "op_types": {"Reshape": 4, "Gather": 6, "Sub": 67, "MatMul": 31, "Add": 108, "ReduceL2": 3, "Mul": 256, "ReduceSum": 32, "Neg": 14, "Clip": 5, "Div": 46, "Gemm": 36, "LayerNormalization": 15, "Sigmoid": 21, "Pow": 14, "LessOrEqual": 3, "Where": 11, "Unsqueeze": 13, "Exp": 6, "GatherND": 18, "Expand": 4, "ScatterElements": 12, "Squeeze": 4, "Less": 2, "Cast": 2, "Reciprocal": 1, "GreaterOrEqual": 5, "And": 2, "Transpose": 26, "GatherElements": 12, "ScatterND": 19, "Equal": 3}, "scatter_nodes": {"ScatterElements:add": 12, "ScatterND:add": 19}}
+RESULT {"stage": "after the scatter_add rewrite", "nodes": 1225, "op_counts": {"aten.alias.default": 32, "aten.index_select.default": 6, "aten.sub.Tensor": 68, "aten.mm.default": 32, "aten.add.Tensor": 132, "aten.linalg_vector_norm.default": 3, "aten.mul.Tensor": 253, "aten.sum.dim_IntList": 34, "aten.neg.default": 15, "aten.clamp.default": 5, "aten.div.Tensor": 54, "aten.permute.default": 67, "aten.addmm.default": 36, "aten.native_layer_norm.default": 17, "<built-in function getitem>": 51, "aten.sigmoid.default": 37, "aten.pow.Tensor_Scalar": 18, "aten.le.Scalar": 3, "aten.full_like.default": 4, "aten.where.self": 12, "aten.unsqueeze.default": 42, "aten.exp.default": 6, "aten.index.Tensor": 18, "aten.full.default": 31, "aten.expand.default": 15, "aten.scatter_add_.default": 12, "aten.squeeze.dims": 4, "aten.lt.Scalar": 2, "aten._to_copy.default": 2, "aten.reciprocal.default": 1, "aten.mul.Scalar": 8, "aten.scalar_tensor.default": 10, "aten.ge.Scalar": 5, "aten.logical_and_.default": 2, "aten.gather.default": 12, "aten.zeros_like.default": 19, "aten.scatter_add.default": 19, "aten.eq.Scalar": 3, "aten.copy_.default": 3}, "max_abs_d_e_atom_vs_eager": 2.86102294921875e-06, "max_abs_d_force_vs_eager": 1.1235475540161133e-05}
+RESULT {"stage": "scatter_add rewrite", "rewritten": {"aten.index_put.default": 19}, "skipped": {}, "matches_eager": true}
+  torch.onnx.export(gm, tuple(ins), path, dynamo=True,
+W1112 01:41:53.108000 2272639 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1112 01:41:53.109000 2272639 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1112 01:41:53.109000 2272639 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1112 01:41:53.109000 2272639 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `joint()` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `joint()` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+RESULT {"stage": "onnx export, rewritten", "exporter": "dynamo", "failed_attempts": {}, "onnx_mb": 9.079202, "opset": [["", 18]], "inputs": ["pos", "lat", "src", "dst", "shift", "feats", "z_num", "lg_src", "lg_dst"], "outputs": ["e_atom", "forces"], "op_types": {"Reshape": 4, "Gather": 6, "Sub": 67, "MatMul": 31, "Add": 116, "ReduceL2": 3, "Mul": 256, "ReduceSum": 32, "Neg": 14, "Clip": 5, "Div": 46, "Gemm": 36, "LayerNormalization": 15, "Sigmoid": 21, "Pow": 14, "LessOrEqual": 3, "Where": 11, "Unsqueeze": 13, "Exp": 6, "GatherND": 18, "Expand": 6, "ScatterElements": 31, "Squeeze": 4, "Less": 2, "Cast": 2, "Reciprocal": 1, "GreaterOrEqual": 5, "And": 2, "Transpose": 26, "GatherElements": 12, "Equal": 3}, "scatter_nodes": {"ScatterElements:add": 31}}
+PASS 512 atoms: trace matches eager; exported: as traced, rewritten; PyTorch energy and forces 14.4 ms
+=== 3. export AFF-r2SCAN, Si rep 4: exit 0
+
+=== 3. TensorRT 11.4, aff_si4  01:41:57
+[11/12/2026-01:41:59] [TRT] [W] ModelImporter.cpp:826: Make sure input src has Int64 binding.
+[11/12/2026-01:41:59] [TRT] [W] ModelImporter.cpp:826: Make sure input dst has Int64 binding.
+[11/12/2026-01:41:59] [TRT] [W] ModelImporter.cpp:826: Make sure input z_num has Int64 binding.
+[11/12/2026-01:41:59] [TRT] [W] ModelImporter.cpp:826: Make sure input lg_src has Int64 binding.
+[11/12/2026-01:41:59] [TRT] [W] ModelImporter.cpp:826: Make sure input lg_dst has Int64 binding.
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 86 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 86 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 89 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 89 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 115 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 115 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 118 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 118 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 140 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 140 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 143 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 143 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 165 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 165 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 186 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 186 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 189 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 189 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 211 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:139: While parsing node number 211 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:41:59] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+RESULT {"lib": "trt", "stage": "parse or build", "error": "ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_na"}
+FAIL model trt: ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! |
+=== 3. TensorRT 11.4, aff_si4: exit 1
+
+=== 3. TensorRT-RTX 1.7, aff_si4  01:42:00
+[11/12/2026-01:42:01] [TRT] [W] ModelImporter.cpp:1071: Make sure input src has Int64 binding.
+[11/12/2026-01:42:01] [TRT] [W] ModelImporter.cpp:1071: Make sure input dst has Int64 binding.
+[11/12/2026-01:42:01] [TRT] [W] ModelImporter.cpp:1071: Make sure input z_num has Int64 binding.
+[11/12/2026-01:42:01] [TRT] [W] ModelImporter.cpp:1071: Make sure input lg_src has Int64 binding.
+[11/12/2026-01:42:01] [TRT] [W] ModelImporter.cpp:1071: Make sure input lg_dst has Int64 binding.
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 86 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 86 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 89 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 89 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 115 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 115 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 118 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 118 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 140 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 140 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 143 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 143 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 165 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 165 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 186 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 186 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 189 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 189 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 211 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:140: While parsing node number 211 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:01] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+RESULT {"lib": "rtx", "stage": "parse or build", "error": "ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_na"}
+FAIL model rtx: ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! |
+=== 3. TensorRT-RTX 1.7, aff_si4: exit 1
+
+=== 3. TensorRT 11.4, aff_si4_sa  01:42:01
+[11/12/2026-01:42:02] [TRT] [W] ModelImporter.cpp:826: Make sure input src has Int64 binding.
+[11/12/2026-01:42:02] [TRT] [W] ModelImporter.cpp:826: Make sure input dst has Int64 binding.
+[11/12/2026-01:42:02] [TRT] [W] ModelImporter.cpp:826: Make sure input z_num has Int64 binding.
+[11/12/2026-01:42:02] [TRT] [W] ModelImporter.cpp:826: Make sure input lg_src has Int64 binding.
+[11/12/2026-01:42:02] [TRT] [W] ModelImporter.cpp:826: Make sure input lg_dst has Int64 binding.
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 86 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 86 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 89 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 89 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 115 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 115 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 118 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 118 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 140 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 140 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 143 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 143 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 165 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 165 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 186 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 186 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 189 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 189 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 211 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:139: While parsing node number 211 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:02] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+RESULT {"lib": "trt", "stage": "parse or build", "error": "ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_na"}
+FAIL model trt: ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! |
+=== 3. TensorRT 11.4, aff_si4_sa: exit 1
+
+=== 3. TensorRT-RTX 1.7, aff_si4_sa  01:42:03
+[11/12/2026-01:42:04] [TRT] [W] ModelImporter.cpp:1071: Make sure input src has Int64 binding.
+[11/12/2026-01:42:04] [TRT] [W] ModelImporter.cpp:1071: Make sure input dst has Int64 binding.
+[11/12/2026-01:42:04] [TRT] [W] ModelImporter.cpp:1071: Make sure input z_num has Int64 binding.
+[11/12/2026-01:42:04] [TRT] [W] ModelImporter.cpp:1071: Make sure input lg_src has Int64 binding.
+[11/12/2026-01:42:04] [TRT] [W] ModelImporter.cpp:1071: Make sure input lg_dst has Int64 binding.
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 86 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 86 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 89 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 89 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 115 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 115 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 118 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 118 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 140 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 140 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 143 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 143 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 165 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 165 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 186 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 186 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 189 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 189 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 211 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:140: While parsing node number 211 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:04] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+RESULT {"lib": "rtx", "stage": "parse or build", "error": "ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_na"}
+FAIL model rtx: ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! |
+=== 3. TensorRT-RTX 1.7, aff_si4_sa: exit 1
+
+=== 3. export AFF-r2SCAN, Si rep 10  01:42:04
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  refs[f"e_bond_sum_{tag}"] = float(e_bond.sum())
+RESULT {"stage": "rewritten function against atom_energies, float32", "atoms": 8000, "edges": 224000, "line_edges": 128000, "max_abs_d_e_atom": 2.86102294921875e-06, "max_abs_d_force": 1.4603137969970703e-05}
+RESULT {"stage": "PyTorch timing", "atom_energies_and_grad_s": 0.25490867625921965, "same_part_as_engine_s": 0.2518457369878888}
+make_fx (functionalized) failed: RuntimeError: You are attempting to call Tensor.requires_grad_() (or perhaps using torch.autograd.functional.* APIs) inside of a function being transformed by a functorch transform. This is unsupported, please attempt to use the functorch transforms (e.g. grad, vjp, jacrev, jacfwd, hessian) or call requires_grad_() outside of a function being transformed instead.
+RESULT {"stage": "make_fx trace (plain), 1.2 s", "nodes": 1168, "op_counts": {"aten.alias.default": 32, "aten.index_select.default": 6, "aten.sub.Tensor": 68, "aten.mm.default": 32, "aten.add.Tensor": 113, "aten.linalg_vector_norm.default": 3, "aten.mul.Tensor": 253, "aten.sum.dim_IntList": 34, "aten.neg.default": 15, "aten.clamp.default": 5, "aten.div.Tensor": 54, "aten.permute.default": 67, "aten.addmm.default": 36, "aten.native_layer_norm.default": 17, "<built-in function getitem>": 51, "aten.sigmoid.default": 37, "aten.pow.Tensor_Scalar": 18, "aten.le.Scalar": 3, "aten.full_like.default": 4, "aten.where.self": 12, "aten.unsqueeze.default": 23, "aten.exp.default": 6, "aten.index.Tensor": 18, "aten.full.default": 31, "aten.expand.default": 15, "aten.scatter_add_.default": 12, "aten.squeeze.dims": 4, "aten.lt.Scalar": 2, "aten._to_copy.default": 2, "aten.reciprocal.default": 1, "aten.mul.Scalar": 8, "aten.scalar_tensor.default": 10, "aten.ge.Scalar": 5, "aten.logical_and_.default": 2, "aten.gather.default": 12, "aten.index_put.default": 19, "aten.eq.Scalar": 3, "aten.copy_.default": 3}, "max_abs_d_e_atom_vs_eager": 2.86102294921875e-06, "max_abs_d_force_vs_eager": 1.239776611328125e-05}
+  torch.onnx.export(gm, tuple(ins), path, dynamo=True,
+W1112 01:42:13.693000 2272837 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1112 01:42:13.693000 2272837 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1112 01:42:13.693000 2272837 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1112 01:42:13.693000 2272837 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `joint()` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `joint()` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+RESULT {"stage": "onnx export, as traced", "exporter": "dynamo", "failed_attempts": {}, "onnx_mb": 4.816759, "opset": [["", 18]], "inputs": ["pos", "lat", "src", "dst", "shift", "feats", "z_num", "lg_src", "lg_dst"], "outputs": ["e_atom", "forces"], "op_types": {"Reshape": 4, "Gather": 6, "Sub": 67, "MatMul": 32, "Add": 108, "ReduceL2": 3, "Mul": 256, "ReduceSum": 32, "Neg": 14, "Clip": 5, "Div": 46, "Gemm": 36, "LayerNormalization": 15, "Sigmoid": 21, "Pow": 14, "LessOrEqual": 3, "Where": 11, "Unsqueeze": 13, "Exp": 6, "GatherND": 18, "Expand": 6, "ScatterElements": 12, "Squeeze": 4, "Less": 2, "Cast": 2, "Reciprocal": 1, "GreaterOrEqual": 5, "And": 2, "Transpose": 26, "GatherElements": 12, "ScatterND": 19, "Equal": 3}, "scatter_nodes": {"ScatterElements:add": 12, "ScatterND:add": 19}}
+RESULT {"stage": "after the scatter_add rewrite", "nodes": 1225, "op_counts": {"aten.alias.default": 32, "aten.index_select.default": 6, "aten.sub.Tensor": 68, "aten.mm.default": 32, "aten.add.Tensor": 132, "aten.linalg_vector_norm.default": 3, "aten.mul.Tensor": 253, "aten.sum.dim_IntList": 34, "aten.neg.default": 15, "aten.clamp.default": 5, "aten.div.Tensor": 54, "aten.permute.default": 67, "aten.addmm.default": 36, "aten.native_layer_norm.default": 17, "<built-in function getitem>": 51, "aten.sigmoid.default": 37, "aten.pow.Tensor_Scalar": 18, "aten.le.Scalar": 3, "aten.full_like.default": 4, "aten.where.self": 12, "aten.unsqueeze.default": 42, "aten.exp.default": 6, "aten.index.Tensor": 18, "aten.full.default": 31, "aten.expand.default": 15, "aten.scatter_add_.default": 12, "aten.squeeze.dims": 4, "aten.lt.Scalar": 2, "aten._to_copy.default": 2, "aten.reciprocal.default": 1, "aten.mul.Scalar": 8, "aten.scalar_tensor.default": 10, "aten.ge.Scalar": 5, "aten.logical_and_.default": 2, "aten.gather.default": 12, "aten.zeros_like.default": 19, "aten.scatter_add.default": 19, "aten.eq.Scalar": 3, "aten.copy_.default": 3}, "max_abs_d_e_atom_vs_eager": 3.814697265625e-06, "max_abs_d_force_vs_eager": 1.150369644165039e-05}
+RESULT {"stage": "scatter_add rewrite", "rewritten": {"aten.index_put.default": 19}, "skipped": {}, "matches_eager": true}
+  torch.onnx.export(gm, tuple(ins), path, dynamo=True,
+W1112 01:42:19.300000 2272837 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::nms
+W1112 01:42:19.301000 2272837 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_align
+W1112 01:42:19.301000 2272837 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::roi_pool
+W1112 01:42:19.301000 2272837 site-packages/torch/onnx/_internal/exporter/_registration.py:107] torchvision is not installed. Skipping torchvision::deform_conv2d
+[torch.onnx] Obtain model graph for `joint()` with `torch.export.export(..., strict=False)`...
+[torch.onnx] Obtain model graph for `joint()` with `torch.export.export(..., strict=False)`... ✅
+[torch.onnx] Run decompositions...
+/data/jlee859/miniforge3-aarch64/envs/alignn/lib/python3.10/copyreg.py:101: FutureWarning: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+  return cls.__new__(cls, *args)
+[torch.onnx] Run decompositions... ✅
+[torch.onnx] Translate the graph into ONNX...
+[torch.onnx] Translate the graph into ONNX... ✅
+[torch.onnx] Optimize the ONNX graph...
+[torch.onnx] Optimize the ONNX graph... ✅
+RESULT {"stage": "onnx export, rewritten", "exporter": "dynamo", "failed_attempts": {}, "onnx_mb": 4.825898, "opset": [["", 18]], "inputs": ["pos", "lat", "src", "dst", "shift", "feats", "z_num", "lg_src", "lg_dst"], "outputs": ["e_atom", "forces"], "op_types": {"Reshape": 4, "Gather": 6, "Sub": 67, "MatMul": 32, "Add": 116, "ReduceL2": 3, "Mul": 256, "ReduceSum": 32, "Neg": 14, "Clip": 5, "Div": 46, "Gemm": 36, "LayerNormalization": 15, "Sigmoid": 21, "Pow": 14, "LessOrEqual": 3, "Where": 11, "Unsqueeze": 13, "Exp": 6, "GatherND": 18, "Expand": 10, "ScatterElements": 31, "Squeeze": 4, "Less": 2, "Cast": 2, "Reciprocal": 1, "GreaterOrEqual": 5, "And": 2, "Transpose": 26, "GatherElements": 12, "Equal": 3}, "scatter_nodes": {"ScatterElements:add": 31}}
+PASS 8000 atoms: trace matches eager; exported: as traced, rewritten; PyTorch energy and forces 254.9 ms
+=== 3. export AFF-r2SCAN, Si rep 10: exit 0
+
+=== 3. TensorRT 11.4, aff_si10  01:42:24
+[11/12/2026-01:42:26] [TRT] [W] ModelImporter.cpp:826: Make sure input src has Int64 binding.
+[11/12/2026-01:42:26] [TRT] [W] ModelImporter.cpp:826: Make sure input dst has Int64 binding.
+[11/12/2026-01:42:26] [TRT] [W] ModelImporter.cpp:826: Make sure input z_num has Int64 binding.
+[11/12/2026-01:42:26] [TRT] [W] ModelImporter.cpp:826: Make sure input lg_src has Int64 binding.
+[11/12/2026-01:42:26] [TRT] [W] ModelImporter.cpp:826: Make sure input lg_dst has Int64 binding.
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 87 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 87 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 90 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 90 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 116 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 116 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 119 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 119 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 141 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 141 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 144 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 144 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 166 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 166 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 187 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 187 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 190 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 190 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 212 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:139: While parsing node number 212 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:26] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+RESULT {"lib": "trt", "stage": "parse or build", "error": "ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_na"}
+FAIL model trt: ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! |
+=== 3. TensorRT 11.4, aff_si10: exit 1
+
+=== 3. TensorRT-RTX 1.7, aff_si10  01:42:26
+[11/12/2026-01:42:27] [TRT] [W] ModelImporter.cpp:1071: Make sure input src has Int64 binding.
+[11/12/2026-01:42:27] [TRT] [W] ModelImporter.cpp:1071: Make sure input dst has Int64 binding.
+[11/12/2026-01:42:27] [TRT] [W] ModelImporter.cpp:1071: Make sure input z_num has Int64 binding.
+[11/12/2026-01:42:27] [TRT] [W] ModelImporter.cpp:1071: Make sure input lg_src has Int64 binding.
+[11/12/2026-01:42:27] [TRT] [W] ModelImporter.cpp:1071: Make sure input lg_dst has Int64 binding.
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 87 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 87 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 90 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 90 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 116 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 116 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 119 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 119 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 141 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 141 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 144 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 144 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 166 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 166 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 187 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 187 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 190 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 190 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 212 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:140: While parsing node number 212 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:27] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+RESULT {"lib": "rtx", "stage": "parse or build", "error": "ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_na"}
+FAIL model rtx: ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! |
+=== 3. TensorRT-RTX 1.7, aff_si10: exit 1
+
+=== 3. TensorRT 11.4, aff_si10_sa  01:42:27
+[11/12/2026-01:42:29] [TRT] [W] ModelImporter.cpp:826: Make sure input src has Int64 binding.
+[11/12/2026-01:42:29] [TRT] [W] ModelImporter.cpp:826: Make sure input dst has Int64 binding.
+[11/12/2026-01:42:29] [TRT] [W] ModelImporter.cpp:826: Make sure input z_num has Int64 binding.
+[11/12/2026-01:42:29] [TRT] [W] ModelImporter.cpp:826: Make sure input lg_src has Int64 binding.
+[11/12/2026-01:42:29] [TRT] [W] ModelImporter.cpp:826: Make sure input lg_dst has Int64 binding.
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 87 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 87 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 90 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 90 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 116 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 116 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 119 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 119 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 141 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 141 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 144 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 144 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 166 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 166 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 187 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 187 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 190 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 190 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 212 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:139: While parsing node number 212 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:141: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:142: --- End node ---
+[11/12/2026-01:42:29] [TRT] [E] ModelImporter.cpp:150: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+RESULT {"lib": "trt", "stage": "parse or build", "error": "ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_na"}
+FAIL model trt: ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! |
+=== 3. TensorRT 11.4, aff_si10_sa: exit 1
+
+=== 3. TensorRT-RTX 1.7, aff_si10_sa  01:42:29
+[11/12/2026-01:42:30] [TRT] [W] ModelImporter.cpp:1071: Make sure input src has Int64 binding.
+[11/12/2026-01:42:30] [TRT] [W] ModelImporter.cpp:1071: Make sure input dst has Int64 binding.
+[11/12/2026-01:42:30] [TRT] [W] ModelImporter.cpp:1071: Make sure input z_num has Int64 binding.
+[11/12/2026-01:42:30] [TRT] [W] ModelImporter.cpp:1071: Make sure input lg_src has Int64 binding.
+[11/12/2026-01:42:30] [TRT] [W] ModelImporter.cpp:1071: Make sure input lg_dst has Int64 binding.
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 44 [LayerNormalization -> "getitem_3"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_1__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 48 [LayerNormalization -> "getitem_6"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_2__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 59 [LayerNormalization -> "getitem_9"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_3__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 63 [LayerNormalization -> "getitem_12"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_4__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 87 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 87 [LayerNormalization -> "getitem_15"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_5__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 90 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 90 [LayerNormalization -> "getitem_18"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_6__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 116 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 116 [LayerNormalization -> "getitem_21"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_7__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 119 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 119 [LayerNormalization -> "getitem_24"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_8__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 141 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 141 [LayerNormalization -> "getitem_27"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_9__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 144 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 144 [LayerNormalization -> "getitem_30"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_10__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 166 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 166 [LayerNormalization -> "getitem_33"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_11__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 187 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 187 [LayerNormalization -> "getitem_39"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_13__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 190 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 190 [LayerNormalization -> "getitem_42"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_14__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 212 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:140: While parsing node number 212 [LayerNormalization -> "getitem_45"]:
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:142: --- Begin node ---
+Node name: node_native_layer_norm_15__2
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:143: --- End node ---
+[11/12/2026-01:42:30] [TRT] [E] ModelImporter.cpp:151: ERROR: onnxOpCheckers.cpp:151 In function emptyOutputChecker:
+[8] This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes!
+RESULT {"lib": "rtx", "stage": "parse or build", "error": "ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_2__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_3__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_4__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_5__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_6__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_7__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_na"}
+FAIL model rtx: ONNX parse failed: LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! | LayerNormalization node_native_layer_norm_1__2: This version of TensorRT doesn't support mode than 1 outputs for LayerNormalization nodes! |
+=== 3. TensorRT-RTX 1.7, aff_si10_sa: exit 1
+
+summary:
+grep: /data/jlee859/fftrt/logs/probe_21913.out: input file is also the output
+end Thu Nov 12 01:42:30 AM EST 2026
