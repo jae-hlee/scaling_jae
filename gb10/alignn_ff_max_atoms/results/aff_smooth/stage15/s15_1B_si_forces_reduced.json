@@ -1,0 +1,35 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/aff_smooth",
+ "natoms": 1000000000,
+ "kind": "Si",
+ "rep": 500,
+ "a_A": 5.43,
+ "rattle": 0.05,
+ "box_A": [
+  2715.0,
+  2715.0,
+  2715.0
+ ],
+ "k": [
+  36,
+  36,
+  36
+ ],
+ "halo_A": 20.01,
+ "halo_exact": true,
+ "forces": true,
+ "gpu": "NVIDIA GB10",
+ "e_per_atom": -8.68245450059375,
+ "wall_s_slowest_rank": 13162.212559053674,
+ "gb10_hours": 43.214542504302614,
+ "piece_atoms_max": 71578,
+ "mem_alloc_gb_max": 31.868118528,
+ "host_peak_gb_max": 4.702584,
+ "max_abs_f": 6.344757080078125,
+ "net_force": [
+  0.00028567123968059605,
+  0.00027983836022826836,
+  0.004577371686522724
+ ],
+ "rms_f": 0.8591739458455175
+}

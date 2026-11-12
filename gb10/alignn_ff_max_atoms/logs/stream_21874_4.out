@@ -1,0 +1,27 @@
+start Wed Nov 11 06:30:07 PM EST 2026 | atomgptlab12 | aff_smooth stage15/s15_1B_si_forces --kind Si --rep 500 --rattle 0.05 --forces --ckpt --k 36 | task 4 of 12 | smooth 1
+device cuda | alignn /data/jlee859/ffmax/alignn_smooth/alignn
+N=1000000000 box 2715.0 A, [36, 36, 36] cubes, halo 20.01 A, rank 4/12: x cubes 12-14, 3888 pieces, x cells 161..213
+/data/jlee859/ffmax/ff_stream.py:107: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+200/3888 pieces, 4,320,759 atoms, 670 s
+400/3888 pieces, 8,646,699 atoms, 1337 s
+600/3888 pieces, 12,961,793 atoms, 2004 s
+800/3888 pieces, 17,286,169 atoms, 2671 s
+1000/3888 pieces, 21,604,334 atoms, 3338 s
+1200/3888 pieces, 25,925,656 atoms, 4007 s
+1400/3888 pieces, 30,205,221 atoms, 4676 s
+1600/3888 pieces, 34,450,921 atoms, 5347 s
+1800/3888 pieces, 38,690,822 atoms, 6018 s
+2000/3888 pieces, 42,941,246 atoms, 6689 s
+2200/3888 pieces, 47,177,492 atoms, 7358 s
+2400/3888 pieces, 51,427,743 atoms, 8027 s
+2600/3888 pieces, 55,672,686 atoms, 8696 s
+2800/3888 pieces, 59,994,746 atoms, 9364 s
+3000/3888 pieces, 64,317,597 atoms, 10033 s
+3200/3888 pieces, 68,635,774 atoms, 10703 s
+3400/3888 pieces, 72,957,056 atoms, 11370 s
+3600/3888 pieces, 77,276,999 atoms, 12037 s
+3800/3888 pieces, 81,596,943 atoms, 12705 s
+{'model_dir': '/data/jlee859/ffmax/models/aff_smooth', 'checkpoint_md5': '8e4976dd2cd536de84044c7470726809', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.663235584, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_smooth/alignn', 'slurm_job': '21901', 'host': 'atomgptlab12', 'natoms': 1000000000, 'kind': 'Si', 'rep': 500, 'a_A': 5.43, 'nb': 8, 'rattle': 0.05, 'seed': 0, 'box_A': [2715.0, 2715.0, 2715.0], 'k': [36, 36, 36], 'core_A': [75.41666666666667, 75.41666666666667, 75.41666666666667], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rank': 4, 'world': 12, 'slab_cubes_x': [12, 15], 'ixa': 161, 'ixb': 214, 'local_force_rows': 106000000, 'n_cubes': 46656, 'cubes_done': 3888, 'owned_done': 83500000, 'energy': -724985708.109375, 'wall_s': 12999.2147704456, 'host_peak_gb': 4.6913, 'owned_atoms_per_s': 6423.46491496099}
+exit 0 end Wed Nov 11 10:06:53 PM EST 2026

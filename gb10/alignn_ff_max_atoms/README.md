@@ -192,11 +192,22 @@ Energy conservation, float64, velocity Verlet, 2,000 steps from the same start f
 
 The retrained model took 8% to 9% longer than AFF-r2SCAN in these two runs (7.4 against 6.8 s per relaxation step, 3,320 against 3,084 s for STMV). Stage 14 with the retrained model is in the stage 14 section.
 
-## Stage 15: the billion-atom runs with the retrained model (written 2026-11-11, not yet run)
+## Stage 15: the billion-atom runs with the retrained model (2026-11-11, running)
 
 The force runs of a billion atoms or more again, with the stage-12 model (`models/aff_smooth`), the same cells and the same piece sizes, results in `results/aff_smooth/stage15/`. `bash stage15_submit.sh forces` submits the 1,021,299,267-atom polycrystal (`ff_any.py`, 10 tasks, with per-atom energies), 10^9 atoms of rattled Si (`ff_stream.py`, 36^3 cubes as in stage 4, 12 tasks) and 2,000,376,000 atoms of rattled Si (`ff_stream.py`, as in stage 9, 20 tasks): about 163 GB10-hours, AFF-r2SCAN's 149.5 times the 1.09 slowdown of stage 13. Modes `energy` (the two energy-only Si runs, about 29) and `stack` (the gate stack, about 11) are separate. Every array waits for `stage15_check.sbatch`, which compares chunked with full-cell results in double precision through both programs with the trained weights and fails above 1e-9 eV/A or 1e-11 eV/atom.
 
 Stage 4 ran the 10^9-atom Si cell with `ff_max_atoms.py`, which cannot take the retrained model, so this run uses `ff_stream.py` and its random displacements differ from stage 4's (same lattice and amplitude).
+
+The check (job 21870) passed: chunked against full cell in double precision with the trained weights, 3.4e-13 eV/A and 0 eV/atom through `ff_stream.py` (8,000 atoms of rattled Si) and 1.6e-12 eV/A and 1.8e-15 eV/atom through `ff_any.py` (the 772-atom stack). The `energy` and `stack` modes were submitted as well (jobs 21889 to 21895).
+
+| Run | Model | Tasks | E (eV/atom) | Largest force (eV/A) | GB10-hours | Slowest task (h) | GPU (GB) | Host (GB) |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| 1,021,299,267-atom Si polycrystal, as built | AFF-r2SCAN (stage 7b, jobs 21583-85) | 10 | -8.696316 | 26.16 | 41.94 | 4.28 | 29.2 | 62.1 |
+| same cell and pieces | retrained (jobs 21871-73) | 10 | -8.678710 | 25.79 | 45.07 | 4.58 | 30.8 | 62.1 |
+| 10^9 atoms of rattled Si, 36^3 cubes | AFF-r2SCAN (stage 4, `ff_max_atoms.py`) | 10 | -8.699598 | 8.52 | 40.2 | 4.03 | 30.2 | 73.9 |
+| same lattice and cubes, other displacements | retrained (`ff_stream.py`, jobs 21874-75) | 12 | -8.682455 | 6.34 | 43.21 | 3.66 | 31.9 | 4.8 |
+
+The retrained model takes 7.5% longer in both runs and 5% more GPU memory per piece. The 10^9-atom Si run needs only 4.8 GB of host memory per task instead of 73.9 because `ff_stream.py` generates the pieces instead of holding the cell. Its energies are shifted by about +17.5 meV/atom from AFF-r2SCAN's for Si (+17.6 for the polycrystal, +17.1 for 10^9 rattled Si, +17.2 for the 8,000-atom rattled cell of the check), so only energy differences are comparable between the models. The grain-boundary excess of the letter (51.2 meV/atom above perfect Si) needs the retrained model's perfect-Si energy, which has not been computed. Results in `results/aff_smooth/stage15/`, logs `chunkany_21872_*.out` and `reduceany_21873.out`.
 
 ## Stage 14: stacking-fault energies of Al (job 21783, 2026-11-09)
 
@@ -220,23 +231,23 @@ Energies in mJ/m^2, relaxed with the as-built value in parentheses. The first tw
 
 Results are in `results/<model>/stage14/gsf_al_21783.json` (every curve, the lattice-constant scan and a 12 x 21 as-built gamma surface) with a quick-look `.png` each.
 
-### Copper (job 21849, 2026-11-10)
+### Copper (job 21849, 2026-11-10; one column rerun as job 21878)
 
 The same test with `ELEMENT=Cu` (2 h 51 min; every relaxed point converged within 73 steps, the 36-layer check agrees to 2e-7 mJ/m^2, the energy returns to zero after one period). Reference fault energies are DFT-PBE values with the range of other calculations and experiment from Muzyk and Kurzydlowski, J. Min. Metall. Sect. B 55, 271 (2019), Table 1.
 
-| Quantity | Reference | AFF-r2SCAN | `alignn_ff_matpes_pbe` | `alignn_ff_mptrj` | `alignn_ff_matpes_r2scan` (not at its own lattice constant) |
+| Quantity | Reference | AFF-r2SCAN | `alignn_ff_matpes_pbe` | `alignn_ff_mptrj` | `alignn_ff_matpes_r2scan` (rerun, job 21878) |
 |---|---|---|---|---|---|
-| Lattice constant (A) | 3.615 (experiment) | 3.581 | 3.640 | 3.610 | 3.615 (fallback) |
-| Bulk modulus (GPa) | | 125 | 122 | 101 | |
-| (111) surface energy | | 1170 (1174) | 1158 (1162) | 90 (91) | 1165 (1293) |
-| Intrinsic stacking fault | 45 (38 to 58 calculated, 40 to 45 measured) | 25 (25) | 66 (66) | 34 (34) | 97 (91) |
-| Unstable stacking fault | 161 (158 to 184 calculated) | 173 (189) | 155 (162) | 169 (184) | 192 (188) |
-| Maximum along [1-10] | | 562 (798) | 492 (675) | 487 (694) | 564 (716) |
-| Atoms on top, along [11-2] | | 883 (1850) | 627 (1701) | 834 (1480) | 959 (1714) |
+| Lattice constant (A) | 3.615 (experiment) | 3.581 | 3.640 | 3.610 | 3.572 |
+| Bulk modulus (GPa) | | 125 | 122 | 101 | 135 |
+| (111) surface energy | | 1170 (1174) | 1158 (1162) | 90 (91) | 1278 (1279) |
+| Intrinsic stacking fault | 45 (38 to 58 calculated, 40 to 45 measured) | 25 (25) | 66 (66) | 34 (34) | 89 (90), not a minimum |
+| Unstable stacking fault | 161 (158 to 184 calculated) | 173 (189) | 155 (162) | 169 (184) | 176 (199) |
+| Maximum along [1-10] | | 562 (798) | 492 (675) | 487 (694) | 538 (805) |
+| Atoms on top, along [11-2] | | 883 (1850) | 627 (1701) | 834 (1480) | 917 (1916) |
 
 - **Copper is described far better than aluminum.** For AFF-r2SCAN the unstable fault is inside the range of DFT values and the intrinsic fault is low by about 45% (25 against 45), where for Al it was low by a factor of 5 to 7. AFF-r2SCAN gives about 25 mJ/m^2 for both metals, so it is close for Cu because Cu really has a low fault energy. `alignn_ff_mptrj` again has almost no surface energy.
 - **Both cutoffs show in the lattice-constant scan.** Where the second neighbors pass 3.5 A (a = 3.50 A) the energy steps by 6.2, 13.6 and 28.8 meV/atom for the three 4+4-layer models, and by about 1.2 for AFF-r2SCAN, under the 2 meV at which the script reports a jump. Where the fourth shell passes 5 A (a = 3.536 A) it steps by 2.8 (`alignn_ff_matpes_pbe`), 5.7 (`alignn_ff_matpes_r2scan`) and 3.6 (AFF-r2SCAN). At AFF-r2SCAN's lattice constant that shell is at 5.06 A, 0.06 A outside the cutoff, and inside it each atom would have 54 neighbors, above the cap of 52.
-- **The `alignn_ff_matpes_r2scan` column is not at that model's lattice constant.** Its lowest energy in the scan is at a = 3.534 A, on the edge of the 5 A jump and 0.6 meV/atom below the smooth minimum near 3.57 A. The fit of that run failed there and the slab was built at the reference 3.615 A, 1.2% too large, which is why its surface relaxes by 128 mJ/m^2 and some relaxed values exceed the as-built ones. `stacking_fault.py` now fits only the jump-free part of the scan around the reference lattice constant; this column needs a rerun.
+- **`alignn_ff_matpes_r2scan` was rerun at its own lattice constant (job 21878, 2026-11-11, 57 min).** In job 21849 its lowest scan energy was at a = 3.534 A, on the edge of the 5 A jump and 0.6 meV/atom below the smooth minimum, so the fit failed and the slab was built at the reference 3.615 A (giving a = 3.615, surface 1165 (1293), intrinsic fault 97 (91), unstable fault 192 (188), with relaxed values above as-built ones). With the fit restricted to the jump-free part of the scan it finds a = 3.5718 A and B = 135 GPa, and the surface relaxes by only 1 mJ/m^2. Its intrinsic fault is not a minimum of the curve: the relaxed energy along [11-2] falls to 60.2 mJ/m^2 at 1.361 A and rises to 89.1 at the fault position, 1.458 A, after a bond across the fault crosses 3.5 A at about 1.4 A (the largest bend of the as-built curve, 39 mJ/m^2 at 1.36 A, is 13 times the median). For this model the intrinsic fault energy is therefore set by the cutoff jump, not by copper; either value is above the 45 of DFT.
 
 ### Retrained model (jobs 21862 for Al and 21863 for Cu, 2026-11-11)
 
