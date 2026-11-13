@@ -1,0 +1,32 @@
+start Wed Nov 11 06:54:00 PM UTC 2026 | atomgptlab04
+8e4976dd2cd536de84044c7470726809  best_model.pt
+06721a4609c23f0233be07d78a20c3a8  config.json
+device cuda | alignn /data/jlee859/ffmax/alignn_smooth/alignn
+N=8000 box 54.3 A, [2, 2, 2] cubes, halo 20.01 A, rank 0/1: x cubes 0-1, 8 pieces, x cells -5..14
+ff_stream.py:107: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+validation: {"e_full_per_atom": -8.682206329352427, "e_atom_sum_per_atom": -8.682206329352429, "e_pieces_per_atom": -8.682206329352427, "max_abs_de_per_atom": 0.0, "max_abs_f_full": 3.6948908230149407, "max_abs_df": 3.439470930288735e-13}
+{'model_dir': '/data/jlee859/ffmax/models/aff_smooth', 'checkpoint_md5': '8e4976dd2cd536de84044c7470726809', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661138432, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_smooth/alignn', 'slurm_job': '21870', 'host': 'atomgptlab04', 'natoms': 8000, 'kind': 'Si', 'rep': 10, 'a_A': 5.43, 'nb': 8, 'rattle': 0.05, 'seed': 0, 'box_A': [54.3, 54.3, 54.3], 'k': [2, 2, 2], 'core_A': [27.15, 27.15, 27.15], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rank': 0, 'world': 1, 'slab_cubes_x': [0, 2], 'ixa': -5, 'ixb': 15, 'local_force_rows': 16000, 'n_cubes': 8, 'cubes_done': 8, 'owned_done': 8000, 'energy': -69457.65063481941, 'wall_s': 24.223108140053228, 'host_peak_gb': 2.003592, 'owned_atoms_per_s': 330.263150118704, 'e_per_atom': -8.682206329352427, 'max_abs_f': 3.6948908230149957, 'net_force': [5.745404152435185e-15, 1.9317880628477724e-14, 2.7755575615628914e-14], 'validation': {'e_full_per_atom': -8.682206329352427, 'e_atom_sum_per_atom': -8.682206329352429, 'e_pieces_per_atom': -8.682206329352427, 'max_abs_de_per_atom': 0.0, 'max_abs_f_full': 3.6948908230149407, 'max_abs_df': 3.439470930288735e-13}}
+ff_stream done, rc 0 Wed Nov 11 06:54:35 PM UTC 2026
+device cuda | neighbor list matscipy | alignn /data/jlee859/ffmax/alignn_smooth/alignn
+N=772 box [21.72, 21.72, 39.89] A, [2, 2, 2] cubes of [10.86, 10.86, 19.95] A, halo 20.01 A, 8 cubes on rank 0/1
+ff_any.py:240: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:822.)
+  e_own = float(e_own)
+cube (0, 0, 0): 4268 atoms (131 own)  286556 angles  graph 0.02 s  eval 3.05 s  peak 5.8 GB
+cube (0, 0, 1): 4762 atoms (62 own)  265066 angles  graph 0.01 s  eval 1.16 s  peak 5.9 GB
+cube (0, 1, 0): 4268 atoms (130 own)  286648 angles  graph 0.01 s  eval 1.12 s  peak 5.8 GB
+cube (0, 1, 1): 4752 atoms (63 own)  264958 angles  graph 0.01 s  eval 1.16 s  peak 5.9 GB
+cube (1, 0, 0): 4268 atoms (130 own)  286648 angles  graph 0.01 s  eval 1.12 s  peak 5.8 GB
+cube (1, 0, 1): 4752 atoms (63 own)  264958 angles  graph 0.01 s  eval 1.16 s  peak 5.9 GB
+cube (1, 1, 0): 4268 atoms (131 own)  286556 angles  graph 0.01 s  eval 1.12 s  peak 5.8 GB
+cube (1, 1, 1): 4762 atoms (62 own)  265066 angles  graph 0.01 s  eval 1.16 s  peak 5.9 GB
+/data/jlee859/ffmax/ff_max_atoms.py:175: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:213.)
+  "Z": torch.from_numpy(np.asarray(numbers)).long().to(device),
+validation: {"e_full_per_atom": -7.898461202932408, "e_atom_sum_per_atom": -7.898461202932407, "e_pieces_per_atom": -7.898461202932406, "max_abs_de_per_atom": 1.7763568394002505e-15, "max_abs_f_full": 5.296406248242805, "max_abs_df": 1.6244713907376251e-12}
+{'model_dir': '/data/jlee859/ffmax/models/aff_smooth', 'checkpoint_md5': '8e4976dd2cd536de84044c7470726809', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661138432, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_smooth/alignn', 'slurm_job': '21870', 'host': 'atomgptlab04', 'natoms': 772, 'structure': '/data/jlee859/ffmax/structures/stack_small', 'box_A': [21.72, 21.72, 39.8925], 'k': [2, 2, 2], 'core_A': [10.86, 10.86, 19.94625], 'halo_A': 20.01, 'halo_exact': True, 'forces': True, 'ckpt': True, 'rattle': 0.0, 'rank': 0, 'world': 1, 'n_cubes': 8, 'cubes_done': 8, 'owned_done': 772, 'energy': -6097.612048663817, 'wall_s': 11.324858321808279, 'host_peak_gb': 2.0115, 'owned_atoms_per_s': 68.16862322360004, 'neighbor_cap_binds': False, 'e_per_atom': -7.898461202932406, 'max_abs_f': 5.296406248242927, 'net_force': [5.708974959439672e-15, 4.709774237277031e-15, 4.476974346800944e-14], 'validation': {'e_full_per_atom': -7.898461202932408, 'e_atom_sum_per_atom': -7.898461202932407, 'e_pieces_per_atom': -7.898461202932406, 'max_abs_de_per_atom': 1.7763568394002505e-15, 'max_abs_f_full': 5.296406248242805, 'max_abs_df': 1.6244713907376251e-12}}
+ff_any done, rc 0 Wed Nov 11 06:54:50 PM UTC 2026
+exact_stream_si_21870.json: forces differ by 3.44e-13 eV/A (largest force 3.69), energy by 0.00e+00 eV/atom: PASS
+exact_any_stack_21870.json: forces differ by 1.62e-12 eV/A (largest force 5.30), energy by 1.78e-15 eV/atom: PASS
+end rc 0 Wed Nov 11 06:54:50 PM UTC 2026

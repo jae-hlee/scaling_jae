@@ -1,0 +1,16 @@
+start Fri Nov 13 06:09:27 PM UTC 2026 | atomgptlab04 | smooth 1 | maps /data/jlee859/ffmax/results/aff_smooth/maps
+{"structure": "/data/jlee859/ffmax/structures/stack_1e8", "mode": "chunked", "natoms": 102361540, "axis": 1, "plane_axes": [0, 2], "center_A": 868.8, "width_A": 5.0, "box_A": [1737.6, 1737.6, 638.6324999999999], "slab_atoms": 281814, "missing_energies": 0, "median_by_group_eV": {"14": -8.735023498535156, "1008": -9.24973201751709, "1014": -10.989450931549072, "2013": -6.717527389526367}, "de_percentiles_eV": {"1": -0.05395221710205078, "50": 0.0, "90": 1.049041748046875e-05, "99": 0.4770936965942383, "99.9": 1.801614761352539}, "layers": [{"layer": "Si", "cells": [320, 320, 74], "atoms": 60620800, "in_plane_strain": 0.0, "z_bottom_A": 0.0, "z_top_A": 400.4625}, {"layer": "SiO2", "cells": [243, 243, 4], "atoms": 5668704, "in_plane_strain": -0.0013104352024279065, "z_bottom_A": 402.4625, "z_top_A": 430.2075}, {"layer": "Al", "cells": [429, 429, 49], "atoms": 36072036, "in_plane_strain": 8.633341966679531e-05, "z_bottom_A": 432.2075, "z_top_A": 628.6324999999999}], "kind": "grid", "pixel_A": 1.0, "shape": [1738, 639]}
+map exit 0
+depth (A) of the deepest bin above each threshold
+layer  face    z (A)   half-thickness  >1 meV  >10 meV  >100 meV
+Si     bottom      0.0           200.2       5.5       4.5       0.5
+Si     top       400.5           200.2       4.0       4.0       0.0
+SiO2   bottom    402.5            13.9       7.0       6.0       4.0
+SiO2   top       430.2            13.9       5.7       4.7       2.7
+Al     bottom    432.2            98.2       6.3       2.3       0.3
+Al     top       628.6            98.2       6.1       2.1       0.1
+profile exit 0
+wrote /data/jlee859/ffmax/gb10_energy_maps_smooth.png
+figure exit 0
+-rw------- 1 jlee859 domain users 985778 Nov 13 18:09 /data/jlee859/ffmax/gb10_energy_maps_smooth.png
+end Fri Nov 13 06:09:30 PM UTC 2026

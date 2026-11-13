@@ -9,7 +9,9 @@ Each atom's energy is shown relative to the median of its material in the
 slab, so grain boundaries and interfaces appear dark. Panels whose data do
 not exist yet are left out.
 
-Run from inside analysis/. Needs numpy and matplotlib only.
+Run from inside analysis/. Needs numpy and matplotlib only. MAPS_DIR reads
+the maps from another folder (results/aff_smooth/maps for the retrained
+model) and FIG_OUT names the PNG written next to this script.
 """
 import json
 import os
@@ -122,8 +124,9 @@ def main():
                     fontsize=8, color=INK2,
                     transform=ax.get_yaxis_transform())
         fig.colorbar(art, cax=ax.inset_axes([1.085, 0.0, 0.018, 1.0]), label=label)
-    fig.savefig(HERE / "gb10_energy_maps.png")
-    print("wrote gb10_energy_maps.png")
+    out = os.environ.get("FIG_OUT") or "gb10_energy_maps.png"
+    fig.savefig(HERE / out)
+    print(f"wrote {HERE / out}")
 
 
 if __name__ == "__main__":

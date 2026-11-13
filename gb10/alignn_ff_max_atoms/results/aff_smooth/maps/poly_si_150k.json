@@ -1,0 +1,31 @@
+{
+ "structure": "/data/jlee859/ffmax/results/matpes_r2scan_paper/stage13/relax_poly_si_150k_smooth_relaxed",
+ "mode": "relaxed",
+ "natoms": 155281,
+ "axis": 2,
+ "plane_axes": [
+  0,
+  1
+ ],
+ "center_A": 73.305,
+ "width_A": 5.0,
+ "box_A": [
+  146.61,
+  146.61,
+  146.61
+ ],
+ "slab_atoms": 5296,
+ "missing_energies": 0,
+ "median_by_group_eV": {
+  "0": -8.730831146240234
+ },
+ "de_percentiles_eV": {
+  "1": -0.0050852298736572266,
+  "50": 0.0,
+  "90": 0.23893499374389648,
+  "99": 0.7616678953170778,
+  "99.9": 0.9571038937568669
+ },
+ "layers": null,
+ "kind": "atoms"
+}

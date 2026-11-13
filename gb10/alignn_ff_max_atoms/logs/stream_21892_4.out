@@ -1,0 +1,9 @@
+start Fri Nov 13 12:25:46 AM UTC 2026 | atomgptlab04 | aff_smooth stage15/s15_1B_si_energy --kind Si --rep 500 --rattle 0.05 --k 20 | task 4 of 10 | smooth 1
+device cuda | alignn /data/jlee859/ffmax/alignn_smooth/alignn
+N=1000000000 box 2715.0 A, [20, 20, 20] cubes, halo 20.01 A, rank 4/10: x cubes 8-9, 800 pieces, x cells 195..254
+200/800 pieces, 24,999,834 atoms, 837 s
+400/800 pieces, 50,000,354 atoms, 1670 s
+600/800 pieces, 75,000,056 atoms, 2503 s
+800/800 pieces, 99,999,492 atoms, 3336 s
+{'model_dir': '/data/jlee859/ffmax/models/aff_smooth', 'checkpoint_md5': '8e4976dd2cd536de84044c7470726809', 'layers': [2, 2], 'hidden': 128, 'element_embedding': False, 'cutoff': 5.0, 'max_neighbors': 52, 'three_body_cutoff': 3.5, 'reach_A': 20.0, 'gpu': 'NVIDIA GB10', 'gpu_memory_gb': 130.661138432, 'neighbor_list': 'matscipy', 'torch': '2.13.0+cu130', 'alignn': '/data/jlee859/ffmax/alignn_smooth/alignn', 'slurm_job': '21943', 'host': 'atomgptlab04', 'natoms': 1000000000, 'kind': 'Si', 'rep': 500, 'a_A': 5.43, 'nb': 8, 'rattle': 0.05, 'seed': 0, 'box_A': [2715.0, 2715.0, 2715.0], 'k': [20, 20, 20], 'core_A': [135.75, 135.75, 135.75], 'halo_A': 20.01, 'halo_exact': True, 'forces': False, 'ckpt': False, 'rank': 4, 'world': 10, 'slab_cubes_x': [8, 10], 'ixa': 195, 'ixb': 255, 'local_force_rows': 0, 'n_cubes': 8000, 'cubes_done': 800, 'owned_done': 99999492, 'energy': -868240687.375, 'wall_s': 3335.8783994950354, 'host_peak_gb': 2.300436, 'owned_atoms_per_s': 29976.959596350185}
+exit 0 end Fri Nov 13 01:21:26 AM UTC 2026

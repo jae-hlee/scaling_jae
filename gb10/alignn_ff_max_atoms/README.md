@@ -192,7 +192,7 @@ Energy conservation, float64, velocity Verlet, 2,000 steps from the same start f
 
 The retrained model took 8% to 9% longer than AFF-r2SCAN in these two runs (7.4 against 6.8 s per relaxation step, 3,320 against 3,084 s for STMV). Stage 14 with the retrained model is in the stage 14 section.
 
-## Stage 15: the billion-atom runs with the retrained model (2026-11-11, running)
+## Stage 15: the billion-atom runs with the retrained model (2026-11-11 to 13)
 
 The force runs of a billion atoms or more again, with the stage-12 model (`models/aff_smooth`), the same cells and the same piece sizes, results in `results/aff_smooth/stage15/`. `bash stage15_submit.sh forces` submits the 1,021,299,267-atom polycrystal (`ff_any.py`, 10 tasks, with per-atom energies), 10^9 atoms of rattled Si (`ff_stream.py`, 36^3 cubes as in stage 4, 12 tasks) and 2,000,376,000 atoms of rattled Si (`ff_stream.py`, as in stage 9, 20 tasks): about 163 GB10-hours, AFF-r2SCAN's 149.5 times the 1.09 slowdown of stage 13. Modes `energy` (the two energy-only Si runs, about 29) and `stack` (the gate stack, about 11) are separate. Every array waits for `stage15_check.sbatch`, which compares chunked with full-cell results in double precision through both programs with the trained weights and fails above 1e-9 eV/A or 1e-11 eV/atom.
 
@@ -206,8 +206,28 @@ The check (job 21870) passed: chunked against full cell in double precision with
 | same cell and pieces | retrained (jobs 21871-73) | 10 | -8.678710 | 25.79 | 45.07 | 4.58 | 30.8 | 62.1 |
 | 10^9 atoms of rattled Si, 36^3 cubes | AFF-r2SCAN (stage 4, `ff_max_atoms.py`) | 10 | -8.699598 | 8.52 | 40.2 | 4.03 | 30.2 | 73.9 |
 | same lattice and cubes, other displacements | retrained (`ff_stream.py`, jobs 21874-75) | 12 | -8.682455 | 6.34 | 43.21 | 3.66 | 31.9 | 4.8 |
+| 2,000,376,000 atoms of rattled Si | AFF-r2SCAN (stage 9, jobs 21592-93) | 20 | -8.699596 | 6.80 | 67.45 | 3.61 | 44.2 | 5.7 |
+| same cell and pieces | retrained (jobs 21876-77) | 20 | -8.682454 | 6.64 | 72.29 | 3.84 | 46.6 | 5.7 |
+| 102,361,540-atom Si/SiO2/Al gate stack, as built | AFF-r2SCAN (stage 10, jobs 21578-80) | 6 | -8.073493 | 6.32 | 9.90 | 1.68 | 49.0 | 8.3 |
+| same cell and pieces | retrained (jobs 21889-91) | 6 | -8.068685 | 5.78 | 10.68 | 1.79 | 52.8 | 8.3 |
+| 10^9 atoms of rattled Si, energy only, 20^3 cubes | AFF-r2SCAN (stage 4, `ff_max_atoms.py`) | 10 | -8.699598 | n/a | 8.97 | 0.90 | 49.3 | 73.9 |
+| same lattice and cubes, other displacements | retrained (`ff_stream.py`, jobs 21892-93) | 10 | -8.682455 | n/a | 9.29 | 0.94 | 49.3 | 2.4 |
+| 2,000,376,000 atoms of rattled Si, energy only | AFF-r2SCAN (stage 9, jobs 21590-91) | 10 | -8.699596 | n/a | 17.01 | 2.23 | 62.0 | 2.5 |
+| same cell and pieces | retrained (jobs 21894-95) | 10 | -8.682454 | n/a | 17.74 | 2.32 | 62.1 | 2.5 |
 
-The retrained model takes 7.5% longer in both runs and 5% more GPU memory per piece. The 10^9-atom Si run needs only 4.8 GB of host memory per task instead of 73.9 because `ff_stream.py` generates the pieces instead of holding the cell. Its energies are shifted by about +17.5 meV/atom from AFF-r2SCAN's for Si (+17.6 for the polycrystal, +17.1 for 10^9 rattled Si, +17.2 for the 8,000-atom rattled cell of the check), so only energy differences are comparable between the models. The grain-boundary excess of the letter (51.2 meV/atom above perfect Si) needs the retrained model's perfect-Si energy, which has not been computed. Results in `results/aff_smooth/stage15/`, logs `chunkany_21872_*.out` and `reduceany_21873.out`.
+All six runs completed (2026-11-11 to 13), 198.3 GB10-hours in all (AFF-r2SCAN's same runs: 185.5). The stack's GB10-hours are the sum of its six task times (6 tasks, all 15,925 cubes and 102,361,540 owned atoms done). The retrained model takes 7 to 8% longer in the force runs (7.5% for the polycrystal and the 10^9-atom Si, 7.2% for 2B Si, 7.9% for the stack) and 5 to 8% more GPU memory per piece, but only 4% longer in the energy-only runs (3.6% and 4.3%) with the same GPU memory (within 0.1 GB), so the extra cost is mostly in the backward pass. The 10^9-atom Si runs need only 4.8 GB (forces) and 2.4 GB (energy only) of host memory per task instead of 73.9 because `ff_stream.py` generates the pieces instead of holding the cell. The energy-only and force runs of the same cell agree: 3.3e-10 eV/atom for 2B Si (AFF-r2SCAN 1.6e-10) and 1.6e-8 for 10^9 Si (different cube counts, so a different float32 summation; AFF-r2SCAN 6.6e-9). Energies are shifted by about +17.5 meV/atom from AFF-r2SCAN's for Si (+17.6 for the polycrystal, +17.1 for 10^9 and for 2B rattled Si, +17.2 for the 8,000-atom rattled cell of the check) and by +4.8 for the stack (Si, SiO2 and Al together), so only energy differences are comparable between the models. The largest forces are lower with the retrained model in every run (5.78 against 6.32 eV/A in the stack).
+
+Perfect Si (job 21957, `stage15_ref.sbatch`, 1 min 16 s): 8,000 atoms of unrattled diamond Si (a = 5.43 A), 2 x 2 x 2 cubes on one task, checked against the full cell. AFF-r2SCAN, run as a control, gives -8.747559 eV/atom in float32 (chunked; -8.747561 full cell) and -8.747562 in float64, which reproduces the reference from its sweep (-8.747559). The retrained model gives -8.735021 in float32 (chunked and full cell) and -8.735019 in float64, 12.5 meV/atom above AFF-r2SCAN; its shift for perfect Si is smaller than for rattled Si (about 17.5), so the two models also differ in the energy of the 0.05 A displacements (48.0 meV/atom for AFF-r2SCAN, 52.6 for the retrained model, from the 10^9-atom cells). Grain-boundary excess with the float32 references:
+
+| Cell, as built | AFF-r2SCAN (meV/atom) | Retrained (meV/atom) |
+|---|---:|---:|
+| 1,021,299,267 atoms, 4,800 grains | 51.2 | 56.3 |
+| 155,281 atoms, 8 grains (first step of the relaxations) | 112.4 | 122.7 |
+| ratio | 2.19 | 2.18 |
+
+Both models give the same ratio, close to the grain-size ratio of 2.2, as expected if the excess follows the boundary area per atom; the retrained model puts the boundary energy 9 to 10% higher. Results (JSON only) in `results/aff_smooth/stage15/`; logs in `logs/`: `stage15check_21870.out` (check), `chunkany_21872_*.out` and `reduceany_21873.out` (polycrystal), `stream_21874_*.out` and `streamreduce_21875.out` (10^9 Si), `stream_21876_*.out` and `streamreduce_21877.out` (2B Si), `build_21889.out`, `chunkany_21890_*.out` and `reduceany_21891.out` (stack), `stream_21892_*.out`, `streamreduce_21893.out`, `stream_21894_*.out` and `streamreduce_21895.out` (energy only), `stage15ref_21957.out` (perfect Si). Force arrays and per-atom energies stay on the cluster.
+
+Energy maps of the retrained model (jobs 22022 and 22023, 2026-11-13; `SMOOTH=1 sbatch maps.sbatch`, then `SMOOTH=1 sbatch maps_figure.sbatch`): the maps are in `results/aff_smooth/maps/`, the figure is `analysis/gb10_energy_maps_smooth.png`, logs `maps_22022.out` and `mapfig_22023.out`. Panel (a) is the stage-13 relaxation, which converged, while AFF-r2SCAN's stalled. The figure looks like AFF-r2SCAN's: the same boundaries and interfaces are dark, and the color scales top out a little higher (99th percentile 0.76 against 0.64 eV for the relaxed cell, 1.09 against 0.95 for the 10^9-atom one). The slab medians reproduce the perfect-Si reference (-8.735016 and -8.735023 against -8.735021 eV/atom). Depth of the deepest 1 A bin whose mean differs from its median by more than 1 meV at the inner interfaces (Si top, SiO2 bottom, SiO2 top, Al bottom): 4.0, 7.0, 5.7, 6.3 A, against 5.0, 7.0, 7.7, 6.3 for AFF-r2SCAN (job 21739). So the disturbance reaches 0.4 to 0.7 nm, against 0.5 to 0.8 nm.
 
 ## Stage 14: stacking-fault energies of Al (job 21783, 2026-11-09)
 
