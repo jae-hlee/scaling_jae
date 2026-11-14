@@ -9,7 +9,10 @@
 
 Run from inside analysis/. Needs numpy and matplotlib only. GB10_RESULTS
 overrides the results folder and FIG_OUT the output folder (for running on
-the cluster with a copy of the repo's results).
+the cluster with a copy of the repo's results). GB10_MODEL=smooth draws the
+scaling and halo figures for AFF-r2SCAN-smooth instead (stage 16 sweeps, 8M
+and 64M runs, stage 15 billion-atom runs, stage 16 halo scan) and writes
+them as gb10_scaling_smooth.png and gb10_halo_smooth.png.
 """
 import glob
 import json
@@ -27,6 +30,23 @@ HERE = Path(__file__).resolve().parent
 RES = Path(os.environ.get("GB10_RESULTS")
            or HERE.parent / "gb10" / "alignn_ff_max_atoms" / "results")
 OUT = Path(os.environ.get("FIG_OUT") or HERE)
+SMOOTH = os.environ.get("GB10_MODEL", "") == "smooth"
+SUFFIX = "_smooth" if SMOOTH else ""
+# 2+2 model of the scaling figure: results folder of its chunked runs, folder
+# of its single-graph sweeps, chunked runs with forces and energy only
+# (8M, 64M, 1B), and its label in the halo figure
+if SMOOTH:
+    MAIN = ("aff_smooth", "aff_smooth/stage16",
+            ("stage16/s16_8M_forces", "stage16/s16_64M_forces",
+             "stage15/s15_1B_si_forces"),
+            ("stage16/s16_8M_energy", "stage16/s16_64M_energy",
+             "stage15/s15_1B_si_energy"),
+            "AFF-r2SCAN-smooth (2+2, reach 20 Å)")
+else:
+    MAIN = ("matpes_r2scan_paper", "matpes_r2scan_paper",
+            ("s2_8M_forces", "s2_64M_forces", "s4_1B_forces"),
+            ("s2_8M_energy", "s3_64M_energy", "s4_1B_energy"),
+            "AFF-r2SCAN (2+2, reach 20 Å)")
 
 # categorical slots 1-4 (validated: lightness, chroma, CVD and normal-vision
 # separation pass on a white surface); text stays in ink colors
@@ -77,22 +97,20 @@ def style(ax):
 
 # ---------------------------------------------------------------- scaling
 def fig_scaling():
-    m = "matpes_r2scan_paper"
+    m, msweep, stems_f, stems_e, _ = MAIN
     paths = [  # (sweep path, label, color, marker)
         ("ase", "E+F+S, ASE calculator", YELLOW, "v"),
         ("ef", "E+F+S, forward_tensors", BLUE, "o"),
         ("ckpt", "E+F+S, layer checkpointing", ORANGE, "s"),
         ("e", "energy only", AQUA, "^"),
     ]
-    chunks_f = [chunked(m, s) for s in
-                ("s2_8M_forces", "s2_64M_forces", "s4_1B_forces")]
-    chunks_e = [chunked(m, s) for s in
-                ("s2_8M_energy", "s3_64M_energy", "s4_1B_energy")]
-    cap = load(glob.glob(str(RES / m / "sweep_e_*.json"))[0])["gpu_memory_gb"]
+    chunks_f = [chunked(m, s) for s in stems_f]
+    chunks_e = [chunked(m, s) for s in stems_e]
+    cap = load(glob.glob(str(RES / msweep / "sweep_e_*.json"))[0])["gpu_memory_gb"]
 
     fig, (a, b) = plt.subplots(1, 2, figsize=(7.2, 3.1))
     for path, label, color, mk in paths:
-        n, t, mem = sweep(m, path)
+        n, t, mem = sweep(msweep, path)
         a.plot(n, t, "-", color=color, marker=mk, ms=3.5, label=label)
         b.plot(n, mem, "-", color=color, marker=mk, ms=3.5, label=label)
     for rows, color, mk, label in (
@@ -129,14 +147,14 @@ def fig_scaling():
     fig.legend(h, lab, loc="lower center", ncol=3, frameon=False,
                bbox_to_anchor=(0.5, -0.12))
     fig.tight_layout()
-    fig.savefig(OUT / "gb10_scaling.png")
+    fig.savefig(OUT / f"gb10_scaling{SUFFIX}.png")
     plt.close(fig)
 
 
 # ------------------------------------------------------------------- halo
 def fig_halo():
     models = [
-        ("matpes_r2scan_paper", "AFF-r2SCAN (2+2, reach 20 Å)", BLUE, "o"),
+        (MAIN[1], MAIN[4], BLUE, "o"),
         ("alignn_ff_mptrj", "alignn_ff_mptrj (4+4, reach 40 Å)", ORANGE,
          "s"),
         ("alignn_ff_matpes_pbe", "alignn_ff_matpes_pbe (4+4, reach 40 Å)",
@@ -169,7 +187,7 @@ def fig_halo():
     ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2,
               frameon=False, fontsize=7)
     fig.tight_layout()
-    fig.savefig(OUT / "gb10_halo.png")
+    fig.savefig(OUT / f"gb10_halo{SUFFIX}.png")
     plt.close(fig)
 
 
@@ -224,4 +242,5 @@ if __name__ == "__main__":
     fig_scaling()
     fig_halo()
     fig_decomposition()
-    print("wrote gb10_scaling.png, gb10_halo.png, gb10_decomposition.png")
+    print(f"wrote gb10_scaling{SUFFIX}.png, gb10_halo{SUFFIX}.png, "
+          "gb10_decomposition.png")

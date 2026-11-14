@@ -1,0 +1,11 @@
+start Fri Nov 13 02:55:04 PM EST 2026 | atomgptlab05 | model smooth
+wrote gb10_scaling_smooth.png, gb10_halo_smooth.png, gb10_decomposition.png
+total 978
+drwx------  2 jlee859 domain users      7 Nov 13 14:55 .
+drwx------ 12 jlee859 domain users     76 Nov 13 13:57 ..
+-rw-------  1 jlee859 domain users 109777 Nov 13 14:55 gb10_decomposition.png
+-rw-------  1 jlee859 domain users 179272 Nov  9 17:37 gb10_halo.png
+-rw-------  1 jlee859 domain users 178707 Nov 13 14:55 gb10_halo_smooth.png
+-rw-------  1 jlee859 domain users 211866 Nov  9 17:37 gb10_scaling.png
+-rw-------  1 jlee859 domain users 213094 Nov 13 14:55 gb10_scaling_smooth.png
+end rc 0 Fri Nov 13 02:55:08 PM EST 2026

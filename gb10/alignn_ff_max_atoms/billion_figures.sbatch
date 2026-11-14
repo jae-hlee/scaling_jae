@@ -11,13 +11,19 @@
 # results folder (fig_inputs) so the data are those of the committed figures.
 # Written to /data/jlee859/ffmax/figs. Copy gb10_billion_figures.py and the
 # results folder first.
+# With GB10_MODEL=smooth the scaling and halo figures of AFF-r2SCAN-smooth
+# (gb10_scaling_smooth.png, gb10_halo_smooth.png) are drawn from the cluster's
+# own results folder, which holds the stage 15 and 16 files the repo copies.
 #   cd /data/jlee859/ffmax && sbatch billion_figures.sbatch
+#   cd /data/jlee859/ffmax && GB10_MODEL=smooth sbatch billion_figures.sbatch
 set -uo pipefail
 B=/data/jlee859/ffmax
 PY=/data/jlee859/miniforge3-aarch64/envs/alignn/bin/python
 cd $B
-echo "start $(date) | $(hostname)"
-if [ -d $B/fig_inputs/results ]; then
+echo "start $(date) | $(hostname) | model ${GB10_MODEL:-published}"
+if [ "${GB10_MODEL:-}" = smooth ]; then
+    export GB10_RESULTS=$B/results
+elif [ -d $B/fig_inputs/results ]; then
     export GB10_RESULTS=$B/fig_inputs/results
 else
     export GB10_RESULTS=$B/fig_inputs

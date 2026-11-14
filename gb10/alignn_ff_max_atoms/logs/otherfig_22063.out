@@ -1,0 +1,12 @@
+start Fri Nov 13 04:06:08 PM EST 2026 | atomgptlab07
+model                                atoms   atom-steps/s
+ALIGNN-FF, chunked           2,000,376,000          7,686
+SNAP (LAMMPS)                  157,464,000        227,776
+NEP (GPUMD)                     56,623,104     16,475,700
+ALIGNN-FF, one graph               216,000         21,097
+Allegro (ASE)                       74,088         10,350
+ALIGNN-FF (ASE)                     54,872          6,777
+Deep Potential (Python)             32,768         10,429
+wrote /data/jlee859/ffmax/figs/gb10_other_ff.png
+-rw------- 1 jlee859 domain users 156819 Nov 13 16:06 /data/jlee859/ffmax/figs/gb10_other_ff.png
+end rc 0 Fri Nov 13 04:06:11 PM EST 2026
