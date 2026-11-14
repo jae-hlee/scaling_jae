@@ -1,0 +1,162 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/aff_smooth",
+ "checkpoint_md5": "8e4976dd2cd536de84044c7470726809",
+ "layers": [
+  2,
+  2
+ ],
+ "hidden": 128,
+ "element_embedding": false,
+ "cutoff": 5.0,
+ "max_neighbors": 52,
+ "three_body_cutoff": 3.5,
+ "reach_A": 20.0,
+ "gpu": "NVIDIA GB10",
+ "gpu_memory_gb": 130.661138432,
+ "neighbor_list": "matscipy",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_smooth/alignn",
+ "slurm_job": "22027",
+ "host": "atomgptlab04",
+ "natoms": 8000,
+ "rep": 10,
+ "box_A": 54.3,
+ "k": 2,
+ "core_A": 27.15,
+ "halo_A": 8.0,
+ "halo_exact": false,
+ "forces": true,
+ "ckpt": true,
+ "rattle": 0.05,
+ "species": "Si",
+ "rank": 0,
+ "world": 1,
+ "n_cubes": 8,
+ "cubes_done": 8,
+ "owned_done": 8000,
+ "energy": -69463.38929628179,
+ "pieces": [
+  {
+   "cube": [
+    0,
+    0,
+    0
+   ],
+   "atoms": 3607,
+   "owned": 1001,
+   "t_graph_s": 0.011980849085375667,
+   "t_eval_s": 2.3340750909410417,
+   "mem_alloc_gb": 3.004274176,
+   "mem_reserved_gb": 3.087007744
+  },
+  {
+   "cube": [
+    0,
+    0,
+    1
+   ],
+   "atoms": 3602,
+   "owned": 1000,
+   "t_graph_s": 0.010077665094286203,
+   "t_eval_s": 0.7097854949533939,
+   "mem_alloc_gb": 3.000336896,
+   "mem_reserved_gb": 3.107979264
+  },
+  {
+   "cube": [
+    0,
+    1,
+    0
+   ],
+   "atoms": 3606,
+   "owned": 994,
+   "t_graph_s": 0.009877872886136174,
+   "t_eval_s": 0.7090229671448469,
+   "mem_alloc_gb": 3.003657728,
+   "mem_reserved_gb": 3.107979264
+  },
+  {
+   "cube": [
+    0,
+    1,
+    1
+   ],
+   "atoms": 3606,
+   "owned": 1002,
+   "t_graph_s": 0.009633807931095362,
+   "t_eval_s": 0.709139910992235,
+   "mem_alloc_gb": 3.003177472,
+   "mem_reserved_gb": 3.107979264
+  },
+  {
+   "cube": [
+    1,
+    0,
+    0
+   ],
+   "atoms": 3605,
+   "owned": 990,
+   "t_graph_s": 0.010007329052314162,
+   "t_eval_s": 0.7102079740725458,
+   "mem_alloc_gb": 3.0025984,
+   "mem_reserved_gb": 3.107979264
+  },
+  {
+   "cube": [
+    1,
+    0,
+    1
+   ],
+   "atoms": 3607,
+   "owned": 1002,
+   "t_graph_s": 0.010861632879823446,
+   "t_eval_s": 0.7105742620769888,
+   "mem_alloc_gb": 3.004274176,
+   "mem_reserved_gb": 3.107979264
+  },
+  {
+   "cube": [
+    1,
+    1,
+    0
+   ],
+   "atoms": 3600,
+   "owned": 1011,
+   "t_graph_s": 0.009401793126016855,
+   "t_eval_s": 0.7089664379600435,
+   "mem_alloc_gb": 2.998782976,
+   "mem_reserved_gb": 3.107979264
+  },
+  {
+   "cube": [
+    1,
+    1,
+    1
+   ],
+   "atoms": 3605,
+   "owned": 1000,
+   "t_graph_s": 0.011119425063952804,
+   "t_eval_s": 0.7091195578686893,
+   "mem_alloc_gb": 3.002699776,
+   "mem_reserved_gb": 3.107979264
+  }
+ ],
+ "wall_s": 7.394538294989616,
+ "host_peak_gb": 1.97218,
+ "owned_atoms_per_s": 1081.87958204512,
+ "e_per_atom": -8.682923662035224,
+ "max_abs_f": 3.625812344419632,
+ "net_force": [
+  1.4432899320127035e-14,
+  3.502753642692369e-14,
+  3.0031532816110484e-14
+ ],
+ "validation": {
+  "e_full_per_atom": -8.682912062994633,
+  "e_atom_sum_per_atom": -8.682912062994633,
+  "e_pieces_per_atom": -8.682923662035224,
+  "max_abs_de_per_atom": 1.159904059022665e-05,
+  "max_abs_f_full": 3.6261511442616747,
+  "max_abs_df": 0.0020609501737227642
+ }
+}

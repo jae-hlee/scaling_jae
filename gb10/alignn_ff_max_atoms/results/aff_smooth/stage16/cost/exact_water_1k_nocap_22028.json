@@ -1,0 +1,213 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/aff_smooth",
+ "checkpoint_md5": "8e4976dd2cd536de84044c7470726809",
+ "layers": [
+  2,
+  2
+ ],
+ "hidden": 128,
+ "element_embedding": false,
+ "cutoff": 5.0,
+ "max_neighbors": 10000,
+ "three_body_cutoff": 3.5,
+ "reach_A": 20.0,
+ "gpu": "NVIDIA GB10",
+ "gpu_memory_gb": 130.661208064,
+ "neighbor_list": "matscipy",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_smooth/alignn",
+ "slurm_job": "22028",
+ "host": "atomgptlab05",
+ "natoms": 1536,
+ "structure": "/data/jlee859/ffmax/structures/water_1k",
+ "structure_meta": {
+  "kind": "water",
+  "seed": 0,
+  "molecules_per_side": 8,
+  "natoms": 1536,
+  "box_A": [
+   24.833877134963807,
+   24.833877134963807,
+   24.833877134963807
+  ],
+  "elements": {
+   "1": 1024,
+   "8": 512
+  }
+ },
+ "box_A": [
+  24.833877134963807,
+  24.833877134963807,
+  24.833877134963807
+ ],
+ "k": [
+  2,
+  2,
+  2
+ ],
+ "core_A": [
+  12.416938567481903,
+  12.416938567481903,
+  12.416938567481903
+ ],
+ "halo_A": 20.01,
+ "halo_exact": true,
+ "forces": true,
+ "ckpt": true,
+ "rattle": 0.0,
+ "rank": 0,
+ "world": 1,
+ "n_cubes": 8,
+ "cubes_done": 8,
+ "owned_done": 1536,
+ "energy": -7871.960177004621,
+ "pieces": [
+  {
+   "cube": [
+    0,
+    0,
+    0
+   ],
+   "atoms": 10287,
+   "owned": 205,
+   "t_graph_s": 0.04093462508171797,
+   "t_eval_s": 10.488331287167966,
+   "edges": 502528,
+   "lg_edges": 2365810,
+   "max_degree": 63,
+   "mem_alloc_gb": 43.09356544,
+   "mem_reserved_gb": 44.551897088
+  },
+  {
+   "cube": [
+    0,
+    0,
+    1
+   ],
+   "atoms": 10274,
+   "owned": 189,
+   "t_graph_s": 0.041495053097605705,
+   "t_eval_s": 8.061936411075294,
+   "edges": 501928,
+   "lg_edges": 2371298,
+   "max_degree": 63,
+   "mem_alloc_gb": 43.147803648,
+   "mem_reserved_gb": 44.845498368
+  },
+  {
+   "cube": [
+    0,
+    1,
+    0
+   ],
+   "atoms": 10239,
+   "owned": 195,
+   "t_graph_s": 0.03730677906423807,
+   "t_eval_s": 7.988311180844903,
+   "edges": 499432,
+   "lg_edges": 2344614,
+   "max_degree": 63,
+   "mem_alloc_gb": 42.744579584,
+   "mem_reserved_gb": 44.845498368
+  },
+  {
+   "cube": [
+    0,
+    1,
+    1
+   ],
+   "atoms": 10272,
+   "owned": 184,
+   "t_graph_s": 0.03579738084226847,
+   "t_eval_s": 8.057129769586027,
+   "edges": 501702,
+   "lg_edges": 2369734,
+   "max_degree": 63,
+   "mem_alloc_gb": 43.122145792,
+   "mem_reserved_gb": 44.845498368
+  },
+  {
+   "cube": [
+    1,
+    0,
+    0
+   ],
+   "atoms": 10245,
+   "owned": 188,
+   "t_graph_s": 0.036155073903501034,
+   "t_eval_s": 8.003483983688056,
+   "edges": 500106,
+   "lg_edges": 2350332,
+   "max_degree": 63,
+   "mem_alloc_gb": 42.834531328,
+   "mem_reserved_gb": 44.845498368
+  },
+  {
+   "cube": [
+    1,
+    0,
+    1
+   ],
+   "atoms": 10265,
+   "owned": 185,
+   "t_graph_s": 0.035182890482246876,
+   "t_eval_s": 8.039514224976301,
+   "edges": 501146,
+   "lg_edges": 2358998,
+   "max_degree": 63,
+   "mem_alloc_gb": 42.97145088,
+   "mem_reserved_gb": 47.676653568
+  },
+  {
+   "cube": [
+    1,
+    1,
+    0
+   ],
+   "atoms": 10240,
+   "owned": 188,
+   "t_graph_s": 0.036239811219275,
+   "t_eval_s": 7.992130922153592,
+   "edges": 499336,
+   "lg_edges": 2343634,
+   "max_degree": 63,
+   "mem_alloc_gb": 42.729696768,
+   "mem_reserved_gb": 47.676653568
+  },
+  {
+   "cube": [
+    1,
+    1,
+    1
+   ],
+   "atoms": 10262,
+   "owned": 202,
+   "t_graph_s": 0.03629107400774956,
+   "t_eval_s": 8.030656825751066,
+   "edges": 500716,
+   "lg_edges": 2358614,
+   "max_degree": 63,
+   "mem_alloc_gb": 42.95553792,
+   "mem_reserved_gb": 47.676653568
+  }
+ ],
+ "wall_s": 67.01212893333286,
+ "host_peak_gb": 2.037692,
+ "owned_atoms_per_s": 22.921223731424686,
+ "neighbor_cap_binds": false,
+ "e_per_atom": -5.1249740735707165,
+ "max_abs_f": 1.0435237017238717,
+ "net_force": [
+  4.898859096158503e-15,
+  2.9559688030644793e-15,
+  3.3306690738754696e-16
+ ],
+ "validation": {
+  "e_full_per_atom": -5.124974073570716,
+  "e_atom_sum_per_atom": -5.1249740735707165,
+  "e_pieces_per_atom": -5.1249740735707165,
+  "max_abs_de_per_atom": 8.881784197001252e-16,
+  "max_abs_f_full": 1.0435237017238697,
+  "max_abs_df": 3.712030682834211e-13
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/aff_smooth",
+ "natoms": 64000000,
+ "box_A": 1086.0,
+ "k": 8,
+ "core_A": 135.75,
+ "halo_A": 20.01,
+ "halo_exact": true,
+ "forces": false,
+ "gpu": "NVIDIA GB10",
+ "e_per_atom": -8.68244861328125,
+ "wall_s_slowest_rank": 369.18635251093656,
+ "piece_atoms_max": 261206,
+ "mem_alloc_gb_max": 49.305231872
+}

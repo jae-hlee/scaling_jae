@@ -99,6 +99,7 @@ The scripts expect alignn at commit `6a20fb5` and the four checkpoints under `/d
 - `energy_maps.py`, `maps.sbatch`: per-atom energy maps for figures from the stage-7 and stage-10 runs (a 5 A slab, each atom's energy relative to the median of its material, atom by atom or binned), written as small files to `results/<model>/maps/` for `analysis/gb10_energy_maps_figure.py`
 - `stacking_fault.py`, `stage14_gsf.sbatch`: stacking-fault and surface energies of FCC Al or Cu (stage 14, below)
 - `stage15_check.sbatch`, `stage15_submit.sh`: the billion-atom runs with the retrained model (stage 15, below). `chunk_any.sbatch` and `stream.sbatch` take `SMOOTH=1` from the environment for a model with smooth_messages, and `SMOOTH=1 sbatch maps.sbatch` makes the energy maps of the retrained model's runs
+- `smooth_ffm.py`, `stage16_submit.sh`, `stage16_small.sbatch`, `stage16_cost.sbatch`, `stage16_chunk.sbatch`, `stage16_sweeps.sbatch`, `stage15_ref.sbatch`: stage 16 (below), every test under 10^8 atoms again with the retrained model, and the perfect-Si reference of stage 15
 - `build.sbatch`, `chunk_any.sbatch`, `reduce_any.sbatch`, `stream.sbatch`, `stream_reduce.sbatch`: generic wrappers (build a structure; one array task of `ff_any.py` or `ff_stream.py`; reduce)
 - `stage7_poly.sbatch`, `stage7_1B_submit.sh`, `stage8_cliff.sbatch`, `stage9_check.sbatch`, `stage9_submit.sh`, `stage10_check.sbatch`, `stage10_submit.sh`: stages 7 to 10, below
 - `relax_check.py`, `relax_check.sbatch`: forces of a relaxed cell, which atoms keep large forces, and a test for force jumps at the graph cutoffs
@@ -228,6 +229,28 @@ Perfect Si (job 21957, `stage15_ref.sbatch`, 1 min 16 s): 8,000 atoms of unrattl
 Both models give the same ratio, close to the grain-size ratio of 2.2, as expected if the excess follows the boundary area per atom; the retrained model puts the boundary energy 9 to 10% higher. Results (JSON only) in `results/aff_smooth/stage15/`; logs in `logs/`: `stage15check_21870.out` (check), `chunkany_21872_*.out` and `reduceany_21873.out` (polycrystal), `stream_21874_*.out` and `streamreduce_21875.out` (10^9 Si), `stream_21876_*.out` and `streamreduce_21877.out` (2B Si), `build_21889.out`, `chunkany_21890_*.out` and `reduceany_21891.out` (stack), `stream_21892_*.out`, `streamreduce_21893.out`, `stream_21894_*.out` and `streamreduce_21895.out` (energy only), `stage15ref_21957.out` (perfect Si). Force arrays and per-atom energies stay on the cluster.
 
 Energy maps of the retrained model (jobs 22022 and 22023, 2026-11-13; `SMOOTH=1 sbatch maps.sbatch`, then `SMOOTH=1 sbatch maps_figure.sbatch`): the maps are in `results/aff_smooth/maps/`, the figure is `analysis/gb10_energy_maps_smooth.png`, logs `maps_22022.out` and `mapfig_22023.out`. Panel (a) is the stage-13 relaxation, which converged, while AFF-r2SCAN's stalled. The figure looks like AFF-r2SCAN's: the same boundaries and interfaces are dark, and the color scales top out a little higher (99th percentile 0.76 against 0.64 eV for the relaxed cell, 1.09 against 0.95 for the 10^9-atom one). The slab medians reproduce the perfect-Si reference (-8.735016 and -8.735023 against -8.735021 eV/atom). Depth of the deepest 1 A bin whose mean differs from its median by more than 1 meV at the inner interfaces (Si top, SiO2 bottom, SiO2 top, Al bottom): 4.0, 7.0, 5.7, 6.3 A, against 5.0, 7.0, 7.7, 6.3 for AFF-r2SCAN (job 21739). So the disturbance reaches 0.4 to 0.7 nm, against 0.5 to 0.8 nm.
+
+## Stage 16: the small tests with the retrained model (jobs 22027 to 22032 and 22055, 2026-11-13)
+
+So that the letter reports every number with one model (AFF-r2SCAN-smooth, `models/aff_smooth`), the tests of stages 1, 2, 3, 5 and 6 were repeated with it on the same cells, displacements and piece sizes. `smooth_ffm.py` imports `ff_max_atoms.py` (unchanged, md5 checked), replaces its per-atom energies with `smooth_eval.atom_energies` and calls its `main()`; running `ff_max_atoms.py` through `smooth_eval.py` would not work, because it would run as a second copy (`__main__`) whose function is not replaced. `stage16_submit.sh` submitted `stage16_small.sbatch` (22027: sweeps, SiGe and halo checks, 8M atoms), `stage16_cost.sbatch` (22028: stage 6 again) and the 64M arrays (`stage16_chunk.sbatch`, 22029 and 22031, reduces 22030 and 22032). All completed. The ASE path was checked to build the patched model (`ALIGNNAtomWisePure | smooth_messages True`) before its sweep. Results in `results/aff_smooth/stage16/` and `cost/`.
+
+| Test | AFF-r2SCAN-smooth | AFF-r2SCAN |
+|---|---|---|
+| Largest Si single graph: energy only / ASE / forward_tensors / checkpointed (atoms) | 551,368 / 54,872 / 140,608 / 216,000 | 551,368 / 54,872 / 140,608 / 195,112 |
+| MB per atom on those paths | 0.195 / 2.103 / 0.825 / 0.550 | 0.195 / 1.953 / 0.749 / 0.526 |
+| Checkpointed single graph of 97,336 atoms | 4.61 s, 21,100 atoms/s | 4.28 s, 22,750 atoms/s |
+| SiGe 8,000 atoms, float32: dE (eV/atom), dF (eV/A) | 8.5e-7, 2.5e-4 | 6.1e-7, 1.7e-4 |
+| SiGe 8,000 atoms, float64, exact halo | 0, 4.3e-13 | 1.8e-15, 2.9e-13 |
+| Halo 8 / 12 / 16 / 20 A, float64, largest dF (eV/A) | 2.1e-3 / 3.9e-6 / 3.0e-9 / 2.7e-13 | 1.6e-4 / 1.0e-6 / 8.4e-10 / 2.0e-13 |
+| 8M Si, energy / forces | 273 s / 1,047 s (47.5 GB) | 264 s / 979 s (45.0 GB) |
+| 64M Si, energy / forces (GB10-hours) | 0.61 / 2.34 (slowest 369 / 1,460 s) | 0.58 / 2.19 |
+| 64M force task time over the 8M run | 1.32 to 1.39 | 1.32 to 1.41 |
+| Water 1,536 atoms, 20 A halo (cap binds), float64 dF | 4.0e-9 eV/A (25 A: 4.7e-13; no cap: 3.7e-13) | 8e-8 |
+| Chunked forces, GB10-hours per 10^9 atoms: Si / poly / Al / Cu / water | 38 / 38 / 168 / 255 / 643 | 35 / 34 / 150 / 229 / 577 |
+| Energy only, same | 10 / 10 / 35 / 54 / 124 | 9 / 10 / 33 / 50 / 115 |
+| Single graph with forces: Al, Cu, water (atoms, MB/atom) | 62,500, 62,500, 36,501 (1.650, 1.650, 2.596) | 70,304, 70,304, 41,472 (1.544, 1.544, 2.413) |
+
+The retrained model takes 7 to 8% longer with forces and 3 to 5% longer for the energy alone, and uses 5 to 10% more memory per atom with forces and the same without, in every test here and in stage 15. Per-atom energies of its 8M, 64M and 10^9 Si cells agree to 2e-5 eV. The largest single graph is set by where the host stops the process, which differs by node: the checkpointed Si sweep reached 216,000 atoms (118.8 GB) on atomgptlab04, more than AFF-r2SCAN's 195,112 on atomgptlab06, and on atomgptlab07 (job 22055) the Al, Cu and water sweeps were stopped at about 100 to 116 GB, against up to 121 GB on atomgptlab03. In job 22028 on atomgptlab05 all six of those sweeps were stopped with SIGTERM at 77 to 83 GB, so they were rerun as job 22055 (`stage16_sweeps.sbatch`, atomgptlab05 excluded) and the 22028 sweep files are not used. Near the memory limit graph construction slows: the energy-only Si sweep took 16.7 s at 551,368 atoms against 8.7 s at 512,000. The chunked rates of the cost job use AFF-r2SCAN's piece sizes, so both models are timed on the same pieces.
 
 ## Stage 14: stacking-fault energies of Al (job 21783, 2026-11-09)
 

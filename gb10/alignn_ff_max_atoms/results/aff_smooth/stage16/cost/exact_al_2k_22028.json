@@ -1,0 +1,213 @@
+{
+ "model_dir": "/data/jlee859/ffmax/models/aff_smooth",
+ "checkpoint_md5": "8e4976dd2cd536de84044c7470726809",
+ "layers": [
+  2,
+  2
+ ],
+ "hidden": 128,
+ "element_embedding": false,
+ "cutoff": 5.0,
+ "max_neighbors": 52,
+ "three_body_cutoff": 3.5,
+ "reach_A": 20.0,
+ "gpu": "NVIDIA GB10",
+ "gpu_memory_gb": 130.661208064,
+ "neighbor_list": "matscipy",
+ "torch": "2.13.0+cu130",
+ "alignn": "/data/jlee859/ffmax/alignn_smooth/alignn",
+ "slurm_job": "22028",
+ "host": "atomgptlab05",
+ "natoms": 2048,
+ "structure": "/data/jlee859/ffmax/structures/al_2k",
+ "structure_meta": {
+  "kind": "Al",
+  "seed": 0,
+  "rep": 8,
+  "rattle": 0.0,
+  "natoms": 2048,
+  "box_A": [
+   32.4,
+   32.4,
+   32.4
+  ],
+  "elements": {
+   "13": 2048
+  }
+ },
+ "box_A": [
+  32.4,
+  32.4,
+  32.4
+ ],
+ "k": [
+  2,
+  2,
+  2
+ ],
+ "core_A": [
+  16.2,
+  16.2,
+  16.2
+ ],
+ "halo_A": 20.01,
+ "halo_exact": true,
+ "forces": true,
+ "ckpt": true,
+ "rattle": 0.0,
+ "rank": 0,
+ "world": 1,
+ "n_cubes": 8,
+ "cubes_done": 8,
+ "owned_done": 2048,
+ "energy": -13757.569141150541,
+ "pieces": [
+  {
+   "cube": [
+    0,
+    0,
+    0
+   ],
+   "atoms": 7677,
+   "owned": 256,
+   "t_graph_s": 0.022638735361397266,
+   "t_eval_s": 7.808565634302795,
+   "edges": 288816,
+   "lg_edges": 978732,
+   "max_degree": 42,
+   "mem_alloc_gb": 19.977180672,
+   "mem_reserved_gb": 20.858273792
+  },
+  {
+   "cube": [
+    0,
+    0,
+    1
+   ],
+   "atoms": 7677,
+   "owned": 256,
+   "t_graph_s": 0.019775827415287495,
+   "t_eval_s": 3.873721786774695,
+   "edges": 288816,
+   "lg_edges": 978732,
+   "max_degree": 42,
+   "mem_alloc_gb": 19.977180672,
+   "mem_reserved_gb": 20.858273792
+  },
+  {
+   "cube": [
+    0,
+    1,
+    0
+   ],
+   "atoms": 7677,
+   "owned": 256,
+   "t_graph_s": 0.02021073643118143,
+   "t_eval_s": 3.874879159964621,
+   "edges": 288816,
+   "lg_edges": 978732,
+   "max_degree": 42,
+   "mem_alloc_gb": 19.977180672,
+   "mem_reserved_gb": 20.858273792
+  },
+  {
+   "cube": [
+    0,
+    1,
+    1
+   ],
+   "atoms": 7677,
+   "owned": 256,
+   "t_graph_s": 0.02213893085718155,
+   "t_eval_s": 3.8748476933687925,
+   "edges": 288816,
+   "lg_edges": 978732,
+   "max_degree": 42,
+   "mem_alloc_gb": 19.977180672,
+   "mem_reserved_gb": 20.858273792
+  },
+  {
+   "cube": [
+    1,
+    0,
+    0
+   ],
+   "atoms": 7677,
+   "owned": 256,
+   "t_graph_s": 0.021220841445028782,
+   "t_eval_s": 3.8765984075143933,
+   "edges": 288816,
+   "lg_edges": 978732,
+   "max_degree": 42,
+   "mem_alloc_gb": 19.977180672,
+   "mem_reserved_gb": 20.858273792
+  },
+  {
+   "cube": [
+    1,
+    0,
+    1
+   ],
+   "atoms": 7677,
+   "owned": 256,
+   "t_graph_s": 0.020950043573975563,
+   "t_eval_s": 3.8733421629294753,
+   "edges": 288816,
+   "lg_edges": 978732,
+   "max_degree": 42,
+   "mem_alloc_gb": 19.977180672,
+   "mem_reserved_gb": 20.858273792
+  },
+  {
+   "cube": [
+    1,
+    1,
+    0
+   ],
+   "atoms": 7677,
+   "owned": 256,
+   "t_graph_s": 0.019548965618014336,
+   "t_eval_s": 3.8749614851549268,
+   "edges": 288816,
+   "lg_edges": 978732,
+   "max_degree": 42,
+   "mem_alloc_gb": 19.977180672,
+   "mem_reserved_gb": 20.858273792
+  },
+  {
+   "cube": [
+    1,
+    1,
+    1
+   ],
+   "atoms": 7677,
+   "owned": 256,
+   "t_graph_s": 0.01987331546843052,
+   "t_eval_s": 3.8752716975286603,
+   "edges": 288816,
+   "lg_edges": 978732,
+   "max_degree": 42,
+   "mem_alloc_gb": 19.977180672,
+   "mem_reserved_gb": 20.858273792
+  }
+ ],
+ "wall_s": 35.144807995297015,
+ "host_peak_gb": 2.033948,
+ "owned_atoms_per_s": 58.273187899448985,
+ "neighbor_cap_binds": false,
+ "e_per_atom": -6.717563057202413,
+ "max_abs_f": 1.027789778198368e-14,
+ "net_force": [
+  1.4299660110636288e-15,
+  5.499778830056538e-16,
+  2.52278585025667e-15
+ ],
+ "validation": {
+  "e_full_per_atom": -6.717563057202413,
+  "e_atom_sum_per_atom": -6.717563057202414,
+  "e_pieces_per_atom": -6.717563057202413,
+  "max_abs_de_per_atom": 0.0,
+  "max_abs_f_full": 1.0024004738241887e-14,
+  "max_abs_df": 1.0365311582140324e-14
+ }
+}
